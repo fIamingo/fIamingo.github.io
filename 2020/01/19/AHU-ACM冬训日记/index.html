@@ -16,7 +16,7 @@
 <meta property="og:description" content="在写这篇日志之前，冬训早已开始了。我现在正在想搜索部分的A题，已经卡了两天了。因为上学期没选上c++课，以及基础太弱，所以有很多知识盲区。冬训题目的算法基本上都在现学，但是希望坚持下来能有很大进步吧。c++不熟确实是个大问题，这几天得赶快把c++重点内容看一下。不然这题目真的没法推了，网上的博客基本又都是c++写的。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-01-19T15:47:07.000Z">
-<meta property="article:modified_time" content="2020-01-20T10:34:30.437Z">
+<meta property="article:modified_time" content="2020-01-20T12:28:31.311Z">
 <meta property="article:author" content="fIamingo">
 <meta name="twitter:card" content="summary">
   
@@ -196,7 +196,7 @@
       
         <p>在写这篇日志之前，冬训早已开始了。我现在正在想搜索部分的A题，已经卡了两天了。<br>因为上学期没选上c++课，以及基础太弱，所以有很多知识盲区。<br>冬训题目的算法基本上都在现学，但是希望坚持下来能有很大进步吧。<br>c++不熟确实是个大问题，这几天得赶快把c++重点内容看一下。<br>不然这题目真的没法推了，网上的博客基本又都是c++写的。  </p>
 <a id="more"></a> 
-<p>以下训练日志先按时间记录吧。  </p>
+<p>以下训练日志先按字典序记录吧。  </p>
 <h1 id="A-统计难题-字符串"><a href="#A-统计难题-字符串" class="headerlink" title="A-统计难题(字符串)"></a>A-统计难题(字符串)</h1><blockquote>
 <p>Ignatius最近遇到一个难题,老师交给他很多单词(只有小写字母组成,不会有重复的单词出现),现在老师要他统计出以某个字符串为前缀的单词数量(单词本身也是自己的前缀). </p>
 </blockquote>
@@ -215,7 +215,7 @@
 <p>2<br>3<br>1<br>0</p>
 </blockquote>
 <p>普通的遍历方法时间复杂度高，会tle（我试过了），而字典树的优点是利用字符串的公共前缀来减少查询时间。这也是我做这题之后才知道的，当时花了一个下午去理解。这道题本身应该是字典树的模板题。</p>
-<p>推荐这个博客 <a href="https://www.cnblogs.com/TheRoadToTheGold/p/6290732.html" target="_blank" rel="noopener">浅谈字典树</a> 我ac的这份代码写的菜，这个博客的代码当板子比较好。这个博客写的也很好理解。</p>
+<p>推荐这个博客 <a href="https://www.cnblogs.com/TheRoadToTheGold/p/6290732.html" target="_blank" rel="noopener">浅谈字典树</a> 我ac的这份代码写的菜，这个博客的代码当板子比较好，解释写的也很好理解。</p>
 <pre><code>#include&lt;stdio.h&gt;
 #include&lt;string.h&gt;
 
@@ -266,7 +266,10 @@ while(scanf(&quot;%s&quot;,a)!=EOF)
     printf(&quot;%d\n&quot;,k);
 }
 return 0;
-}</code></pre><h1 id="B-Oulipo"><a href="#B-Oulipo" class="headerlink" title="B - Oulipo"></a>B - Oulipo</h1><blockquote>
+}</code></pre>  <br>
+
+
+<h1 id="B-Oulipo-（字符串）"><a href="#B-Oulipo-（字符串）" class="headerlink" title="B - Oulipo （字符串）"></a>B - Oulipo （字符串）</h1><blockquote>
 <p>The French author Georges Perec (1936–1982) once wrote a book, La disparition, without the letter ‘e’. He was a member of the Oulipo group. A quote from the book:<br>Tout avait Pair normal, mais tout s’affirmait faux. Tout avait Fair normal, d’abord, puis surgissait l’inhumain, l’affolant. Il aurait voulu savoir où s’articulait l’association qui l’unissait au roman : stir son tapis, assaillant à tout instant son imagination, l’intuition d’un tabou, la vision d’un mal obscur, d’un quoi vacant, d’un non-dit : la vision, l’avision d’un oubli commandant tout, où s’abolissait la raison : tout avait l’air normal mais…<br>Perec would probably have scored high (or rather, low) in the following contest. People are asked to write a perhaps even meaningful text on some subject with as few occurrences of a given “word” as possible. Our task is to provide the jury with a program that counts these occurrences, in order to obtain a ranking of the competitors. These competitors often write very long texts with nonsense meaning; a sequence of 500,000 consecutive ‘T’s is not unusual. And they never use spaces.<br>So we want to quickly find out how often a word, i.e., a given string, occurs in a text. More formally: given the alphabet {‘A’, ‘B’, ‘C’, …, ‘Z’} and two finite strings over that alphabet, a word W and a text T, count the number of occurrences of W in T. All the consecutive characters of W must exactly match consecutive characters of T. Occurrences may overlap.</p>
 </blockquote>
 <h3 id="Input-1"><a href="#Input-1" class="headerlink" title="Input"></a>Input</h3><blockquote>
@@ -340,7 +343,9 @@ while(i&lt;=n)
     else j=next[j];
 }
 return q;
-}  </code></pre><h1 id="C-吉哥系列故事——完美队形II"><a href="#C-吉哥系列故事——完美队形II" class="headerlink" title="C - 吉哥系列故事——完美队形II"></a>C - 吉哥系列故事——完美队形II</h1><blockquote>
+}  </code></pre><br>
+
+<h1 id="C-吉哥系列故事——完美队形II-字符串"><a href="#C-吉哥系列故事——完美队形II-字符串" class="headerlink" title="C - 吉哥系列故事——完美队形II(字符串)"></a>C - 吉哥系列故事——完美队形II(字符串)</h1><blockquote>
 <p>吉哥又想出了一个新的完美队形游戏！<br>　　假设有n个人按顺序站在他的面前，他们的身高分别是h[1], h[2] … h[n]，吉哥希望从中挑出一些人，让这些人形成一个新的队形，新的队形若满足以下三点要求，则就是新的完美队形： </p>
 <p>1、挑出的人保持原队形的相对顺序不变，且必须都是在原队形中连续的；<br>2、左右对称，假设有m个人形成新的队形，则第1个人和第m个人身高相同，第2个人和第m-1个人身高相同，依此类推，当然如果m是奇数，中间那个人可以任意；<br>3、从左到中间那个人，身高需保证不下降，如果用H表示新队形的高度，则H[1] &lt;= H[2] &lt;= H[3] …. &lt;= H[mid]。 </p>
 </blockquote>
@@ -352,13 +357,212 @@ return q;
 <p>　　请输出能组成完美队形的最多人数，每组输出占一行。</p>
 </blockquote>
 <h3 id="Sample-Input-2"><a href="#Sample-Input-2" class="headerlink" title="Sample Input"></a>Sample Input</h3><blockquote>
-<p>2<br>3<br>51 52 51<br>4<br>51 52 52 51</p>
+<p> 2<br> 3<br> 51 52 51<br> 4<br> 51 52 52 51</p>
 </blockquote>
 <h3 id="Sample-Output-2"><a href="#Sample-Output-2" class="headerlink" title="Sample Output"></a>Sample Output</h3><blockquote>
 <p>3<br>4</p>
 </blockquote>
-<p>这道题用的是马拉车（manacher）算法，又是知识盲区了。马拉车大致思路讲一下：<br>首先对字符串</p>
+<p>这道题用的是马拉车（manacher）算法，又是知识盲区了。马拉车算法神奇就神奇在可以在时间复杂度为O(n)的情况下求解一个字符串的最大回文子串长度。然后解决这道题的话在马拉车模板里加一个递增判断条件即可。<br>（本来想简单说一下马拉车算法，发现还是不会插入图片，这次又鸽了，或者考虑单独开文章整理算法）</p>
+<pre><code>#include&lt;stdio.h&gt;
 
+int num[200010];
+int p[200010];
+int min(int a,int b);
+int Manacher(int n);
+int main()
+{
+int T,n,i;
+scanf(&quot;%d&quot;,&amp;T);
+while(T--)
+{
+    scanf(&quot;%d&quot;,&amp;n);
+    num[0]=-1;
+    for(i=1;i&lt;=n;i++)
+    {
+        num[2*i-1]=0;
+        scanf(&quot;%d&quot;,&amp;num[2*i]);
+    }
+    num[2*i-1]=0;
+    printf(&quot;%d\n&quot;,Manacher(n));    
+}
+ } 
+ int min(int a,int b)
+ {
+     return a&lt;b?a:b;
+ }
+
+ int Manacher(int n)
+ {
+     int i,id,maxn,max;
+     id=0;maxn=0;max=0;
+     for(i=1;i&lt;=2*n;i++)
+     {
+         if(maxn&gt;i)
+         {//i在maxn范围内 
+             p[i]=min(maxn-i,p[2*id-i]);         
+     }
+    else
+    {//i在maxn范围外，只能乖乖遍历了。 
+        p[i]=1;
+    }
+     while(num[i+p[i]]==num[i-p[i]] &amp;&amp;num[i-p[i]]&lt;=num[i-p[i]+2])
+     {
+    p[i]++;
+     }
+     if(i+p[i]&gt;maxn)
+     {
+         id=i;
+         maxn=i+p[i];
+     }
+}
+for(i=1;i&lt;=2*n;i++)
+{
+    max=max&gt;p[i]?max:p[i];
+}
+return max-1;
+ }</code></pre><br>
+
+<h1 id="A-Eight-搜索"><a href="#A-Eight-搜索" class="headerlink" title="A - Eight(搜索)"></a>A - Eight(搜索)</h1><blockquote>
+<p>The 15-puzzle has been around for over 100 years; even if you don’t know it by that name, you’ve seen it. It is constructed with 15 sliding tiles, each with a number from 1 to 15 on it, and all packed into a 4 by 4 frame with one tile missing. Let’s call the missing tile ‘x’; the object of the puzzle is to arrange the tiles so that they are ordered as: </p>
+<p>&nbsp;&nbsp;1&nbsp;&nbsp;  2&nbsp;&nbsp;  3  &nbsp;&nbsp;4<br>&nbsp;&nbsp;5 &nbsp;&nbsp;6&nbsp;&nbsp; 7&nbsp;&nbsp;  8<br>&nbsp;&nbsp;9 10 11 12<br>13 14 15  &nbsp;&nbsp;x</p>
+<p>where the only legal operation is to exchange ‘x’ with one of the tiles with which it shares an edge. As an example, the following sequence of moves solves a slightly scrambled puzzle:<br>&nbsp;&nbsp;1 &nbsp;&nbsp;2 &nbsp;&nbsp;3 &nbsp;&nbsp;4<br>&nbsp;&nbsp;5 &nbsp;&nbsp;6 &nbsp;&nbsp;7 &nbsp;&nbsp;8<br>&nbsp;&nbsp;9 &nbsp;&nbsp;x 10 12<br>13&nbsp;14&nbsp;11 15<br>r-&gt;<br>&nbsp;&nbsp;1 &nbsp;&nbsp;2 &nbsp;&nbsp;3 &nbsp;&nbsp;4<br>&nbsp;&nbsp;5 &nbsp;&nbsp;6 &nbsp;&nbsp;7 &nbsp;&nbsp;8<br>&nbsp;&nbsp;9  10&nbsp;&nbsp; x 12<br>13 14 11 15<br>d-&gt;<br>&nbsp;&nbsp;1 &nbsp;&nbsp;2 &nbsp;&nbsp;3 &nbsp;&nbsp;4<br>&nbsp;&nbsp;5 &nbsp;&nbsp;6 &nbsp;&nbsp;7 &nbsp;&nbsp;8<br>&nbsp;&nbsp;9  10  11 12<br>13 14 &nbsp;&nbsp;x 15<br>r-&gt;<br>&nbsp;&nbsp;1 &nbsp;&nbsp;2 &nbsp;&nbsp;3 &nbsp;&nbsp;4<br>&nbsp;&nbsp;5 &nbsp;&nbsp;6 &nbsp;&nbsp;7 &nbsp;&nbsp;8<br>&nbsp;&nbsp;9  10  11 12<br>13 14 15&nbsp;&nbsp; x<br><br></p>
+<p>The letters in the previous row indicate which neighbor of the ‘x’ tile is swapped with the ‘x’ tile at each step; legal values are ‘r’,’l’,’u’ and ‘d’, for right, left, up, and down, respectively. </p>
+<p>Not all puzzles can be solved; in 1870, a man named Sam Loyd was famous for distributing an unsolvable version of the puzzle, and<br>frustrating many people. In fact, all you have to do to make a regular puzzle into an unsolvable one is to swap two tiles (not counting the missing ‘x’ tile, of course). </p>
+<p>In this problem, you will write a program for solving the less well-known 8-puzzle, composed of tiles on a three by three<br>arrangement. </p>
+</blockquote>
+<h3 id="Input-3"><a href="#Input-3" class="headerlink" title="Input"></a>Input</h3><blockquote>
+<p>You will receive, several descriptions of configuration of the 8 puzzle. One description is just a list of the tiles in their initial positions, with the rows listed from top to bottom, and the tiles listed from left to right within a row, where the tiles are represented by numbers 1 to 8, plus ‘x’. For example, this puzzle </p>
+<p>1 2 3<br>x 4 6<br>7 5 8 </p>
+<p>is described by this list: </p>
+<p>1 2 3 x 4 6 7 5 8 </p>
+</blockquote>
+<h3 id="Output-3"><a href="#Output-3" class="headerlink" title="Output"></a>Output</h3><blockquote>
+<p>You will print to standard output either the word ``unsolvable’’, if the puzzle has no solution, or a string consisting entirely of the letters ‘r’, ‘l’, ‘u’ and ‘d’ that describes a series of moves that produce a solution. The string should include no spaces and start at the beginning of the line. Do not print a blank line between cases.</p>
+</blockquote>
+<h3 id="Sample-Input-3"><a href="#Sample-Input-3" class="headerlink" title="Sample Input"></a>Sample Input</h3><blockquote>
+<p>2  3  4  1  5  x  7  6  8</p>
+</blockquote>
+<h3 id="Sample-Output-3"><a href="#Sample-Output-3" class="headerlink" title="Sample Output"></a>Sample Output</h3><blockquote>
+<p>ullddrurdllurdruldr</p>
+</blockquote>
+<p>这道题确实花了不少时间，现在想来这题的知识点确实不少，最后也是用康托展开和倒序bfs解决的。虽然我在数据结构课上学习了bfs和dfs，但没上过机，开始写这道题就不知不觉写成了bfs。回忆一下上学期数据结构课，bfs用队列dfs用递归。<br>这道题写的慢还有一个最重要的问题那就是不熟c++，stl。。。这些都太好用了。这个代码也是这次冬训提交的第一份用c++完成的。<br>康托展开是这次我遇见的新知识，它是一个全排列到一个自然数的双射，用来压缩空间，因为这道题我们输入的2 3 4 1 5 x 7 6 8可以看作一个排列，它的映射就是当前排列在所有由小到大全排列中的顺序（x看作0）。如此以来，空间确实被压缩了，以前最大为876543210，现在9！/2。</p>
+<p>康托展开公式为：<font color="red">rank=a<sub>n</sub>(n-1)!+a<sub>n-1</sub>(n-2)!+…+a<sub>1</sub>0!</font><br>其中a<sub>i</sub>表示原排列中，排列在下标i后面的，比下表i的字符还小的字符个数。</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+#include&lt;string.h&gt;
+#include&lt;queue&gt;
+#include&lt;string&gt;
+#define MAXSIZE 362890
+int fac[10]={1,1,2,6,24,120,720,5040,40320,362880};
+struct Node
+{
+int s[10];
+int loc;
+int state;
+string path;
+ };
+ string path[MAXSIZE];
+ queue&lt;Node&gt; Q;
+ bool visit[MAXSIZE];
+ char direc[6]=&quot;adurl&quot;;
+int movement[5][2]={{0,0},{-1,0},{1,0},{0,-1},{0,1}};
+
+ int cantor(int s[])
+{
+int i,j,num,sum;
+sum=0;
+for(i=1;i&lt;=8;i++)
+{
+    num=0;
+    for(j=i+1;j&lt;=9;j++)
+    {
+        if(s[j]&lt;s[i])
+        num++;
+    }
+    sum+=num*fac[9-i];
+}
+return sum+1;
+
+}
+
+int bfs()
+{
+Node cur,next;
+memset(visit,false,sizeof(visit));
+for(int i=1;i&lt;9;i++)
+    cur.s[i]=i;
+cur.s[9]=0;
+cur.path=&quot;&quot;;
+cur.loc=9;
+cur.state=cantor(cur.s);
+path[cur.state]=&quot;&quot;;
+Q.push(cur);
+while(!Q.empty())
+{
+    cur=Q.front();
+    Q.pop();
+    int x=(cur.loc-1)/3+1;
+    int y=(cur.loc-1)%3+1;
+    int tx,ty;
+    for(int i=1;i&lt;=4;i++)
+    {
+        tx=x+movement[i][0];
+        ty=y+movement[i][1];
+        if(tx&gt;3||tx&lt;1||ty&gt;3||ty&lt;1)
+        continue;
+        next=cur;
+        next.loc=(tx-1)*3+ty;
+        next.s[cur.loc]=cur.s[next.loc];
+        next.s[next.loc]=0;
+        next.state=cantor(next.s);
+        if(!visit[next.state])
+        {
+        visit[next.state]=true;
+        next.path=direc[i]+cur.path;
+        path[next.state]=next.path;
+        Q.push(next);
+        }
+    }
+}
+return 1;
+}
+
+int main()
+{
+bfs();
+int s[10];
+int state;
+char ch;
+while(1)
+{
+for(int i=1;i&lt;=9;i++)
+{    
+ch=getchar();
+while(ch==&apos; &apos;||ch==&apos;\n&apos;)
+ch=getchar();
+if(ch==EOF)
+return 0;
+else
+if(ch!=&apos;x&apos;)
+{
+    s[i]=ch-&apos;0&apos;;
+}
+else 
+{
+    s[i]=0;
+}
+
+
+}
+state=cantor(s);
+if(visit[state])
+{
+    cout&lt;&lt;path[state]&lt;&lt;endl;
+}
+else cout&lt;&lt;&quot;unsolvable&quot;&lt;&lt;endl;
+}
+return 0;
+}</code></pre>
       
 
       
@@ -459,7 +663,7 @@ return q;
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#A-统计难题-字符串"><span class="toc-number">1.</span> <span class="toc-text">A-统计难题(字符串)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input"><span class="toc-number">1.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output"><span class="toc-number">1.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input"><span class="toc-number">1.0.3.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Output"><span class="toc-number">1.0.4.</span> <span class="toc-text">Sample Output</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#B-Oulipo"><span class="toc-number">2.</span> <span class="toc-text">B - Oulipo</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-1"><span class="toc-number">2.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-1"><span class="toc-number">2.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input-1"><span class="toc-number">2.0.3.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Output-1"><span class="toc-number">2.0.4.</span> <span class="toc-text">Sample Output</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#C-吉哥系列故事——完美队形II"><span class="toc-number">3.</span> <span class="toc-text">C - 吉哥系列故事——完美队形II</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-2"><span class="toc-number">3.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-2"><span class="toc-number">3.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input-2"><span class="toc-number">3.0.3.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Output-2"><span class="toc-number">3.0.4.</span> <span class="toc-text">Sample Output</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#A-统计难题-字符串"><span class="toc-number">1.</span> <span class="toc-text">A-统计难题(字符串)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input"><span class="toc-number">1.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output"><span class="toc-number">1.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input"><span class="toc-number">1.0.3.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Output"><span class="toc-number">1.0.4.</span> <span class="toc-text">Sample Output</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#B-Oulipo-（字符串）"><span class="toc-number">2.</span> <span class="toc-text">B - Oulipo （字符串）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-1"><span class="toc-number">2.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-1"><span class="toc-number">2.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input-1"><span class="toc-number">2.0.3.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Output-1"><span class="toc-number">2.0.4.</span> <span class="toc-text">Sample Output</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#C-吉哥系列故事——完美队形II-字符串"><span class="toc-number">3.</span> <span class="toc-text">C - 吉哥系列故事——完美队形II(字符串)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-2"><span class="toc-number">3.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-2"><span class="toc-number">3.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input-2"><span class="toc-number">3.0.3.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Output-2"><span class="toc-number">3.0.4.</span> <span class="toc-text">Sample Output</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#A-Eight-搜索"><span class="toc-number">4.</span> <span class="toc-text">A - Eight(搜索)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-3"><span class="toc-number">4.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-3"><span class="toc-number">4.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input-3"><span class="toc-number">4.0.3.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Output-3"><span class="toc-number">4.0.4.</span> <span class="toc-text">Sample Output</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
