@@ -16,7 +16,7 @@
 <meta property="og:description" content="在写这篇日志之前，冬训早已开始了。我现在正在想搜索部分的A题，已经卡了两天了。因为上学期没选上c++课，以及基础太弱，所以有很多知识盲区。冬训题目的算法基本上都在现学，但是希望坚持下来能有很大进步吧。c++不熟确实是个大问题，这几天得赶快把c++重点内容看一下。不然这题目真的没法推了，网上的博客基本又都是c++写的。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-01-19T15:47:07.000Z">
-<meta property="article:modified_time" content="2020-01-19T16:23:12.319Z">
+<meta property="article:modified_time" content="2020-01-20T10:34:30.437Z">
 <meta property="article:author" content="fIamingo">
 <meta name="twitter:card" content="summary">
   
@@ -197,13 +197,13 @@
         <p>在写这篇日志之前，冬训早已开始了。我现在正在想搜索部分的A题，已经卡了两天了。<br>因为上学期没选上c++课，以及基础太弱，所以有很多知识盲区。<br>冬训题目的算法基本上都在现学，但是希望坚持下来能有很大进步吧。<br>c++不熟确实是个大问题，这几天得赶快把c++重点内容看一下。<br>不然这题目真的没法推了，网上的博客基本又都是c++写的。  </p>
 <a id="more"></a> 
 <p>以下训练日志先按时间记录吧。  </p>
-<h2 id="A-统计难题-字符串"><a href="#A-统计难题-字符串" class="headerlink" title="A-统计难题(字符串)"></a>A-统计难题(字符串)</h2><blockquote>
+<h1 id="A-统计难题-字符串"><a href="#A-统计难题-字符串" class="headerlink" title="A-统计难题(字符串)"></a>A-统计难题(字符串)</h1><blockquote>
 <p>Ignatius最近遇到一个难题,老师交给他很多单词(只有小写字母组成,不会有重复的单词出现),现在老师要他统计出以某个字符串为前缀的单词数量(单词本身也是自己的前缀). </p>
 </blockquote>
 <h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><blockquote>
 <p>输入数据的第一部分是一张单词表,每行一个单词,单词的长度不超过10,它们代表的是老师交给Ignatius统计的单词,一个空行代表单词表的结束.第二部分是一连串的提问,每行一个提问,每个提问都是一个字符串. </p>
-</blockquote>
 <p>注意:本题只有一组测试数据,处理到文件结束. </p>
+</blockquote>
 <h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><blockquote>
 <p>对于每个提问,给出以该字符串为前缀的单词的数量. </p>
 </blockquote>
@@ -214,7 +214,8 @@
 <h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h3><blockquote>
 <p>2<br>3<br>1<br>0</p>
 </blockquote>
-<p>字典树可以将该问题的时间复杂度降低到O(n)，这也是我做这题之后才知道的。<br>花了一个下午去理解，感觉现在又遗忘了。我把搜索A题解决后再来详细写个字典树的笔记吧。<br>暂时留个当时的代码。  </p>
+<p>普通的遍历方法时间复杂度高，会tle（我试过了），而字典树的优点是利用字符串的公共前缀来减少查询时间。这也是我做这题之后才知道的，当时花了一个下午去理解。这道题本身应该是字典树的模板题。</p>
+<p>推荐这个博客 <a href="https://www.cnblogs.com/TheRoadToTheGold/p/6290732.html" target="_blank" rel="noopener">浅谈字典树</a> 我ac的这份代码写的菜，这个博客的代码当板子比较好。这个博客写的也很好理解。</p>
 <pre><code>#include&lt;stdio.h&gt;
 #include&lt;string.h&gt;
 
@@ -265,7 +266,98 @@ while(scanf(&quot;%s&quot;,a)!=EOF)
     printf(&quot;%d\n&quot;,k);
 }
 return 0;
-}</code></pre><p>B题和C题的日志以后再说吧，D，E，F也还没解决。感觉先得换下这个代码块的颜色，唉，加油吧。</p>
+}</code></pre><h1 id="B-Oulipo"><a href="#B-Oulipo" class="headerlink" title="B - Oulipo"></a>B - Oulipo</h1><blockquote>
+<p>The French author Georges Perec (1936–1982) once wrote a book, La disparition, without the letter ‘e’. He was a member of the Oulipo group. A quote from the book:<br>Tout avait Pair normal, mais tout s’affirmait faux. Tout avait Fair normal, d’abord, puis surgissait l’inhumain, l’affolant. Il aurait voulu savoir où s’articulait l’association qui l’unissait au roman : stir son tapis, assaillant à tout instant son imagination, l’intuition d’un tabou, la vision d’un mal obscur, d’un quoi vacant, d’un non-dit : la vision, l’avision d’un oubli commandant tout, où s’abolissait la raison : tout avait l’air normal mais…<br>Perec would probably have scored high (or rather, low) in the following contest. People are asked to write a perhaps even meaningful text on some subject with as few occurrences of a given “word” as possible. Our task is to provide the jury with a program that counts these occurrences, in order to obtain a ranking of the competitors. These competitors often write very long texts with nonsense meaning; a sequence of 500,000 consecutive ‘T’s is not unusual. And they never use spaces.<br>So we want to quickly find out how often a word, i.e., a given string, occurs in a text. More formally: given the alphabet {‘A’, ‘B’, ‘C’, …, ‘Z’} and two finite strings over that alphabet, a word W and a text T, count the number of occurrences of W in T. All the consecutive characters of W must exactly match consecutive characters of T. Occurrences may overlap.</p>
+</blockquote>
+<h3 id="Input-1"><a href="#Input-1" class="headerlink" title="Input"></a>Input</h3><blockquote>
+<p>The first line of the input file contains a single number: the number of test cases to follow. Each test case has the following format:<br>One line with the word W, a string over {‘A’, ‘B’, ‘C’, …, ‘Z’}, with 1 ≤ |W| ≤ 10,000 (here |W| denotes the length of the string W).<br>One line with the text T, a string over {‘A’, ‘B’, ‘C’, …, ‘Z’}, with |W| ≤ |T| ≤ 1,000,000.</p>
+</blockquote>
+<h3 id="Output-1"><a href="#Output-1" class="headerlink" title="Output"></a>Output</h3><blockquote>
+<p>For every test case in the input file, the output should contain a single number, on a single line: the number of occurrences of the word W in the text T.</p>
+</blockquote>
+<h3 id="Sample-Input-1"><a href="#Sample-Input-1" class="headerlink" title="Sample Input"></a>Sample Input</h3><blockquote>
+<p>3<br>BAPC<br>BAPC<br>AZA<br>AZAZAZA<br>VERDI<br>AVERDXIVYERDIAN</p>
+</blockquote>
+<h3 id="Sample-Output-1"><a href="#Sample-Output-1" class="headerlink" title="Sample Output"></a>Sample Output</h3><blockquote>
+<p>1<br>3<br>0  </p>
+</blockquote>
+<p>终于是遇到了一个熟悉一点的算法了，kmp我在数据结构课上接触过，然后还在数据结构实验课上也写过，这道题就把当时的代码小改一下差不多就可以提交了。  </p>
+<pre><code>#include&lt;stdio.h&gt;
+#include&lt;string.h&gt;
+int next[10001];
+char string[1000006];
+char str[10006];
+int initnext(char *T,int next[]);
+int kmp(char *str,char *string);
+int main()
+{
+int times;
+scanf(&quot;%d&quot;,&amp;times);
+getchar();
+while(times--)
+{
+    gets(str+1);
+    gets(string+1);
+    initnext(str,next);
+    printf(&quot;%d\n&quot;,kmp(str,string));
+}
+return 0;
+}
+int initnext(char *T,int next[])
+{
+int i,j,n;
+i=1;j=0,n=strlen(T+1);
+next[1]=0;
+while(i&lt;=n)
+{
+    if(j==0||T[j]==T[i])
+    {
+        i++;j++;
+        next[i]=j;
+    }
+    else
+    j=next[j];
+}
+}
+int kmp(char*str,char*string)
+{
+int i,j,q,m,n;
+q=0;
+m=strlen(str+1);
+n=strlen(string+1);
+i=1,j=1;
+while(i&lt;=n)
+{
+    if(j==0||str[j]==string[i])
+    {
+        i++;j++;
+        if(j==m+1)
+        {
+            q++;
+            j=next[j];
+        }
+    }
+    else j=next[j];
+}
+return q;
+}  </code></pre><h1 id="C-吉哥系列故事——完美队形II"><a href="#C-吉哥系列故事——完美队形II" class="headerlink" title="C - 吉哥系列故事——完美队形II"></a>C - 吉哥系列故事——完美队形II</h1><blockquote>
+<p>吉哥又想出了一个新的完美队形游戏！<br>　　假设有n个人按顺序站在他的面前，他们的身高分别是h[1], h[2] … h[n]，吉哥希望从中挑出一些人，让这些人形成一个新的队形，新的队形若满足以下三点要求，则就是新的完美队形： </p>
+<p>1、挑出的人保持原队形的相对顺序不变，且必须都是在原队形中连续的；<br>2、左右对称，假设有m个人形成新的队形，则第1个人和第m个人身高相同，第2个人和第m-1个人身高相同，依此类推，当然如果m是奇数，中间那个人可以任意；<br>3、从左到中间那个人，身高需保证不下降，如果用H表示新队形的高度，则H[1] &lt;= H[2] &lt;= H[3] …. &lt;= H[mid]。 </p>
+</blockquote>
+<p>　　现在吉哥想知道：最多能选出多少人组成新的完美队形呢？ </p>
+<h3 id="Input-2"><a href="#Input-2" class="headerlink" title="Input"></a>Input</h3><blockquote>
+<p>输入数据第一行包含一个整数T，表示总共有T组测试数据(T &lt;= 20)；<br>　　每组数据首先是一个整数n(1 &lt;= n &lt;= 100000)，表示原先队形的人数，接下来一行输入n个整数，表示原队形从左到右站的人的身高（50 &lt;= h &lt;= 250，不排除特别矮小和高大的）。</p>
+</blockquote>
+<h3 id="Output-2"><a href="#Output-2" class="headerlink" title="Output"></a>Output</h3><blockquote>
+<p>　　请输出能组成完美队形的最多人数，每组输出占一行。</p>
+</blockquote>
+<h3 id="Sample-Input-2"><a href="#Sample-Input-2" class="headerlink" title="Sample Input"></a>Sample Input</h3><blockquote>
+<p>2<br>3<br>51 52 51<br>4<br>51 52 52 51</p>
+</blockquote>
+<h3 id="Sample-Output-2"><a href="#Sample-Output-2" class="headerlink" title="Sample Output"></a>Sample Output</h3><blockquote>
+<p>3<br>4</p>
+</blockquote>
+<p>这道题用的是马拉车（manacher）算法，又是知识盲区了。马拉车大致思路讲一下：<br>首先对字符串</p>
 
       
 
@@ -367,7 +459,7 @@ return 0;
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#A-统计难题-字符串"><span class="toc-number">1.</span> <span class="toc-text">A-统计难题(字符串)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input"><span class="toc-number">1.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output"><span class="toc-number">1.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input"><span class="toc-number">1.3.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Output"><span class="toc-number">1.4.</span> <span class="toc-text">Sample Output</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#A-统计难题-字符串"><span class="toc-number">1.</span> <span class="toc-text">A-统计难题(字符串)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input"><span class="toc-number">1.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output"><span class="toc-number">1.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input"><span class="toc-number">1.0.3.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Output"><span class="toc-number">1.0.4.</span> <span class="toc-text">Sample Output</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#B-Oulipo"><span class="toc-number">2.</span> <span class="toc-text">B - Oulipo</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-1"><span class="toc-number">2.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-1"><span class="toc-number">2.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input-1"><span class="toc-number">2.0.3.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Output-1"><span class="toc-number">2.0.4.</span> <span class="toc-text">Sample Output</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#C-吉哥系列故事——完美队形II"><span class="toc-number">3.</span> <span class="toc-text">C - 吉哥系列故事——完美队形II</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-2"><span class="toc-number">3.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-2"><span class="toc-number">3.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input-2"><span class="toc-number">3.0.3.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Output-2"><span class="toc-number">3.0.4.</span> <span class="toc-text">Sample Output</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
