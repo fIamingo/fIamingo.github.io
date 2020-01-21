@@ -15,10 +15,13 @@
 <meta property="og:site_name" content="flamingoo的猫窝">
 <meta property="og:description" content="在写这篇日志之前，冬训早已开始了。我现在正在想搜索部分的A题，已经卡了两天了。因为上学期没选上c++课，以及基础太弱，所以有很多知识盲区。冬训题目的算法基本上都在现学，但是希望坚持下来能有很大进步吧。c++不熟确实是个大问题，这几天得赶快把c++重点内容看一下。不然这题目真的没法推了，网上的博客基本又都是c++写的。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://fiamingo.github.io/2020/01/19/AHU-ACM%E5%86%AC%E8%AE%AD%E6%97%A5%E8%AE%B0/8d2bccfaed7ab781de32beb8afaabdc3.jpg">
+<meta property="og:image" content="http://fiamingo.github.io/2020/01/19/AHU-ACM%E5%86%AC%E8%AE%AD%E6%97%A5%E8%AE%B0/d15a627ce1089d7f4f5c080e2259314a.jpg">
 <meta property="article:published_time" content="2020-01-19T15:47:07.000Z">
-<meta property="article:modified_time" content="2020-01-20T12:32:28.857Z">
+<meta property="article:modified_time" content="2020-01-21T15:29:42.937Z">
 <meta property="article:author" content="fIamingo">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://fiamingo.github.io/2020/01/19/AHU-ACM%E5%86%AC%E8%AE%AD%E6%97%A5%E8%AE%B0/8d2bccfaed7ab781de32beb8afaabdc3.jpg">
   
     <link rel="alternative" href="/atom.xml" title="flamingoo的猫窝" type="application/atom+xml">
   
@@ -195,8 +198,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>在写这篇日志之前，冬训早已开始了。我现在正在想搜索部分的A题，已经卡了两天了。<br>因为上学期没选上c++课，以及基础太弱，所以有很多知识盲区。<br>冬训题目的算法基本上都在现学，但是希望坚持下来能有很大进步吧。<br>c++不熟确实是个大问题，这几天得赶快把c++重点内容看一下。<br>不然这题目真的没法推了，网上的博客基本又都是c++写的。  </p>
-<a id="more"></a> 
-<p>以下训练日志先按字典序记录吧。  </p>
+<a id="more"></a>  
 <h1 id="A-统计难题-字符串"><a href="#A-统计难题-字符串" class="headerlink" title="A-统计难题(字符串)"></a>A-统计难题(字符串)</h1><blockquote>
 <p>Ignatius最近遇到一个难题,老师交给他很多单词(只有小写字母组成,不会有重复的单词出现),现在老师要他统计出以某个字符串为前缀的单词数量(单词本身也是自己的前缀). </p>
 </blockquote>
@@ -214,8 +216,12 @@
 <h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h3><blockquote>
 <p>2<br>3<br>1<br>0</p>
 </blockquote>
-<p>普通的遍历方法时间复杂度高，会tle（我试过了），而字典树的优点是利用字符串的公共前缀来减少查询时间。这也是我做这题之后才知道的，当时花了一个下午去理解。这道题本身应该是字典树的模板题。</p>
-<p>推荐这个博客 <a href="https://www.cnblogs.com/TheRoadToTheGold/p/6290732.html" target="_blank" rel="noopener">浅谈字典树</a> 我ac的这份代码写的菜，这个博客的代码当板子比较好，解释写的也很好理解。</p>
+<br>
+普通的遍历方法时间复杂度高，会tle（我试过了），而字典树的优点是利用字符串的公共前缀来减少查询时间。这也是我做这题之后才知道的，当时花了一个下午去理解。这道题本身应该是字典树的模板题。
+推荐这个博客 [浅谈字典树](https://www.cnblogs.com/TheRoadToTheGold/p/6290732.html) 我ac的这份代码写的菜，这个博客的代码当板子比较好，解释写的也很好理解。
+
+<br>
+
 <pre><code>#include&lt;stdio.h&gt;
 #include&lt;string.h&gt;
 
@@ -284,7 +290,9 @@ return 0;
 <h3 id="Sample-Output-1"><a href="#Sample-Output-1" class="headerlink" title="Sample Output"></a>Sample Output</h3><blockquote>
 <p>1<br>3<br>0  </p>
 </blockquote>
-<p>终于是遇到了一个熟悉一点的算法了，kmp我在数据结构课上接触过，然后还在数据结构实验课上也写过，这道题就把当时的代码小改一下差不多就可以提交了。  </p>
+<br>
+终于是遇到了一个熟悉一点的算法了，kmp我在数据结构课上接触过，然后还在数据结构实验课上也写过，这道题就把当时的代码小改一下差不多就可以提交了。  
+
 <pre><code>#include&lt;stdio.h&gt;
 #include&lt;string.h&gt;
 int next[10001];
@@ -362,7 +370,11 @@ return q;
 <h3 id="Sample-Output-2"><a href="#Sample-Output-2" class="headerlink" title="Sample Output"></a>Sample Output</h3><blockquote>
 <p>3<br>4</p>
 </blockquote>
-<p>这道题用的是马拉车（manacher）算法，又是知识盲区了。马拉车算法神奇就神奇在可以在时间复杂度为O(n)的情况下求解一个字符串的最大回文子串长度。然后解决这道题的话在马拉车模板里加一个递增判断条件即可。<br>（本来想简单说一下马拉车算法，发现还是不会插入图片，这次又鸽了，或者考虑单独开文章整理算法）</p>
+<br>
+这道题用的是马拉车（manacher）算法，又是知识盲区了。马拉车算法神奇就神奇在可以在时间复杂度为O(n)的情况下求解一个字符串的最大回文子串长度。然后解决这道题的话在马拉车模板里加一个递增判断条件即可。  
+（本来想简单说一下马拉车算法，发现还是不会插入图片，这次又鸽了，或者考虑单独开文章整理算法）
+<br>
+
 <pre><code>#include&lt;stdio.h&gt;
 
 int num[200010];
@@ -445,6 +457,8 @@ return max-1;
 <h3 id="Sample-Output-3"><a href="#Sample-Output-3" class="headerlink" title="Sample Output"></a>Sample Output</h3><blockquote>
 <p>ullddrurdllurdruldr</p>
 </blockquote>
+<br>
+
 <p>这道题确实花了不少时间，现在想来这题的知识点确实不少，最后也是用康托展开和倒序bfs解决的。虽然我在数据结构课上学习了bfs和dfs，但没上过机，开始写这道题就不知不觉写成了dfs。回忆一下上学期数据结构课，bfs用队列dfs用递归。<br>这道题写的慢还有一个最重要的问题那就是不熟c++，stl。。。这些都太好用了。这个代码也是这次冬训提交的第一份用c++完成的。<br>康托展开是这次我遇见的新知识，它是一个全排列到一个自然数的双射，用来压缩空间，因为这道题我们输入的2 3 4 1 5 x 7 6 8可以看作一个排列，它的映射就是当前排列在所有由小到大全排列中的顺序（x看作0）。如此以来，空间确实被压缩了，以前最大为876543210，现在9！/2。</p>
 <p>康托展开公式为：<font color="red">rank=a<sub>n</sub>(n-1)!+a<sub>n-1</sub>(n-2)!+…+a<sub>1</sub>0!</font><br>其中a<sub>i</sub>表示原排列中，排列在下标i后面的，比下表i的字符还小的字符个数。</p>
 <pre><code>#include&lt;iostream&gt;
@@ -562,6 +576,265 @@ if(visit[state])
 else cout&lt;&lt;&quot;unsolvable&quot;&lt;&lt;endl;
 }
 return 0;
+}</code></pre><br>
+
+<h1 id="B-Eight-II-搜索"><a href="#B-Eight-II-搜索" class="headerlink" title="B - Eight II(搜索)"></a>B - Eight II(搜索)</h1><blockquote>
+<p>Eight-puzzle, which is also called “Nine grids”, comes from an old game. </p>
+<p>In this game, you are given a 3 by 3 board and 8 tiles. The tiles are numbered from 1 to 8 and each covers a grid. As you see, there is a blank grid which can be represented as an ‘X’. Tiles in grids having a common edge with the blank grid can be moved into that blank grid. This operation leads to an exchange of ‘X’ with one tile. </p>
+<p>We use the symbol ‘r’ to represent exchanging ‘X’ with the tile on its right side, and ‘l’ for the left side, ‘u’ for the one above it, ‘d’ for the one below it. <br><br><img src="8d2bccfaed7ab781de32beb8afaabdc3.jpg" alt=""> <br><br>A state of the board can be represented by a string S using the rule showed below.  <br><br><img src="d15a627ce1089d7f4f5c080e2259314a.jpg" alt=""> <br><br>The problem is to operate an operation list of ‘r’, ‘u’, ‘l’, ‘d’ to turn the state of the board from state A to state B. You are required to find the result which meets the following constrains:<br>1.It is of minimum length among all possible solutions.<br>2.It is the lexicographically smallest one of all solutions of minimum length. </p>
+</blockquote>
+<h3 id="Input-4"><a href="#Input-4" class="headerlink" title="Input"></a>Input</h3><blockquote>
+<p>The first line is T (T &lt;= 200), which means the number of test cases of this problem. </p>
+<p>The input of each test case consists of two lines with state A occupying the first line and state B on the second line.<br>It is guaranteed that there is an available solution from state A to B. </p>
+</blockquote>
+<h3 id="Output-4"><a href="#Output-4" class="headerlink" title="Output"></a>Output</h3><blockquote>
+<p>For each test case two lines are expected. </p>
+<p>The first line is in the format of “Case x: d”, in which x is the case number counted from one, d is the minimum length of operation list you need to turn A to B.<br>S is the operation list meeting the constraints and it should be showed on the second line. </p>
+</blockquote>
+<h3 id="Sample-Input-4"><a href="#Sample-Input-4" class="headerlink" title="Sample Input"></a>Sample Input</h3><blockquote>
+<p>2<br>12X453786<br>12345678X<br>564178X23<br>7568X4123</p>
+</blockquote>
+<h3 id="Sample-Output-4"><a href="#Sample-Output-4" class="headerlink" title="Sample Output"></a>Sample Output</h3><blockquote>
+<p>Case 1: 2<br>dd<br>Case 2: 8<br>urrulldr</p>
+</blockquote>
+<br>
+这题是A题的升级版，A题用了康托展开加倒序bfs，B题我想偷懒，直接改的A题的代码。耗时还是长。<br>
+第一次我输一次数字打一次表想着应该会tle，结果果然tle了。 <br>   
+第二次用了映射，可以将每个状态映射到9个状态中的一个状态：X12345678，1X2345678，12X345678，123X45678，1234X5678，12345X678，123456X78，1234567X8，12345678X。这九个状态的区别是0的位置不一样。比如432X57861，就可以映射到123X45678，把原来的4看成1，3看成2。然后我对这9个状态打了9张表，果不其然mle了。  <br>
+第三次，还是打表，但是不能开string[9][MAXSIZE]数组。把bool visit[9][MAXSIZE]换成int，这样可以用来储存操作，1:下 2：左 3：右 4：上 ，最后用一个栈。最终顺序bfs打表和康托终于是过了。
+
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+#include&lt;string.h&gt;
+#include&lt;queue&gt;
+#include&lt;string&gt;
+#define MAXSIZE 362881
+int fac[10]={1,1,2,6,24,120,720,5040,40320,362880};
+int Hash[10];
+char stack[MAXSIZE]; 
+struct Node
+{
+int s[10];
+int loc;
+int state;
+};
+int path[9][MAXSIZE];
+queue&lt;Node&gt; Q;
+int visit[9][MAXSIZE];
+char direc[6]=&quot;adlru&quot;;//下左右上 
+int movement[5][2]={{0,0},{1,0},{0,-1},{0,1},{-1,0}};//1:下 2：左 3：右 4：上 
+
+int cantor(int s[])
+{
+    int i,j,num,sum;
+    sum=0;
+    for(i=1;i&lt;=8;i++)
+    {
+        num=0;
+        for(j=i+1;j&lt;=9;j++)
+        {
+            if(s[j]&lt;s[i])
+            num++;
+        }
+        sum+=num*fac[9-i];
+    }
+    return sum+1;
+}
+
+int bfs(string str,int m)
+{
+    Node cur,next;
+    for(int i=1;i&lt;=9;i++)
+    {
+        if(str[i-1]!=&apos;X&apos;)
+        cur.s[i]=str[i-1]-&apos;0&apos;;
+        else 
+        {
+            cur.s[i]=0;
+            cur.loc=i;
+        }
+    }
+    cur.state=cantor(cur.s);
+    visit[m-1][cur.state]=-1;
+    Q.push(cur);
+    while(!Q.empty())
+    {
+        cur=Q.front();
+        Q.pop();
+        int x=(cur.loc-1)/3+1;
+        int y=(cur.loc-1)%3+1;
+        int tx,ty;
+        for(int i=1;i&lt;=4;i++)
+        {
+            tx=x+movement[i][0];
+            ty=y+movement[i][1];
+            if(tx&gt;3||tx&lt;1||ty&gt;3||ty&lt;1)
+            continue;
+            next=cur;
+            next.loc=(tx-1)*3+ty;
+            next.s[cur.loc]=cur.s[next.loc];
+            next.s[next.loc]=0;
+            next.state=cantor(next.s);
+            if(!visit[m-1][next.state])
+            {
+                visit[m-1][next.state]=i;
+                path[m-1][next.state]=cur.state;
+                Q.push(next);
+            }
+        }
+    }
+    return 1;
+}
+
+int main()
+{    string str;
+    memset(visit,false,sizeof(visit));
+    string str1(&quot;X12345678&quot;);bfs(str1,1);
+    string str2(&quot;1X2345678&quot;);bfs(str2,2);
+    string str3(&quot;12X345678&quot;);bfs(str3,3);
+    string str4(&quot;123X45678&quot;);bfs(str4,4);
+    string str5(&quot;1234X5678&quot;);bfs(str5,5);
+    string str6(&quot;12345X678&quot;);bfs(str6,6);
+    string str7(&quot;123456X78&quot;);bfs(str7,7);
+    string str8(&quot;1234567X8&quot;);bfs(str8,8);
+    string str9(&quot;12345678X&quot;);bfs(str9,9);
+    int times;
+    scanf(&quot;%d&quot;,&amp;times);int m=1;
+    while(times--)
+    {
+        cin&gt;&gt;str;
+        int q=0;
+        for(int i=1;i&lt;=9;i++)
+        {
+            if(str[i-1]==&apos;X&apos;)
+            q=i;
+            else
+            if(q)
+            {
+                Hash[str[i-1]-&apos;0&apos;]=i-1;
+            }
+            else
+            {
+                Hash[str[i-1]-&apos;0&apos;]=i;
+            }    
+        }
+        int s[10]={0};
+        int state;
+        char ch;
+        for(int i=1;i&lt;=9;i++)
+        {    
+        while((ch=getchar())==&apos;\n&apos; ||ch==&apos; &apos;)
+        continue;
+        if(ch==&apos;X&apos;)
+        {
+            s[i]=0;
+        }
+        else 
+        {
+            s[i]=Hash[ch-&apos;0&apos;];
+        }    
+        }
+        state=cantor(s);
+        int l;
+        int n;
+        for( n=0;visit[q-1][state]!=-1;n++)
+        {
+            switch(visit[q-1][state])
+            {
+                case 1:stack[n]=&apos;d&apos;;
+                break;
+                case 2:stack[n]=&apos;l&apos;;
+                break;
+                case 3:stack[n]=&apos;r&apos;;
+                break;
+                case 4:stack[n]=&apos;u&apos;;
+                break;
+                default:cout&lt;&lt;&quot;wrong!&quot;&lt;&lt;endl;
+            }
+            state=path[q-1][state];    
+        }
+        if(visit[state])
+        {
+            cout&lt;&lt;&quot;Case &quot;;
+            cout&lt;&lt;m++&lt;&lt;&quot;: &quot;;
+            cout&lt;&lt;n&lt;&lt;endl;
+            while(n&gt;0)
+            cout&lt;&lt;stack[--n];
+        }
+        cout&lt;&lt;endl;
+    }
+    return 0;
+}</code></pre><h1 id="C-哈密顿绕行世界问题（搜索）"><a href="#C-哈密顿绕行世界问题（搜索）" class="headerlink" title="C - 哈密顿绕行世界问题（搜索）"></a>C - 哈密顿绕行世界问题（搜索）</h1><blockquote>
+<p>一个规则的实心十二面体，它的 20个顶点标出世界著名的20个城市，你从一个城市出发经过每个城市刚好一次后回到出发的城市。 </p>
+</blockquote>
+<h3 id="Input-5"><a href="#Input-5" class="headerlink" title="Input"></a>Input</h3><blockquote>
+<p>前20行的第i行有3个数,表示与第i个城市相邻的3个城市.第20行以后每行有1个数m,m&lt;=20,m&gt;=1.m=0退出. </p>
+</blockquote>
+<h3 id="Output-5"><a href="#Output-5" class="headerlink" title="Output"></a>Output</h3><blockquote>
+<p>输出从第m个城市出发经过每个城市1次又回到m的所有路线,如有多条路线,按字典序输出,每行1条路线.每行首先输出是第几条路线.然后个一个: 后列出经过的城市.参看Sample output </p>
+</blockquote>
+<h3 id="Sample-Input-5"><a href="#Sample-Input-5" class="headerlink" title="Sample Input"></a>Sample Input</h3><blockquote>
+<p>2 5 20<br>1 3 12<br>2 4 10<br>3 5 8<br>1 4 6<br>5 7 19<br>6 8 17<br>4 7 9<br>8 10 16<br>3 9 11<br>10 12 15<br>2 11 13<br>12 14 20<br>13 15 18<br>11 14 16<br>9 15 17<br>7 16 18<br>14 17 19<br>6 18 20<br>1 13 19<br>5<br>0</p>
+</blockquote>
+<h3 id="Sample-Output-5"><a href="#Sample-Output-5" class="headerlink" title="Sample Output"></a>Sample Output</h3><blockquote>
+<p>1:  5 1 2 3 4 8 7 17 18 14 15 16 9 10 11 12 13 20 19 6 5<br>2:  5 1 2 3 4 8 9 10 11 12 13 20 19 18 14 15 16 17 7 6 5<br>3:  5 1 2 3 10 9 16 17 18 14 15 11 12 13 20 19 6 7 8 4 5<br>4:  5 1 2 3 10 11 12 13 20 19 6 7 17 18 14 15 16 9 8 4 5<br>5:  5 1 2 12 11 10 3 4 8 9 16 15 14 13 20 19 18 17 7 6 5<br>6:  5 1 2 12 11 15 14 13 20 19 18 17 16 9 10 3 4 8 7 6 5<br>7:  5 1 2 12 11 15 16 9 10 3 4 8 7 17 18 14 13 20 19 6 5<br>8:  5 1 2 12 11 15 16 17 18 14 13 20 19 6 7 8 9 10 3 4 5<br>9:  5 1 2 12 13 20 19 6 7 8 9 16 17 18 14 15 11 10 3 4 5<br>10:  5 1 2 12 13 20 19 18 14 15 11 10 3 4 8 9 16 17 7 6 5<br>11:  5 1 20 13 12 2 3 4 8 7 17 16 9 10 11 15 14 18 19 6 5<br>12:  5 1 20 13 12 2 3 10 11 15 14 18 19 6 7 17 16 9 8 4 5<br>13:  5 1 20 13 14 15 11 12 2 3 10 9 16 17 18 19 6 7 8 4 5<br>14:  5 1 20 13 14 15 16 9 10 11 12 2 3 4 8 7 17 18 19 6 5<br>15:  5 1 20 13 14 15 16 17 18 19 6 7 8 9 10 11 12 2 3 4 5<br>16:  5 1 20 13 14 18 19 6 7 17 16 15 11 12 2 3 10 9 8 4 5<br>17:  5 1 20 19 6 7 8 9 10 11 15 16 17 18 14 13 12 2 3 4 5<br>18:  5 1 20 19 6 7 17 18 14 13 12 2 3 10 11 15 16 9 8 4 5<br>19:  5 1 20 19 18 14 13 12 2 3 4 8 9 10 11 15 16 17 7 6 5<br>20:  5 1 20 19 18 17 16 9 10 11 15 14 13 12 2 3 4 8 7 6 5<br>21:  5 4 3 2 1 20 13 12 11 10 9 8 7 17 16 15 14 18 19 6 5<br>22:  5 4 3 2 1 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5<br>23:  5 4 3 2 12 11 10 9 8 7 6 19 18 17 16 15 14 13 20 1 5<br>24:  5 4 3 2 12 13 14 18 17 16 15 11 10 9 8 7 6 19 20 1 5<br>25:  5 4 3 10 9 8 7 6 19 20 13 14 18 17 16 15 11 12 2 1 5<br>26:  5 4 3 10 9 8 7 17 16 15 11 12 2 1 20 13 14 18 19 6 5<br>27:  5 4 3 10 11 12 2 1 20 13 14 15 16 9 8 7 17 18 19 6 5<br>28:  5 4 3 10 11 15 14 13 12 2 1 20 19 18 17 16 9 8 7 6 5<br>29:  5 4 3 10 11 15 14 18 17 16 9 8 7 6 19 20 13 12 2 1 5<br>30:  5 4 3 10 11 15 16 9 8 7 17 18 14 13 12 2 1 20 19 6 5<br>31:  5 4 8 7 6 19 18 17 16 9 10 3 2 12 11 15 14 13 20 1 5<br>32:  5 4 8 7 6 19 20 13 12 11 15 14 18 17 16 9 10 3 2 1 5<br>33:  5 4 8 7 17 16 9 10 3 2 1 20 13 12 11 15 14 18 19 6 5<br>34:  5 4 8 7 17 18 14 13 12 11 15 16 9 10 3 2 1 20 19 6 5<br>35:  5 4 8 9 10 3 2 1 20 19 18 14 13 12 11 15 16 17 7 6 5<br>36:  5 4 8 9 10 3 2 12 11 15 16 17 7 6 19 18 14 13 20 1 5<br>37:  5 4 8 9 16 15 11 10 3 2 12 13 14 18 17 7 6 19 20 1 5<br>38:  5 4 8 9 16 15 14 13 12 11 10 3 2 1 20 19 18 17 7 6 5<br>39:  5 4 8 9 16 15 14 18 17 7 6 19 20 13 12 11 10 3 2 1 5<br>40:  5 4 8 9 16 17 7 6 19 18 14 15 11 10 3 2 12 13 20 1 5<br>41:  5 6 7 8 4 3 2 12 13 14 15 11 10 9 16 17 18 19 20 1 5<br>42:  5 6 7 8 4 3 10 9 16 17 18 19 20 13 14 15 11 12 2 1 5<br>43:  5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 1 2 3 4 5<br>44:  5 6 7 8 9 16 17 18 19 20 1 2 12 13 14 15 11 10 3 4 5<br>45:  5 6 7 17 16 9 8 4 3 10 11 15 14 18 19 20 13 12 2 1 5<br>46:  5 6 7 17 16 15 11 10 9 8 4 3 2 12 13 14 18 19 20 1 5<br>47:  5 6 7 17 16 15 11 12 13 14 18 19 20 1 2 3 10 9 8 4 5<br>48:  5 6 7 17 16 15 14 18 19 20 13 12 11 10 9 8 4 3 2 1 5<br>49:  5 6 7 17 18 19 20 1 2 3 10 11 12 13 14 15 16 9 8 4 5<br>50:  5 6 7 17 18 19 20 13 14 15 16 9 8 4 3 10 11 12 2 1 5<br>51:  5 6 19 18 14 13 20 1 2 12 11 15 16 17 7 8 9 10 3 4 5<br>52:  5 6 19 18 14 15 11 10 9 16 17 7 8 4 3 2 12 13 20 1 5<br>53:  5 6 19 18 14 15 11 12 13 20 1 2 3 10 9 16 17 7 8 4 5<br>54:  5 6 19 18 14 15 16 17 7 8 9 10 11 12 13 20 1 2 3 4 5<br>55:  5 6 19 18 17 7 8 4 3 2 12 11 10 9 16 15 14 13 20 1 5<br>56:  5 6 19 18 17 7 8 9 16 15 14 13 20 1 2 12 11 10 3 4 5<br>57:  5 6 19 20 1 2 3 10 9 16 15 11 12 13 14 18 17 7 8 4 5<br>58:  5 6 19 20 1 2 12 13 14 18 17 7 8 9 16 15 11 10 3 4 5<br>59:  5 6 19 20 13 12 11 10 9 16 15 14 18 17 7 8 4 3 2 1 5<br>60:  5 6 19 20 13 14 18 17 7 8 4 3 10 9 16 15 11 12 2 1 5</p>
+</blockquote>
+<br>
+我最早过的搜索题，单纯用dfs可解，感觉能被我用来入门dfs还是挺幸运的。
+
+<pre><code>#include&lt;stdio.h&gt;
+int maps[21][21];
+int visit[21];
+int ways[21];
+int m,times;
+int dfs1(int n,int count);
+int main() 
+{
+    int i,a;
+    for(i=1;i&lt;=20;i++)
+    {
+        scanf(&quot;%d&quot;,&amp;a);
+        maps[i][a]=1;
+        scanf(&quot;%d&quot;,&amp;a);
+        maps[i][a]=1;
+        scanf(&quot;%d&quot;,&amp;a);
+        maps[i][a]=1;
+    }
+    while(scanf(&quot;%d&quot;,&amp;m)&amp;&amp;m!=0)
+    {
+        times=0;
+        for(i=1;i&lt;=20;i++)
+        visit[i]=0;
+        visit[m]=1;
+        dfs1(m,1);
+    }
+    return 0;
+}
+int dfs1(int n,int count)
+{
+    int i;
+    ways[count]=n;
+    if(count==20)
+    {
+        if(maps[n][m]==1)
+        {
+            printf(&quot;%d:&quot;,++times);
+            printf(&quot;  &quot;);
+            for(i=1;i&lt;=20;i++)
+            printf(&quot;%d &quot;,ways[i]);
+            printf(&quot;%d\n&quot;,m);
+        }
+        return 0;
+    }
+    for(i=1;i&lt;=20;i++)
+    {
+        if(maps[n][i]==1 &amp;&amp;visit[i]==0)
+        {
+            visit[i]=1;
+            dfs1(i,count+1);
+            visit[i]=0;
+        }
+    }
 }</code></pre>
       
 
@@ -663,7 +936,7 @@ return 0;
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#A-统计难题-字符串"><span class="toc-number">1.</span> <span class="toc-text">A-统计难题(字符串)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input"><span class="toc-number">1.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output"><span class="toc-number">1.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input"><span class="toc-number">1.0.3.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Output"><span class="toc-number">1.0.4.</span> <span class="toc-text">Sample Output</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#B-Oulipo-（字符串）"><span class="toc-number">2.</span> <span class="toc-text">B - Oulipo （字符串）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-1"><span class="toc-number">2.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-1"><span class="toc-number">2.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input-1"><span class="toc-number">2.0.3.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Output-1"><span class="toc-number">2.0.4.</span> <span class="toc-text">Sample Output</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#C-吉哥系列故事——完美队形II-字符串"><span class="toc-number">3.</span> <span class="toc-text">C - 吉哥系列故事——完美队形II(字符串)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-2"><span class="toc-number">3.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-2"><span class="toc-number">3.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input-2"><span class="toc-number">3.0.3.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Output-2"><span class="toc-number">3.0.4.</span> <span class="toc-text">Sample Output</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#A-Eight-搜索"><span class="toc-number">4.</span> <span class="toc-text">A - Eight(搜索)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-3"><span class="toc-number">4.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-3"><span class="toc-number">4.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input-3"><span class="toc-number">4.0.3.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Output-3"><span class="toc-number">4.0.4.</span> <span class="toc-text">Sample Output</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#A-统计难题-字符串"><span class="toc-number">1.</span> <span class="toc-text">A-统计难题(字符串)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input"><span class="toc-number">1.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output"><span class="toc-number">1.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input"><span class="toc-number">1.0.3.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Output"><span class="toc-number">1.0.4.</span> <span class="toc-text">Sample Output</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#B-Oulipo-（字符串）"><span class="toc-number">2.</span> <span class="toc-text">B - Oulipo （字符串）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-1"><span class="toc-number">2.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-1"><span class="toc-number">2.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input-1"><span class="toc-number">2.0.3.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Output-1"><span class="toc-number">2.0.4.</span> <span class="toc-text">Sample Output</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#C-吉哥系列故事——完美队形II-字符串"><span class="toc-number">3.</span> <span class="toc-text">C - 吉哥系列故事——完美队形II(字符串)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-2"><span class="toc-number">3.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-2"><span class="toc-number">3.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input-2"><span class="toc-number">3.0.3.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Output-2"><span class="toc-number">3.0.4.</span> <span class="toc-text">Sample Output</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#A-Eight-搜索"><span class="toc-number">4.</span> <span class="toc-text">A - Eight(搜索)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-3"><span class="toc-number">4.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-3"><span class="toc-number">4.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input-3"><span class="toc-number">4.0.3.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Output-3"><span class="toc-number">4.0.4.</span> <span class="toc-text">Sample Output</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#B-Eight-II-搜索"><span class="toc-number">5.</span> <span class="toc-text">B - Eight II(搜索)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-4"><span class="toc-number">5.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-4"><span class="toc-number">5.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input-4"><span class="toc-number">5.0.3.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Output-4"><span class="toc-number">5.0.4.</span> <span class="toc-text">Sample Output</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#C-哈密顿绕行世界问题（搜索）"><span class="toc-number">6.</span> <span class="toc-text">C - 哈密顿绕行世界问题（搜索）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-5"><span class="toc-number">6.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-5"><span class="toc-number">6.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input-5"><span class="toc-number">6.0.3.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Output-5"><span class="toc-number">6.0.4.</span> <span class="toc-text">Sample Output</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
