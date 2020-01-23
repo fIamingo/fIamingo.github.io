@@ -16,7 +16,7 @@
 <meta property="og:description" content="acm冬训中感觉自己c++的基础实在是太薄弱，C++ STL应该算是我们刷算法题应该学习的C++中的重点，所以我现在赶快看一下C++ primer中涉及到这部分的知识，记下来。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-01-22T10:15:41.000Z">
-<meta property="article:modified_time" content="2020-01-22T11:12:04.268Z">
+<meta property="article:modified_time" content="2020-01-23T10:22:23.310Z">
 <meta property="article:author" content="fIamingo">
 <meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
@@ -300,6 +300,61 @@ s1!=s2;            //判断对字母的大小写敏感。
 
 </table>
 
+<h2 id="2-标准库类型-vector"><a href="#2-标准库类型-vector" class="headerlink" title="2.标准库类型 vector"></a>2.标准库类型 vector</h2><p>标准库类型<strong><em>vector</em></strong>表示对象的集合，其中所有对象的类型都相同，集合中的每个对象都有一个与之对应的索引，索引用于访问对象，因为vector“容纳着”其他对象，所以它也常被称作<strong><em>容器</em></strong>（container）。</p>
+<h3 id="2-1-定义和初始化vector对象"><a href="#2-1-定义和初始化vector对象" class="headerlink" title="2.1 定义和初始化vector对象"></a>2.1 定义和初始化vector对象</h3><p>和任何一种类类型一样，vector模板控制着定义和初始化向量的方法。</p>
+<pre><code>vector&lt;T&gt; v1;                //v1是一个空vector，它潜在的元素是T类型的。执行默认初始化。
+vector&lt;T&gt; v2(v1);            //v2中包含有v1所有元素的副本。
+vector&lt;T&gt; v2 = v1;            //等价于v2(v1),v2中包含有v1所有元素的副本。
+vector&lt;T&gt; v3(n,val);        //v3包含了n个重复的元素，每个元素的值都是val
+vector&lt;T&gt; v4(n);            //v4包含了n个重复地执行了值初始化的对象。
+vector&lt;T&gt; v5{a,b,c...};        //v5包含了初始值个数的元素，每个元素被赋予相应的初始值。
+vector&lt;T&gt; v5={a,b,c,...};    //同上。</code></pre><h3 id="2-2-向vector对象中添加元素"><a href="#2-2-向vector对象中添加元素" class="headerlink" title="2.2 向vector对象中添加元素"></a>2.2 向vector对象中添加元素</h3><p>常见情况是创建一个vector对象时并补清楚实际所需的元素个数，元素的值也经常无法确定，还有些时候即使元素的初值已知，但如果这些值总量较大而各不相同，那么在创建vector对象的时候执行初始化操作也会显得繁琐。<br>一个很好的解决办法是先创建一个空的vector，然后在运行时再利用vector的成员函数<strong><em>put_back</em></strong>向其中添加元素。<br>put_back负责把一个值当成vector对象的尾元素“压到（push）”vector对象的“尾端（back）”。例如：</p>
+<pre><code>vector&lt;int&gt; v2;                    //空vector对象
+for (int i = 0;i !=100; ++i)    
+    v2.push_back(i);            //依次把整数值放到v2尾端。
+//循环结束后v2有100个元素，值从0到99</code></pre><h3 id="2-3-其他vector操作"><a href="#2-3-其他vector操作" class="headerlink" title="2.3 其他vector操作"></a>2.3 其他vector操作</h3><p>除了push_back之外，vector还提供了几种其他操作，大多数都和string的相关操作类似，表列出了其中比较重要的一些。</p>
+<table border="1">
+<tr align="middle">
+<td colspan="2">其他vector操作</td>
+
+</tr>
+<tr>
+<td>v.empty()</td>
+<td>如果v不含有任何元素，返回真;否则返回假</td>
+</tr>
+<tr>
+<td>v.size()</td>
+<td>返回v中元素的个数</td>
+</tr>
+<tr>
+<td>v.push_back(t)</td>
+<td>向v的尾端添加一个值为t的元素</td>
+</tr>
+<tr>
+<td>v[n]</td>
+<td>返回v中第n个位置上元素的引用</td>
+</tr>
+<tr>
+<td>v1 = v2</td>
+<td>用v2元素的拷贝替换v1中的元素</td>
+</tr>
+<tr>
+<td>v1 = {a,b,c...}</td>
+<td>用列表中元素的拷贝替换v1中的元素</td>
+</tr>
+<tr>
+<td>v1 == v2</td>
+<td>v1和v2相等当且仅当它们的元素数量相同且对应位置的元素值都相同</td>
+</tr>
+<tr>
+<td>v1 != v2</td>
+<td></td>
+</tr>
+<tr>
+<td><,<=,>,>=</td>
+<td>顾名思义，以字典顺序进行比较</td>
+</tr>
+</table>
 
 
 
@@ -415,7 +470,7 @@ s1!=s2;            //判断对字母的大小写敏感。
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#标准模板库"><span class="toc-number">1.</span> <span class="toc-text">标准模板库</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-标准库类型string"><span class="toc-number">1.1.</span> <span class="toc-text">1.标准库类型string</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-定义和初始化string对象"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1 定义和初始化string对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-string对象上的操作"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.2 string对象上的操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-处理string对象中的字符"><span class="toc-number">1.1.3.</span> <span class="toc-text">1.3 处理string对象中的字符</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#标准模板库"><span class="toc-number">1.</span> <span class="toc-text">标准模板库</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-标准库类型string"><span class="toc-number">1.1.</span> <span class="toc-text">1.标准库类型string</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-定义和初始化string对象"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1 定义和初始化string对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-string对象上的操作"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.2 string对象上的操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-处理string对象中的字符"><span class="toc-number">1.1.3.</span> <span class="toc-text">1.3 处理string对象中的字符</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-标准库类型-vector"><span class="toc-number">1.2.</span> <span class="toc-text">2.标准库类型 vector</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-定义和初始化vector对象"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1 定义和初始化vector对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-向vector对象中添加元素"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.2 向vector对象中添加元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-其他vector操作"><span class="toc-number">1.2.3.</span> <span class="toc-text">2.3 其他vector操作</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -544,6 +599,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ACM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
@@ -553,14 +616,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">C++</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ACM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
