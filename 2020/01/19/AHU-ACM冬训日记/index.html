@@ -18,7 +18,7 @@
 <meta property="og:image" content="http://fiamingo.github.io/2020/01/19/AHU-ACM%E5%86%AC%E8%AE%AD%E6%97%A5%E8%AE%B0/8d2bccfaed7ab781de32beb8afaabdc3.jpg">
 <meta property="og:image" content="http://fiamingo.github.io/2020/01/19/AHU-ACM%E5%86%AC%E8%AE%AD%E6%97%A5%E8%AE%B0/d15a627ce1089d7f4f5c080e2259314a.jpg">
 <meta property="article:published_time" content="2020-01-19T15:47:07.000Z">
-<meta property="article:modified_time" content="2020-01-27T09:54:58.549Z">
+<meta property="article:modified_time" content="2020-01-27T13:32:01.733Z">
 <meta property="article:author" content="fIamingo">
 <meta property="article:tag" content="ACM">
 <meta property="article:tag" content="算法">
@@ -1090,6 +1090,170 @@ int main()
 int find1(int s)
 {
     return s==finda[s]?s:finda[s]=find1(finda[s]);
+}</code></pre><h1 id="D-Anna-Svyatoslav-and-Maps-图论"><a href="#D-Anna-Svyatoslav-and-Maps-图论" class="headerlink" title="D - Anna, Svyatoslav and Maps(图论)"></a>D - Anna, Svyatoslav and Maps(图论)</h1><blockquote>
+<p>The main characters have been omitted to be short.<br>You are given a directed unweighted graph without loops with n vertexes and a path in it (that path is not necessary simple) given by a sequence p1,p2,…,pm of m vertexes; for each 1≤i&lt;m there is an arc from pi to pi+1.<br>Define the sequence v1,v2,…,vk of kvertexes as good, if v is a subsequence of p, v1=p1, vk=pm, and pis one of the shortest paths passing through the vertexes v1, …, vk in that order.<br>A sequence a is a subsequence of a sequence b if a can be obtained from b by deletion of several (possibly, zero or all) elements. It is obvious that the sequence p is good but your task is to find the shortest good subsequence.<br>If there are multiple shortest good subsequences, output any of them.</p>
+</blockquote>
+<h3 id="Input-9"><a href="#Input-9" class="headerlink" title="Input"></a>Input</h3><blockquote>
+<p>The first line contains a single integer n(2≤n≤100) — the number of vertexes in a graph.<br>The next n lines define the graph by an adjacency matrix: the j-th character in the i-st line is equal to 1 if there is an arc from vertex i to the vertex j else it is equal to 0. It is guaranteed that the graph doesn’t contain loops.<br>The next line contains a single integer m(2≤m≤10<sup>6</sup>) — the number of vertexes in the path.<br>The next line contains m integers p<sub>1</sub>,p<sub>2</sub>,…,p<sub>m</sub>(1≤p<sub>i</sub>≤n) — the sequence of vertexes in the path. It is guaranteed that for any 1≤i&lt;m there is an arc from pi to pi+1.</p>
+</blockquote>
+<h3 id="Output-10"><a href="#Output-10" class="headerlink" title="Output"></a>Output</h3><blockquote>
+<p>In the first line output a single integer k(2≤k≤m) — the length of the shortest good subsequence. In the second line output k integers v1, …, vk(1≤vi≤n) — the vertexes in the subsequence. If there are multiple shortest subsequences, print any. Any two consecutive numbers should be distinct. </p>
+</blockquote>
+<h3 id="Examples-2"><a href="#Examples-2" class="headerlink" title="Examples"></a>Examples</h3><blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">Input</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">4<br>0110<br>0010<br>0001<br>1000<br>4<br>1 2 3 4</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">3<br>1 2 4</td>
+</tr>
+</tbody></table>
+<br>
+
+<table>
+<thead>
+<tr>
+<th align="left">Input</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">4<br>0110<br>0010<br>1001<br>1000<br> 20<br>1 2 3 4 1 2 3 4 1 2 3 4 1 2 3 4 1 2 3 4</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">11<br>1 2 4 2 4 2 4 2 4 2 4</td>
+</tr>
+</tbody></table>
+<br>
+
+<table>
+<thead>
+<tr>
+<th align="left">Input</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">3<br>011<br>101<br>110<br>7<br>1 2 3 1 3 2 1</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">7<br>1 2 3 1 3 2 1</td>
+</tr>
+</tbody></table>
+<br>
+
+<table>
+<thead>
+<tr>
+<th align="left">Input</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">4<br>0110<br>0001<br>0001<br>1000<br>3<br>1 2 4</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">2<br>1 4</td>
+</tr>
+</tbody></table>
+</blockquote>
+<br>
+本咸鱼今天竟然a了三个题了，真的是人生巅峰啊。
+说回这题，题面很复杂，输出的字符串为满足路径为给定字符串的最短字符串，很绕。
+看了一下floyd算法，算法实现确实比迪杰斯特拉简单，但是因为每两个点的最短距离都求了，很多情况肯定时间复杂度太大了，这道题每两个点的距离都需要，所以很适合floyd。然后我这个题的思路就是从p1开始，设p1为起始点，寻找链的末尾更新新的起始点，继续寻找链的末尾。因为如果是链的话，一首一尾刚好放在数组中，是最小的good sequence。
+
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+#include&lt;vector&gt;
+#define INF 1000001
+int map[101][101];
+void floyd(int n);
+int main()
+{
+    int n;
+    cin&gt;&gt;n;
+    for(int i=1;i&lt;=n;i++)
+    {
+        string s;
+        cin&gt;&gt;s;
+        for(int j=1;j&lt;=n;j++)
+        {
+            if(s[j-1]==&apos;0&apos;)    
+            map[i][j]=INF;
+            else
+            map[i][j]=1;
+        }
+    }    
+    for(int i=1;i&lt;=n;i++)
+    map[i][i]=0;     
+    floyd(n);
+    int m;
+    cin&gt;&gt;m;
+    vector&lt;int&gt; v1;int yuansu;
+    for(int i=0;i&lt;m;i++)
+    {    
+        cin&gt;&gt;yuansu;
+        v1.push_back(yuansu);
+    }
+    vector&lt;int&gt; v2;
+    v2.push_back(v1[0]);
+    int j=0,i=1,count=1;
+    while(i&lt;m)
+    {
+        if(map[v1[j]][v1[i]]==count)
+        {
+            i++;count++;
+        }
+        else
+        {
+            i--;v2.push_back(v1[i]);j=i;i++;count=1;
+        }
+    }
+    v2.push_back(v1[m-1]);
+    m=v2.size();
+    cout&lt;&lt;m&lt;&lt;endl;
+    for(i=0;i&lt;m;i++)
+    cout&lt;&lt;v2[i]&lt;&lt;&quot; &quot;;
+    cout&lt;&lt;endl;
+    return 0;    
+}
+
+void floyd(int n)
+{
+    for(int k=1;k&lt;=n;k++)
+      for(int i=1;i&lt;=n;i++)
+        for(int j=1;j&lt;=n;j++)
+        map[i][j]=min(map[i][j],map[i][k]+map[k][j]);
 }</code></pre>
       
 
@@ -1215,7 +1379,7 @@ int find1(int s)
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#A-统计难题-字符串"><span class="toc-number">1.</span> <span class="toc-text">A-统计难题(字符串)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input"><span class="toc-number">1.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output"><span class="toc-number">1.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input"><span class="toc-number">1.0.3.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Output"><span class="toc-number">1.0.4.</span> <span class="toc-text">Sample Output</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#B-Oulipo-（字符串）"><span class="toc-number">2.</span> <span class="toc-text">B - Oulipo （字符串）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-1"><span class="toc-number">2.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-1"><span class="toc-number">2.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input-1"><span class="toc-number">2.0.3.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Output-1"><span class="toc-number">2.0.4.</span> <span class="toc-text">Sample Output</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#C-吉哥系列故事——完美队形II-字符串"><span class="toc-number">3.</span> <span class="toc-text">C - 吉哥系列故事——完美队形II(字符串)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-2"><span class="toc-number">3.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-2"><span class="toc-number">3.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input-2"><span class="toc-number">3.0.3.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Output-2"><span class="toc-number">3.0.4.</span> <span class="toc-text">Sample Output</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#A-Eight-搜索"><span class="toc-number">4.</span> <span class="toc-text">A - Eight(搜索)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-3"><span class="toc-number">4.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-3"><span class="toc-number">4.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input-3"><span class="toc-number">4.0.3.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Output-3"><span class="toc-number">4.0.4.</span> <span class="toc-text">Sample Output</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#B-Eight-II-搜索"><span class="toc-number">5.</span> <span class="toc-text">B - Eight II(搜索)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-4"><span class="toc-number">5.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-4"><span class="toc-number">5.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input-4"><span class="toc-number">5.0.3.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Output-4"><span class="toc-number">5.0.4.</span> <span class="toc-text">Sample Output</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#C-哈密顿绕行世界问题（搜索）"><span class="toc-number">6.</span> <span class="toc-text">C - 哈密顿绕行世界问题（搜索）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-5"><span class="toc-number">6.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-5"><span class="toc-number">6.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input-5"><span class="toc-number">6.0.3.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Output-5"><span class="toc-number">6.0.4.</span> <span class="toc-text">Sample Output</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#A-Two-Fairs-图论"><span class="toc-number">7.</span> <span class="toc-text">A - Two Fairs(图论)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-6"><span class="toc-number">7.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-6"><span class="toc-number">7.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input-6"><span class="toc-number">7.0.3.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-7"><span class="toc-number">7.0.4.</span> <span class="toc-text">Output</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#B-Secret-Passwords（图论）"><span class="toc-number">8.</span> <span class="toc-text">B - Secret Passwords（图论）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-7"><span class="toc-number">8.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-8"><span class="toc-number">8.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Examples"><span class="toc-number">8.0.3.</span> <span class="toc-text">Examples</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#C-Cow-and-Snacks（图论）"><span class="toc-number">9.</span> <span class="toc-text">C - Cow and Snacks（图论）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-8"><span class="toc-number">9.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-9"><span class="toc-number">9.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Examples-1"><span class="toc-number">9.0.3.</span> <span class="toc-text">Examples</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#A-统计难题-字符串"><span class="toc-number">1.</span> <span class="toc-text">A-统计难题(字符串)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input"><span class="toc-number">1.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output"><span class="toc-number">1.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input"><span class="toc-number">1.0.3.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Output"><span class="toc-number">1.0.4.</span> <span class="toc-text">Sample Output</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#B-Oulipo-（字符串）"><span class="toc-number">2.</span> <span class="toc-text">B - Oulipo （字符串）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-1"><span class="toc-number">2.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-1"><span class="toc-number">2.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input-1"><span class="toc-number">2.0.3.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Output-1"><span class="toc-number">2.0.4.</span> <span class="toc-text">Sample Output</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#C-吉哥系列故事——完美队形II-字符串"><span class="toc-number">3.</span> <span class="toc-text">C - 吉哥系列故事——完美队形II(字符串)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-2"><span class="toc-number">3.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-2"><span class="toc-number">3.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input-2"><span class="toc-number">3.0.3.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Output-2"><span class="toc-number">3.0.4.</span> <span class="toc-text">Sample Output</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#A-Eight-搜索"><span class="toc-number">4.</span> <span class="toc-text">A - Eight(搜索)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-3"><span class="toc-number">4.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-3"><span class="toc-number">4.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input-3"><span class="toc-number">4.0.3.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Output-3"><span class="toc-number">4.0.4.</span> <span class="toc-text">Sample Output</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#B-Eight-II-搜索"><span class="toc-number">5.</span> <span class="toc-text">B - Eight II(搜索)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-4"><span class="toc-number">5.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-4"><span class="toc-number">5.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input-4"><span class="toc-number">5.0.3.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Output-4"><span class="toc-number">5.0.4.</span> <span class="toc-text">Sample Output</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#C-哈密顿绕行世界问题（搜索）"><span class="toc-number">6.</span> <span class="toc-text">C - 哈密顿绕行世界问题（搜索）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-5"><span class="toc-number">6.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-5"><span class="toc-number">6.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input-5"><span class="toc-number">6.0.3.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Output-5"><span class="toc-number">6.0.4.</span> <span class="toc-text">Sample Output</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#A-Two-Fairs-图论"><span class="toc-number">7.</span> <span class="toc-text">A - Two Fairs(图论)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-6"><span class="toc-number">7.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-6"><span class="toc-number">7.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input-6"><span class="toc-number">7.0.3.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-7"><span class="toc-number">7.0.4.</span> <span class="toc-text">Output</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#B-Secret-Passwords（图论）"><span class="toc-number">8.</span> <span class="toc-text">B - Secret Passwords（图论）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-7"><span class="toc-number">8.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-8"><span class="toc-number">8.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Examples"><span class="toc-number">8.0.3.</span> <span class="toc-text">Examples</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#C-Cow-and-Snacks（图论）"><span class="toc-number">9.</span> <span class="toc-text">C - Cow and Snacks（图论）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-8"><span class="toc-number">9.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-9"><span class="toc-number">9.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Examples-1"><span class="toc-number">9.0.3.</span> <span class="toc-text">Examples</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#D-Anna-Svyatoslav-and-Maps-图论"><span class="toc-number">10.</span> <span class="toc-text">D - Anna, Svyatoslav and Maps(图论)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-9"><span class="toc-number">10.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-10"><span class="toc-number">10.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Examples-2"><span class="toc-number">10.0.3.</span> <span class="toc-text">Examples</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -1344,18 +1508,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">日常</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">动漫</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ACM</a>
               </li>
              
@@ -1365,6 +1517,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">日常</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">动漫</a>
               </li>
             
             <div class="clearfix"></div>
