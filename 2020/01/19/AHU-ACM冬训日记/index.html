@@ -17,8 +17,9 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://fiamingo.github.io/2020/01/19/AHU-ACM%E5%86%AC%E8%AE%AD%E6%97%A5%E8%AE%B0/8d2bccfaed7ab781de32beb8afaabdc3.jpg">
 <meta property="og:image" content="http://fiamingo.github.io/2020/01/19/AHU-ACM%E5%86%AC%E8%AE%AD%E6%97%A5%E8%AE%B0/d15a627ce1089d7f4f5c080e2259314a.jpg">
+<meta property="og:image" content="http://fiamingo.github.io/2020/01/19/AHU-ACM%E5%86%AC%E8%AE%AD%E6%97%A5%E8%AE%B0/484ac84a1e7eb5b60c2d9f0ac6e356c7.jpg">
 <meta property="article:published_time" content="2020-01-19T15:47:07.000Z">
-<meta property="article:modified_time" content="2020-01-27T13:32:01.733Z">
+<meta property="article:modified_time" content="2020-01-31T14:38:46.561Z">
 <meta property="article:author" content="fIamingo">
 <meta property="article:tag" content="ACM">
 <meta property="article:tag" content="算法">
@@ -438,6 +439,7 @@ for(i=1;i&lt;=2*n;i++)
 return max-1;
  }</code></pre><br>
 
+
 <h1 id="A-Eight-搜索"><a href="#A-Eight-搜索" class="headerlink" title="A - Eight(搜索)"></a>A - Eight(搜索)</h1><blockquote>
 <p>The 15-puzzle has been around for over 100 years; even if you don’t know it by that name, you’ve seen it. It is constructed with 15 sliding tiles, each with a number from 1 to 15 on it, and all packed into a 4 by 4 frame with one tile missing. Let’s call the missing tile ‘x’; the object of the puzzle is to arrange the tiles so that they are ordered as: </p>
 <p>&nbsp;&nbsp;1&nbsp;&nbsp;  2&nbsp;&nbsp;  3  &nbsp;&nbsp;4<br>&nbsp;&nbsp;5 &nbsp;&nbsp;6&nbsp;&nbsp; 7&nbsp;&nbsp;  8<br>&nbsp;&nbsp;9 10 11 12<br>13 14 15  &nbsp;&nbsp;x</p>
@@ -841,19 +843,103 @@ int dfs1(int n,int count)
     }
 }</code></pre><br>
 
+<h1 id="E-DNA-sequence-搜索"><a href="#E-DNA-sequence-搜索" class="headerlink" title="E - DNA sequence (搜索)"></a>E - DNA sequence (搜索)</h1><blockquote>
+<p>The twenty-first century is a biology-technology developing century. We know that a gene is made of DNA. The nucleotide bases from which DNA is built are A(adenine), C(cytosine), G(guanine), and T(thymine). Finding the longest common subsequence between DNA/Protein sequences is one of the basic problems in modern computational molecular biology. But this problem is a little different. Given several DNA sequences, you are asked to make a shortest sequence from them so that each of the given sequence is the subsequence of it. </p>
+<p>For example, given “ACGT”,”ATGC”,”CGTT” and “CAGT”, you can make a sequence in the following way. It is the shortest but may be not the only one.<br> <img src="484ac84a1e7eb5b60c2d9f0ac6e356c7.jpg" alt=""></p>
+</blockquote>
+<h2 id="Input-6"><a href="#Input-6" class="headerlink" title="Input"></a>Input</h2><blockquote>
+<p>The first line is the test case number t. Then t test cases follow. In each case, the first line is an integer n ( 1&lt;=n&lt;=8 ) represents number of the DNA sequences. The following k lines contain the k sequences, one per line. Assuming that the length of any sequence is between 1 and 5.</p>
+</blockquote>
+<h2 id="Output-6"><a href="#Output-6" class="headerlink" title="Output"></a>Output</h2><blockquote>
+<p>For each test case, print a line containing the length of the shortest sequence that can be made from these sequences.</p>
+</blockquote>
+<h2 id="Sample-Input-6"><a href="#Sample-Input-6" class="headerlink" title="Sample Input"></a>Sample Input</h2><blockquote>
+<p>1<br>4<br>ACGT<br>ATGC<br>CGTT<br>CAGT</p>
+</blockquote>
+<h2 id="Sample-Output-6"><a href="#Sample-Output-6" class="headerlink" title="Sample Output"></a>Sample Output</h2><blockquote>
+<p>8</p>
+</blockquote>
+<p>今天我依然没做出来图论的E题，不是mle就是tle但是感觉思路也没什么问题，自闭了，就过来缓缓。然而看了题面还是没思路，学习了IDA*，迭代加深，确实很好用，通过剪枝和依次加深也避免了很多多余的步骤。看着这道题总感觉能用bfs写，但是似乎用bfs的都投靠IDA*了。</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+string str[10];
+int pos[10]={0};
+char DNA[5]={&apos;A&apos;,&apos;C&apos;,&apos;T&apos;,&apos;G&apos;};
+int n,deep,ans;
+void dfs(int ,int len[]);
+int main()
+{
+int t;
+cin&gt;&gt;t;
+while(t--)
+{
+    deep=0;
+    ans=-1;
+    cin&gt;&gt;n;
+    for(int i=0;i&lt;n;i++)
+    {
+        cin&gt;&gt;str[i];
+        deep=max(deep,(int)str[i].size());
+    }
+    while(1)
+    {
+        dfs(0,pos);
+        if(ans!=-1)
+        break;
+        deep++;
+    }    
+    cout&lt;&lt;ans&lt;&lt;endl;
+}
+return 0;
+
+ }
+
+void dfs(int index,int len[10])
+{
+    if(index&gt;deep) return;
+    int maxx=0;
+    for(int i=0;i&lt;n;i++)
+    {
+        maxx=max(maxx,(int)str[i].size()-len[i]);
+    }
+    if(maxx==0)
+    {
+        ans=index;
+        return;
+    }
+    if(index+maxx&gt;deep)
+    return ;
+    for(int i=0;i&lt;4;i++)
+    {
+        int flag=0;
+        int pos[10];
+        for(int j=0;j&lt;n;j++)
+        {
+            if(str[j][len[j]]==DNA[i])
+            {
+                flag=1;
+                pos[j]=len[j]+1;
+            }
+            else pos[j]=len[j];
+        }
+        if(flag==1)
+        dfs(index+1,pos);
+    }
+}</code></pre><br>
+
 <h1 id="A-Two-Fairs-图论"><a href="#A-Two-Fairs-图论" class="headerlink" title="A - Two Fairs(图论)"></a>A - Two Fairs(图论)</h1><blockquote>
 <p>There are n cities in Berland and some pairs of them are connected by two-way roads. It is guaranteed that you can pass from any city to any other, moving along the roads. Cities are numerated from 1 to n.<br>Two fairs are currently taking place in Berland — they are held in two different cities a and b (1≤a,b≤n; a≠b).<br>Find the number of pairs of cities x and y (x≠a,x≠b,y≠a,y≠b) such that if you go from x to y you will have to go through both fairs (the order of visits doesn’t matter). Formally, you need to find the number of pairs of cities x,y such that any path from x to y goes through a and b (in any order).<br>Print the required number of pairs. The order of two cities in a pair does not matter, that is, the pairs (x,y) and (y,x) must be taken into account only once.</p>
 </blockquote>
-<h3 id="Input-6"><a href="#Input-6" class="headerlink" title="Input"></a>Input</h3><blockquote>
+<h3 id="Input-7"><a href="#Input-7" class="headerlink" title="Input"></a>Input</h3><blockquote>
 <p>The first line of the input contains an integer t (1≤t≤4⋅10<sup>4</sup>) — the number of test cases in the input. Next, t test cases are specified.<br>The first line of each test case contains four integers n, m, a and b (4≤n≤2⋅10<sup>5</sup>, n−1≤m≤5⋅10<sup>5</sup>, 1≤a,b≤n, a≠b) — numbers of cities and roads in Berland and numbers of two cities where fairs are held, respectively.<br>The following m lines contain descriptions of roads between cities. Each of road description contains a pair of integers u<sub>i</sub>,v<sub>i</sub> (1≤u<sub>i</sub>,v<sub>i</sub>≤n, u<sub>i</sub>≠v<sub>i</sub>) — numbers of cities connected by the road.<br>Each road is bi-directional and connects two different cities. It is guaranteed that from any city you can pass to any other by roads. There can be more than one road between a pair of cities.<br>The sum of the values of n for all sets of input data in the test does not exceed 2⋅10<sup>5</sup>. The sum of the values of m for all sets of input data in the test does not exceed 5⋅10<sup>5</sup>.</p>
 </blockquote>
-<h3 id="Output-6"><a href="#Output-6" class="headerlink" title="Output"></a>Output</h3><blockquote>
+<h3 id="Output-7"><a href="#Output-7" class="headerlink" title="Output"></a>Output</h3><blockquote>
 <p>Print t integers — the answers to the given test cases in the order they are written in the input.</p>
 </blockquote>
-<h3 id="Sample-Input-6"><a href="#Sample-Input-6" class="headerlink" title="Sample Input"></a>Sample Input</h3><blockquote>
+<h3 id="Sample-Input-7"><a href="#Sample-Input-7" class="headerlink" title="Sample Input"></a>Sample Input</h3><blockquote>
 <p>3<br>7 7 3 5<br>1 2<br>2 3<br>3 4<br>4 5<br>5 6<br>6 7<br>7 5<br>4 5 2 3<br>1 2<br>2 3<br>3 4<br>4 1<br>4 2<br>4 3 2 1<br>1 2<br>2 3<br>4 1</p>
 </blockquote>
-<h3 id="Output-7"><a href="#Output-7" class="headerlink" title="Output"></a>Output</h3><blockquote>
+<h3 id="Output-8"><a href="#Output-8" class="headerlink" title="Output"></a>Output</h3><blockquote>
 <p>4<br>0<br>1</p>
 </blockquote>
 <br>
@@ -874,11 +960,11 @@ int dfs1(int n,int count)
 <li>admin’s password is “d”, then you can access to system by using only “d”.<br>Only one password from the list is the admin’s password from the testing system. Help hacker to calculate the minimal number of passwords, required to guaranteed access to the system. Keep in mind that the hacker does not know which password is set in the system.</li>
 </ul>
 </blockquote>
-<h3 id="Input-7"><a href="#Input-7" class="headerlink" title="Input"></a>Input</h3><blockquote>
+<h3 id="Input-8"><a href="#Input-8" class="headerlink" title="Input"></a>Input</h3><blockquote>
 <p>The first line contain integer n (1≤n≤2⋅10<sup>5</sup>1≤n≤2⋅10<sup>5</sup>) — number of passwords in the list. Next n lines contains passwords from the list – non-empty strings s<sub>i</sub>, with length at most 5050 letters. Some of the passwords may be equal.</p>
 <p>It is guaranteed that the total length of all passwords does not exceed 10<sup>6</sup>letters. All of them consist only of lowercase Latin letters.</p>
 </blockquote>
-<h3 id="Output-8"><a href="#Output-8" class="headerlink" title="Output"></a>Output</h3><blockquote>
+<h3 id="Output-9"><a href="#Output-9" class="headerlink" title="Output"></a>Output</h3><blockquote>
 <p>In a single line print the minimal number of passwords, the use of which will allow guaranteed to access the system.</p>
 </blockquote>
 <h3 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h3><blockquote>
@@ -1004,10 +1090,10 @@ int dfs(int state)
 </ul>
 <p>Help Bessie to minimize the number of sad guests by lining the guests in an optimal way.</p>
 </blockquote>
-<h3 id="Input-8"><a href="#Input-8" class="headerlink" title="Input"></a>Input</h3><blockquote>
+<h3 id="Input-9"><a href="#Input-9" class="headerlink" title="Input"></a>Input</h3><blockquote>
 <p>The first line contains integers n and k(2≤n≤10<sup>5</sup>, 1≤k≤10<sup>5</sup>), the number of snacks and the number of guests.<br>The i-th of the following k lines contains two integers xi and yi(1≤xi,yi≤n, xi≠yi), favorite snack flavors of the i-th guest.</p>
 </blockquote>
-<h3 id="Output-9"><a href="#Output-9" class="headerlink" title="Output"></a>Output</h3><blockquote>
+<h3 id="Output-10"><a href="#Output-10" class="headerlink" title="Output"></a>Output</h3><blockquote>
 <p>Output one integer, the smallest possible number of sad guests.</p>
 </blockquote>
 <h3 id="Examples-1"><a href="#Examples-1" class="headerlink" title="Examples"></a>Examples</h3><blockquote>
@@ -1093,10 +1179,10 @@ int find1(int s)
 }</code></pre><h1 id="D-Anna-Svyatoslav-and-Maps-图论"><a href="#D-Anna-Svyatoslav-and-Maps-图论" class="headerlink" title="D - Anna, Svyatoslav and Maps(图论)"></a>D - Anna, Svyatoslav and Maps(图论)</h1><blockquote>
 <p>The main characters have been omitted to be short.<br>You are given a directed unweighted graph without loops with n vertexes and a path in it (that path is not necessary simple) given by a sequence p1,p2,…,pm of m vertexes; for each 1≤i&lt;m there is an arc from pi to pi+1.<br>Define the sequence v1,v2,…,vk of kvertexes as good, if v is a subsequence of p, v1=p1, vk=pm, and pis one of the shortest paths passing through the vertexes v1, …, vk in that order.<br>A sequence a is a subsequence of a sequence b if a can be obtained from b by deletion of several (possibly, zero or all) elements. It is obvious that the sequence p is good but your task is to find the shortest good subsequence.<br>If there are multiple shortest good subsequences, output any of them.</p>
 </blockquote>
-<h3 id="Input-9"><a href="#Input-9" class="headerlink" title="Input"></a>Input</h3><blockquote>
+<h3 id="Input-10"><a href="#Input-10" class="headerlink" title="Input"></a>Input</h3><blockquote>
 <p>The first line contains a single integer n(2≤n≤100) — the number of vertexes in a graph.<br>The next n lines define the graph by an adjacency matrix: the j-th character in the i-st line is equal to 1 if there is an arc from vertex i to the vertex j else it is equal to 0. It is guaranteed that the graph doesn’t contain loops.<br>The next line contains a single integer m(2≤m≤10<sup>6</sup>) — the number of vertexes in the path.<br>The next line contains m integers p<sub>1</sub>,p<sub>2</sub>,…,p<sub>m</sub>(1≤p<sub>i</sub>≤n) — the sequence of vertexes in the path. It is guaranteed that for any 1≤i&lt;m there is an arc from pi to pi+1.</p>
 </blockquote>
-<h3 id="Output-10"><a href="#Output-10" class="headerlink" title="Output"></a>Output</h3><blockquote>
+<h3 id="Output-11"><a href="#Output-11" class="headerlink" title="Output"></a>Output</h3><blockquote>
 <p>In the first line output a single integer k(2≤k≤m) — the length of the shortest good subsequence. In the second line output k integers v1, …, vk(1≤vi≤n) — the vertexes in the subsequence. If there are multiple shortest subsequences, print any. Any two consecutive numbers should be distinct. </p>
 </blockquote>
 <h3 id="Examples-2"><a href="#Examples-2" class="headerlink" title="Examples"></a>Examples</h3><blockquote>
@@ -1254,7 +1340,255 @@ void floyd(int n)
       for(int i=1;i&lt;=n;i++)
         for(int j=1;j&lt;=n;j++)
         map[i][j]=min(map[i][j],map[i][k]+map[k][j]);
-}</code></pre>
+}</code></pre><br>
+
+<h1 id="E-Jzzhu-and-Cities（图论）"><a href="#E-Jzzhu-and-Cities（图论）" class="headerlink" title="E - Jzzhu and Cities（图论）"></a>E - Jzzhu and Cities（图论）</h1><blockquote>
+<p>Jzzhu is the president of country A. There are n cities numbered from 1 to n in his country. City 1 is the capital of A. Also there are m roads connecting the cities. One can go from city ui to vi (and vise versa) using the i-th road, the length of this road is xi. Finally, there are k train routes in the country. One can use the i-th train route to go from capital of the country to city si (and vise versa), the length of this route is yi.<br>Jzzhu doesn’t want to waste the money of the country, so he is going to close some of the train routes. Please tell Jzzhu the maximum number of the train routes which can be closed under the following condition: the length of the shortest path from every city to the capital mustn’t change.</p>
+</blockquote>
+<h2 id="Input-11"><a href="#Input-11" class="headerlink" title="Input"></a>Input</h2><blockquote>
+<p>The first line contains three integers n, m, k (2 ≤ n ≤ 105; 1 ≤ m ≤ 3·105; 1 ≤ k ≤ 105).<br>Each of the next m lines contains three integers ui, vi, xi (1 ≤ ui, vi ≤ n; ui ≠ vi; 1 ≤ xi ≤ 109).<br>Each of the next k lines contains two integers si and yi (2 ≤ si ≤ n; 1 ≤ yi ≤ 109).<br>It is guaranteed that there is at least one way from every city to the capital. Note, that there can be multiple roads between two cities. Also, there can be multiple routes going to the same city from the capital.</p>
+</blockquote>
+<h2 id="Output-12"><a href="#Output-12" class="headerlink" title="Output"></a>Output</h2><blockquote>
+<p>Output a single integer representing the maximum number of the train routes which can be closed.</p>
+</blockquote>
+<h2 id="Examples-3"><a href="#Examples-3" class="headerlink" title="Examples"></a>Examples</h2><blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">Input</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">5 5 3<br>1 2 1<br>2 3 2<br>1 3 3<br>3 4 4<br>1 5 5<br>3 5<br>4 5<br>5 5<br></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">2</td>
+</tr>
+</tbody></table>
+<br>
+</blockquote>
+<blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">Input</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">2 2 3<br>1 2 2<br>2 1 3<br>2 1<br>2 2<br>2 3</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">2</td>
+</tr>
+</tbody></table>
+</blockquote>
+<p>我终于a了这题了（真的自闭了）。花了不少时间，用堆优化的dijkstra解决的。我起初用普通的迪杰斯特拉（邻接矩阵），发现编译器根本不让我开这么大的数组，然后我就换邻接表，果然就tle了，因为有一步需要遍历找出每个点到首都的最短距离，时间复杂度为O(n)，加上外层循环时间复杂度就是O(n<sup>2</sup>)。如果是堆优化的话，每次找到最短距离这个步骤能压缩到O(logn)，时间复杂度会降低很多。所以最后用的是堆优化dijkstra。然而交代码把所有除了显示错误以外的错误都碰了一遍。最开始甚至mle了就很迷，至今不知道为什么，然后一直wa。我删铁路的方法最初把铁路的结点放到优先队列里，一旦更新就删铁路，最后用k减去剩下的铁路就是结果。<br>由于我的邻接矩阵是用很非主流的方式表示的，再加上stl不会，别人的代码看不懂。。。摸爬滚打了好久才发现有个地方粗心了。总结反思以后还是用正常的邻接表。群里的大神们提供的有vecto&lt;vector<ele>&gt;G(ele是自己写的结构体,还有一个发现撤回了？？！)。下次绝对用正常的邻接表，并且增加stl熟练度！</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+#include&lt;queue&gt;
+int u[600005];
+long long w[600005];
+int first[100005];//存储头结点。
+int nexta[600005];//存储下一条边。 
+long long dist[100005];
+long long route[100005]={0};
+bool visit[100005];
+void dijkstra(int n,int m);
+const long long INF=1LL&lt;&lt;60;
+struct HeapNode
+{
+    long long d;int u;
+    bool operator &lt; (const HeapNode&amp; rhs) const{
+    return d &gt; rhs.d;
+}
+};
+
+int main()
+{
+    int n,m,k;
+    cin&gt;&gt;n&gt;&gt;m&gt;&gt;k;
+    for(int i=1;i&lt;=n;i++)
+    first[i]=-1;
+    for(int i=0;i&lt;m;i++)
+    {
+        int s1,s2;long long s3;
+        cin&gt;&gt;s1&gt;&gt;s2&gt;&gt;s3;
+        w[i]=s3;
+        nexta[i]=first[s1];
+        first[s1]=i;
+        u[i]=s2;
+        nexta[i+m]=first[s2];
+        first[s2]=i+m;
+        u[i+m]=s1;
+        w[i+m]=s3;    
+    }
+    for(int i=1;i&lt;=k;i++)
+    {
+        int s1,s2;
+        cin&gt;&gt;s1&gt;&gt;s2;
+        if(route[s1]==0)
+            route[s1]=s2;
+        else
+        {
+            if(route[s1]&gt;s2)
+            route[s1]=s2;
+        }
+    }
+    dijkstra(n,m);
+    int count2=0;
+    for(int i=1;i&lt;=n;i++)
+    {
+        if(route[i]!=0)
+        count2++;
+    }
+    cout&lt;&lt;k-count2&lt;&lt;endl;
+    return 0;
+} 
+
+void dijkstra(int n,int m)
+{
+    priority_queue&lt;HeapNode&gt; Q;
+    for(int i=1;i&lt;=n;i++)
+    if(route[i]!=0)
+    {
+    dist[i]=route[i];
+    Q.push((HeapNode){dist[i],i});
+    }
+    else dist[i]=INF;
+    dist[1]=0;
+    Q.push((HeapNode){0,1});//前面是距离后面是点
+
+    while(!Q.empty())
+    {
+        HeapNode x=Q.top();
+        Q.pop();
+        int v=x.u;
+        if(visit[v]==true)
+        continue;
+        else visit[v]=true;
+        int test=first[v];
+        while(test!=-1)
+        {
+            long long weight;
+            weight=w[test];
+            if(dist[u[test]]&gt;=weight+dist[v])
+            {
+                if(route[u[test]]!=0)
+                {
+                    route[u[test]]=0;
+                }
+                if(dist[u[test]]&gt;weight+dist[v]) 
+                Q.push((HeapNode){weight+dist[v],u[test]});
+                dist[u[test]]=weight+dist[v];
+            }
+            test=nexta[test];
+        }
+}
+}</code></pre><h1 id="A-FatMouse’s-Speed（状态规划）"><a href="#A-FatMouse’s-Speed（状态规划）" class="headerlink" title="A - FatMouse’s Speed（状态规划）"></a>A - FatMouse’s Speed（状态规划）</h1><blockquote>
+<p>FatMouse believes that the fatter a mouse is, the faster it runs. To disprove this, you want to take the data on a collection of mice and put as large a subset of this data as possible into a sequence so that the weights are increasing, but the speeds are decreasing. </p>
+</blockquote>
+<h2 id="Input-12"><a href="#Input-12" class="headerlink" title="Input"></a>Input</h2><blockquote>
+<p>Input contains data for a bunch of mice, one mouse per line, terminated by end of file. </p>
+<p>The data for a particular mouse will consist of a pair of integers: the first representing its size in grams and the second representing its speed in centimeters per second. Both integers are between 1 and 10000. The data in each test case will contain information for at most 1000 mice. </p>
+<p>Two mice may have the same weight, the same speed, or even the same weight and speed.</p>
+</blockquote>
+<h2 id="Output-13"><a href="#Output-13" class="headerlink" title="Output"></a>Output</h2><blockquote>
+<p>Your program should output a sequence of lines of data; the first line should contain a number n; the remaining n lines should each contain a single positive integer (each one representing a mouse). If these n integers are m[1], m[2],…, m[n] then it must be the case that </p>
+<p>W[m[1]] &lt; W[m[2]] &lt; … &lt; W[m[n]] </p>
+<p>and </p>
+<p>S[m[1]] &gt; S[m[2]] &gt; … &gt; S[m[n]] </p>
+<p>In order for the answer to be correct, n should be as large as possible.<br>All inequalities are strict: weights must be strictly increasing, and speeds must be strictly decreasing. There may be many correct outputs for a given input, your program only needs to find one.  </p>
+</blockquote>
+<h2 id="Sample-Input-8"><a href="#Sample-Input-8" class="headerlink" title="Sample Input"></a>Sample Input</h2><blockquote>
+<p>6008 1300<br>6000 2100<br>500 2000<br>1000 4000<br>1100 3000<br>6000 2000<br>8000 1400<br>6000 1200<br>2000 1900</p>
+</blockquote>
+<h2 id="Sample-Output-7"><a href="#Sample-Output-7" class="headerlink" title="Sample Output"></a>Sample Output</h2><blockquote>
+<p>4<br>4<br>5<br>9<br>7</p>
+</blockquote>
+<p>我的方法是定义一个结构体数组，每个元素有质量和速度编号（排序后会打乱，所以要存储编号），上一个元素的序号（排序之后的,用来存储路径）。先进行排序，按质量为第一顺序递增，速度第二顺序递减。然后状态转移方程是dp[i] = 1     dp[i] = max(dp[i],dp[j]+1); (j&lt;i,mouse[j].weight&gt;mouse[i].weight,mouse[j].speed&lt;mouse[i].speed);最后写一个递归函数，将路径也输出。我wa了一次原因是错以为顺序排最后的元素一定存在于一个最长子序列中，但是这是不一定的，速度太大就不行。</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+#include&lt;algorithm&gt;
+typedef struct 
+{
+int weight;
+int speed;
+int num;
+int last;
+} Mice;
+Mice mouse[10005];
+int ans[10005];
+int dfs(int index);
+
+int cmp(Mice x,Mice y)
+{
+    if(x.weight==y.weight)
+    return x.speed&gt;y.speed;
+    else
+    return x.weight&lt;y.weight;
+}
+
+int main()
+{
+    int s1,s2,index=1;
+    while(scanf(&quot;%d%d&quot;,&amp;s1,&amp;s2)!=EOF)
+    {
+        mouse[index].weight=s1;
+        mouse[index].speed=s2;
+        mouse[index].num=index;
+        mouse[index].last=0;
+        index++;
+    }
+    sort(mouse+1,mouse+index,cmp);
+    for(int i=1;i&lt;index;i++)
+    ans[i]=1;
+    for(int i=2;i&lt;index;i++)
+    {
+        for(int j=1;j&lt;i;j++)
+        {
+            if(mouse[i].weight&gt;mouse[j].weight &amp;&amp; mouse[i].speed&lt;mouse[j].speed)
+            if(ans[j]+1&gt;ans[i])//ans[i]=max(ans[i],ans[j]+1);
+            {
+                ans[i]=ans[j]+1;
+                mouse[i].last=j;
+            }
+        }
+    }
+
+    int art=1,sign;
+    for(int i=1;i&lt;index;i++)
+    {
+        if(ans[i]&gt;art)
+        {
+            art=ans[i];
+            sign=i;
+        }
+    }
+    cout&lt;&lt;art&lt;&lt;endl;
+    dfs(sign);
+    return 0;
+     }     
+
+ int dfs(int index)
+ {
+     if(index==0)return 0;
+     dfs(mouse[index].last);
+     cout&lt;&lt;mouse[index].num&lt;&lt;endl;
+ }</code></pre>
       
 
       
@@ -1379,7 +1713,7 @@ void floyd(int n)
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#A-统计难题-字符串"><span class="toc-number">1.</span> <span class="toc-text">A-统计难题(字符串)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input"><span class="toc-number">1.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output"><span class="toc-number">1.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input"><span class="toc-number">1.0.3.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Output"><span class="toc-number">1.0.4.</span> <span class="toc-text">Sample Output</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#B-Oulipo-（字符串）"><span class="toc-number">2.</span> <span class="toc-text">B - Oulipo （字符串）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-1"><span class="toc-number">2.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-1"><span class="toc-number">2.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input-1"><span class="toc-number">2.0.3.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Output-1"><span class="toc-number">2.0.4.</span> <span class="toc-text">Sample Output</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#C-吉哥系列故事——完美队形II-字符串"><span class="toc-number">3.</span> <span class="toc-text">C - 吉哥系列故事——完美队形II(字符串)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-2"><span class="toc-number">3.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-2"><span class="toc-number">3.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input-2"><span class="toc-number">3.0.3.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Output-2"><span class="toc-number">3.0.4.</span> <span class="toc-text">Sample Output</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#A-Eight-搜索"><span class="toc-number">4.</span> <span class="toc-text">A - Eight(搜索)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-3"><span class="toc-number">4.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-3"><span class="toc-number">4.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input-3"><span class="toc-number">4.0.3.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Output-3"><span class="toc-number">4.0.4.</span> <span class="toc-text">Sample Output</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#B-Eight-II-搜索"><span class="toc-number">5.</span> <span class="toc-text">B - Eight II(搜索)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-4"><span class="toc-number">5.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-4"><span class="toc-number">5.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input-4"><span class="toc-number">5.0.3.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Output-4"><span class="toc-number">5.0.4.</span> <span class="toc-text">Sample Output</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#C-哈密顿绕行世界问题（搜索）"><span class="toc-number">6.</span> <span class="toc-text">C - 哈密顿绕行世界问题（搜索）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-5"><span class="toc-number">6.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-5"><span class="toc-number">6.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input-5"><span class="toc-number">6.0.3.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Output-5"><span class="toc-number">6.0.4.</span> <span class="toc-text">Sample Output</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#A-Two-Fairs-图论"><span class="toc-number">7.</span> <span class="toc-text">A - Two Fairs(图论)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-6"><span class="toc-number">7.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-6"><span class="toc-number">7.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input-6"><span class="toc-number">7.0.3.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-7"><span class="toc-number">7.0.4.</span> <span class="toc-text">Output</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#B-Secret-Passwords（图论）"><span class="toc-number">8.</span> <span class="toc-text">B - Secret Passwords（图论）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-7"><span class="toc-number">8.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-8"><span class="toc-number">8.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Examples"><span class="toc-number">8.0.3.</span> <span class="toc-text">Examples</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#C-Cow-and-Snacks（图论）"><span class="toc-number">9.</span> <span class="toc-text">C - Cow and Snacks（图论）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-8"><span class="toc-number">9.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-9"><span class="toc-number">9.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Examples-1"><span class="toc-number">9.0.3.</span> <span class="toc-text">Examples</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#D-Anna-Svyatoslav-and-Maps-图论"><span class="toc-number">10.</span> <span class="toc-text">D - Anna, Svyatoslav and Maps(图论)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-9"><span class="toc-number">10.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-10"><span class="toc-number">10.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Examples-2"><span class="toc-number">10.0.3.</span> <span class="toc-text">Examples</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#A-统计难题-字符串"><span class="toc-number">1.</span> <span class="toc-text">A-统计难题(字符串)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input"><span class="toc-number">1.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output"><span class="toc-number">1.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input"><span class="toc-number">1.0.3.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Output"><span class="toc-number">1.0.4.</span> <span class="toc-text">Sample Output</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#B-Oulipo-（字符串）"><span class="toc-number">2.</span> <span class="toc-text">B - Oulipo （字符串）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-1"><span class="toc-number">2.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-1"><span class="toc-number">2.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input-1"><span class="toc-number">2.0.3.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Output-1"><span class="toc-number">2.0.4.</span> <span class="toc-text">Sample Output</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#C-吉哥系列故事——完美队形II-字符串"><span class="toc-number">3.</span> <span class="toc-text">C - 吉哥系列故事——完美队形II(字符串)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-2"><span class="toc-number">3.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-2"><span class="toc-number">3.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input-2"><span class="toc-number">3.0.3.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Output-2"><span class="toc-number">3.0.4.</span> <span class="toc-text">Sample Output</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#A-Eight-搜索"><span class="toc-number">4.</span> <span class="toc-text">A - Eight(搜索)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-3"><span class="toc-number">4.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-3"><span class="toc-number">4.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input-3"><span class="toc-number">4.0.3.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Output-3"><span class="toc-number">4.0.4.</span> <span class="toc-text">Sample Output</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#B-Eight-II-搜索"><span class="toc-number">5.</span> <span class="toc-text">B - Eight II(搜索)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-4"><span class="toc-number">5.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-4"><span class="toc-number">5.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input-4"><span class="toc-number">5.0.3.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Output-4"><span class="toc-number">5.0.4.</span> <span class="toc-text">Sample Output</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#C-哈密顿绕行世界问题（搜索）"><span class="toc-number">6.</span> <span class="toc-text">C - 哈密顿绕行世界问题（搜索）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-5"><span class="toc-number">6.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-5"><span class="toc-number">6.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input-5"><span class="toc-number">6.0.3.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Output-5"><span class="toc-number">6.0.4.</span> <span class="toc-text">Sample Output</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#E-DNA-sequence-搜索"><span class="toc-number">7.</span> <span class="toc-text">E - DNA sequence (搜索)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Input-6"><span class="toc-number">7.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Output-6"><span class="toc-number">7.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sample-Input-6"><span class="toc-number">7.3.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sample-Output-6"><span class="toc-number">7.4.</span> <span class="toc-text">Sample Output</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#A-Two-Fairs-图论"><span class="toc-number">8.</span> <span class="toc-text">A - Two Fairs(图论)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-7"><span class="toc-number">8.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-7"><span class="toc-number">8.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input-7"><span class="toc-number">8.0.3.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-8"><span class="toc-number">8.0.4.</span> <span class="toc-text">Output</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#B-Secret-Passwords（图论）"><span class="toc-number">9.</span> <span class="toc-text">B - Secret Passwords（图论）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-8"><span class="toc-number">9.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-9"><span class="toc-number">9.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Examples"><span class="toc-number">9.0.3.</span> <span class="toc-text">Examples</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#C-Cow-and-Snacks（图论）"><span class="toc-number">10.</span> <span class="toc-text">C - Cow and Snacks（图论）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-9"><span class="toc-number">10.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-10"><span class="toc-number">10.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Examples-1"><span class="toc-number">10.0.3.</span> <span class="toc-text">Examples</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#D-Anna-Svyatoslav-and-Maps-图论"><span class="toc-number">11.</span> <span class="toc-text">D - Anna, Svyatoslav and Maps(图论)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-10"><span class="toc-number">11.0.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-11"><span class="toc-number">11.0.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Examples-2"><span class="toc-number">11.0.3.</span> <span class="toc-text">Examples</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#E-Jzzhu-and-Cities（图论）"><span class="toc-number">12.</span> <span class="toc-text">E - Jzzhu and Cities（图论）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Input-11"><span class="toc-number">12.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Output-12"><span class="toc-number">12.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Examples-3"><span class="toc-number">12.3.</span> <span class="toc-text">Examples</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#A-FatMouse’s-Speed（状态规划）"><span class="toc-number">13.</span> <span class="toc-text">A - FatMouse’s Speed（状态规划）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Input-12"><span class="toc-number">13.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Output-13"><span class="toc-number">13.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sample-Input-8"><span class="toc-number">13.3.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sample-Output-7"><span class="toc-number">13.4.</span> <span class="toc-text">Sample Output</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -1508,6 +1842,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">日常</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ACM</a>
               </li>
              
@@ -1520,11 +1862,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">日常</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
