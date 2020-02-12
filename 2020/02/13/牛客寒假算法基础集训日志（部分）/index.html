@@ -8,15 +8,22 @@
   <link rel="dns-prefetch" href="http://fIamingo.github.io">
   <title>牛客寒假算法基础集训日志（部分） | flamingoo的猫窝</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
+  <meta name="description" content="前言开这篇训练日之前先讲下最近的感受吧。寒假刚开始的时候报名了这个训练，想着在寒假好好把基础打上来，去追赶一下大佬。时至今日确实是发现了差距包括智商。这些题甚至都不敢按照时间写，写的真的很丑。codeforces掉分不断，感觉灰名已经不远了。">
+<meta property="og:type" content="article">
 <meta property="og:title" content="牛客寒假算法基础集训日志（部分）">
 <meta property="og:url" content="http://fiamingo.github.io/2020/02/13/%E7%89%9B%E5%AE%A2%E5%AF%92%E5%81%87%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%E9%9B%86%E8%AE%AD%E6%97%A5%E5%BF%97%EF%BC%88%E9%83%A8%E5%88%86%EF%BC%89/index.html">
 <meta property="og:site_name" content="flamingoo的猫窝">
+<meta property="og:description" content="前言开这篇训练日之前先讲下最近的感受吧。寒假刚开始的时候报名了这个训练，想着在寒假好好把基础打上来，去追赶一下大佬。时至今日确实是发现了差距包括智商。这些题甚至都不敢按照时间写，写的真的很丑。codeforces掉分不断，感觉灰名已经不远了。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://fiamingo.github.io/2020/02/13/%E7%89%9B%E5%AE%A2%E5%AF%92%E5%81%87%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%E9%9B%86%E8%AE%AD%E6%97%A5%E5%BF%97%EF%BC%88%E9%83%A8%E5%88%86%EF%BC%89/dio.jpg">
+<meta property="og:image" content="http://fiamingo.github.io/2020/02/13/%E7%89%9B%E5%AE%A2%E5%AF%92%E5%81%87%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%E9%9B%86%E8%AE%AD%E6%97%A5%E5%BF%97%EF%BC%88%E9%83%A8%E5%88%86%EF%BC%89/%E7%BA%BF%E6%AE%B5%E6%A0%91.png">
 <meta property="article:published_time" content="2020-02-12T17:23:01.000Z">
-<meta property="article:modified_time" content="2020-02-12T17:23:01.979Z">
+<meta property="article:modified_time" content="2020-02-12T18:07:48.755Z">
 <meta property="article:author" content="fIamingo">
+<meta property="article:tag" content="ACM">
+<meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://fiamingo.github.io/2020/02/13/%E7%89%9B%E5%AE%A2%E5%AF%92%E5%81%87%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%E9%9B%86%E8%AE%AD%E6%97%A5%E5%BF%97%EF%BC%88%E9%83%A8%E5%88%86%EF%BC%89/dio.jpg">
   
     <link rel="alternative" href="/atom.xml" title="flamingoo的猫窝" type="application/atom+xml">
   
@@ -192,7 +199,133 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>开这篇训练日之前先讲下最近的感受吧。寒假刚开始的时候报名了这个训练，想着在寒假好好把基础打上来，去追赶一下大佬。<br>时至今日确实是发现了差距包括智商。这些题甚至都不敢按照时间写，写的真的很丑。<br>codeforces掉分不断，感觉灰名已经不远了。</p>
+<a id="more"></a>  
+<p><img src="dio.jpg" width="100px">s<br>和我同时进实验室的人天天讨论我完全不懂的东西，而且他们什么题都会。看着自己能ac的少的可怜的题。。。打住！<br>总之就是我很弱，效率比较低，debug可以弄几个小时，但是觉得这个基础集训的题还不错，至少能让我接触更多新算法，还是会有略微的进步的。<br>故开此坑，没能规定时间写出的题很多，这个日志中只摘取一部分，懒是原因之一，但是那种信息量很大的，完全是知识盲区的我尽量都收集起来。</p>
+<h2 id="牛牛的Link-Power-II-线段树"><a href="#牛牛的Link-Power-II-线段树" class="headerlink" title="牛牛的Link Power II(线段树)"></a>牛牛的Link Power II(线段树)</h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><blockquote>
+<p>牛牛有一颗大小为n的神奇Link-Cut 数组，数组上的每一个节点都有两种状态，一种为link状态，另一种为cut状态。数组上任意一对处于link状态的无序点对（即(u,v)和(v,u)被认为是同一对）会产生dis(u,v)的link能量，dis(u,v)为数组上u到v的距离。<br>   我们定义整个数组的Link能量为所有处于link状态的节点产生的link能量之和。<br>    一开始数组上每个节点的状态将由一个长度大小为n的01串给出，’1’表示Link状态，’0’表示Cut状态。    牛牛想要知道一开始，以及每次操作之后整个数组的Link能量，为了避免这个数字过于庞大，你只用输出答案对10<sup>9</sup>+7取余后的结果即可。 </p>
+</blockquote>
+<h3 id="输入描述"><a href="#输入描述" class="headerlink" title="输入描述"></a>输入描述</h3><blockquote>
+<p>第一行输入一个正整数n(1≤n≤10<sup>5</sup>)<br>接下里一行输入一个长度大小为n的01串表示数组的初始状态，’1’表示Link状态，’0’表示Cut状态。<br>接下来一行输入一个正整数m(1≤m≤10<sup>5</sup>)表示操作的数目接下来m行，每行输入两个正整数q,pos(q∈{1,2},1≤pos≤n)<br>当q=1时表示牛牛对数组的第pos个元素进行操作，将其赋值为1，保证在这个操作之前，该元素的值为0。<br>当q=2时表示牛牛对数组的第pos个元素进行操作，将其赋值为0，保证在这个操作之前，该元素的值为1。</p>
+</blockquote>
+<h3 id="输出描述"><a href="#输出描述" class="headerlink" title="输出描述"></a>输出描述</h3><blockquote>
+<p>请输出m+1行表示一开始，以及每次操作之后整个数组的Link能量，为了避免这个数字过于庞大，你只用输出答案对10<sup>9</sup>+7取余后的结果即可。</p>
+</blockquote>
+<h3 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h3><blockquote>
+<p>5<br>00001<br>7<br>1 1<br>2 5<br>2 1<br>1 2<br>1 4<br>1 3<br>1 1</p>
+</blockquote>
+<h3 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h3><blockquote>
+<p>0<br>4<br>0<br>0<br>0<br>2<br>4<br>10</p>
+</blockquote>
+<p>这两天学了一下线段树。<br>线段树是一棵二叉搜索树，它储存的是一个区间的信息。<br>每个节点以结构体的方式存储，结构体包含以下几个信息：<br>区间左端点、右端点；（这两者必有）<br>这个区间要维护的信息（事实际情况而定，数目不等）。<br>线段树的基本思想：二分。<br>线段树一般结构如图所示：<br><img src="%E7%BA%BF%E6%AE%B5%E6%A0%91.png" alt=""><br><a href="https://www.bilibili.com/video/av47331849?from=search&amp;seid=11752724048701094955" target="_blank" rel="noopener">https://www.bilibili.com/video/av47331849?from=search&amp;seid=11752724048701094955</a><br>这个up主讲的很详细。视频讲了线段树是干什么的，以及build_tree(),query_tree(),update_tree()这几个主要操作怎么写。<br>此题只用到这几个函数就行了。要构建两棵树一棵树用来存储区间中link状态的点个数，一棵树用来一段区间内求和。以此来更新link能量。<br>因为第一个link能量比较好求，就是这道题的I，难的地方就是更新，所以才要用到树状数组（不会）和线段树，果断学了线段树。<br>每次更新一个结点如果是加进去，那么link能量就要减去该点之前的区间求和和加上该点之后的区间求和，还要加上该结点的值*（该点前面的点总数-后面点总数）。<br>去掉点同理，就是反着来。</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+#define MAXSIZE 100005
+#define MOD 1000000007
+typedef long long ll;
+ll tree[4*MAXSIZE];
+ll pos[4*MAXSIZE];
+ll array[MAXSIZE];
+ll num[MAXSIZE];
+
+void build_tree(ll A[],ll T[],int node,int start,int end)
+{   
+if(start==end)
+{
+    T[node]=A[start];
+    return ;
+}
+    int left_node=2*node;
+    int right_node=2*node+1;
+    int mid=(start+end)/2;
+    build_tree(A,T,left_node,start,mid);
+    build_tree(A,T,right_node,mid+1,end);
+    T[node]=T[left_node]+T[right_node];
+}
+
+void update(ll A[],ll T[],int node,int start,int end,int idx,int val)
+{//将A[idx]更新为val
+    if(start==end)
+    {
+        A[idx]=val;
+        T[node]=val;
+        return ;
+    }
+    int left_node=2*node;
+    int right_node=2*node+1;
+    int mid=(start+end)/2;
+    if(idx&gt;=start &amp;&amp; idx&lt;=mid)
+    update(A,T,left_node,start,mid,idx,val);
+    else
+    update(A,T,right_node,mid+1,end,idx,val);
+    T[node] = (T[left_node] + T[right_node])%MOD;
+}
+
+ll query_tree(ll A[],ll T[],int node,int start,int end,int L,int R)
+{
+    if(end&lt;L||start&gt;R)
+    return 0;
+    else if(L&lt;=start&amp;&amp; end&lt;=R)
+    return T[node];
+    else if(start==end)
+    return T[node];
+    int left_node=2*node;
+    int right_node=2*node+1;
+    int mid=(start+end)/2;
+    ll sum_left=query_tree(A,T,left_node,start,mid,L,R);
+    ll sum_right=query_tree(A,T,right_node,mid+1,end,L,R);
+    return sum_left+sum_right;
+}
+
+int main()
+{   string str;
+    int n,count=0;
+    ll s=0; ll ans=0;
+    cin&gt;&gt;n;
+    cin&gt;&gt;str;str=&apos;d&apos;+str;
+    for(int i=1;i&lt;=n;i++)
+    {
+        num[i]=str[i]-&apos;0&apos;;
+        if(num[i]!=0)
+        {
+        array[i]=i;
+        ans=((ans+count*array[i]%MOD)%MOD-s+MOD)%MOD;
+        s=(s+array[i])%MOD;
+           count++;
+        } 
+    }
+    cout&lt;&lt;ans&lt;&lt;endl;
+    build_tree(array,tree,1,1,n);
+    build_tree(num,pos,1,1,n);
+    int m;
+    cin&gt;&gt;m;
+    ll a1,a2,a3,a4;
+    for(int i=1;i&lt;=m;i++)
+    {
+        int s1,s2;
+        cin&gt;&gt;s1&gt;&gt;s2;
+        a1=query_tree(array,tree,1,1,n,1,s2-1)%MOD;
+        a2=query_tree(num,pos,1,1,n,1,s2-1)%MOD;
+        a3=query_tree(array,tree,1,1,n,s2+1,n)%MOD;
+        a4=query_tree(num,pos,1,1,n,s2+1,n)%MOD;
+        if(s1==1)
+        {
+            update(array,tree,1,1,n,s2,s2);
+            update(num,pos,1,1,n,s2,1);
+            ans=((ans-a1+MOD)%MOD+s2*a2%MOD)%MOD;
+            ans=((ans+a3)%MOD-s2*a4%MOD+MOD)%MOD;
+        }
+        else
+        {
+            update(array,tree,1,1,n,s2,0);
+            update(num,pos,1,1,n,s2,0);
+            ans=((ans+a1)%MOD-(s2*a2)%MOD+MOD)%MOD;
+            ans=((ans-a3+MOD)%MOD+s2*a4%MOD)%MOD;
+        }      
+        cout&lt;&lt;ans&lt;&lt;endl;
+    }
+    return 0;
+}</code></pre>
       
 
       
@@ -200,6 +333,21 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ACM</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -293,7 +441,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#牛牛的Link-Power-II-线段树"><span class="toc-number">2.</span> <span class="toc-text">牛牛的Link Power II(线段树)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-number">2.1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输入描述"><span class="toc-number">2.2.</span> <span class="toc-text">输入描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输出描述"><span class="toc-number">2.3.</span> <span class="toc-text">输出描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输入样例"><span class="toc-number">2.4.</span> <span class="toc-text">输入样例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输出样例"><span class="toc-number">2.5.</span> <span class="toc-text">输出样例</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -430,10 +578,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">C++</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
@@ -447,6 +591,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">C++</a>
               </li>
             
             <div class="clearfix"></div>
