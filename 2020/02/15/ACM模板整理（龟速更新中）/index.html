@@ -6,16 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://fIamingo.github.io">
-  <title>标签 | flamingoo的猫窝</title>
+  <title>ACM模板整理（龟速更新中） | flamingoo的猫窝</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="标签">
-<meta property="og:url" content="http://fiamingo.github.io/tags/index.html">
+  <meta name="description" content="最近懒了，要补的题多，要摸的鱼也多，全都更的很慢，希望自己见谅。这些模板都不是最好的，但是都是我能用的看得懂的。很多特别基础的算法应该也会出现，因为我啥都不会。有人能教我怎么折叠代码块吗，网上的方法不太管用。会的话请告诉我，谢谢！我们永远是好兄弟（姐妹）！不过。。。应该没有人会看到吧XD">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ACM模板整理（龟速更新中）">
+<meta property="og:url" content="http://fiamingo.github.io/2020/02/15/ACM%E6%A8%A1%E6%9D%BF%E6%95%B4%E7%90%86%EF%BC%88%E9%BE%9F%E9%80%9F%E6%9B%B4%E6%96%B0%E4%B8%AD%EF%BC%89/index.html">
 <meta property="og:site_name" content="flamingoo的猫窝">
+<meta property="og:description" content="最近懒了，要补的题多，要摸的鱼也多，全都更的很慢，希望自己见谅。这些模板都不是最好的，但是都是我能用的看得懂的。很多特别基础的算法应该也会出现，因为我啥都不会。有人能教我怎么折叠代码块吗，网上的方法不太管用。会的话请告诉我，谢谢！我们永远是好兄弟（姐妹）！不过。。。应该没有人会看到吧XD">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-01-16T13:01:35.000Z">
-<meta property="article:modified_time" content="2020-01-16T13:06:13.225Z">
+<meta property="article:published_time" content="2020-02-15T14:41:58.000Z">
+<meta property="article:modified_time" content="2020-02-15T15:10:34.429Z">
 <meta property="article:author" content="fIamingo">
+<meta property="article:tag" content="ACM">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="flamingoo的猫窝" type="application/atom+xml">
@@ -158,14 +161,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
+            <article id="post-ACM模板整理（龟速更新中）" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      标签
+      ACM模板整理（龟速更新中）
     </h1>
   
 
@@ -184,15 +187,130 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/tags/index.html" class="archive-article-date">
-  	<time datetime="2020-01-16T13:01:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-16</time>
+<a href="/2020/02/15/ACM%E6%A8%A1%E6%9D%BF%E6%95%B4%E7%90%86%EF%BC%88%E9%BE%9F%E9%80%9F%E6%9B%B4%E6%96%B0%E4%B8%AD%EF%BC%89/" class="archive-article-date">
+  	<time datetime="2020-02-15T14:41:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-15</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>最近懒了，要补的题多，要摸的鱼也多，全都更的很慢，希望自己见谅。<br>这些模板都不是最好的，但是都是我能用的看得懂的。<br>很多特别基础的算法应该也会出现，因为我啥都不会。<br>有人能教我怎么折叠代码块吗，网上的方法不太管用。<br>会的话请告诉我，谢谢！我们永远是好兄弟（姐妹）！<br>不过。。。应该没有人会看到吧XD</p>
+<a id="more"></a> 
+
+<h1 id="数学"><a href="#数学" class="headerlink" title="数学"></a>数学</h1><h5 id="快速幂："><a href="#快速幂：" class="headerlink" title="快速幂："></a>快速幂：</h5><pre><code>ll Pow(ll x,ll elem1)
+{
+    x=x%INF;
+    ll result=1;
+    while(elem1)
+    {
+        if(elem1&amp;1)
+        {
+            result=(result*x)%INF;
+        }
+        x=(x*x)%INF;
+        elem1&gt;&gt;=1;
+    }
+    return result;
+}</code></pre><h5 id="快速幂矩阵"><a href="#快速幂矩阵" class="headerlink" title="快速幂矩阵"></a>快速幂矩阵</h5><pre><code>ll tmp[N][N];
+ll res[N][N];
+    void multi(ll a[][N],ll b[][N],int n)
+{
+    memset(res,0,sizeof(tmp));
+    for(int i=1;i&lt;=n;i++)
+    for(int j=1;j&lt;=n;j++)
+    for(int k=1;k&lt;=n;k++)
+    res[i][j]=((a[i][k]*b[k][j])%(INF-1)+res[i][j])%(INF-1);
+    for(int i=1;i&lt;=n;i++)
+    for(int j=1;j&lt;=n;j++)
+    a[i][j]=res[i][j];
+
+} //矩阵相乘模板 结果是a[i][j]
+
+void Pow(ll a[][N],ll n,int m)
+{
+    memset(tmp,0,sizeof(tmp));
+    for(int i=1;i&lt;=m;i++)
+    tmp[i][i]=1;
+    while(n)
+    {
+        if(n&amp;1)
+        multi(tmp,a,m);
+        multi(a,a,m);
+        n&gt;&gt;=1;
+    }
+} //结果是tmp。</code></pre><h1 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h1><h5 id="线段树"><a href="#线段树" class="headerlink" title="线段树"></a>线段树</h5><pre><code>void build_tree(ll A[],ll T[],int node,int start,int end)
+{   
+if(start==end)
+{
+    T[node]=A[start];
+    return ;
+}
+    int left_node=2*node;
+    int right_node=2*node+1;
+    int mid=(start+end)/2;
+    build_tree(A,T,left_node,start,mid);
+    build_tree(A,T,right_node,mid+1,end);
+    T[node]=T[left_node]+T[right_node];
+}    //建树
+
+void update(ll A[],ll T[],int node,int start,int end,int idx,int val)
+{//将A[idx]更新为val
+    if(start==end)
+    {
+        A[idx]=val;
+        T[node]=val;
+        return ;
+    }
+    int left_node=2*node;
+    int right_node=2*node+1;
+    int mid=(start+end)/2;
+    if(idx&gt;=start &amp;&amp; idx&lt;=mid)
+    update(A,T,left_node,start,mid,idx,val);
+    else
+    update(A,T,right_node,mid+1,end,idx,val);
+    T[node] = (T[left_node] + T[right_node])%MOD;
+}    //单点更新
+
+ll query_tree(ll A[],ll T[],int node,int start,int end,int L,int R)
+{
+    if(end&lt;L||start&gt;R)
+    return 0;
+    else if(L&lt;=start&amp;&amp; end&lt;=R)
+    return T[node];
+    else if(start==end)
+    return T[node];
+    int left_node=2*node;
+    int right_node=2*node+1;
+    int mid=(start+end)/2;
+    ll sum_left=query_tree(A,T,left_node,start,mid,L,R);
+    ll sum_right=query_tree(A,T,right_node,mid+1,end,L,R);
+    return sum_left+sum_right;
+}    //区间询问。</code></pre><h5 id="字典树（前缀树）"><a href="#字典树（前缀树）" class="headerlink" title="字典树（前缀树）"></a>字典树（前缀树）</h5><pre><code>void insert()//插入单词s
+{
+    len=strlen(s);//单词s的长度
+    root=0;//根节点编号为0
+    for(int i=0;i&lt;len;i++)
+    {
+        int id=s[i]-&apos;a&apos;;//第二种编号
+        if(!trie[root][id])//如果之前没有从root到id的前缀 
+                    trie[root][id]=++tot;//插入，tot即为第一种编号
+        root=trie[root][id];//顺着字典树往下走
+    }    
+}
+
+bool find()
+{
+    len=strlen(s);
+    root=0;//从根结点开始找
+    for(int i=0;s[i];i++)
+    {
+        int x=s[i]-&apos;a&apos;;//
+        if(trie[root][x]==0)   return false;//以root为头结点的x字母不存在，返回0 
+        root=trie[root][x];//为查询下个字母做准备，往下走 
+    }
+    return true;//找到了
+}</code></pre>
       
 
       
@@ -200,6 +318,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ACM</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -250,7 +379,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://fIamingo.github.io/ub.io/tags/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://fIamingo.github.io/ub.io/2020/02/15/ACM%E6%A8%A1%E6%9D%BF%E6%95%B4%E7%90%86%EF%BC%88%E9%BE%9F%E9%80%9F%E6%9B%B4%E6%96%B0%E4%B8%AD%EF%BC%89/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -262,6 +391,16 @@
 </article>
 
   
+<nav id="article-nav">
+  
+  
+    <a href="/2020/02/13/%E7%89%9B%E5%AE%A2%E5%AF%92%E5%81%87%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%E9%9B%86%E8%AE%AD%E6%97%A5%E5%BF%97%EF%BC%88%E9%83%A8%E5%88%86%EF%BC%89/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">牛客寒假算法基础集训日志（部分）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -283,7 +422,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#数学"><span class="toc-number">1.</span> <span class="toc-text">数学</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#快速幂："><span class="toc-number">1.0.0.0.1.</span> <span class="toc-text">快速幂：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#快速幂矩阵"><span class="toc-number">1.0.0.0.2.</span> <span class="toc-text">快速幂矩阵</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#数据结构"><span class="toc-number">2.</span> <span class="toc-text">数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#线段树"><span class="toc-number">2.0.0.0.1.</span> <span class="toc-text">线段树</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#字典树（前缀树）"><span class="toc-number">2.0.0.0.2.</span> <span class="toc-text">字典树（前缀树）</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -341,7 +480,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
