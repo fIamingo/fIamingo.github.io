@@ -17,7 +17,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://fiamingo.github.io/2020/02/15/ACM%E6%A8%A1%E6%9D%BF%E6%95%B4%E7%90%86%EF%BC%88%E9%BE%9F%E9%80%9F%E6%9B%B4%E6%96%B0%E4%B8%AD%EF%BC%89/%E8%B4%B9%E9%A9%AC.jpg">
 <meta property="article:published_time" content="2020-02-15T14:41:58.000Z">
-<meta property="article:modified_time" content="2020-02-21T17:52:24.804Z">
+<meta property="article:modified_time" content="2020-02-23T17:44:45.673Z">
 <meta property="article:author" content="fIamingo">
 <meta property="article:tag" content="ACM">
 <meta name="twitter:card" content="summary">
@@ -250,7 +250,10 @@ void Pow(ll a[][N],ll n,int m)
         prime[i*p[j]]=1;
         if (i%p[j]==0) break;
     }
- } </code></pre><h5 id="公式定理"><a href="#公式定理" class="headerlink" title="公式定理"></a>公式定理</h5><blockquote>
+ } </code></pre><h5 id="扩展欧几里得"><a href="#扩展欧几里得" class="headerlink" title="扩展欧几里得"></a>扩展欧几里得</h5><pre><code>void gcd(int a,int b,int&amp; d,int&amp; x,int&amp; y){
+    if(!b){d=a;x=1;y=0; }
+    else { gcd(b, a%b, y, x); y-=x*(a/b); }
+}</code></pre><h5 id="公式定理"><a href="#公式定理" class="headerlink" title="公式定理"></a>公式定理</h5><blockquote>
 <p>费马小定理：如果p是一个质数，而整数a不是p的倍数，则有a<sup>p-1</sup>≡1(mod p)。<br>推论：<img src="%E8%B4%B9%E9%A9%AC.jpg" alt=""></p>
 </blockquote>
 <h1 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h1><h5 id="线段树"><a href="#线段树" class="headerlink" title="线段树"></a>线段树</h5><pre><code>void build_tree(ll A[],ll T[],int node,int start,int end)
@@ -436,7 +439,7 @@ bool find()
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#数学"><span class="toc-number">1.</span> <span class="toc-text">数学</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#快速幂："><span class="toc-number">1.0.0.0.1.</span> <span class="toc-text">快速幂：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#快速幂矩阵"><span class="toc-number">1.0.0.0.2.</span> <span class="toc-text">快速幂矩阵</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#素数线性筛法"><span class="toc-number">1.0.0.0.3.</span> <span class="toc-text">素数线性筛法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#公式定理"><span class="toc-number">1.0.0.0.4.</span> <span class="toc-text">公式定理</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#数据结构"><span class="toc-number">2.</span> <span class="toc-text">数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#线段树"><span class="toc-number">2.0.0.0.1.</span> <span class="toc-text">线段树</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#字典树（前缀树）"><span class="toc-number">2.0.0.0.2.</span> <span class="toc-text">字典树（前缀树）</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#数学"><span class="toc-number">1.</span> <span class="toc-text">数学</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#快速幂："><span class="toc-number">1.0.0.0.1.</span> <span class="toc-text">快速幂：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#快速幂矩阵"><span class="toc-number">1.0.0.0.2.</span> <span class="toc-text">快速幂矩阵</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#素数线性筛法"><span class="toc-number">1.0.0.0.3.</span> <span class="toc-text">素数线性筛法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#扩展欧几里得"><span class="toc-number">1.0.0.0.4.</span> <span class="toc-text">扩展欧几里得</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#公式定理"><span class="toc-number">1.0.0.0.5.</span> <span class="toc-text">公式定理</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#数据结构"><span class="toc-number">2.</span> <span class="toc-text">数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#线段树"><span class="toc-number">2.0.0.0.1.</span> <span class="toc-text">线段树</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#字典树（前缀树）"><span class="toc-number">2.0.0.0.2.</span> <span class="toc-text">字典树（前缀树）</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
