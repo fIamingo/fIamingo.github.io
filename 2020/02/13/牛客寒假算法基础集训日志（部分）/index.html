@@ -18,8 +18,9 @@
 <meta property="og:image" content="http://fiamingo.github.io/2020/02/13/%E7%89%9B%E5%AE%A2%E5%AF%92%E5%81%87%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%E9%9B%86%E8%AE%AD%E6%97%A5%E5%BF%97%EF%BC%88%E9%83%A8%E5%88%86%EF%BC%89/dio.jpg">
 <meta property="og:image" content="http://fiamingo.github.io/2020/02/13/%E7%89%9B%E5%AE%A2%E5%AF%92%E5%81%87%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%E9%9B%86%E8%AE%AD%E6%97%A5%E5%BF%97%EF%BC%88%E9%83%A8%E5%88%86%EF%BC%89/%E7%BA%BF%E6%AE%B5%E6%A0%91.png">
 <meta property="og:image" content="http://fiamingo.github.io/2020/02/13/%E7%89%9B%E5%AE%A2%E5%AF%92%E5%81%87%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%E9%9B%86%E8%AE%AD%E6%97%A5%E5%BF%97%EF%BC%88%E9%83%A8%E5%88%86%EF%BC%89/%E9%AD%94%E6%B3%95.png">
+<meta property="og:image" content="http://fiamingo.github.io/2020/02/13/%E7%89%9B%E5%AE%A2%E5%AF%92%E5%81%87%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%E9%9B%86%E8%AE%AD%E6%97%A5%E5%BF%97%EF%BC%88%E9%83%A8%E5%88%86%EF%BC%89/%E6%9E%84%E9%80%A0.png">
 <meta property="article:published_time" content="2020-02-12T17:23:01.000Z">
-<meta property="article:modified_time" content="2020-02-22T13:24:59.530Z">
+<meta property="article:modified_time" content="2020-02-26T16:55:13.634Z">
 <meta property="article:author" content="fIamingo">
 <meta property="article:tag" content="ACM">
 <meta property="article:tag" content="算法">
@@ -668,7 +669,86 @@ int main()
         }
     }
     return 0;
-} </code></pre>
+} </code></pre><h1 id="牛牛的DRB迷宫II"><a href="#牛牛的DRB迷宫II" class="headerlink" title="牛牛的DRB迷宫II"></a>牛牛的DRB迷宫II</h1><hr>
+<p><strong><big>题目描述</big></strong></p>
+<blockquote>
+<p>牛牛有一个n<em>m的迷宫，对于迷宫中的每个格子都为’R’,’D’,’B’三种类型之一，’R’表示处于当前的格子时只能往右边走’D’表示处于当前的格子时只能往下边走，而’B’表示向右向下均可以走。<br>我们认为迷宫最左上角的坐标为(1,1)，迷宫右下角的坐标为(n,m)，除了每个格子有向右移动以及向下移动的限制之外，你也不能够走出迷宫的边界。<br>牛牛现在请你设计迷宫，但是要求你设计的迷宫符合他的要求，他要求你设计的迷宫从(1,1)节点移动到(n,m)节点不同的移动序列种类数目≡k(mod10<sup>9</sup>+7)。    请你构造出符合条件的DRB迷宫，但是要求你输出的迷宫的大小不超过50</em>50，具体输出格式见输出描述及样例。    如果存在多解你可以构造任意符合条件的迷宫，反之如果无解，请输出一行一个字符串”No solution”。 </p>
+</blockquote>
+<p><strong><big>输入描述</big></strong></p>
+<blockquote>
+<p>仅一个整数k，你需要构造一个DRB迷宫符合从左上走到右下的方案数≡k(mod10<sup>9</sup>+7)。</p>
+</blockquote>
+<p><strong><big>输出描述</big></strong></p>
+<blockquote>
+<p>请你构造出符合条件的DRB迷宫,但是要求你输出的迷宫的大小不超过50*50。第一行输出n,m两个整数，中间用空格隔开。接下来n行，每行输出一个大小为m的字符串，字符串只能包含大写字母’D’,’R’,’B’。如果存在多解你可以构造任意符合条件的迷宫，反之如果无解，请输出一行一个字符串”No solution”。</p>
+</blockquote>
+<p><strong><big>输入样例</big></strong></p>
+<blockquote>
+<p>25</p>
+</blockquote>
+<p><strong><big>输出样例</big></strong></p>
+<blockquote>
+<p>5 5<br>RBBBR<br>BBBBB<br>BBBDB<br>BDBBB<br>RBBBB</p>
+</blockquote>
+<p><strong><big>说明</big></strong></p>
+<blockquote>
+<p>样例为《牛牛的DRB迷宫I》中的样例反过来。</p>
+</blockquote>
+<p>此题和迷宫I是反着的题。题目要我们输入一个数字构造迷宫。然而二进制可以拼出所有的数字，所以一定能构造出这个迷宫。No solution的情况是不存在的。<br><img src="%E6%9E%84%E9%80%A0.png" alt=""><br>出题人的这个思路简直绝了，是我想不出来的。按照对角线正好能拼一个2<sup>n-2</sup>的数字，然后再加上比2<sup>n-2</sup>小的这些数（图中朝下的红线）就一定能拼出输入的数字了。<br>不过要排除输入为0的特殊情况。</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+#define mod 1000000007 
+#include&lt;cmath&gt;
+typedef long long ll;
+char map[55][55];
+
+int main()
+{
+    ll n;
+    scanf(&quot;%lld&quot;,&amp;n);
+    n=n%mod;
+    if(n==0)
+    {
+    printf(&quot;2 2\n&quot;);
+    printf(&quot;DD\nDD\n&quot;);
+    return 0;
+    }
+    int r;
+    r=log2(n)+2;
+    for(int i=1;i&lt;=r;i++)
+    {
+        for(int j=1;j&lt;=r;j++)
+        {
+            if(i==j)
+            map[i][j]=&apos;B&apos;;
+            else if(i&gt;j)
+            map[i][j]=&apos;R&apos;;
+            else map[i][j]=&apos;D&apos;;
+        }
+    }
+    int m;m=r-2;
+    n=n-pow(2,m);
+    while(n!=0)
+    {
+        m--;
+        if(pow(2,m)&lt;=n)
+        {
+            n=n-pow(2,m);     
+            for(int i=m+2;i&lt;r;i++)
+            map[i][m+1]=&apos;D&apos;;
+            map[m+2][m+1]=&apos;B&apos;;
+        }
+    }
+    map[r-1][r]=&apos;R&apos;;
+    printf(&quot;%d %d\n&quot;,r,r);
+    for(int i=1;i&lt;=r;i++)
+    {
+        for(int j=1;j&lt;=r;j++)
+        printf(&quot;%c&quot;,map[i][j]);
+        printf(&quot;\n&quot;);
+    }
+    return 0;
+}</code></pre>
       
 
       
@@ -793,7 +873,7 @@ int main()
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#牛牛的Link-Power-II-线段树"><span class="toc-number">2.</span> <span class="toc-text">牛牛的Link Power II(线段树)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#μ’s的影响力-快速幂矩阵"><span class="toc-number">3.</span> <span class="toc-text">μ’s的影响力(快速幂矩阵)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#建通道-位运算"><span class="toc-number">4.</span> <span class="toc-text">建通道(位运算)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#施魔法（dp）"><span class="toc-number">5.</span> <span class="toc-text">施魔法（dp）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#求函数-线段树"><span class="toc-number">6.</span> <span class="toc-text">求函数(线段树)</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#牛牛的Link-Power-II-线段树"><span class="toc-number">2.</span> <span class="toc-text">牛牛的Link Power II(线段树)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#μ’s的影响力-快速幂矩阵"><span class="toc-number">3.</span> <span class="toc-text">μ’s的影响力(快速幂矩阵)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#建通道-位运算"><span class="toc-number">4.</span> <span class="toc-text">建通道(位运算)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#施魔法（dp）"><span class="toc-number">5.</span> <span class="toc-text">施魔法（dp）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#求函数-线段树"><span class="toc-number">6.</span> <span class="toc-text">求函数(线段树)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#牛牛的DRB迷宫II"><span class="toc-number">7.</span> <span class="toc-text">牛牛的DRB迷宫II</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -922,15 +1002,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ACM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">日常</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ACM</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -24,8 +24,12 @@
 <meta property="og:image" content="http://fiamingo.github.io/2020/01/28/The-LINUX-command-line/%E7%BB%9D%E5%AF%B9%E8%B7%AF%E5%BE%841.png">
 <meta property="og:image" content="http://fiamingo.github.io/2020/01/28/The-LINUX-command-line/%E7%82%B91.png">
 <meta property="og:image" content="http://fiamingo.github.io/2020/01/28/The-LINUX-command-line/%E7%82%B9%E7%82%B91.png">
+<meta property="og:image" content="http://fiamingo.github.io/2020/01/28/The-LINUX-command-line/ls2.png">
+<meta property="og:image" content="http://fiamingo.github.io/2020/01/28/The-LINUX-command-line/ls3.png">
+<meta property="og:image" content="http://fiamingo.github.io/2020/01/28/The-LINUX-command-line/file.png">
+<meta property="og:image" content="http://fiamingo.github.io/2020/01/28/The-LINUX-command-line/less.png">
 <meta property="article:published_time" content="2020-01-28T13:26:43.000Z">
-<meta property="article:modified_time" content="2020-01-31T15:06:25.500Z">
+<meta property="article:modified_time" content="2020-02-26T16:40:44.553Z">
 <meta property="article:author" content="fIamingo">
 <meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary">
@@ -208,15 +212,128 @@
         <p><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1580228286859&di=9efc8fa079c064871f047ac5dad008e3&imgtype=0&src=http%3A%2F%2F8.pic.pc6.com%2Fthumb%2Fup%2F2018-2%2F201821103354321288841960_600_0.jpg" alt=""></p>
 <a id="more"></a>
 
-<p>上学期结束前在文典阁借到了这本书，机器人实验室的原因接触了linux，想继续学下去，故开此新坑。说起来也要开始看家庭仿真的代码了，加油吧。</p>
+<p>上学期结束前在文典阁借到了这本书，机器人实验室的原因接触了linux，想继续学下去，故开此新坑，简单记一点笔记。说起来也要开始看家庭仿真的代码了，加油吧。</p>
 <blockquote>
 <p>图形用户界面能让简单的任务更简单，而命令行界面能够处理复杂的任务。</p>
 </blockquote>
 <br>
 
-<h1 id="第一部分-学习shell"><a href="#第一部分-学习shell" class="headerlink" title="第一部分 学习shell"></a>第一部分 学习shell</h1><h2 id="第1章"><a href="#第1章" class="headerlink" title="第1章"></a>第1章</h2><h3 id="几个简单的命令（date，cal，df，free）"><a href="#几个简单的命令（date，cal，df，free）" class="headerlink" title="几个简单的命令（date，cal，df，free）"></a>几个简单的命令（date，cal，df，free）</h3><p>date：显示当前系统的时间和日期。<br><img src="date1.png" alt=""><br><br><br>cal:在默认情况下，显示当月的月历。<br><img src="cal1.png" alt=""><br><br><br>df:查看磁盘驱动器当前的可用空间<br><img src="df1.png" alt=""><br><br><br>free:显示可用内存<br><img src="free1.png" alt=""><br><br></p>
-<h2 id="第2章-导航"><a href="#第2章-导航" class="headerlink" title="第2章 导航"></a>第2章 导航</h2><h3 id="对目录的操作（pwd，ls，cd）"><a href="#对目录的操作（pwd，ls，cd）" class="headerlink" title="对目录的操作（pwd，ls，cd）"></a>对目录的操作（pwd，ls，cd）</h3><p>pwd：显示当前工作目录<br><img src="pwd1.png" alt=""><br><br><br>ls:列出当前工作目录的文件和目录。<br><img src="ls1.png" alt=""><br><br><br>cd:改变工作目录。<br><img src="cd1.png" alt=""></p>
-<h3 id="绝对路径名"><a href="#绝对路径名" class="headerlink" title="绝对路径名"></a>绝对路径名</h3><p>绝对路径名从根目录开始，其后紧接着一个又一个文件树分支，直到到达目标目录或文件。<br><img src="%E7%BB%9D%E5%AF%B9%E8%B7%AF%E5%BE%841.png" alt=""><br>相对路径名是从根目录开始，通向目标目录，而相对路径名则是从工作目录开始的。为了实现这个目的，它通常使用一些特殊符号来表示文件系统树中的相对位置。这些特殊符号是“.”（点）和“..”(点点)<br>符号“.”代表工作目录，符号“..”代表工作目录的父目录<br><img src="%E7%82%B91.png" alt=""><br><img src="%E7%82%B9%E7%82%B91.png" alt=""></p>
+<h1 id="第一部分-学习shell"><a href="#第一部分-学习shell" class="headerlink" title="第一部分 学习shell"></a>第一部分 学习shell</h1><br>
+
+<h2 id="第1章"><a href="#第1章" class="headerlink" title="第1章"></a>第1章</h2><br>
+
+<h3 id="几个简单的命令（date，cal，df，free）"><a href="#几个简单的命令（date，cal，df，free）" class="headerlink" title="几个简单的命令（date，cal，df，free）"></a>几个简单的命令（date，cal，df，free）</h3><p>date：显示当前系统的时间和日期。<br><img src="date1.png" alt=""><br><br><br>cal:在默认情况下，显示当月的月历。<br><img src="cal1.png" alt=""><br><br><br>df:查看磁盘驱动器当前的可用空间<br><img src="df1.png" alt=""><br><br><br>free:显示可用内存<br><img src="free1.png" alt=""><br><br></p>
+<h2 id="第2章-导航"><a href="#第2章-导航" class="headerlink" title="第2章 导航"></a>第2章 导航</h2><br>
+
+<h3 id="对目录的操作（pwd，ls，cd）"><a href="#对目录的操作（pwd，ls，cd）" class="headerlink" title="对目录的操作（pwd，ls，cd）"></a>对目录的操作（pwd，ls，cd）</h3><p>pwd：显示当前工作目录<br><img src="pwd1.png" alt=""><br><br><br>ls:列出当前工作目录的文件和目录。<br><img src="ls1.png" alt=""><br><br><br>cd:改变工作目录。<br><img src="cd1.png" alt=""></p>
+<h3 id="绝对路径名"><a href="#绝对路径名" class="headerlink" title="绝对路径名"></a>绝对路径名</h3><p>绝对路径名从根目录开始，其后紧接着一个又一个文件树分支，直到到达目标目录或文件。<br><img src="%E7%BB%9D%E5%AF%B9%E8%B7%AF%E5%BE%841.png" alt=""><br>相对路径名是从根目录开始，通向目标目录，而相对路径名则是从工作目录开始的。为了实现这个目的，它通常使用一些特殊符号来表示文件系统树中的相对位置。这些特殊符号是“.”（点）和“..”(点点)<br>符号“.”代表工作目录，符号“..”代表工作目录的父目录.”~”表示用户主目录<br><img src="%E7%82%B91.png" alt=""><br><img src="%E7%82%B9%E7%82%B91.png" alt=""></p>
+<h2 id="第3章-Linux系统"><a href="#第3章-Linux系统" class="headerlink" title="第3章 Linux系统"></a>第3章 Linux系统</h2><br>
+
+<h3 id="ls的乐趣（ls）"><a href="#ls的乐趣（ls）" class="headerlink" title="ls的乐趣（ls）"></a>ls的乐趣（ls）</h3><p>前面介绍，只需输入ls命令，即可查看当前工作目录中包含的一系列文件和子目录。<br>除了当前目录外，也可以指定要显示的目录。<br><img src="ls2.png" alt=""><br><br>也可以改变输出格式来得到更多细节。<br><br><img src="ls3.png" alt=""><br>在命令中加上-l，我们可以将输出以长格式显示。-l叫作选项。<br>通常命令后面跟有一个或多个选项，带有不同选项的命令功能也不一样，此外命令后面还会跟有一个或多个参数，这些参数是命令行作用的对象。<br>所以大部分命令看起来如下所示。</p>
+<blockquote>
+<p>command -option arguments</p>
+</blockquote>
+<p>ls常用选项如下：</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>长选项</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-a</td>
+<td>–all</td>
+<td>all ,查看目录下的所有文件，包括隐藏文件</td>
+</tr>
+<tr>
+<td>-l</td>
+<td></td>
+<td>长列表显示</td>
+</tr>
+<tr>
+<td>-h</td>
+<td>–human-readable</td>
+<td>human 以人性化的方式显示出来</td>
+</tr>
+<tr>
+<td>-d</td>
+<td>–directory</td>
+<td>只列出目录名，不列出其他内容 （比如在查询文件时加上-d 就只会显示当前文件的信息，不会显示文件内的信息内容）</td>
+</tr>
+<tr>
+<td>-t</td>
+<td></td>
+<td>按修改时间排序</td>
+</tr>
+<tr>
+<td>-s</td>
+<td></td>
+<td>按文件的大小（Size）排序</td>
+</tr>
+<tr>
+<td>-r</td>
+<td>–reverse</td>
+<td>逆序排列reverse</td>
+</tr>
+<tr>
+<td>-i</td>
+<td></td>
+<td>显示文件的inode号（索引号）</td>
+</tr>
+</tbody></table>
+<h3 id="使用file命令确定文件类型（file）"><a href="#使用file命令确定文件类型（file）" class="headerlink" title="使用file命令确定文件类型（file）"></a>使用file命令确定文件类型（file）</h3><p>file:打印出文件内容的简短说明。<br><img src="file.png" alt=""><br><br></p>
+<h3 id="使用less命令查看文件内容"><a href="#使用less命令查看文件内容" class="headerlink" title="使用less命令查看文件内容"></a>使用less命令查看文件内容</h3><p>less：less命令是一种查看文本文件的程序。<br>命令使用方法： less <em>filename</em><br>一旦运行起来，我们就可以查看文件内容，如果文件不止一页，可以上下滚动文件，按Q可退出less程序。<br><img src="less.png" alt=""></p>
+<p>less程序最常用的键盘命令：</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PAGE UP或b</td>
+<td>后翻一页</td>
+</tr>
+<tr>
+<td>PAGE DOWN或Spacebar</td>
+<td>前翻一页</td>
+</tr>
+<tr>
+<td>向上箭头键</td>
+<td>向上一行</td>
+</tr>
+<tr>
+<td>向下箭头键</td>
+<td>向下一行</td>
+</tr>
+<tr>
+<td>G</td>
+<td>跳转到文本文件的末尾</td>
+</tr>
+<tr>
+<td>IG或g</td>
+<td>跳转到文本文件的开头</td>
+</tr>
+<tr>
+<td>/characters</td>
+<td>向前查找指定的字符串</td>
+</tr>
+<tr>
+<td>n</td>
+<td>向前查找下一个出现的字符串，这个字符串是之前所指定查找的</td>
+</tr>
+<tr>
+<td>h</td>
+<td>显示帮助屏幕</td>
+</tr>
+<tr>
+<td>q</td>
+<td>退出less</td>
+</tr>
+</tbody></table>
 
       
 
@@ -338,7 +455,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#第一部分-学习shell"><span class="toc-number">1.</span> <span class="toc-text">第一部分 学习shell</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#第1章"><span class="toc-number">1.1.</span> <span class="toc-text">第1章</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#几个简单的命令（date，cal，df，free）"><span class="toc-number">1.1.1.</span> <span class="toc-text">几个简单的命令（date，cal，df，free）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第2章-导航"><span class="toc-number">1.2.</span> <span class="toc-text">第2章 导航</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#对目录的操作（pwd，ls，cd）"><span class="toc-number">1.2.1.</span> <span class="toc-text">对目录的操作（pwd，ls，cd）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#绝对路径名"><span class="toc-number">1.2.2.</span> <span class="toc-text">绝对路径名</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#第一部分-学习shell"><span class="toc-number">1.</span> <span class="toc-text">第一部分 学习shell</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#第1章"><span class="toc-number">1.1.</span> <span class="toc-text">第1章</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#几个简单的命令（date，cal，df，free）"><span class="toc-number">1.1.1.</span> <span class="toc-text">几个简单的命令（date，cal，df，free）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第2章-导航"><span class="toc-number">1.2.</span> <span class="toc-text">第2章 导航</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#对目录的操作（pwd，ls，cd）"><span class="toc-number">1.2.1.</span> <span class="toc-text">对目录的操作（pwd，ls，cd）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#绝对路径名"><span class="toc-number">1.2.2.</span> <span class="toc-text">绝对路径名</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第3章-Linux系统"><span class="toc-number">1.3.</span> <span class="toc-text">第3章 Linux系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ls的乐趣（ls）"><span class="toc-number">1.3.1.</span> <span class="toc-text">ls的乐趣（ls）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用file命令确定文件类型（file）"><span class="toc-number">1.3.2.</span> <span class="toc-text">使用file命令确定文件类型（file）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用less命令查看文件内容"><span class="toc-number">1.3.3.</span> <span class="toc-text">使用less命令查看文件内容</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -467,15 +584,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ACM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">日常</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ACM</a>
               </li>
              
               <li class="article-tag-list-item">
