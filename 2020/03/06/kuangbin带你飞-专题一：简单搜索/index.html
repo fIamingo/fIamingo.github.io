@@ -6,22 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://fIamingo.github.io">
-  <title>[Java]面向对象语言的学习笔记 | flamingoo的猫窝</title>
+  <title>[kuangbin带你飞]专题一：简单搜索 | flamingoo的猫窝</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
-<meta property="og:title" content="[Java]面向对象语言的学习笔记">
-<meta property="og:url" content="http://fiamingo.github.io/2020/03/04/Java-%E4%B8%8D%E5%A4%AA%E8%AF%A6%E7%BB%86%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+  <meta name="description" content="前言马上就开学了，可以悠闲地写简单算法题补难点的CF题的日子也要结束了。这个kuangbin带你飞专题是我偶然间发现的，计划每个专题刷5道就换新专题来迅速过一遍常见算法，然后第6题之后的题有时间再补或者哪天感觉这一块太薄弱了拿来训练。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[kuangbin带你飞]专题一：简单搜索">
+<meta property="og:url" content="http://fiamingo.github.io/2020/03/06/kuangbin%E5%B8%A6%E4%BD%A0%E9%A3%9E-%E4%B8%93%E9%A2%98%E4%B8%80%EF%BC%9A%E7%AE%80%E5%8D%95%E6%90%9C%E7%B4%A2/index.html">
 <meta property="og:site_name" content="flamingoo的猫窝">
+<meta property="og:description" content="前言马上就开学了，可以悠闲地写简单算法题补难点的CF题的日子也要结束了。这个kuangbin带你飞专题是我偶然间发现的，计划每个专题刷5道就换新专题来迅速过一遍常见算法，然后第6题之后的题有时间再补或者哪天感觉这一块太薄弱了拿来训练。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1583263121344&di=5a7e5d6ad535493031959e9ccdfcba4e&imgtype=0&src=http%253A%252F%252Fp1.ssl.cdn.btime.com%252Ft014df2b452e706b092.jpg%253Fsize%253D439x248">
-<meta property="og:image" content="http://fiamingo.github.io/2020/03/04/Java-%E4%B8%8D%E5%A4%AA%E8%AF%A6%E7%BB%86%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%AF%BB%E6%89%BE%E5%AD%97%E7%AC%A6.png">
-<meta property="og:image" content="http://fiamingo.github.io/2020/03/04/Java-%E4%B8%8D%E5%A4%AA%E8%AF%A6%E7%BB%86%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%85%B6%E4%BB%96string%E6%93%8D%E4%BD%9C.png">
-<meta property="article:published_time" content="2020-03-03T16:26:14.000Z">
-<meta property="article:modified_time" content="2020-03-03T17:50:40.504Z">
+<meta property="article:published_time" content="2020-03-05T16:11:20.000Z">
+<meta property="article:modified_time" content="2020-03-05T16:36:42.970Z">
 <meta property="article:author" content="fIamingo">
-<meta property="article:tag" content="java">
+<meta property="article:tag" content="ACM">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1583263121344&di=5a7e5d6ad535493031959e9ccdfcba4e&imgtype=0&src=http%253A%252F%252Fp1.ssl.cdn.btime.com%252Ft014df2b452e706b092.jpg%253Fsize%253D439x248">
   
     <link rel="alternative" href="/atom.xml" title="flamingoo的猫窝" type="application/atom+xml">
   
@@ -163,14 +161,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Java-不太详细的学习笔记" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-kuangbin带你飞-专题一：简单搜索" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      [Java]面向对象语言的学习笔记
+      [kuangbin带你飞]专题一：简单搜索
     </h1>
   
 
@@ -189,148 +187,351 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2020/03/04/Java-%E4%B8%8D%E5%A4%AA%E8%AF%A6%E7%BB%86%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="archive-article-date">
-  	<time datetime="2020-03-03T16:26:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-04</time>
+<a href="/2020/03/06/kuangbin%E5%B8%A6%E4%BD%A0%E9%A3%9E-%E4%B8%93%E9%A2%98%E4%B8%80%EF%BC%9A%E7%AE%80%E5%8D%95%E6%90%9C%E7%B4%A2/" class="archive-article-date">
+  	<time datetime="2020-03-05T16:11:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-06</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1583263121344&di=5a7e5d6ad535493031959e9ccdfcba4e&imgtype=0&src=http%3A%2F%2Fp1.ssl.cdn.btime.com%2Ft014df2b452e706b092.jpg%3Fsize%3D439x248" alt=""></p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>马上就开学了，可以悠闲地写简单算法题补难点的CF题的日子也要结束了。<br>这个kuangbin带你飞专题是我偶然间发现的，计划每个专题刷5道就换新专题来迅速过一遍常见算法，然后第6题之后的题有时间再补或者哪天感觉这一块太薄弱了拿来训练。</p>
 <a id="more"></a>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>java和c相似的地方还是很多的，这个博客中很多java和c++相似的地方会省略，我参考的浙大翁恺的java进阶教程，建议去看看。</p>
-<h2 id="数组的使用"><a href="#数组的使用" class="headerlink" title="数组的使用"></a>数组的使用</h2><p><strong>创建数组</strong></p>
-<pre><code>int[] numbers = new int[100]; //创建一个有100个元素的int型的数组。</code></pre><p>new创建的数组会得到默认的0值。</p>
-<p><strong>对数组中的元素赋值</strong></p>
-<pre><code>numbers[cnt] = x; //括号中可以是变量或常量整数。</code></pre><p>通过下标访问数组元素。和C一样，下表从0开始。<br>数组有个固有成员length。numbers.length返回numbers的元素数量。</p>
-<p><strong>直接初始化数组</strong></p>
-<pre><code>int[] scores = {87,98,69,54,65,76,87,99};</code></pre><p>直接用大括号给出数组的所有元素的初始值，不需要给出数组的大小,编译器替你数数。</p>
-<p><strong>数组的复制</strong></p>
-<pre><code>int[] a=new int[10];a[0]=5;
-int[] b=a; b[0]=16;
-System.out.println(b[0]);
-System.out.println(a[0]);</code></pre><p>输出都是16。</p>
-<p>*数组变量是数组的管理者，<br>*数组必须创建出来然后交给数组变量来管理。<br>*数组变量之间的赋值是管理权限的赋予。<br>*数组变量之间的比较是判断是否管理同一个数组。</p>
-<p><strong>数组的遍历</strong><br>两种循环</p>
-<pre><code>for( int i=0;i&lt;data.length; i++)
+<h2 id="棋盘问题"><a href="#棋盘问题" class="headerlink" title="棋盘问题"></a>棋盘问题</h2><p><strong>题目:<a href="https://vjudge.net/problem/POJ-1321" target="_blank" rel="noopener">POJ-1321</a></strong></p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+#include&lt;string.h&gt;
+struct node
 {
-    if(x==data[i])
-    {
-        found=true;
-        break;
-    }
-}</code></pre><p>或者(类似c++) for-each</p>
-<p><em>for(&lt;类型&gt;&lt;变量&gt;:&lt;数组&gt;)<br>{<br>    …<br>}</em></p>
-<pre><code>for( int k : data )
+    int c;
+    int r;
+}qizi[65];
+
+int count;
+int n,k,toc;
+int visitr[9];
+int visitc[9];
+
+void dfs(int i,int deep)
 {
-    if( k == x)
+    visitr[qizi[i].r]=1;
+    visitc[qizi[i].c]=1;
+    if(deep==k)
     {
-        found =true;
-        break;
+    count++;
+    return ;
     }
-}</code></pre><h2 id="包裹类型"><a href="#包裹类型" class="headerlink" title="包裹类型"></a>包裹类型</h2><p>每种基础类型都有对应的包裹类型</p>
-<table>
-<thead>
-<tr>
-<th>基础类型</th>
-<th>包裹类型</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>boolean</td>
-<td>Boolean</td>
-</tr>
-<tr>
-<td>char</td>
-<td>Character</td>
-</tr>
-<tr>
-<td>int</td>
-<td>Integer</td>
-</tr>
-<tr>
-<td>double</td>
-<td>Double</td>
-</tr>
-</tbody></table>
-<p>包裹类型的用处<br>*获得该类型的最大最小值<br>*Integer：MIN_VALUE<br>*Integer：MAX_VALUE</p>
-<p>.运算符<br>*当需要让一个类或对象做事情的时候，用.运算符<br>*a.length<br>*Integer.MAX_VALUE</p>
-<h2 id="字符串变量"><a href="#字符串变量" class="headerlink" title="字符串变量"></a>字符串变量</h2><p>String s;<br>String是一个类，String的变量是对象的管理者而非所有者。</p>
-<p><strong>用new创建字符串</strong></p>
-<pre><code>String s = new String(&quot;a string&quot;); //用&quot;a string&quot;初始化这个对象</code></pre><p><strong>初始化字符串变量</strong></p>
-<pre><code>String s =&quot;hello&quot;;</code></pre><p>编译器创建一个String类的对象交给s来管理。</p>
-<p><strong>字符串连接</strong><br>用加号（+）可以连接两个字符串<br>“hello”+”world”–&gt;”helloworld”<br>如果+的一边是字符串另一边不是，会将另一边表达为字符串然后做连接<br>“I’m”+18–&gt;”I’m 18”</p>
-<p><strong>输入字符串</strong><br>in.next();读入一个单词，单词的标志是空格（空格，tab和换行）<br>in.nextLine();读入一整行</p>
-<pre><code>Scanner in = new Scanner(System.in);
-String s;
-s = in.next();
-System.out println(s);</code></pre><p>输入This is a test. 输出为This<br>如果换成nextLine，将输出This is a test.</p>
-<p><strong>比较两个String</strong><br>String应该用.equals 来比较</p>
-<pre><code>if(input == &quot;bye&quot;){        //这是比较是否是同一个，不能用这个方法。
-    ...
+    for(int j=i+1;j&lt;=toc;j++)
+    {
+        if(visitr[qizi[j].r]==0&amp;&amp;visitc[qizi[j].c]==0)
+        {
+            dfs(j,deep+1);
+            visitr[qizi[j].r]=0;
+            visitc[qizi[j].c]=0;
+        }
+    }
+}
+
+int main()
+{
+    while(cin&gt;&gt;n&gt;&gt;k)
+    {
+        memset(visitr,0,sizeof(visitr));
+        memset(visitc,0,sizeof(visitc));
+        toc=count=0;
+        if(n==-1&amp;&amp; k==-1)
+        break;
+        for(int i=1;i&lt;=n;i++)
+        {
+            for(int j=1;j&lt;=n;j++)
+            {
+                char z;
+                cin&gt;&gt;z;
+                if(z==&apos;#&apos;)
+                {
+                    qizi[++toc].r=i;
+                    qizi[toc].c=j;
+                }
+            }
+        }
+        for(int i=1;i&lt;=toc;i++)
+        {
+            dfs(i,1);
+            visitr[qizi[i].r]=0;
+            visitc[qizi[i].c]=0;
+        }
+        cout&lt;&lt;count&lt;&lt;endl;
+    }
+} </code></pre><h2 id="Dungeon-Master"><a href="#Dungeon-Master" class="headerlink" title="Dungeon Master"></a>Dungeon Master</h2><p><strong>题目:<a href="https://vjudge.net/problem/POJ-2251" target="_blank" rel="noopener">2251</a></strong></p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+#include&lt;queue&gt;
+
+struct knode{
+    int x;int y;int c;
+};
+
+int visit[31][31][31];
+int dir[6][3]={{1,0,0},{-1,0,0},{0,1,0},{0,-1,0},{0,0,1},{0,0,-1}};
+int main()
+{
+    int L,R,C;
+    while(cin&gt;&gt;L&gt;&gt;R&gt;&gt;C)    
+    {
+        int sc,sx,sy;
+        int ec,ex,ey;
+        if(L==0&amp;&amp;R==0&amp;&amp;C==0)
+        break;
+        for(int i=1;i&lt;=L;i++)
+        {
+            for(int j=1;j&lt;=R;j++)
+            {
+                for(int k=1;k&lt;=C;k++)
+                {
+                    char e;
+                    cin&gt;&gt;e;
+                    visit[i][j][k]=0;
+                    if(e==&apos;#&apos;)
+                    visit[i][j][k]=1;
+                    else if(e==&apos;S&apos;)
+                    {
+                        sc=i;sx=j;sy=k;
+                    }
+                    else if(e==&apos;E&apos;)
+                    {
+                        ec=i;ex=j;ey=k;
+                    }
+                }
+            }
+        }
+        knode start,cur;
+        int tx,ty,tc;
+        start.c=sc;start.x=sx;start.y=sy;
+        visit[sc][sx][sy]=1;
+        queue&lt;knode&gt; Q;
+        Q.push(start);
+        int flag=1;
+        while(!Q.empty()&amp;&amp;flag)
+        {
+            cur=Q.front();
+            Q.pop();
+            for(int i=0;i&lt;6;i++)
+            {
+                tx=cur.x+dir[i][0];
+                ty=cur.y+dir[i][1];
+                tc=cur.c+dir[i][2];
+                if(tc&gt;=1&amp;&amp;tc&lt;=L&amp;&amp;tx&gt;=1&amp;&amp;tx&lt;=R&amp;&amp;ty&gt;=1&amp;&amp;ty&lt;=C&amp;&amp;visit[tc][tx][ty]==0)
+                {
+                    visit[tc][tx][ty]=visit[cur.c][cur.x][cur.y]+1;
+                    knode next;
+                    next.x=tx;
+                    next.y=ty;
+                    next.c=tc;
+                    if(tx==ex&amp;&amp;ty==ey&amp;&amp;tc==ec)
+                    {
+                        flag=0;break;
+                    }
+                    Q.push(next);
+                }
+            }
+        }
+        if(visit[ec][ex][ey])
+        {
+            printf(&quot;Escaped in %d minute(s). \n&quot;,visit[ec][ex][ey]-1);
+        }
+        else 
+        printf(&quot;Trapped!\n&quot;);
+        }
+}</code></pre><h2 id="Catch-That-Cow"><a href="#Catch-That-Cow" class="headerlink" title="Catch That Cow"></a>Catch That Cow</h2><p><strong>题目:<a href="https://vjudge.net/problem/POJ-3278" target="_blank" rel="noopener">POJ-3278</a></strong> </p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+#include&lt;queue&gt;
+struct knode
+{
+int loc;int op;int feet;
+};
+queue&lt;knode&gt; Q;
+bool visit[200006];
+int main()
+{
+    int N,K;
+    cin&gt;&gt;N&gt;&gt;K;
+    Q.push({N,0,0});
+    visit[N]=false;
+    while(!Q.empty())
+    {
+        knode cur;
+        cur=Q.front();
+        Q.pop();
+        if(cur.loc==K)
+        {
+            cout&lt;&lt;cur.feet&lt;&lt;endl;
+            break;
+        }
+        if(cur.loc&gt;0&amp;&amp;!visit[cur.loc-1])
+        {
+        Q.push({cur.loc-1,-1,cur.feet+1});
+        visit[cur.loc-1]=true;
+        }
+        if(cur.loc&lt;K)
+        {
+            if(!visit[cur.loc*2])
+            {
+            Q.push({cur.loc*2,2,cur.feet+1});
+            visit[cur.loc*2]=true;
+            }
+            if(!visit[cur.loc+1])
+            {
+            Q.push({cur.loc+1,1,cur.feet+1});
+            visit[cur.loc+1]=true;
+            }
+        }
+    }
+}</code></pre><h2 id="Fliptile"><a href="#Fliptile" class="headerlink" title="Fliptile"></a>Fliptile</h2><p><strong>题目:<a href="https://vjudge.net/problem/POJ-3279" target="_blank" rel="noopener">POJ-3279</a></strong><br><strong>题解:</strong>这题难一些，没看题解我写不出来。这题与其说是搜索题不如说是枚举暴力题，只枚举第一行翻面情况就能推出后面几行的情况，当第一行翻面后的某个列的砖块是黑的，第二行那一列肯定要翻面，这样第一行那块黑砖才能翻上去。所以最多只需要枚举2^15次。然后判断是否最后一列全白。这题很坑的地方是，题目还要求了翻面次数最少和字典序最小，英语不行所以wa了好几次。</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+#include&lt;string.h&gt;
+int map[17][17];
+int path[17][17];
+int answ[17][17];
+int cop[17][17];
+int M,N,length=5000;
+void dfs(int n);
+void trans(int ,int ,int a[][17]);
+void solve();
+int main()
+{
+    cin&gt;&gt;M&gt;&gt;N;
+    for(int i=1;i&lt;=M;i++)
+    {
+        for(int j=1;j&lt;=N;j++)
+        cin&gt;&gt;map[i][j];
+    }
+    dfs(1);
+    if(length&lt;5000)
+    for(int i=1;i&lt;=M;i++)
+    {
+        for(int j=1;j&lt;=N;j++)
+        cout&lt;&lt;answ[i][j]&lt;&lt;&quot; &quot;;
+        cout&lt;&lt;endl;
+    }
+    else cout&lt;&lt;&quot;IMPOSSIBLE&quot;&lt;&lt;endl;
+}     
+
+void dfs(int n)
+{    
+    if(n==N+1)
+    {
+        solve();
+        return ;
+    }
+    path[1][n]=0;
+    dfs(n+1);
+    path[1][n]=1;
+    trans(1,n,map);
+    dfs(n+1);
+    path[1][n]=0;
+    trans(1,n,map);
+}
+
+void trans(int m,int n,int a[][17])
+{
+    a[m][n]^=1;
+    a[m][n-1]^=1;
+    a[m][n+1]^=1;
+    a[m-1][n]^=1;
+    a[m+1][n]^=1;
+}
+
+void solve()
+{
+    if(M==1)
+    {
+        int len=0;
+        int ans=-1;
+        for(int i=1;i&lt;=N;i++)
+        {
+        if(map[1][i]==1)
+        ans=1;
+        if(path[1][i])
+        len++;
+        }
+        if(ans==-1 &amp;&amp;len&lt;length)
+        {
+            length=len;
+            for(int i=1;i&lt;=N;i++)
+            answ[1][i]=path[1][i];
+        }
+        return ;
+    }
+    for(int i=2;i&lt;=M;i++) for(int j=1;j&lt;=N;j++) path[i][j]=0;
+    for(int i=1;i&lt;=M;i++) for(int j=1;j&lt;=N;j++) cop[i][j]=map[i][j];
+    for(int i=2;i&lt;=M;i++)
+    {
+        for(int j=1;j&lt;=N;j++)
+        {
+            if(cop[i-1][j]==1)
+            {
+            trans(i,j,cop);
+            path[i][j]++;
+            }
+        }
+    }    
+     int ans=-1;
+     for(int i=1;i&lt;=N;i++)
+     if(cop[M][i]==1)
+     ans=1;
+     if(ans==-1)
+     {
+         int len=0;
+         for(int i=1;i&lt;=M;i++)
+         for(int j=1;j&lt;=N;j++)
+         if(path[i][j]) len++;
+         if(len&lt;length)
+         {
+             length=len;
+             for(int i=1;i&lt;=M;i++)
+             for(int j=1;j&lt;=N;j++)
+             answ[i][j]=path[i][j];
+         }
+     }
+}</code></pre><h2 id="Find-The-Multiple"><a href="#Find-The-Multiple" class="headerlink" title="Find The Multiple"></a>Find The Multiple</h2><p><strong>题目:<a href="https://vjudge.net/problem/POJ-1426" target="_blank" rel="noopener">POJ-1426</a></strong><br><strong>题解:</strong>枚举每一位是0还是1，和上题思路差不多。很坑的是谁知道usigned long long就行了，还以为要用大数呢</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+unsigned long long u;
+int flag;
+void dfs(int n,int i,unsigned long long sum);
+int main()
+{
+    int n;
+    while(cin&gt;&gt;n)
+    {
+    if(n==0)
+    break;
+    flag=0;
+    dfs(n,1,1);
+    cout&lt;&lt;u&lt;&lt;endl;
+    }
 } 
 
-if(input.equals(&quot;bye&quot;)){    //这才是比较内容是否相同
-    ...
-}</code></pre><p><strong>Strings大小的比较</strong><br>*两个字符串可以比较大小：<br>s1.compareTo(s2)<br>如果s1小于s2，结果为负，相等为0，大于为正。<br>*compareToIgnoreCase可以不区分大小写地来比较大小</p>
-<p><strong>获得String的长度</strong><br>用length()函数</p>
-<p><strong>访问String里的字符</strong><br><em>s.charAt(index)</em><br>返回在index上的单个字符<br>index的范围是0到length()-1<br>第一个字符的index是0，和数组一样。<br>不能用for-each循环来遍历字符串</p>
-<p><strong>得到子串</strong><br>+s.substring(n)<br>得到从n号位置到末尾的全部内容。<br>+s.substring(b,e)<br>得到从b号位置到e号位置之前的内容。注意是到e位置之前。</p>
-<p><strong>寻找字符</strong><br><img src="%E5%AF%BB%E6%89%BE%E5%AD%97%E7%AC%A6.png" alt=""></p>
-<p><strong>其他String操作</strong><br><img src="%E5%85%B6%E4%BB%96string%E6%93%8D%E4%BD%9C.png" alt=""></p>
-<p>所有的字符串都是不可变的，对它们的操作的结果都是制造新的字符串出来</p>
-<pre><code>String s=&quot;abcd&quot;;
-s.toUpperCase();
-System.outprintln(s);</code></pre><p>输出依然是abcd。正确的操作是String s2=s.toUpperCase();然后输出s2。</p>
-<p><strong>在switch-Case中使用字符串</strong><br>switch(s){<br>    case”this”:…break;<br>    Case”that”:…break;<br>}</p>
-<h2 id="对象与类"><a href="#对象与类" class="headerlink" title="对象与类"></a>对象与类</h2><p>-对象是实体，需要被创建，可以为我们做事情。<br>-类是规范，根据类的定义来创建对象。</p>
-<p>对象=属性+操作<br>数据：属性或状态<br>操作：函数<br>把数据和对数据的操作放在一起–&gt;封装</p>
-<p><strong>创建对象</strong><br>-new VendingMachine();<br>-VendingMachine V =new VendingMachine()<br>-对象变量是对象的管理者。</p>
-<p><strong>让对象做事</strong><br>-.运算符<br>-v.insertMoney(10);<br>-v.getFood();</p>
-<p><strong>成员变量</strong><br>*类定义了对象中所具有的变量，这些变量称作成员变量<br>*每个对象有自己的变量，和同一个类的其他对象是分开的。<br>*在函数中可以直接写成员变量的名字来访问成员变量。<br>*函数通过对象来调用，如v.insertMoney(),建立了insertMoney()和v之间的关系，让insertMoney()内部的成员变量指的是v的成员变量。</p>
-<p><strong>this</strong><br>this是成员函数的一个特殊的固有的本地变量，它表示了调用这个函数的那个对象，在函数内部也可以直接使用this来调用成员函数。</p>
-<p><strong>本地变量</strong><br>定义在函数内部的变量是本地变量<br>本地变量的生存期和作用域都是函数内部<br>成员变量的生存期是对象的生存期，作用域是类内部的成员函数。</p>
-<p><strong>成员变量定义初始值</strong><br>成员变量在定义的地方就可以给出初始值，没有给出初始值的成员变量会自动获得0值，对象变量的0值表示没有管理任何对象，也可以主动给null值。定义初始值可以调用函数，甚至可以使用已经定义的成员变量。<br>几种设置初始值的方法：</p>
-<pre><code>Public class VendingMachine {
-int price = 80;
-int balance = f();
-int total;
-
-int f(){
-return 10;
-}
-
-VendingMachine()    //构造函数
+void dfs(int n,int i,unsigned long long sum)
 {
-total = 0;
-}
-...
-}</code></pre><p><strong>构造函数</strong><br>如果一个成员函数的名字和类的名字完全相同，则在创建这个类的每一个对象的时候会自动调用这个函数–&gt;构造函数。<br>这个函数不能有返回类型。</p>
-<pre><code>Public class VendingMachine {
-int price = 80;
-int balance = f();
-int total;
-
-int f(){
-return 10;
-}
-
-VendingMachine()    //构造函数
-{
-total = 0;
-}
-
-VendingMachine(price)    //重载
-{
-    this.price = price;
-}
-...
-}</code></pre><p><strong>函数重载</strong><br>一个类可以有多个构造函数，只要它们的参数表不同。创建对象的时候给出不同的参数值，就会自动调用不同的构造函数。<br>通过this()还可以调用其他构造函数。<br>一个类里的同名但参数表不同的函数构成了重载关系。</p>
-<pre><code>VendingMachine(int price)
-{
-    this();        //调用没有参数的那个构造函数，这个函数只能在构造函数中出现，且只能使用过一次。
-    this.price=price;
+    if(sum%n==0)
+    {
+        flag=1;
+        u=sum;
+        return ;
+    }
+    if(i&gt;=19)
+    {
+        return ;
+    }
+    if(flag)
+    return ;
+    dfs(n,i+1,sum*10);
+    if(flag)
+    return ;
+    dfs(n,i+1,sum*10+1);
 }</code></pre>
       
 
@@ -344,7 +545,7 @@ VendingMachine(price)    //重载
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ACM</a>
         		</li>
       		
 		</ul>
@@ -400,7 +601,7 @@ VendingMachine(price)    //重载
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://fIamingo.github.io/ub.io/2020/03/04/Java-%E4%B8%8D%E5%A4%AA%E8%AF%A6%E7%BB%86%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://fIamingo.github.io/ub.io/2020/03/06/kuangbin%E5%B8%A6%E4%BD%A0%E9%A3%9E-%E4%B8%93%E9%A2%98%E4%B8%80%EF%BC%9A%E7%AE%80%E5%8D%95%E6%90%9C%E7%B4%A2/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -414,18 +615,9 @@ VendingMachine(price)    //重载
   
 <nav id="article-nav">
   
-    <a href="/2020/03/04/Algorithm-Computer-Graphics-learning/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          [Algorithm] Computer Graphics note
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/02/29/OPENGL-Computer-Graphics-learning-note/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">[OPENGL] 图形学编程从入门到放弃</div>
+    <a href="/2020/03/04/Algorithm-Computer-Graphics-learning/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">[Algorithm] Computer Graphics note</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -452,7 +644,7 @@ VendingMachine(price)    //重载
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数组的使用"><span class="toc-number">2.</span> <span class="toc-text">数组的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#包裹类型"><span class="toc-number">3.</span> <span class="toc-text">包裹类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字符串变量"><span class="toc-number">4.</span> <span class="toc-text">字符串变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对象与类"><span class="toc-number">5.</span> <span class="toc-text">对象与类</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#棋盘问题"><span class="toc-number">2.</span> <span class="toc-text">棋盘问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dungeon-Master"><span class="toc-number">3.</span> <span class="toc-text">Dungeon Master</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Catch-That-Cow"><span class="toc-number">4.</span> <span class="toc-text">Catch That Cow</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fliptile"><span class="toc-number">5.</span> <span class="toc-text">Fliptile</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Find-The-Multiple"><span class="toc-number">6.</span> <span class="toc-text">Find The Multiple</span></a></li></ol>
                     </div>
                 </span>
             </div>
