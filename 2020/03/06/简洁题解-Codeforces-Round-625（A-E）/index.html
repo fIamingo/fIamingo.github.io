@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://fIamingo.github.io">
-  <title>[简洁题解] Codeforces Round #625 Div2（A-E） | flamingoo的猫窝</title>
+  <title>[简洁题解] Codeforces Round #625 Div2（A-F） | flamingoo的猫窝</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言剩下的时间不多了，我尽量把A-F都补完，但是因为水平原因，可能每场比赛总会有一两题补题的时候很花时间，至少补到D，只要补到E就写个题解吧，像这场的E就写了很久，还有F至今不会。学期正式开始后，也要坚持每周打一场codeforces，然后补题。不过绩点也很香啊，上学期被政治课给拖分严重，所以这学期政治课都得提前背了，还有汇编那么难。今天群里辅导员竟然公布了成绩，感觉我还是能在保研边缘挣扎一下的，">
+  <meta name="description" content="前言剩下的时间不多了，我尽量把A-F都补完，但是因为水平原因，可能每场比赛总会有一两题补题的时候很花时间，至少补到D，只要补到E就写个题解吧，像这场的E就写了很久，还有F至今不会（现在已补完）。学期正式开始后，也要坚持每周打一场codeforces，然后补题。不过绩点也很香啊，上学期被政治课给拖分严重，所以这学期政治课都得提前背了，还有汇编那么难。今天群里辅导员竟然公布了成绩，感觉我还是能在保研边">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[简洁题解] Codeforces Round #625 Div2（A-E）">
+<meta property="og:title" content="[简洁题解] Codeforces Round #625 Div2（A-F）">
 <meta property="og:url" content="http://fiamingo.github.io/2020/03/06/%E7%AE%80%E6%B4%81%E9%A2%98%E8%A7%A3-Codeforces-Round-625%EF%BC%88A-E%EF%BC%89/index.html">
 <meta property="og:site_name" content="flamingoo的猫窝">
-<meta property="og:description" content="前言剩下的时间不多了，我尽量把A-F都补完，但是因为水平原因，可能每场比赛总会有一两题补题的时候很花时间，至少补到D，只要补到E就写个题解吧，像这场的E就写了很久，还有F至今不会。学期正式开始后，也要坚持每周打一场codeforces，然后补题。不过绩点也很香啊，上学期被政治课给拖分严重，所以这学期政治课都得提前背了，还有汇编那么难。今天群里辅导员竟然公布了成绩，感觉我还是能在保研边缘挣扎一下的，">
+<meta property="og:description" content="前言剩下的时间不多了，我尽量把A-F都补完，但是因为水平原因，可能每场比赛总会有一两题补题的时候很花时间，至少补到D，只要补到E就写个题解吧，像这场的E就写了很久，还有F至今不会（现在已补完）。学期正式开始后，也要坚持每周打一场codeforces，然后补题。不过绩点也很香啊，上学期被政治课给拖分严重，所以这学期政治课都得提前背了，还有汇编那么难。今天群里辅导员竟然公布了成绩，感觉我还是能在保研边">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-03-06T08:22:52.000Z">
-<meta property="article:modified_time" content="2020-03-06T09:22:19.927Z">
+<meta property="article:modified_time" content="2020-03-06T14:17:45.130Z">
 <meta property="article:author" content="fIamingo">
 <meta property="article:tag" content="ACM">
 <meta property="article:tag" content="CF">
@@ -169,7 +169,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      [简洁题解] Codeforces Round #625 Div2（A-E）
+      [简洁题解] Codeforces Round #625 Div2（A-F）
     </h1>
   
 
@@ -196,7 +196,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>剩下的时间不多了，我尽量把A-F都补完，但是因为水平原因，可能每场比赛总会有一两题补题的时候很花时间，至少补到D，只要补到E就写个题解吧，像这场的E就写了很久，还有F至今不会。学期正式开始后，也要坚持每周打一场codeforces，然后补题。<br>不过绩点也很香啊，上学期被政治课给拖分严重，所以这学期政治课都得提前背了，还有汇编那么难。今天群里辅导员竟然公布了成绩，感觉我还是能在保研边缘挣扎一下的，所以这学期也不会比上学期轻松多少吧。<br>说回来这场我就AC了两题，结果竟然加了71分，果然差点灰名后触底反弹了吗，突然对上分有点期待了。</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>剩下的时间不多了，我尽量把A-F都补完，但是因为水平原因，可能每场比赛总会有一两题补题的时候很花时间，至少补到D，只要补到E就写个题解吧，像这场的E就写了很久，还有F至今不会（现在已补完）。学期正式开始后，也要坚持每周打一场codeforces，然后补题。<br>不过绩点也很香啊，上学期被政治课给拖分严重，所以这学期政治课都得提前背了，还有汇编那么难。今天群里辅导员竟然公布了成绩，感觉我还是能在保研边缘挣扎一下的，所以这学期也不会比上学期轻松多少吧。<br>说回来这场我就AC了两题，结果竟然加了71分，果然差点灰名后触底反弹了吗，突然对上分有点期待了。</p>
 <a id="more"></a>  
 
 <p>这场比赛的地址：<a href="https://codeforces.com/contest/1321" target="_blank" rel="noopener">https://codeforces.com/contest/1321</a><br><br></p>
@@ -488,7 +488,56 @@ int main()
         }
     }
     cout&lt;&lt;ans&lt;&lt;endl;    
-}</code></pre>
+}</code></pre><h2 id="F-Reachable-Strings"><a href="#F-Reachable-Strings" class="headerlink" title="F. Reachable Strings"></a>F. Reachable Strings</h2><p>题解：字符串哈希。这个哈希不是哈希的原来字符串，是哈希字符串中0的位置（0在奇数位还是偶数位）。因为两个字符串，0的位置分布相同，例如11001与01101中0的分布都是奇-&gt;偶，可以互相转换，00110与01100中0的分布都为奇-&gt;偶-&gt;奇,可以相互转换。至于为什么满足这样的条件就能相互转换，我的理解是因为从011变到110相当于0右移两位，但0所处的位置的奇偶性没变，并且如果奇数位上的0遇到偶数上的0，两个0挨着是无法越过的。所以00110与01100要是编码的话相当于101（奇数位为1偶数位为0）这样两个字符串的哈希值就相同了。我们还要维护字符串数组中0的个数，因为Hash[l…r]=Hash[r]-Hash[l-1]*p^(r-l+1)。哈希数组要开两个，分别是子串从奇数位开始和子串从偶数位开始的情况，因为从奇数位开始的子串的奇数位为从偶数位开始的子串中的偶数位。</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+typedef long long ll;
+ll Hash1[200005]; //从奇数位开头 
+ll Hash2[200005]; //从偶数位开头 
+ll pos[200005];
+int cnt[200005];
+#define p 233
+#define mod 100000009
+
+ll query(int l,int r)
+{
+    if(l&amp;1)
+    return (Hash1[r]-Hash1[l-1]*pos[cnt[r]-cnt[l-1]]%mod+mod)%mod;
+    else return (Hash2[r]-Hash2[l-1]*pos[cnt[r]-cnt[l-1]]%mod+mod)%mod; 
+}    
+
+int main()
+{
+    int n;
+    cin&gt;&gt;n;
+    string t;
+    cin&gt;&gt;t;
+    t=&apos;#&apos;+t;
+    pos[0]=1;
+    for(int i=1;i&lt;=t.size();i++)
+    {
+        pos[i]=pos[i-1]*p%mod;
+        if(t[i]==&apos;0&apos;)
+        {    cnt[i]=cnt[i-1]+1;
+            Hash1[i]=(Hash1[i-1]*p+(i&amp;1)+1)%mod;
+            Hash2[i]=(Hash2[i-1]*p+((i+1)&amp;1)+1)%mod; 
+        }
+        else
+        {
+            cnt[i]=cnt[i-1];
+            Hash1[i]=Hash1[i-1];
+            Hash2[i]=Hash2[i-1];
+        }
+    }
+    int k,l,r,len;cin&gt;&gt;k;
+    for(int j=1;j&lt;=k;j++)
+    {
+        cin&gt;&gt;l&gt;&gt;r&gt;&gt;len;
+        if(query(l,l+len-1)==query(r,r+len-1))
+        cout&lt;&lt;&quot;Yes&quot;&lt;&lt;endl;
+        else cout&lt;&lt;&quot;No&quot;&lt;&lt;endl;
+    }    
+} </code></pre>
       
 
       
@@ -604,7 +653,7 @@ int main()
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#A-Contest-for-Robots"><span class="toc-number">2.</span> <span class="toc-text">A. Contest for Robots</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#B-Journey-Planning"><span class="toc-number">3.</span> <span class="toc-text">B. Journey Planning</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#C-Remove-Adjacent"><span class="toc-number">4.</span> <span class="toc-text">C. Remove Adjacent</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#D-Navigation-System"><span class="toc-number">5.</span> <span class="toc-text">D. Navigation System</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#E-World-of-Darkraft-Battle-for-Azathoth"><span class="toc-number">6.</span> <span class="toc-text">E World of Darkraft: Battle for Azathoth</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#A-Contest-for-Robots"><span class="toc-number">2.</span> <span class="toc-text">A. Contest for Robots</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#B-Journey-Planning"><span class="toc-number">3.</span> <span class="toc-text">B. Journey Planning</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#C-Remove-Adjacent"><span class="toc-number">4.</span> <span class="toc-text">C. Remove Adjacent</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#D-Navigation-System"><span class="toc-number">5.</span> <span class="toc-text">D. Navigation System</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#E-World-of-Darkraft-Battle-for-Azathoth"><span class="toc-number">6.</span> <span class="toc-text">E World of Darkraft: Battle for Azathoth</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#F-Reachable-Strings"><span class="toc-number">7.</span> <span class="toc-text">F. Reachable Strings</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -733,10 +782,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ACM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
@@ -745,7 +790,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color4">ACM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -754,6 +799,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">日常</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
