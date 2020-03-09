@@ -6,14 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://fIamingo.github.io">
-  <title>Archives: 2020 | flamingoo的猫窝</title>
+  <title>[kuangbin带你飞] 专题五：并查集 | flamingoo的猫窝</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="flamingoo的猫窝">
-<meta property="og:url" content="http://fiamingo.github.io/archives/2020/index.html">
+  <meta name="description" content="前言带权并查集感觉难啊，虽然没后缀数组难，比较好的理解方法是向量，这套题的前五题里，前三题是简单的并查集模板题，四，五都是比较困难的带权并查集，搞了半天最后mle了，然后乖乖搜题解了，貌似都是经典并查集题。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[kuangbin带你飞] 专题五：并查集">
+<meta property="og:url" content="http://fiamingo.github.io/2020/03/09/kuangbin%E5%B8%A6%E4%BD%A0%E9%A3%9E-%E4%B8%93%E9%A2%98%E4%BA%8C-%E5%B9%B6%E6%9F%A5%E9%9B%86/index.html">
 <meta property="og:site_name" content="flamingoo的猫窝">
+<meta property="og:description" content="前言带权并查集感觉难啊，虽然没后缀数组难，比较好的理解方法是向量，这套题的前五题里，前三题是简单的并查集模板题，四，五都是比较困难的带权并查集，搞了半天最后mle了，然后乖乖搜题解了，貌似都是经典并查集题。">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-03-09T15:35:54.000Z">
+<meta property="article:modified_time" content="2020-03-09T15:50:35.225Z">
 <meta property="article:author" content="fIamingo">
+<meta property="article:tag" content="ACM">
+<meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="flamingoo的猫窝" type="application/atom+xml">
@@ -156,37 +162,316 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-kuangbin带你飞-专题二-并查集" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      [kuangbin带你飞] 专题五：并查集
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
+
+        <!--显示阅读次数-->
+
+  <br/>
+  <a class="cloud-tie-join-count" href="javascript:void(0);" style="color:gray;font-size:14px;">
+  <span class="icon-sort"></span>
+  </a>
+
+<!--显示阅读次数完毕-->
+        
+        
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
 <a href="/2020/03/09/kuangbin%E5%B8%A6%E4%BD%A0%E9%A3%9E-%E4%B8%93%E9%A2%98%E4%BA%8C-%E5%B9%B6%E6%9F%A5%E9%9B%86/" class="archive-article-date">
   	<time datetime="2020-03-09T15:35:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-09</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/09/kuangbin%E5%B8%A6%E4%BD%A0%E9%A3%9E-%E4%B8%93%E9%A2%98%E4%BA%8C-%E5%B9%B6%E6%9F%A5%E9%9B%86/">[kuangbin带你飞] 专题五：并查集</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>带权并查集感觉难啊，虽然没后缀数组难，比较好的理解方法是向量，这套题的前五题里，前三题是简单的并查集模板题，四，五都是比较困难的带权并查集，搞了半天最后mle了，然后乖乖搜题解了，貌似都是经典并查集题。</p>
+<a id="more"></a>
+<h2 id="Wireless-Network"><a href="#Wireless-Network" class="headerlink" title="Wireless Network"></a>Wireless Network</h2><p><strong>题目:<a href="https://vjudge.net/problem/POJ-2236" target="_blank" rel="noopener">POJ-2236</a></strong></p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+struct knode{
+    int x;
+    int y;
+}node[1005];
+int root[1005];
+int com[1005];
+bool visit[1005];
+int findx(int x)
+{
+    return root[x]==x?x:root[x]=findx(root[x]);
+}
+int dist(int i,int j)
+{
+    return (node[i].x-node[j].x)*(node[i].x-node[j].x)+(node[i].y-node[j].y)*(node[i].y-node[j].y);
+}
+int main()
+{
+    int N,d;
+    cin&gt;&gt;N&gt;&gt;d;
+    for(int i=1;i&lt;=N;i++)
+    {
+        cin&gt;&gt;node[i].x&gt;&gt;node[i].y;
+        root[i]=i;
+    }
+    char ch;int p,q,toc=0;
+    while(cin&gt;&gt;ch)
+    {    
+        switch(ch)
+        {
+            case &apos;O&apos;:
+                cin&gt;&gt;p;
+                if(!visit[p])
+                {
+                    visit[p]=1;
+                for(int i=1;i&lt;=toc;i++)
+                {
+                    if(dist(p,com[i])&lt;=d*d)
+                    {
+                        int l=findx(com[i]);
+                        root[l]=p;
+                    }
+                }
+                com[++toc]=p;
+                break;
+                }
+            case &apos;S&apos;:
+                cin&gt;&gt;p&gt;&gt;q;
+                if(!visit[p]||!visit[q])
+                {
+                    cout&lt;&lt;&quot;FAIL&quot;&lt;&lt;endl;
+                    break;
+                }
+                int a=findx(p);int b=findx(q);
+                if(a==b)
+                cout&lt;&lt;&quot;SUCCESS&quot;&lt;&lt;endl;
+                else cout&lt;&lt;&quot;FAIL&quot;&lt;&lt;endl;
+                break;
+        }
+    }
+}</code></pre><h2 id="The-Suspects"><a href="#The-Suspects" class="headerlink" title="The Suspects"></a>The Suspects</h2><p><strong>题目:<a href="https://vjudge.net/problem/POJ-1611" target="_blank" rel="noopener">POJ-1611</a></strong></p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+int root[31005];
 
-        <div class="article-info info-on-right">
-          
+int findx(int x)
+{
+    return x==root[x]?x:root[x]=findx(root[x]);
+}
+
+int join(int x,int y)
+{
+    int a=findx(x);
+    int b=findx(y);
+    if(a!=b) root[a]=y;
+}
+
+int main()
+{
+    int n,m;
+    while(cin&gt;&gt;n&gt;&gt;m)
+    {
+        for(int i=0;i&lt;n;i++)
+        root[i]=i;
+        if(n==0&amp;&amp;m==0)
+        break;
+        int toc=n;
+        int k;
+        for(int i=1;i&lt;=m;i++)
+        {
+            cin&gt;&gt;k;toc++;root[toc]=toc;
+            for(int j=1;j&lt;=k;j++)
+            {
+                int q;
+                cin&gt;&gt;q;
+                root[findx(q)]=toc;
+            }
+        }
+        int q=findx(0);
+        int sum=0;
+        for(int i=1;i&lt;n;i++)
+        if(findx(i)==q)
+        sum++;
+        cout&lt;&lt;sum+1&lt;&lt;endl;
+    }        
+}</code></pre><h2 id="How-Many-Tables"><a href="#How-Many-Tables" class="headerlink" title="How Many Tables"></a>How Many Tables</h2><p><strong>题目:<a href="https://vjudge.net/problem/POJ-1213" target="_blank" rel="noopener">POJ-1213</a></strong></p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+bool visit[1005];
+int map[1005][1005];
+int m,n;
+int dfs(int x)
+{
+    visit[x]=1;
+    for(int i=1;i&lt;=n;i++)
+    {
+        if(map[x][i]==1&amp;&amp;!visit[i])
+        dfs(i);
+    }
+}
+int main()
+{
+    int T;
+    cin&gt;&gt;T;
+    while(T--)
+    {
+        int count=0;
+        cin&gt;&gt;n&gt;&gt;m;
+        for(int i=1;i&lt;=n;i++)
+        {
+            visit[i]=0;
+            for(int j=1;j&lt;=n;j++)
+            {
+                map[i][j]=0;
+            }
+        }        
+        for(int i=1;i&lt;=m;i++)
+        {
+            int u,v;
+            cin&gt;&gt;u&gt;&gt;v;
+            map[u][v]=map[v][u]=1;
+        }
+        for(int i=1;i&lt;=n;i++)
+        {
+            if(!visit[i])
+            {
+                count++;
+                dfs(i);
+            }
+        }
+        cout&lt;&lt;count&lt;&lt;endl;
+    }
+} </code></pre><h2 id="How-Many-Answers-Are-Wrong"><a href="#How-Many-Answers-Are-Wrong" class="headerlink" title="How Many Answers Are Wrong"></a>How Many Answers Are Wrong</h2><p><strong>题目:<a href="https://vjudge.net/problem/POJ-3038" target="_blank" rel="noopener">POJ-3038</a></strong></p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+int root[200005];
+int sum[200005];
+int fi(int x)
+{
+    if(x==root[x])
+    {
+        return x;
+    }
+    else
+    {
+        int i=root[x];
+        root[x]=fi(root[x]);
+        sum[x]=sum[x]+sum[i];
+        return root[x];
+    }
+}
+
+int main()
+{
+    int N,M,count;
+    while(scanf(&quot;%d%d&quot;,&amp;N,&amp;M)!=EOF)
+    {
+    int Ai,Bi,Si;
+    count=0;
+    for(int i=0;i&lt;=N;i++)
+    root[i]=i;
+    for(int i=0;i&lt;=N;i++)
+    sum[i]=0;
+    for(int i=1;i&lt;=M;i++)
+    {
+        cin&gt;&gt;Ai&gt;&gt;Bi&gt;&gt;Si;
+        Ai--;
+        int x=fi(Ai);
+        int y=fi(Bi);
+        if(x==y)
+        {
+            if((sum[Ai]-sum[Bi])!=Si)
+            count++;
+        }
+        else
+        {
+            root[x]=y;
+            sum[x]=Si-sum[Ai]+sum[Bi];
+        }
+    }
+    cout&lt;&lt;count&lt;&lt;endl;
+    }
+} </code></pre><h2 id="食物链"><a href="#食物链" class="headerlink" title="食物链"></a>食物链</h2><p><strong>题目:<a href="https://vjudge.net/problem/POJ-1182" target="_blank" rel="noopener">POJ-1182</a></strong></p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+
+int root[200005];
+int location[200005]; //1代表吃上一级，2代表被上一级吃，0代表一个阶级。 
+
+int fi(int x)
+{
+    if(x!=root[x])
+    {
+        int i=root[x];
+        root[x]=fi(root[x]);
+        location[x]=(location[x]+location[i])%3; 
+    }
+    return root[x];
+}
+
+int main()
+{
+    int N,K,count=0;
+    scanf(&quot;%d%d&quot;,&amp;N,&amp;K);
+    for(int i=1;i&lt;=N;i++)
+    {
+        location[i]=0;
+        root[i]=i;
+    }
+    for(int i=1;i&lt;=K;i++)
+    {
+        int D,X,Y;
+        scanf(&quot;%d%d%d&quot;,&amp;D,&amp;X,&amp;Y);
+        if(X&gt;N||Y&gt;N)
+        {
+            count++;
+        }
+        else if(D==1)
+        {
+            int x=fi(X);int y=fi(Y);
+            if(x!=y)
+            {
+                root[x]=y;
+                location[x]=(-location[X]+location[Y]+3)%3;
+            }
+            else if(location[X]!=location[Y])
+            count++;
+        }
+        else if(D==2)
+        {
+            int x=fi(X);int y=fi(Y);
+            if(x!=y)
+            {
+                root[x]=y;
+                location[x]=(4+location[Y]-location[X])%3;
+            }
+            else
+            {
+                if((location[X]-location[Y]+3)%3!=1)
+                count++;
+            }
+        }
+    }
+    cout&lt;&lt;count&lt;&lt;endl;
+}</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -202,389 +487,118 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://fIamingo.github.io/ub.io/2020/03/09/kuangbin%E5%B8%A6%E4%BD%A0%E9%A3%9E-%E4%B8%93%E9%A2%98%E4%BA%8C-%E5%B9%B6%E6%9F%A5%E9%9B%86/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/03/06/%E7%AE%80%E6%B4%81%E9%A2%98%E8%A7%A3-Codeforces-Round-625%EF%BC%88A-E%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2020-03-06T08:22:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-06</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/03/06/%E7%AE%80%E6%B4%81%E9%A2%98%E8%A7%A3-Codeforces-Round-625%EF%BC%88A-E%EF%BC%89/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">[简洁题解] Codeforces Round #625 Div2（A-F）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/06/%E7%AE%80%E6%B4%81%E9%A2%98%E8%A7%A3-Codeforces-Round-625%EF%BC%88A-E%EF%BC%89/">[简洁题解] Codeforces Round #625 Div2（A-F）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ACM</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">CF</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Wireless-Network"><span class="toc-number">2.</span> <span class="toc-text">Wireless Network</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-Suspects"><span class="toc-number">3.</span> <span class="toc-text">The Suspects</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-Many-Tables"><span class="toc-number">4.</span> <span class="toc-text">How Many Tables</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-Many-Answers-Are-Wrong"><span class="toc-number">5.</span> <span class="toc-text">How Many Answers Are Wrong</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#食物链"><span class="toc-number">6.</span> <span class="toc-text">食物链</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/03/06/kuangbin%E5%B8%A6%E4%BD%A0%E9%A3%9E-%E4%B8%93%E9%A2%98%E4%B8%80%EF%BC%9A%E7%AE%80%E5%8D%95%E6%90%9C%E7%B4%A2/" class="archive-article-date">
-  	<time datetime="2020-03-05T16:11:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-06</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/06/kuangbin%E5%B8%A6%E4%BD%A0%E9%A3%9E-%E4%B8%93%E9%A2%98%E4%B8%80%EF%BC%9A%E7%AE%80%E5%8D%95%E6%90%9C%E7%B4%A2/">[kuangbin带你飞]专题一：简单搜索</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ACM</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/03/04/Algorithm-Computer-Graphics-learning/" class="archive-article-date">
-  	<time datetime="2020-03-03T16:44:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/04/Algorithm-Computer-Graphics-learning/">[Algorithm] Computer Graphics note</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">计图</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/03/04/Java-%E4%B8%8D%E5%A4%AA%E8%AF%A6%E7%BB%86%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="archive-article-date">
-  	<time datetime="2020-03-03T16:26:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/04/Java-%E4%B8%8D%E5%A4%AA%E8%AF%A6%E7%BB%86%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">[Java]面向对象语言的学习笔记</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/02/29/OPENGL-Computer-Graphics-learning-note/" class="archive-article-date">
-  	<time datetime="2020-02-29T14:08:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/29/OPENGL-Computer-Graphics-learning-note/">[OPENGL] 图形学编程从入门到放弃</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">计图</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/02/29/%E9%9D%9E%E8%AF%A6%E8%A7%A3-Codeforces-Round-624-Div-3/" class="archive-article-date">
-  	<time datetime="2020-02-29T06:21:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/29/%E9%9D%9E%E8%AF%A6%E8%A7%A3-Codeforces-Round-624-Div-3/">[简洁题解] Codeforces Round #624 (Div. 3)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ACM</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">CF</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/02/15/ACM%E6%A8%A1%E6%9D%BF%E6%95%B4%E7%90%86%EF%BC%88%E9%BE%9F%E9%80%9F%E6%9B%B4%E6%96%B0%E4%B8%AD%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2020-02-15T14:41:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/15/ACM%E6%A8%A1%E6%9D%BF%E6%95%B4%E7%90%86%EF%BC%88%E9%BE%9F%E9%80%9F%E6%9B%B4%E6%96%B0%E4%B8%AD%EF%BC%89/">ACM模板整理（龟速更新中）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ACM</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/02/13/%E7%89%9B%E5%AE%A2%E5%AF%92%E5%81%87%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%E9%9B%86%E8%AE%AD%E6%97%A5%E5%BF%97%EF%BC%88%E9%83%A8%E5%88%86%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2020-02-12T17:23:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/13/%E7%89%9B%E5%AE%A2%E5%AF%92%E5%81%87%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%E9%9B%86%E8%AE%AD%E6%97%A5%E5%BF%97%EF%BC%88%E9%83%A8%E5%88%86%EF%BC%89/">牛客寒假算法基础集训日志（部分）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ACM</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/01/31/flamingoo%E7%9A%84%E6%97%A5%E5%B8%B8-%E6%90%9E%E7%AC%91%E7%95%AA%E6%8E%A8%E8%8D%90/" class="archive-article-date">
-  	<time datetime="2020-01-31T15:35:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/01/31/flamingoo%E7%9A%84%E6%97%A5%E5%B8%B8-%E6%90%9E%E7%AC%91%E7%95%AA%E6%8E%A8%E8%8D%90/">flamingoo喜欢的日常/搞笑番推荐（3.5更新）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">动漫</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2020/page/2/">2</a><a class="extend next" rel="next" href="/archives/2020/page/2/">Next &amp;raquo;</a>
-    </nav>
   
 
 
@@ -624,8 +638,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

@@ -17,7 +17,7 @@
 <meta property="og:image" content="http://fiamingo.github.io/2020/03/04/Java-%E4%B8%8D%E5%A4%AA%E8%AF%A6%E7%BB%86%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%AF%BB%E6%89%BE%E5%AD%97%E7%AC%A6.png">
 <meta property="og:image" content="http://fiamingo.github.io/2020/03/04/Java-%E4%B8%8D%E5%A4%AA%E8%AF%A6%E7%BB%86%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%85%B6%E4%BB%96string%E6%93%8D%E4%BD%9C.png">
 <meta property="article:published_time" content="2020-03-03T16:26:14.000Z">
-<meta property="article:modified_time" content="2020-03-03T17:50:40.504Z">
+<meta property="article:modified_time" content="2020-03-07T15:45:43.754Z">
 <meta property="article:author" content="fIamingo">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
@@ -331,6 +331,103 @@ VendingMachine(price)    //重载
 {
     this();        //调用没有参数的那个构造函数，这个函数只能在构造函数中出现，且只能使用过一次。
     this.price=price;
+}</code></pre><h2 id="类与对象编程作业（浙大慕课）"><a href="#类与对象编程作业（浙大慕课）" class="headerlink" title="类与对象编程作业（浙大慕课）"></a>类与对象编程作业（浙大慕课）</h2><p><strong>题目内容</strong><br>设计一个表示分数的类Fraction。这个类用两个int类型的变量分别表示分子和分母。<br>这个类的构造函数是：</p>
+<p>Fraction(int a, int b)<br>    构造一个a/b的分数。</p>
+<p>这个类要提供以下的功能：</p>
+<p>double toDouble();<br>    将分数转换为double<br>Fraction plus(Fraction r);<br>    将自己的分数和r的分数相加，产生一个新的Fraction的对象。注意小学四年级学过两个分数如何相加的哈。<br>Fraction multiply(Fraction r);<br>    将自己的分数和r的分数相乘，产生一个新的Fraction的对象。<br>void print();<br>    将自己以“分子/分母”的形式输出到标准输出，并带有回车换行。如果分数是1/1，应该输出1。当分子大于分母时，不需要提出整数部分，即31/30是一个正确的输出。</p>
+<p>注意，在创建和做完运算后应该化简分数为最简形式。如2/4应该被化简为1/2。</p>
+<p>你写的类要和以下的代码放在一起，并请勿修改这个代码：</p>
+<pre><code>import java.util.Scanner;
+
+public class Main {
+
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    Fraction a = new Fraction(in.nextInt(), in.nextInt());
+    Fraction b = new Fraction(in.nextInt(),in.nextInt());
+    a.print();
+    b.print();
+    a.plus(b).print();
+    a.multiply(b).plus(new Fraction(5,6)).print();
+    a.print();
+    b.print();
+    in.close();
+}
+
+}</code></pre><p>注意，你的类的定义应该这样开始：</p>
+<pre><code>class Fraction {</code></pre><p>也就是说，在你的类的class前面不要有public。</p>
+<p><strong>输入格式：</strong><br>程序运行时会得到四个数字，分别构成两个分数，依次是分子和分母。</p>
+<p><strong>输出格式</strong><br>输出一些算式。这些输入和输出都是由Main类的代码完成的，你的代码不要做输入和输出。</p>
+<p><strong>输入样例</strong><br>2 4 1 3</p>
+<p><strong>输出样例</strong><br>1/2<br>1/3<br>5/6<br>1<br>1/2<br>1/3</p>
+<p><strong>我的代码</strong></p>
+<pre><code>package com.company;
+import java.util.Scanner;
+class Fraction {
+    int a;
+    int b ;
+
+    public Fraction(int x,int y) {
+        a = x;
+        b = y;
+    }
+
+    double toDouble()
+    {
+        return (double)a/b;
+    }
+
+    Fraction plus(Fraction r)
+    {
+        Fraction res = new Fraction(0,0);
+        res.a = r.a * this.b + this.a * r.b;
+        res.b = r.b * this.b;
+        return res;
+    }
+
+    Fraction multiply(Fraction r)
+    {
+        Fraction res = new Fraction(0,0);
+        res.a = r.a * this.a;
+        res.b = r.b * this.b;
+        return res;
+    }
+
+    void print()
+    {
+        int x=a,y=b;
+        if(a&gt;=b &amp;&amp; a%b==0)
+            System.out.println(a/b+&quot;\n&quot;);
+        else
+        {
+            while( x % y !=0 )
+            {
+                int c;
+                c=y;
+                y=x%y;
+                x=c;
+            }
+            a=a/y;
+            b=b/y;
+            System.out.println(a+&quot;/&quot;+b+&apos;\n&apos;);
+        }
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        Fraction a = new Fraction(in.nextInt(),in.nextInt());
+        Fraction b = new Fraction(in.nextInt(),in.nextInt());
+        a.print();
+        b.print();
+        a.plus(b).print();
+        a.multiply(b).plus(new Fraction(5,6)).print();
+        a.print();
+        b.print();
+        in.close();
+    }
 }</code></pre>
       
 
@@ -452,7 +549,7 @@ VendingMachine(price)    //重载
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数组的使用"><span class="toc-number">2.</span> <span class="toc-text">数组的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#包裹类型"><span class="toc-number">3.</span> <span class="toc-text">包裹类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字符串变量"><span class="toc-number">4.</span> <span class="toc-text">字符串变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对象与类"><span class="toc-number">5.</span> <span class="toc-text">对象与类</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数组的使用"><span class="toc-number">2.</span> <span class="toc-text">数组的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#包裹类型"><span class="toc-number">3.</span> <span class="toc-text">包裹类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字符串变量"><span class="toc-number">4.</span> <span class="toc-text">字符串变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对象与类"><span class="toc-number">5.</span> <span class="toc-text">对象与类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类与对象编程作业（浙大慕课）"><span class="toc-number">6.</span> <span class="toc-text">类与对象编程作业（浙大慕课）</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -593,15 +690,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">日常</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
