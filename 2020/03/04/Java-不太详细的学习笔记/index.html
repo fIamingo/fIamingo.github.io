@@ -17,7 +17,7 @@
 <meta property="og:image" content="http://fiamingo.github.io/2020/03/04/Java-%E4%B8%8D%E5%A4%AA%E8%AF%A6%E7%BB%86%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%AF%BB%E6%89%BE%E5%AD%97%E7%AC%A6.png">
 <meta property="og:image" content="http://fiamingo.github.io/2020/03/04/Java-%E4%B8%8D%E5%A4%AA%E8%AF%A6%E7%BB%86%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%85%B6%E4%BB%96string%E6%93%8D%E4%BD%9C.png">
 <meta property="article:published_time" content="2020-03-03T16:26:14.000Z">
-<meta property="article:modified_time" content="2020-03-07T15:45:43.754Z">
+<meta property="article:modified_time" content="2020-03-10T09:24:56.324Z">
 <meta property="article:author" content="fIamingo">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
@@ -364,8 +364,8 @@ public static void main(String[] args) {
 <pre><code>package com.company;
 import java.util.Scanner;
 class Fraction {
-    int a;
-    int b ;
+    private int a;
+    private int b ;
 
     public Fraction(int x,int y) {
         a = x;
@@ -428,6 +428,47 @@ public class Main {
         b.print();
         in.close();
     }
+}</code></pre><h2 id="对象交互"><a href="#对象交互" class="headerlink" title="对象交互"></a>对象交互</h2><p><strong>访问属性</strong><br><em>private：</em></p>
+<p>+只有这个类内部可以访问。<br>+类内部指类的成员函数和定义初始化。<br>+这个限制是对类的而不是对对象的。</p>
+<p><em>public</em>:<br>+任何人都可以访问<br>+任何人指的是在任何类的函数或定义初始化中可以使用。<br>+使用指的是调用、访问或定义变量。<br>+一个单元最多只有一个public</p>
+<p><strong>包</strong></p>
+<p>第一行</p>
+<pre><code>package [包的名字]。</code></pre><p>即目录的名字。</p>
+<pre><code>import [包的名字].[类的名字];            //引用包中的某个类
+import [包的名字].*;                    //引用保重的所有类。  </code></pre><p>不用这种方式也可以用该类时使用全名。<br>包的名字中可以有.,表达文件系统内文件夹的层次，java用这种方式管理类。</p>
+<p><strong>类变量</strong><br>static的成员变量为类变量。<br>类变量在类里，不在它的任何对象中。<br>但访问类变量可以用类名.变量名或对象名.变量名。<br>static函数只能去访问static函数与成员变量。</p>
+<h2 id="顺序容器"><a href="#顺序容器" class="headerlink" title="顺序容器"></a>顺序容器</h2><p>题外话：ui与逻辑要分离。<br></p>
+<p><strong>容器类</strong></p>
+<pre><code>private ArrayList&lt;String&gt; notes = new ArrayList&lt;String&gt;();</code></pre><p>容器有两个类型：容器的类型；元素的类型。</p>
+<pre><code>public void add(String s){        ////向后加s
+    notes.add(s);
+}        
+
+public void add(String s,int location){
+    notes.add(location,s);
+}
+
+
+public int getSize(){
+    return note.size();
+}
+
+public String getNote(int index){
+    return notes.get(index);
+}
+
+public void removeNote(int index){
+    return notes.remove(index);
+}
+
+public String[] list(){
+    String[] a = new String[notes.size()];
+//    for( int i=0;i&lt;notes.size();i++)
+//    {
+//        a[i]=notes.get(i);
+//    }
+    notes.toArray(a);
+    return a;
 }</code></pre>
       
 
@@ -549,7 +590,7 @@ public class Main {
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数组的使用"><span class="toc-number">2.</span> <span class="toc-text">数组的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#包裹类型"><span class="toc-number">3.</span> <span class="toc-text">包裹类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字符串变量"><span class="toc-number">4.</span> <span class="toc-text">字符串变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对象与类"><span class="toc-number">5.</span> <span class="toc-text">对象与类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类与对象编程作业（浙大慕课）"><span class="toc-number">6.</span> <span class="toc-text">类与对象编程作业（浙大慕课）</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数组的使用"><span class="toc-number">2.</span> <span class="toc-text">数组的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#包裹类型"><span class="toc-number">3.</span> <span class="toc-text">包裹类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字符串变量"><span class="toc-number">4.</span> <span class="toc-text">字符串变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对象与类"><span class="toc-number">5.</span> <span class="toc-text">对象与类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类与对象编程作业（浙大慕课）"><span class="toc-number">6.</span> <span class="toc-text">类与对象编程作业（浙大慕课）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对象交互"><span class="toc-number">7.</span> <span class="toc-text">对象交互</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#顺序容器"><span class="toc-number">8.</span> <span class="toc-text">顺序容器</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -678,15 +719,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ACM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">计图</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ACM</a>
               </li>
              
               <li class="article-tag-list-item">
