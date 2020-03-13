@@ -44,8 +44,9 @@
 <meta property="og:image" content="http://fiamingo.github.io/2020/03/04/Algorithm-Computer-Graphics-learning/QQ%E5%9B%BE%E7%89%8720200310183359.png">
 <meta property="og:image" content="http://fiamingo.github.io/2020/03/04/Algorithm-Computer-Graphics-learning/QQ%E5%9B%BE%E7%89%8720200310183647.png">
 <meta property="og:image" content="http://fiamingo.github.io/2020/03/04/Algorithm-Computer-Graphics-learning/QQ%E5%9B%BE%E7%89%8720200310184221.png">
+<meta property="og:image" content="http://fiamingo.github.io/2020/03/04/Algorithm-Computer-Graphics-learning/QQ%E5%9B%BE%E7%89%8720200311184116.png">
 <meta property="article:published_time" content="2020-03-03T16:44:25.000Z">
-<meta property="article:modified_time" content="2020-03-10T11:21:15.391Z">
+<meta property="article:modified_time" content="2020-03-11T10:44:28.499Z">
 <meta property="article:author" content="fIamingo">
 <meta property="article:tag" content="算法">
 <meta property="article:tag" content="计图">
@@ -258,6 +259,7 @@
 <h3 id="Liang-Barsky裁剪算法"><a href="#Liang-Barsky裁剪算法" class="headerlink" title="Liang-Barsky裁剪算法"></a>Liang-Barsky裁剪算法</h3><p>主要思想：<br>（1）用参数方程表示一条直线段。<br><img src="QQ%E5%9B%BE%E7%89%8720200310182840.png" alt=""><br>x=x1+u·(x2-x1)=x1+u·Δx<br>y=y1+u·(y2-y1)=y1+u·Δy<br>0≤u≤1<br>(2)把直线段看成一条有方向的线段。<br>把窗口的四条边及其延长线分成两类：入边和出边<br>入边：直线由窗口外向窗口内移动时和窗口边界相交的边(左边界和下边界)<br>出边：直线由窗口内向窗口外移动时和窗口边界相交的边（右边界和上边界）<br>入边有2个交点，出边也有2个交点。再加上直线段的两个端点，一共6个。<br><img src="QQ%E5%9B%BE%E7%89%8720200310183359.png" alt=""><br>如果用u1，u2分别表示线段（u1≤u2）在窗口可见部分的起点和终点所对应的参数。<br><img src="QQ%E5%9B%BE%E7%89%8720200310183647.png" alt=""><br>u1=max(0,ul,ub)<br>u2=min(1,ut,ur)</p>
 <p>判断线段某一部分是否在窗口内，可以简化为判断直线上一个点是否在窗口内的问题<br><img src="QQ%E5%9B%BE%E7%89%8720200310184221.png" alt=""><br>即x<sub>left</sub>≤x<sub>1</sub>+u·Δx≤x<sub>right</sub><br>y<sub>bottom</sub>≤y<sub>1</sub>＋u·Δy≤y<sub>top</sub><br>p一定在窗口内。</p>
 <p>将上述不等式化简一下：<br>p1=-Δx  q1=x1-x<sub>left</sub><br>p2=Δx   q2=x<sub>right</sub>-x<sub>1</sub><br>p3=-Δy  q3=y1-y<sub>bottom</sub><br>p4=Δy   q4=y<sub>top</sub>-y<sub>1</sub><br>于是有：u·p<sub>k</sub>≤q<sub>k</sub><br>其中，k=1，2，3，4，对应于左，右，下，上边界。<br>如果这个不等式取等号，代表u=q<sub>k</sub>/p<sub>k</sub><br>u分别对应直线和窗口四条边交点处的参数。<br>当Δx&gt;0时，对于窗口左边界x<sub>left</sub>:直线从左边界的外部到内部，p1&lt;0(p1=-Δx)<br>对于窗口右边界，x<sub>right</sub>:直线从右边界的内部到外部，p2＞0(p2=Δx)<br>当Δy＞0时，对于窗口下边界y<sub>bottom</sub>:直线从下边界的外部到内部，p3&lt;0(p3=-Δy)<br>对于窗口上边界y<sub>top</sub>：直线从上边界的内部到外部，p4＞0(p4=Δy)<br>当pk＜0时：对应两条入边，当pk＞0时，对应两条出边。<br>一共4个u，再加上直线段u=0，u=1两个端点值。<br>把pk&lt;0两个入边的u值和0比较去找最大的。<br>将umax和umin代回直线参数方程，即求出直线与窗口的两实交点坐标。</p>
+<h2 id="多边形裁剪和字符裁剪"><a href="#多边形裁剪和字符裁剪" class="headerlink" title="多边形裁剪和字符裁剪"></a>多边形裁剪和字符裁剪</h2><p><strong>多边形裁剪</strong><br><img src="QQ%E5%9B%BE%E7%89%8720200311184116.png" alt=""><br>得到一系列不连续的直线段。</p>
 
       
 
@@ -383,7 +385,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#光栅图形学算法"><span class="toc-number"></span> <span class="toc-text">光栅图形学算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#直线画线算法"><span class="toc-number">1.</span> <span class="toc-text">直线画线算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数值微分DDA"><span class="toc-number">1.1.</span> <span class="toc-text">数值微分DDA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#中点画线法"><span class="toc-number">1.2.</span> <span class="toc-text">中点画线法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bresenham算法"><span class="toc-number">1.3.</span> <span class="toc-text">Bresenham算法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#反走样"><span class="toc-number">2.</span> <span class="toc-text">反走样</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#非加权区域采样方法"><span class="toc-number">2.1.</span> <span class="toc-text">非加权区域采样方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#加权区域采样方法"><span class="toc-number">2.2.</span> <span class="toc-text">加权区域采样方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#裁剪"><span class="toc-number">3.</span> <span class="toc-text">裁剪</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Cohen-Sutherland算法"><span class="toc-number">3.1.</span> <span class="toc-text">Cohen-Sutherland算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#中点分割法"><span class="toc-number">3.2.</span> <span class="toc-text">中点分割法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Liang-Barsky裁剪算法"><span class="toc-number">3.3.</span> <span class="toc-text">Liang-Barsky裁剪算法</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#光栅图形学算法"><span class="toc-number"></span> <span class="toc-text">光栅图形学算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#直线画线算法"><span class="toc-number">1.</span> <span class="toc-text">直线画线算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数值微分DDA"><span class="toc-number">1.1.</span> <span class="toc-text">数值微分DDA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#中点画线法"><span class="toc-number">1.2.</span> <span class="toc-text">中点画线法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bresenham算法"><span class="toc-number">1.3.</span> <span class="toc-text">Bresenham算法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#反走样"><span class="toc-number">2.</span> <span class="toc-text">反走样</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#非加权区域采样方法"><span class="toc-number">2.1.</span> <span class="toc-text">非加权区域采样方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#加权区域采样方法"><span class="toc-number">2.2.</span> <span class="toc-text">加权区域采样方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#裁剪"><span class="toc-number">3.</span> <span class="toc-text">裁剪</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Cohen-Sutherland算法"><span class="toc-number">3.1.</span> <span class="toc-text">Cohen-Sutherland算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#中点分割法"><span class="toc-number">3.2.</span> <span class="toc-text">中点分割法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Liang-Barsky裁剪算法"><span class="toc-number">3.3.</span> <span class="toc-text">Liang-Barsky裁剪算法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多边形裁剪和字符裁剪"><span class="toc-number">4.</span> <span class="toc-text">多边形裁剪和字符裁剪</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -512,15 +514,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ACM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">计图</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ACM</a>
               </li>
              
               <li class="article-tag-list-item">

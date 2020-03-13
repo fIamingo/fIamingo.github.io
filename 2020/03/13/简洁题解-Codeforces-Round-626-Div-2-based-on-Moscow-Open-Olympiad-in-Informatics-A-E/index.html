@@ -6,22 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://fIamingo.github.io">
-  <title>[Java]面向对象语言的学习笔记 | flamingoo的猫窝</title>
+  <title>[不走心题解] Codeforces Round #626 Div2（A-E） | flamingoo的猫窝</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
-<meta property="og:title" content="[Java]面向对象语言的学习笔记">
-<meta property="og:url" content="http://fiamingo.github.io/2020/03/04/Java-%E4%B8%8D%E5%A4%AA%E8%AF%A6%E7%BB%86%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+  <meta name="description" content="前言这场比赛我又是二题选手，竟然还又加了20多分。但是由于我补题追不上它出题，昨天的div3那场我铁定掉分了，还不知道掉了多少。这套题感觉偏思维，C比B难，还好放弃B放弃的早，但是放弃之后又去看D去了，写D的时候我总是在想异或与加法的关系，然后每位加个进位就行了，但是越想越复杂，代码也果不其然WA了。后来看了别人的题解（我不知道怎么找官方题解QAQ），似乎思路就完全错了QAQ。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[不走心题解] Codeforces Round #626 Div2（A-E）">
+<meta property="og:url" content="http://fiamingo.github.io/2020/03/13/%E7%AE%80%E6%B4%81%E9%A2%98%E8%A7%A3-Codeforces-Round-626-Div-2-based-on-Moscow-Open-Olympiad-in-Informatics-A-E/index.html">
 <meta property="og:site_name" content="flamingoo的猫窝">
+<meta property="og:description" content="前言这场比赛我又是二题选手，竟然还又加了20多分。但是由于我补题追不上它出题，昨天的div3那场我铁定掉分了，还不知道掉了多少。这套题感觉偏思维，C比B难，还好放弃B放弃的早，但是放弃之后又去看D去了，写D的时候我总是在想异或与加法的关系，然后每位加个进位就行了，但是越想越复杂，代码也果不其然WA了。后来看了别人的题解（我不知道怎么找官方题解QAQ），似乎思路就完全错了QAQ。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1583263121344&di=5a7e5d6ad535493031959e9ccdfcba4e&imgtype=0&src=http%253A%252F%252Fp1.ssl.cdn.btime.com%252Ft014df2b452e706b092.jpg%253Fsize%253D439x248">
-<meta property="og:image" content="http://fiamingo.github.io/2020/03/04/Java-%E4%B8%8D%E5%A4%AA%E8%AF%A6%E7%BB%86%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%AF%BB%E6%89%BE%E5%AD%97%E7%AC%A6.png">
-<meta property="og:image" content="http://fiamingo.github.io/2020/03/04/Java-%E4%B8%8D%E5%A4%AA%E8%AF%A6%E7%BB%86%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%85%B6%E4%BB%96string%E6%93%8D%E4%BD%9C.png">
-<meta property="article:published_time" content="2020-03-03T16:26:14.000Z">
-<meta property="article:modified_time" content="2020-03-10T09:24:56.324Z">
+<meta property="article:published_time" content="2020-03-13T11:15:26.000Z">
+<meta property="article:modified_time" content="2020-03-13T12:12:53.708Z">
 <meta property="article:author" content="fIamingo">
-<meta property="article:tag" content="java">
+<meta property="article:tag" content="ACM">
+<meta property="article:tag" content="CF">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1583263121344&di=5a7e5d6ad535493031959e9ccdfcba4e&imgtype=0&src=http%253A%252F%252Fp1.ssl.cdn.btime.com%252Ft014df2b452e706b092.jpg%253Fsize%253D439x248">
   
     <link rel="alternative" href="/atom.xml" title="flamingoo的猫窝" type="application/atom+xml">
   
@@ -163,14 +162,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Java-不太详细的学习笔记" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-简洁题解-Codeforces-Round-626-Div-2-based-on-Moscow-Open-Olympiad-in-Informatics-A-E" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      [Java]面向对象语言的学习笔记
+      [不走心题解] Codeforces Round #626 Div2（A-E）
     </h1>
   
 
@@ -189,286 +188,228 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2020/03/04/Java-%E4%B8%8D%E5%A4%AA%E8%AF%A6%E7%BB%86%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="archive-article-date">
-  	<time datetime="2020-03-03T16:26:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-04</time>
+<a href="/2020/03/13/%E7%AE%80%E6%B4%81%E9%A2%98%E8%A7%A3-Codeforces-Round-626-Div-2-based-on-Moscow-Open-Olympiad-in-Informatics-A-E/" class="archive-article-date">
+  	<time datetime="2020-03-13T11:15:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-13</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1583263121344&di=5a7e5d6ad535493031959e9ccdfcba4e&imgtype=0&src=http%3A%2F%2Fp1.ssl.cdn.btime.com%2Ft014df2b452e706b092.jpg%3Fsize%3D439x248" alt=""></p>
-<a id="more"></a>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>java和c相似的地方还是很多的，这个博客中很多java和c++相似的地方会省略，我参考的浙大翁恺的java进阶教程，建议去看看。</p>
-<h2 id="数组的使用"><a href="#数组的使用" class="headerlink" title="数组的使用"></a>数组的使用</h2><p><strong>创建数组</strong></p>
-<pre><code>int[] numbers = new int[100]; //创建一个有100个元素的int型的数组。</code></pre><p>new创建的数组会得到默认的0值。</p>
-<p><strong>对数组中的元素赋值</strong></p>
-<pre><code>numbers[cnt] = x; //括号中可以是变量或常量整数。</code></pre><p>通过下标访问数组元素。和C一样，下表从0开始。<br>数组有个固有成员length。numbers.length返回numbers的元素数量。</p>
-<p><strong>直接初始化数组</strong></p>
-<pre><code>int[] scores = {87,98,69,54,65,76,87,99};</code></pre><p>直接用大括号给出数组的所有元素的初始值，不需要给出数组的大小,编译器替你数数。</p>
-<p><strong>数组的复制</strong></p>
-<pre><code>int[] a=new int[10];a[0]=5;
-int[] b=a; b[0]=16;
-System.out.println(b[0]);
-System.out.println(a[0]);</code></pre><p>输出都是16。</p>
-<p>*数组变量是数组的管理者，<br>*数组必须创建出来然后交给数组变量来管理。<br>*数组变量之间的赋值是管理权限的赋予。<br>*数组变量之间的比较是判断是否管理同一个数组。</p>
-<p><strong>数组的遍历</strong><br>两种循环</p>
-<pre><code>for( int i=0;i&lt;data.length; i++)
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这场比赛我又是二题选手，竟然还又加了20多分。但是由于我补题追不上它出题，昨天的div3那场我铁定掉分了，还不知道掉了多少。这套题感觉偏思维，C比B难，还好放弃B放弃的早，但是放弃之后又去看D去了，写D的时候我总是在想异或与加法的关系，然后每位加个进位就行了，但是越想越复杂，代码也果不其然WA了。后来看了别人的题解（我不知道怎么找官方题解QAQ），似乎思路就完全错了QAQ。</p>
+<a id="more"></a>  
+
+<p>这场比赛的地址：<a href="https://codeforces.com/contest/1323" target="_blank" rel="noopener">https://codeforces.com/contest/1323</a><br><br></p>
+<h2 id="A-Even-Subset-Sum-Problem"><a href="#A-Even-Subset-Sum-Problem" class="headerlink" title="A. Even Subset Sum Problem"></a>A. Even Subset Sum Problem</h2><p>题解：直接选第一个偶数或者前两个奇数。都没有就输出-1。</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+int array[105];
+int main()
 {
-    if(x==data[i])
+    int t;
+    cin&gt;&gt;t;
+    while(t--)
     {
-        found=true;
-        break;
+        int firstodd=0,secondodd=0,firsteven=0;
+        int n;
+        cin&gt;&gt;n;
+        for(int i=1;i&lt;=n;i++)
+        {
+            cin&gt;&gt;array[i];
+            if(array[i]%2==0)
+            firsteven=i;
+            else if(firstodd==0)
+            firstodd=i;
+            else secondodd=i;
+        }
+        if(secondodd==0&amp;&amp;firsteven==0)
+        cout&lt;&lt;-1&lt;&lt;endl;
+        else if(firsteven&gt;0)
+        {
+            cout&lt;&lt;1&lt;&lt;endl;
+            cout&lt;&lt;firsteven&lt;&lt;endl;    
+        }
+        else {
+            cout&lt;&lt;2&lt;&lt;endl;
+            cout&lt;&lt;firstodd&lt;&lt;&quot; &quot;&lt;&lt;secondodd&lt;&lt;endl;
+        }
     }
-}</code></pre><p>或者(类似c++) for-each</p>
-<p><em>for(&lt;类型&gt;&lt;变量&gt;:&lt;数组&gt;)<br>{<br>    …<br>}</em></p>
-<pre><code>for( int k : data )
+}</code></pre><h2 id="B-Count-Subrectangles"><a href="#B-Count-Subrectangles" class="headerlink" title="B.Count Subrectangles"></a>B.Count Subrectangles</h2><p>题解：用两个数组分别存储ai和bi数组中出现的相接的1个数的个数（很绕，我的表达能力捉急。这一步要写好，降低时间复杂度）然后对k的因子进行枚举。</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+#include&lt;cmath&gt;
+int a[40005];
+int b[40005];
+int resa[40005];
+int resb[40005];
+
+void cal(int a[40005],int res[40005],int q)
 {
-    if( k == x)
+    int cs=0;
+    for(int i=1;i&lt;=q+1;i++)
     {
-        found =true;
-        break;
-    }
-}</code></pre><h2 id="包裹类型"><a href="#包裹类型" class="headerlink" title="包裹类型"></a>包裹类型</h2><p>每种基础类型都有对应的包裹类型</p>
-<table>
-<thead>
-<tr>
-<th>基础类型</th>
-<th>包裹类型</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>boolean</td>
-<td>Boolean</td>
-</tr>
-<tr>
-<td>char</td>
-<td>Character</td>
-</tr>
-<tr>
-<td>int</td>
-<td>Integer</td>
-</tr>
-<tr>
-<td>double</td>
-<td>Double</td>
-</tr>
-</tbody></table>
-<p>包裹类型的用处<br>*获得该类型的最大最小值<br>*Integer：MIN_VALUE<br>*Integer：MAX_VALUE</p>
-<p>.运算符<br>*当需要让一个类或对象做事情的时候，用.运算符<br>*a.length<br>*Integer.MAX_VALUE</p>
-<h2 id="字符串变量"><a href="#字符串变量" class="headerlink" title="字符串变量"></a>字符串变量</h2><p>String s;<br>String是一个类，String的变量是对象的管理者而非所有者。</p>
-<p><strong>用new创建字符串</strong></p>
-<pre><code>String s = new String(&quot;a string&quot;); //用&quot;a string&quot;初始化这个对象</code></pre><p><strong>初始化字符串变量</strong></p>
-<pre><code>String s =&quot;hello&quot;;</code></pre><p>编译器创建一个String类的对象交给s来管理。</p>
-<p><strong>字符串连接</strong><br>用加号（+）可以连接两个字符串<br>“hello”+”world”–&gt;”helloworld”<br>如果+的一边是字符串另一边不是，会将另一边表达为字符串然后做连接<br>“I’m”+18–&gt;”I’m 18”</p>
-<p><strong>输入字符串</strong><br>in.next();读入一个单词，单词的标志是空格（空格，tab和换行）<br>in.nextLine();读入一整行</p>
-<pre><code>Scanner in = new Scanner(System.in);
-String s;
-s = in.next();
-System.out println(s);</code></pre><p>输入This is a test. 输出为This<br>如果换成nextLine，将输出This is a test.</p>
-<p><strong>比较两个String</strong><br>String应该用.equals 来比较</p>
-<pre><code>if(input == &quot;bye&quot;){        //这是比较是否是同一个，不能用这个方法。
-    ...
-} 
-
-if(input.equals(&quot;bye&quot;)){    //这才是比较内容是否相同
-    ...
-}</code></pre><p><strong>Strings大小的比较</strong><br>*两个字符串可以比较大小：<br>s1.compareTo(s2)<br>如果s1小于s2，结果为负，相等为0，大于为正。<br>*compareToIgnoreCase可以不区分大小写地来比较大小</p>
-<p><strong>获得String的长度</strong><br>用length()函数</p>
-<p><strong>访问String里的字符</strong><br><em>s.charAt(index)</em><br>返回在index上的单个字符<br>index的范围是0到length()-1<br>第一个字符的index是0，和数组一样。<br>不能用for-each循环来遍历字符串</p>
-<p><strong>得到子串</strong><br>+s.substring(n)<br>得到从n号位置到末尾的全部内容。<br>+s.substring(b,e)<br>得到从b号位置到e号位置之前的内容。注意是到e位置之前。</p>
-<p><strong>寻找字符</strong><br><img src="%E5%AF%BB%E6%89%BE%E5%AD%97%E7%AC%A6.png" alt=""></p>
-<p><strong>其他String操作</strong><br><img src="%E5%85%B6%E4%BB%96string%E6%93%8D%E4%BD%9C.png" alt=""></p>
-<p>所有的字符串都是不可变的，对它们的操作的结果都是制造新的字符串出来</p>
-<pre><code>String s=&quot;abcd&quot;;
-s.toUpperCase();
-System.outprintln(s);</code></pre><p>输出依然是abcd。正确的操作是String s2=s.toUpperCase();然后输出s2。</p>
-<p><strong>在switch-Case中使用字符串</strong><br>switch(s){<br>    case”this”:…break;<br>    Case”that”:…break;<br>}</p>
-<h2 id="对象与类"><a href="#对象与类" class="headerlink" title="对象与类"></a>对象与类</h2><p>-对象是实体，需要被创建，可以为我们做事情。<br>-类是规范，根据类的定义来创建对象。</p>
-<p>对象=属性+操作<br>数据：属性或状态<br>操作：函数<br>把数据和对数据的操作放在一起–&gt;封装</p>
-<p><strong>创建对象</strong><br>-new VendingMachine();<br>-VendingMachine V =new VendingMachine()<br>-对象变量是对象的管理者。</p>
-<p><strong>让对象做事</strong><br>-.运算符<br>-v.insertMoney(10);<br>-v.getFood();</p>
-<p><strong>成员变量</strong><br>*类定义了对象中所具有的变量，这些变量称作成员变量<br>*每个对象有自己的变量，和同一个类的其他对象是分开的。<br>*在函数中可以直接写成员变量的名字来访问成员变量。<br>*函数通过对象来调用，如v.insertMoney(),建立了insertMoney()和v之间的关系，让insertMoney()内部的成员变量指的是v的成员变量。</p>
-<p><strong>this</strong><br>this是成员函数的一个特殊的固有的本地变量，它表示了调用这个函数的那个对象，在函数内部也可以直接使用this来调用成员函数。</p>
-<p><strong>本地变量</strong><br>定义在函数内部的变量是本地变量<br>本地变量的生存期和作用域都是函数内部<br>成员变量的生存期是对象的生存期，作用域是类内部的成员函数。</p>
-<p><strong>成员变量定义初始值</strong><br>成员变量在定义的地方就可以给出初始值，没有给出初始值的成员变量会自动获得0值，对象变量的0值表示没有管理任何对象，也可以主动给null值。定义初始值可以调用函数，甚至可以使用已经定义的成员变量。<br>几种设置初始值的方法：</p>
-<pre><code>Public class VendingMachine {
-int price = 80;
-int balance = f();
-int total;
-
-int f(){
-return 10;
-}
-
-VendingMachine()    //构造函数
-{
-total = 0;
-}
-...
-}</code></pre><p><strong>构造函数</strong><br>如果一个成员函数的名字和类的名字完全相同，则在创建这个类的每一个对象的时候会自动调用这个函数–&gt;构造函数。<br>这个函数不能有返回类型。</p>
-<pre><code>Public class VendingMachine {
-int price = 80;
-int balance = f();
-int total;
-
-int f(){
-return 10;
-}
-
-VendingMachine()    //构造函数
-{
-total = 0;
-}
-
-VendingMachine(price)    //重载
-{
-    this.price = price;
-}
-...
-}</code></pre><p><strong>函数重载</strong><br>一个类可以有多个构造函数，只要它们的参数表不同。创建对象的时候给出不同的参数值，就会自动调用不同的构造函数。<br>通过this()还可以调用其他构造函数。<br>一个类里的同名但参数表不同的函数构成了重载关系。</p>
-<pre><code>VendingMachine(int price)
-{
-    this();        //调用没有参数的那个构造函数，这个函数只能在构造函数中出现，且只能使用过一次。
-    this.price=price;
-}</code></pre><h2 id="类与对象编程作业（浙大慕课）"><a href="#类与对象编程作业（浙大慕课）" class="headerlink" title="类与对象编程作业（浙大慕课）"></a>类与对象编程作业（浙大慕课）</h2><p><strong>题目内容</strong><br>设计一个表示分数的类Fraction。这个类用两个int类型的变量分别表示分子和分母。<br>这个类的构造函数是：</p>
-<p>Fraction(int a, int b)<br>    构造一个a/b的分数。</p>
-<p>这个类要提供以下的功能：</p>
-<p>double toDouble();<br>    将分数转换为double<br>Fraction plus(Fraction r);<br>    将自己的分数和r的分数相加，产生一个新的Fraction的对象。注意小学四年级学过两个分数如何相加的哈。<br>Fraction multiply(Fraction r);<br>    将自己的分数和r的分数相乘，产生一个新的Fraction的对象。<br>void print();<br>    将自己以“分子/分母”的形式输出到标准输出，并带有回车换行。如果分数是1/1，应该输出1。当分子大于分母时，不需要提出整数部分，即31/30是一个正确的输出。</p>
-<p>注意，在创建和做完运算后应该化简分数为最简形式。如2/4应该被化简为1/2。</p>
-<p>你写的类要和以下的代码放在一起，并请勿修改这个代码：</p>
-<pre><code>import java.util.Scanner;
-
-public class Main {
-
-public static void main(String[] args) {
-    Scanner in = new Scanner(System.in);
-    Fraction a = new Fraction(in.nextInt(), in.nextInt());
-    Fraction b = new Fraction(in.nextInt(),in.nextInt());
-    a.print();
-    b.print();
-    a.plus(b).print();
-    a.multiply(b).plus(new Fraction(5,6)).print();
-    a.print();
-    b.print();
-    in.close();
-}
-
-}</code></pre><p>注意，你的类的定义应该这样开始：</p>
-<pre><code>class Fraction {</code></pre><p>也就是说，在你的类的class前面不要有public。</p>
-<p><strong>输入格式：</strong><br>程序运行时会得到四个数字，分别构成两个分数，依次是分子和分母。</p>
-<p><strong>输出格式</strong><br>输出一些算式。这些输入和输出都是由Main类的代码完成的，你的代码不要做输入和输出。</p>
-<p><strong>输入样例</strong><br>2 4 1 3</p>
-<p><strong>输出样例</strong><br>1/2<br>1/3<br>5/6<br>1<br>1/2<br>1/3</p>
-<p><strong>我的代码</strong></p>
-<pre><code>package com.company;
-import java.util.Scanner;
-class Fraction {
-    private int a;
-    private int b ;
-
-    public Fraction(int x,int y) {
-        a = x;
-        b = y;
-    }
-
-    double toDouble()
-    {
-        return (double)a/b;
-    }
-
-    Fraction plus(Fraction r)
-    {
-        Fraction res = new Fraction(0,0);
-        res.a = r.a * this.b + this.a * r.b;
-        res.b = r.b * this.b;
-        return res;
-    }
-
-    Fraction multiply(Fraction r)
-    {
-        Fraction res = new Fraction(0,0);
-        res.a = r.a * this.a;
-        res.b = r.b * this.b;
-        return res;
-    }
-
-    void print()
-    {
-        int x=a,y=b;
-        if(a&gt;=b &amp;&amp; a%b==0)
-            System.out.println(a/b+&quot;\n&quot;);
+        if(a[i]==1)
+        cs++;
         else
         {
-            while( x % y !=0 )
+            for(int j=1;j&lt;=cs;j++)
             {
-                int c;
-                c=y;
-                y=x%y;
-                x=c;
+                res[j]+=cs-j+1;
             }
-            a=a/y;
-            b=b/y;
-            System.out.println(a+&quot;/&quot;+b+&apos;\n&apos;);
+            cs=0;
         }
     }
 }
 
-public class Main {
-
-    public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        Fraction a = new Fraction(in.nextInt(),in.nextInt());
-        Fraction b = new Fraction(in.nextInt(),in.nextInt());
-        a.print();
-        b.print();
-        a.plus(b).print();
-        a.multiply(b).plus(new Fraction(5,6)).print();
-        a.print();
-        b.print();
-        in.close();
+int main()
+{
+    int n,m;
+    long long sum=0;
+    long long k;
+    cin&gt;&gt;n&gt;&gt;m&gt;&gt;k;
+    for(int i=1;i&lt;=n;i++)
+    cin&gt;&gt;a[i];
+    for(int i=1;i&lt;=m;i++)
+    cin&gt;&gt;b[i];
+    cal(a,resa,n);
+    cal(b,resb,m);
+    for(int i=1;i&lt;=sqrt(k);i++)
+    {
+        if(k%i==0)
+        {
+            long long l=k/i;
+            if(l&gt;40000)
+            continue;
+            sum+=resa[i]*resb[l];
+            if(l!=i)
+            sum+=resa[l]*resb[i];
+        }
     }
-}</code></pre><h2 id="对象交互"><a href="#对象交互" class="headerlink" title="对象交互"></a>对象交互</h2><p><strong>访问属性</strong><br><em>private：</em></p>
-<p>+只有这个类内部可以访问。<br>+类内部指类的成员函数和定义初始化。<br>+这个限制是对类的而不是对对象的。</p>
-<p><em>public</em>:<br>+任何人都可以访问<br>+任何人指的是在任何类的函数或定义初始化中可以使用。<br>+使用指的是调用、访问或定义变量。<br>+一个单元最多只有一个public</p>
-<p><strong>包</strong></p>
-<p>第一行</p>
-<pre><code>package [包的名字]。</code></pre><p>即目录的名字。</p>
-<pre><code>import [包的名字].[类的名字];            //引用包中的某个类
-import [包的名字].*;                    //引用保重的所有类。  </code></pre><p>不用这种方式也可以用该类时使用全名。<br>包的名字中可以有.,表达文件系统内文件夹的层次，java用这种方式管理类。</p>
-<p><strong>类变量</strong><br>static的成员变量为类变量。<br>类变量在类里，不在它的任何对象中。<br>但访问类变量可以用类名.变量名或对象名.变量名。<br>static函数只能去访问static函数与成员变量。</p>
-<h2 id="顺序容器"><a href="#顺序容器" class="headerlink" title="顺序容器"></a>顺序容器</h2><p>题外话：ui与逻辑要分离。<br></p>
-<p><strong>容器类</strong></p>
-<pre><code>private ArrayList&lt;String&gt; notes = new ArrayList&lt;String&gt;();</code></pre><p>容器有两个类型：容器的类型；元素的类型。</p>
-<pre><code>public void add(String s){        ////向后加s
-    notes.add(s);
-}        
+    cout&lt;&lt;sum&lt;&lt;endl;
+}</code></pre><h2 id="C-Unusual-Competitions"><a href="#C-Unusual-Competitions" class="headerlink" title="C.Unusual Competitions"></a>C.Unusual Competitions</h2><p>题解：发现失配要么是遍历后发现’（’与’）’的出现的次数不一致，要么是直接发现’）’出现次数比’（’多。所以先定义一个数为0，遇到’(‘就减一，遇到’)’就加1。当要调整的时候一定是’)’在’(‘前，从第一个失配的’)’遍历到那个数等于0，然后寻找下一个失配位置。后面也这样计算。</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+int main()
+{
+    int n;
+    cin&gt;&gt;n;
+    string str;
+    cin&gt;&gt;str;
+    str=&apos;#&apos;+str;
+    int flag=0;
+    int len=0;
+    int st=0;
+    for(int i=1;i&lt;=n;i++)
+    {
+        if(str[i]==&apos;)&apos;)
+        {
+            if(flag==0)
+            st=i;
+            flag++;
+        }
+        else 
+        {
+            flag--;
+        }
+        if(flag==0)
+        {
+            if(st!=0)
+            len+=i-st+1;
+            st=0;
+        }
+    }
+    if(flag==0)
+    cout&lt;&lt;len&lt;&lt;endl;
+    else cout&lt;&lt;-1&lt;&lt;endl;
+}</code></pre><h2 id="D-Present"><a href="#D-Present" class="headerlink" title="D. Present"></a>D. Present</h2><p>题解：真是一道思维题啊。我们可以对二进制的每一位考虑，结果的二进制某位为1就是有奇数个（i，j）ai+aj在该位为1，我们遍历数组的每一位时，从高位往下遍历，每次把比本位高的位去掉（高位的值对本位不产生影响）。<br>若遍历到第i位，此时ai＋aj在第i位为1的情况有1&lt;&lt;(i-1)&lt;=ai+aj&lt;= (1&lt;&lt;\i)-1。或(1&lt;&lt;\i)+(1&lt;&lt;(i-1))&lt;=ai+aj&lt;=1&lt;&lt;(i+1)-1。<br>所以可以枚举ai，为了避免有重复的情况可以拍个序，然后用二分法找到满足条件的aj个数。</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+#include&lt;algorithm&gt;
+#include&lt;cmath&gt;
+int a[400005];
+int main()
+{
+    int n,len=0;
+    cin&gt;&gt;n;
+    for(int i=1;i&lt;=n;i++)
+    {
+    cin&gt;&gt;a[i];
+    len=max(len,(int)log2(a[i]));
+    }
+    int res=0;
+    for(int i=len+2;i&gt;=1;i--)
+    {int mod=1&lt;&lt;i;
+        for(int j=1;j&lt;=n;j++)
+        a[j]%=mod;
+        sort(a+1,a+1+n);
+        int o=0;
+        for(int j=1;j&lt;=n;j++)
+        {
+            int r=upper_bound(a+j+1,a+n+1,(1&lt;&lt;i)-1-a[j])-a;
+            int l=lower_bound(a+j+1,a+n+1,((1&lt;&lt;(i-1))-a[j]))-a;
+            o+=r-l;
+            r=upper_bound(a+j+1,a+n+1,(1&lt;&lt;(i+1))-1-a[j])-a;
+            l=lower_bound(a+j+1,a+n+1,((1&lt;&lt;i)+(1&lt;&lt;(i-1)))-a[j])-a;
+            o+=r-l;
+        }
+        if(o%2)
+        res+=1&lt;&lt;(i-1);
+    }
+    cout&lt;&lt;res&lt;&lt;endl;
+}</code></pre><h2 id="E-Instant-Noodles"><a href="#E-Instant-Noodles" class="headerlink" title="E.Instant Noodles"></a>E.Instant Noodles</h2><p>题解：将右边集合边集一样的点合并，也就是权值相加，然后空集舍弃，用一个map对vector 哈希就行了，vector是边集，但是要对vector排序。最后对处理过的右边集合的点的权值gcd。<br>能这样做的依据是gcd(a,a+b)=gcd(a,b)，gcd(a,b,c)=gcd(a,gcd(b,c))。</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+#include&lt;map&gt;
+#include&lt;vector&gt;
+typedef long long ll;
+#define maxn 500005
+#include&lt;cmath&gt;
+#include&lt;algorithm&gt;
+map&lt;vector&lt;int&gt;,ll&gt; ma;
+ll c[maxn];
+vector&lt;int&gt; va[maxn];
 
-public void add(String s,int location){
-    notes.add(location,s);
-}
+ll gcd(ll a,ll b)
+{
+    return b?gcd(b,a%b):a;
+}    
 
-
-public int getSize(){
-    return note.size();
-}
-
-public String getNote(int index){
-    return notes.get(index);
-}
-
-public void removeNote(int index){
-    return notes.remove(index);
-}
-
-public String[] list(){
-    String[] a = new String[notes.size()];
-//    for( int i=0;i&lt;notes.size();i++)
-//    {
-//        a[i]=notes.get(i);
-//    }
-    notes.toArray(a);
-    return a;
+int main()
+{
+    int t;
+    scanf(&quot;%d&quot;,&amp;t);
+    while(t--)
+    {
+        int n,m;
+        scanf(&quot;%d %d&quot;,&amp;n,&amp;m);
+        for(int i=1;i&lt;=n;i++)
+        scanf(&quot;%lld&quot;,&amp;c[i]);
+        for(int i=1;i&lt;=m;i++)
+        {
+            int u,v;
+            scanf(&quot;%d%d&quot;,&amp;u,&amp;v);
+            va[v].push_back(u);
+        }
+        for(int i=1;i&lt;=n;i++)
+        {
+            if(va[i].size())
+            {
+            sort(va[i].begin(),va[i].end());
+            ma[va[i]]+=c[i];
+            }
+        }
+        ll ans=0;
+        for(auto i:ma)
+        {
+            ans=gcd(i.second,ans);
+        }
+        printf(&quot;%lld\n&quot;,ans);
+        ma.clear();
+        for(int i=1;i&lt;=n;i++)
+        {
+            va[i].clear();
+        }
+    }
 }</code></pre>
       
 
@@ -482,7 +423,11 @@ public String[] list(){
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ACM</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">CF</a>
         		</li>
       		
 		</ul>
@@ -538,7 +483,7 @@ public String[] list(){
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://fIamingo.github.io/ub.io/2020/03/04/Java-%E4%B8%8D%E5%A4%AA%E8%AF%A6%E7%BB%86%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://fIamingo.github.io/ub.io/2020/03/13/%E7%AE%80%E6%B4%81%E9%A2%98%E8%A7%A3-Codeforces-Round-626-Div-2-based-on-Moscow-Open-Olympiad-in-Informatics-A-E/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -552,18 +497,9 @@ public String[] list(){
   
 <nav id="article-nav">
   
-    <a href="/2020/03/04/Algorithm-Computer-Graphics-learning/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          [Algorithm] Computer Graphics note
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/02/29/OPENGL-Computer-Graphics-learning-note/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">[OPENGL] 图形学编程从入门到放弃</div>
+    <a href="/2020/03/11/%E6%91%B8%E9%B1%BC-%E7%9C%8B%E6%AD%8C%E8%AF%8D%E5%AD%A6%E6%97%A5%E8%AF%AD/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">[摸鱼]看歌词学日语</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -590,7 +526,7 @@ public String[] list(){
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数组的使用"><span class="toc-number">2.</span> <span class="toc-text">数组的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#包裹类型"><span class="toc-number">3.</span> <span class="toc-text">包裹类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字符串变量"><span class="toc-number">4.</span> <span class="toc-text">字符串变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对象与类"><span class="toc-number">5.</span> <span class="toc-text">对象与类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类与对象编程作业（浙大慕课）"><span class="toc-number">6.</span> <span class="toc-text">类与对象编程作业（浙大慕课）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对象交互"><span class="toc-number">7.</span> <span class="toc-text">对象交互</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#顺序容器"><span class="toc-number">8.</span> <span class="toc-text">顺序容器</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#A-Even-Subset-Sum-Problem"><span class="toc-number">2.</span> <span class="toc-text">A. Even Subset Sum Problem</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#B-Count-Subrectangles"><span class="toc-number">3.</span> <span class="toc-text">B.Count Subrectangles</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#C-Unusual-Competitions"><span class="toc-number">4.</span> <span class="toc-text">C.Unusual Competitions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#D-Present"><span class="toc-number">5.</span> <span class="toc-text">D. Present</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#E-Instant-Noodles"><span class="toc-number">6.</span> <span class="toc-text">E.Instant Noodles</span></a></li></ol>
                     </div>
                 </span>
             </div>
