@@ -6,14 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://fIamingo.github.io">
-  <title>Archives: 2020/1 | flamingoo的猫窝</title>
+  <title>[kuangbin带你飞] 专题四 最短路 | flamingoo的猫窝</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="flamingoo的猫窝">
-<meta property="og:url" content="http://fiamingo.github.io/archives/2020/01/index.html">
+  <meta name="description" content="前言我速度太慢了QAQ，总之先把图论专题的都做一点题吧。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[kuangbin带你飞] 专题四 最短路">
+<meta property="og:url" content="http://fiamingo.github.io/2020/03/15/kuangbin%E5%B8%A6%E4%BD%A0%E9%A3%9E-%E4%B8%93%E9%A2%98%E5%9B%9B-%E6%9C%80%E7%9F%AD%E8%B7%AF/index.html">
 <meta property="og:site_name" content="flamingoo的猫窝">
+<meta property="og:description" content="前言我速度太慢了QAQ，总之先把图论专题的都做一点题吧。">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-03-15T05:55:43.000Z">
+<meta property="article:modified_time" content="2020-03-15T06:12:35.484Z">
 <meta property="article:author" content="fIamingo">
+<meta property="article:tag" content="ACM">
+<meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="flamingoo的猫窝" type="application/atom+xml">
@@ -156,193 +162,350 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-kuangbin带你飞-专题四-最短路" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      [kuangbin带你飞] 专题四 最短路
+    </h1>
+  
+
+        <!--显示阅读次数-->
+
+  <br/>
+  <a class="cloud-tie-join-count" href="javascript:void(0);" style="color:gray;font-size:14px;">
+  <span class="icon-sort"></span>
+  </a>
+
+<!--显示阅读次数完毕-->
+        
+        
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/2020/03/15/kuangbin%E5%B8%A6%E4%BD%A0%E9%A3%9E-%E4%B8%93%E9%A2%98%E5%9B%9B-%E6%9C%80%E7%9F%AD%E8%B7%AF/" class="archive-article-date">
+  	<time datetime="2020-03-15T05:55:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-15</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我速度太慢了QAQ，总之先把图论专题的都做一点题吧。</p>
+<a id="more"></a>
+<h2 id="Til-the-Cows-Come-Home"><a href="#Til-the-Cows-Come-Home" class="headerlink" title="Til the Cows Come Home"></a>Til the Cows Come Home</h2><p><strong>题目：</strong><a href="https://vjudge.net/problem/POJ-2387" target="_blank" rel="noopener">POJ-2387</a></p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+#include&lt;vector&gt;
+#include&lt;queue&gt;
+#define INF 10000000
+struct HeapNode
+{
+    int v,d;
+    bool operator &lt; (const HeapNode&amp; rhs) const{
+    return d&gt;rhs.d;
+    }
+};
+bool visit[1005];
+int distant[1005];
+vector&lt;HeapNode&gt; G[1005];
+
+int main()
+{
+    int T,N;
+    cin&gt;&gt;T&gt;&gt;N;
+    for(int i=1;i&lt;=T;i++)
+    {
+        int u,v;
+        cin&gt;&gt;u&gt;&gt;v;
+        int d;
+        cin&gt;&gt;d;
+        G[u].push_back({v,d});
+        G[v].push_back({u,d});
+    }
+    priority_queue&lt;HeapNode&gt; Q;
+    for(int i=1;i&lt;=N;i++)
+    distant[i]=INF;
+    distant[N]=0;
+    Q.push({N,0});
+    while(!Q.empty())
+    {
+        HeapNode cur;
+        cur=Q.top();
+        Q.pop();
+        int pre=cur.v;
+        int dis=cur.d;
+        if(visit[pre])
+        continue;
+        visit[pre]=true;
+        for(int i=0;i&lt;G[pre].size();i++)
+        {
+            if(dis+G[pre][i].d&lt;distant[G[pre][i].v])
+            {
+                distant[G[pre][i].v]=distant[pre]+G[pre][i].d;
+                Q.push({G[pre][i].v,distant[G[pre][i].v]});
+            }
+        }
+    }
+    cout&lt;&lt;distant[1]&lt;&lt;endl;
+}</code></pre><h2 id="Frogger"><a href="#Frogger" class="headerlink" title="Frogger"></a>Frogger</h2><p><strong>题目：</strong><a href="https://vjudge.net/problem/POJ-2253" target="_blank" rel="noopener">POJ-2253</a> </p>
+<p>此题是最短路的变形，求每条路径中的最长边最小值。最开始用最小生成树写的，后来发现我不会最小生成树所以写的是错的，我下个专题刷5题最小生成树后，把这题的最小生成树写法补完。这个是用Floyd写的。</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+#include&lt;cmath&gt;
+#include&lt;string.h&gt;
+#include&lt;stdio.h&gt;
+int n;
+double map[205][205];
+
+struct knode
+{
+    int x,y;
+}node[205];
+void Floyd()
+{
+    for(int k=1;k&lt;=n;k++)
+        for(int i=1;i&lt;=n;i++)
+            for(int j=1;j&lt;=n;j++)
+            map[i][j]=min(map[i][j],max(map[i][k],map[k][j]));    
+}
+
+double distant(int i,int j)
+{
+    return ((node[i].x-node[j].x)*(node[i].x-node[j].x)+(node[i].y-node[j].y)*(node[i].y-node[j].y));
+}
+
+int main()
+{
+    int t=0;
+    while(cin&gt;&gt;n)
+    {
+        if(n==0)
+        break;
+        t++;
+        for(int i=1;i&lt;=n;i++)
+        cin&gt;&gt;node[i].x&gt;&gt;node[i].y;
+        memset(map,2000,sizeof(map));
+        for(int i=1;i&lt;=n;i++)
+        map[i][i]=0;
+        for(int i=1;i&lt;=n;i++)
+            for(int j=i+1;j&lt;=n;j++)
+            {
+                map[i][j]=map[j][i]=sqrt((double)distant(i,j));
+            }
+        Floyd();
+        printf(&quot;Scenario #%d\n&quot;,t);
+        printf(&quot;Frog Distance = %.3lf\n\n&quot;,map[1][2]);
+    }
+}</code></pre><h2 id="Heavy-Transportaion"><a href="#Heavy-Transportaion" class="headerlink" title="Heavy Transportaion"></a>Heavy Transportaion</h2><p><strong>题目：</strong><a href="https://vjudge.net/problem/POJ-1797" target="_blank" rel="noopener">POJ-1797</a><br>和上题差不多都是最短路的变形。</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+#define maxn 1005
+#include&lt;vector&gt;
+#include&lt;queue&gt;
+#include&lt;stdio.h&gt;
+int distant[maxn];
+struct HeapNode
+{
+    int u;
+    int d;
+    bool operator&lt;(const HeapNode &amp;rhs) const 
+    {
+        return d&lt;rhs.d;
+    }
+};
+vector&lt;HeapNode&gt; G[maxn];
+priority_queue&lt;HeapNode&gt; Q;
+int main()
+{
+    int t;
+    scanf(&quot;%d&quot;,&amp;t);
+    for(int k=1;k&lt;=t;k++)
+    {
+        int n,m;
+        scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
+        for(int i=1;i&lt;=m;i++)
+        {
+            int u,v,d;
+            scanf(&quot;%d%d%d&quot;,&amp;u,&amp;v,&amp;d);
+            G[u].push_back({v,d});
+            G[v].push_back({u,d});
+        }
+
+    while(!Q.empty())
+    Q.pop();
+    Q.push({1,1000005});
+    for(int i=1;i&lt;=n;i++) distant[i]=0;
+    distant[1]=1000005;
+    while(!Q.empty())
+    {
+        HeapNode cur=Q.top();
+        Q.pop();
+        int u=cur.u;
+        for(int i=0;i&lt;G[u].size();i++)
+        {
+            int x=G[u][i].u;
+            if(min(G[u][i].d,distant[u])&gt;distant[x])
+            {
+                distant[x]=min(G[u][i].d,distant[u]);
+                Q.push({x,distant[x]});
+            }
+        }
+    }
+    printf(&quot;Scenario #%d:\n&quot;,k);
+    printf(&quot;%d\n\n&quot;,distant[n]);
+    for(int i=1;i&lt;=n;i++)
+    G[i].clear();
+    }
+}</code></pre><h2 id="Sliver-Cow-Party"><a href="#Sliver-Cow-Party" class="headerlink" title="Sliver Cow Party"></a>Sliver Cow Party</h2><p><strong>题目：</strong><a href="https://vjudge.net/problem/POJ-3268" target="_blank" rel="noopener">POJ-3268</a></p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+#include&lt;vector&gt;
+#include&lt;queue&gt;
+#define maxn 1005
+#define INF 99999999
+struct HeapNode
+{
+    int u;int d;
+    bool operator&lt;(const HeapNode&amp; rhs)const
+    {
+        return d&gt;rhs.d;
+    }
+};
+vector&lt;HeapNode&gt; Gp[maxn];
+vector&lt;HeapNode&gt; Gn[maxn];
+int dp[maxn];
+int dn[maxn];
+priority_queue&lt;HeapNode&gt; Q;
+priority_queue&lt;HeapNode&gt; S;
+int main()
+{
+    int N,M,X;
+    cin&gt;&gt;N&gt;&gt;M&gt;&gt;X;
+    for(int i=1;i&lt;=M;i++)
+    {
+        int u,v,d;
+        cin&gt;&gt;u&gt;&gt;v&gt;&gt;d;
+        Gp[u].push_back({v,d});
+        Gn[v].push_back({u,d});
+    }
+    Q.push({X,0});
+    for(int i=1;i&lt;=N;i++)
+    dp[i]=INF;
+    dp[X]=0;
+    while(!Q.empty())
+    {
+        HeapNode cur;
+        cur=Q.top();
+        Q.pop();
+        int u=cur.u;
+        for(int i=0;i&lt;Gp[u].size();i++)
+        {
+            if(dp[u]+Gp[u][i].d&lt;dp[Gp[u][i].u])
+            {
+            dp[Gp[u][i].u]=dp[u]+Gp[u][i].d;
+            Q.push({Gp[u][i].u,dp[Gp[u][i].u]});
+            }
+        }
+    }
+    S.push({X,0});
+    for(int i=1;i&lt;=N;i++)
+    dn[i]=INF;
+    dn[X]=0;
+    while(!S.empty())
+    {
+        HeapNode cur;
+        cur=S.top();
+        S.pop();
+        int u=cur.u;
+        for(int i=0;i&lt;Gn[u].size();i++)
+        {
+            int x=Gn[u][i].u;int d=Gn[u][i].d;
+            if(dn[u]+d&lt;dn[x])
+            {
+                dn[x]=dn[u]+d;
+                S.push({x,dn[x]});
+            }
+        }
+    }
+    int ans=0;
+    for(int i=1;i&lt;=N;i++)
+    {
+        ans=max(dp[i]+dn[i],ans);
+    }
+    cout&lt;&lt;ans&lt;&lt;endl;
+}</code></pre><h2 id="Currency-Exchange"><a href="#Currency-Exchange" class="headerlink" title="Currency Exchange"></a>Currency Exchange</h2><p><strong>题目：</strong><a href="https://vjudge.net/problem/POJ-1860" target="_blank" rel="noopener">POJ-1860</a></p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+#include&lt;vector&gt;
+#include&lt;queue&gt;
+#define maxn 105
+struct HeapNode
+{
+    int u;
+    double r;
+    double c;
+};
+vector&lt;HeapNode&gt; G[maxn];
+bool ins[maxn];
+double dis[maxn];
+int main()
+{
+    int flag=0;
+    int N,M,S;
+    double V;
+    cin&gt;&gt;N&gt;&gt;M&gt;&gt;S&gt;&gt;V;
+    for(int i=1;i&lt;=M;i++)
+    {
+        int u,v;
+        double r1,c1,r2,c2;
+        cin&gt;&gt;u&gt;&gt;v&gt;&gt;r1&gt;&gt;c1&gt;&gt;r2&gt;&gt;c2;
+        G[u].push_back({v,r1,c1});
+        G[v].push_back({u,r2,c2});
+    }
+    queue&lt;int&gt; Q;
+    dis[S]=V;
+    Q.push(S);
+    while(!Q.empty())
+    {
+        int cur;
+        cur=Q.front();
+        Q.pop();
+        ins[cur]=0;
+        if(dis[S]&gt;V)
+        {
+            flag=1;break;
+        }
+        for(int i=0;i&lt;G[cur].size();i++)
+        {
+            HeapNode x=G[cur][i];
+            if(dis[x.u]&lt;(dis[cur]-x.c)*x.r)
+            {
+                dis[x.u]=(dis[cur]-x.c)*x.r;
+                if(!ins[x.u])
+                {
+                Q.push(x.u);
+                ins[x.u]=true;
+                }
+            }
+        }
+    }
+    if(flag)
+    cout&lt;&lt;&quot;YES&quot;&lt;&lt;endl;
+    else cout&lt;&lt;&quot;NO&quot;&lt;&lt;endl;
+} </code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/01/31/flamingoo%E7%9A%84%E6%97%A5%E5%B8%B8-%E6%90%9E%E7%AC%91%E7%95%AA%E6%8E%A8%E8%8D%90/" class="archive-article-date">
-  	<time datetime="2020-01-31T15:35:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/01/31/flamingoo%E7%9A%84%E6%97%A5%E5%B8%B8-%E6%90%9E%E7%AC%91%E7%95%AA%E6%8E%A8%E8%8D%90/">flamingoo喜欢的日常/搞笑番推荐（3.10更新）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">动漫</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/01/28/The-LINUX-command-line/" class="archive-article-date">
-  	<time datetime="2020-01-28T13:26:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/01/28/The-LINUX-command-line/">The LINUX command line(notes)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/01/22/c-STL/" class="archive-article-date">
-  	<time datetime="2020-01-22T10:15:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/01/22/c-STL/">C++ STL相关</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/01/22/%E6%B5%85%E8%B0%88jojo%E4%BA%BA%E6%B0%94%E5%8F%8D%E6%B4%BE-%E6%9D%9C%E7%8E%8B%E7%94%BA%E7%9A%84%E6%99%AE%E9%80%9A%E4%B8%8A%E7%8F%AD%E6%97%8F%E2%80%9D/" class="archive-article-date">
-  	<time datetime="2020-01-22T06:47:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/01/22/%E6%B5%85%E8%B0%88jojo%E4%BA%BA%E6%B0%94%E5%8F%8D%E6%B4%BE-%E6%9D%9C%E7%8E%8B%E7%94%BA%E7%9A%84%E6%99%AE%E9%80%9A%E4%B8%8A%E7%8F%AD%E6%97%8F%E2%80%9D/">浅谈jojo人气反派---杜王町的普通上班族”</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">动漫</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/01/19/AHU-ACM%E5%86%AC%E8%AE%AD%E6%97%A5%E8%AE%B0/" class="archive-article-date">
-  	<time datetime="2020-01-19T15:47:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/01/19/AHU-ACM%E5%86%AC%E8%AE%AD%E6%97%A5%E8%AE%B0/">AHU-ACM冬训日记</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -358,62 +521,119 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://fIamingo.github.io/ub.io/2020/03/15/kuangbin%E5%B8%A6%E4%BD%A0%E9%A3%9E-%E4%B8%93%E9%A2%98%E5%9B%9B-%E6%9C%80%E7%9F%AD%E8%B7%AF/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/01/17/Hello-world-0/" class="archive-article-date">
-  	<time datetime="2020-01-17T10:58:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-17</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/03/13/%E7%AE%80%E6%B4%81%E9%A2%98%E8%A7%A3-Codeforces-Round-626-Div-2-based-on-Moscow-Open-Olympiad-in-Informatics-A-E/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">[不走心题解] Codeforces Round #626 Div2（A-E）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/01/17/Hello-world-0/">Hello world!</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">日常</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Til-the-Cows-Come-Home"><span class="toc-number">2.</span> <span class="toc-text">Til the Cows Come Home</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Frogger"><span class="toc-number">3.</span> <span class="toc-text">Frogger</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Heavy-Transportaion"><span class="toc-number">4.</span> <span class="toc-text">Heavy Transportaion</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sliver-Cow-Party"><span class="toc-number">5.</span> <span class="toc-text">Sliver Cow Party</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Currency-Exchange"><span class="toc-number">6.</span> <span class="toc-text">Currency Exchange</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
   
-    </div></section>
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -452,8 +672,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
