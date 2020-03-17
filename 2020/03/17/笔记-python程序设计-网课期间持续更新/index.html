@@ -6,16 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://fIamingo.github.io">
-  <title>分类 | flamingoo的猫窝</title>
+  <title>[笔记] python程序设计(网课期间持续更新) | flamingoo的猫窝</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="http://fiamingo.github.io/categories/index.html">
+  <meta name="description" content="这门课是蹭的，毕竟python还是挺重要的，科研训练之类的大概率会用到。可惜笔记依旧很多重点没能做到呢。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[笔记] python程序设计(网课期间持续更新)">
+<meta property="og:url" content="http://fiamingo.github.io/2020/03/17/%E7%AC%94%E8%AE%B0-python%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-%E7%BD%91%E8%AF%BE%E6%9C%9F%E9%97%B4%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/index.html">
 <meta property="og:site_name" content="flamingoo的猫窝">
+<meta property="og:description" content="这门课是蹭的，毕竟python还是挺重要的，科研训练之类的大概率会用到。可惜笔记依旧很多重点没能做到呢。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-01-16T13:08:07.000Z">
-<meta property="article:modified_time" content="2020-01-16T13:10:25.841Z">
+<meta property="article:published_time" content="2020-03-17T08:54:08.000Z">
+<meta property="article:modified_time" content="2020-03-17T09:08:10.922Z">
 <meta property="article:author" content="fIamingo">
+<meta property="article:tag" content="python">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="flamingoo的猫窝" type="application/atom+xml">
@@ -158,14 +161,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
+            <article id="post-笔记-python程序设计-网课期间持续更新" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      分类
+      [笔记] python程序设计(网课期间持续更新)
     </h1>
   
 
@@ -184,15 +187,181 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/categories/index.html" class="archive-article-date">
-  	<time datetime="2020-01-16T13:08:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-16</time>
+<a href="/2020/03/17/%E7%AC%94%E8%AE%B0-python%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-%E7%BD%91%E8%AF%BE%E6%9C%9F%E9%97%B4%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/" class="archive-article-date">
+  	<time datetime="2020-03-17T08:54:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-17</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>这门课是蹭的，毕竟python还是挺重要的，科研训练之类的大概率会用到。可惜笔记依旧很多重点没能做到呢。</p>
+<a id="more"></a>  
+
+<p>Python程序设计<br>老师的email:rf[老师的姓]ahu.edu.cn</p>
+<h1 id="第1章-基础知识"><a href="#第1章-基础知识" class="headerlink" title="第1章 基础知识"></a>第1章 基础知识</h1><h2 id="python简介"><a href="#python简介" class="headerlink" title="python简介"></a>python简介</h2><p>跨平台、开源、免费的解释型高级动态编程语言。支持伪编译将python源程序转换为字节码来优化程序和提高运行速度。<br>python支持命令式编程、函数式编程，完全支持面向对象程序设计，语法简洁清晰，拥有大量的几乎支持所有领域应用开发的成熟扩展库。</p>
+<p>python官网：<a href="https://www.python.org/" target="_blank" rel="noopener">https://www.python.org/</a><br>默认编程环境：IDLE<br>其他常用开发环境：<br>Eclipse+PyDev<br>pyCharm<br>wingIDE<br>Eric<br>PythonWin<br>Anaconda</p>
+<p>PS：第一次知道windows可以空白处点shift+鼠标右键打开命令窗口。<br>命令行模式下运行：python [].py<br>IDLE 交互环境下<br>&gt;&gt;&gt; </p>
+<p>pip工具常用命令</p>
+<pre><code>pip download SomePackage[==version]     //下载扩展库的指定版本，不安装
+pip freeze [&gt; requirements.txt]     //以requirements的格式列出已安装模块
+pip list     //列出当前已安装的所有模块
+pip install SomePackage[==version]     //在线安装SomePackage模块的指定版本
+pip install SomePackage.whl     //通过whl文件离线安装扩展库
+pip install package1 package2 ... //依次（在线）安装package1、package2等扩展模块</code></pre><h2 id="python的对象模型"><a href="#python的对象模型" class="headerlink" title="python的对象模型"></a>python的对象模型</h2><p>内置对象 非内置对象<br>常见内置对象：<br>数字（int,float,complex）<br>1234，3.14，1.3e5,3+4j<br>可任意大小，支持复数及其运算</p>
+<p><strong>字符串</strong>（str）：<br>如’swfu’ ,”I’m student”,”‘Python’”,r’abc’,R’bcd’<br>使用单引号、双引号、三引号作为定界符，以字符r或R引导的表示原始字符串</p>
+<p><strong>字节串</strong>(bytes)<br>b’hello world’<br>以字母b引导，可以使用单引号，双引号，三引号作为定界符。</p>
+<p><strong>列表</strong>(list)<br>[1,2,3],[‘a’,’b’,[‘c’,2]]<br>所有元素放在一对方括号中，元素之间使用逗号分隔，其中的元素可以是任意类型。</p>
+<p><strong>字典</strong>(dict)<br>{1:’food’,2:’taste’,3:’import’}<br>所有元素放在一对大括号中，元素之间使用逗号分隔，元素形式为“键:值”</p>
+<p><strong>元组</strong>(tuple)</p>
+<p>所有元素放在一对圆括号中，元素之间用逗号分隔，如果元组中只有一个元素的话，后面的括号不能省略。</p>
+<p><strong>集合</strong>(setfrozenset)<br>所有元素放在一对大括号中，元素之间使用逗号分隔，元素不允许重复，另外set可变，而frozenset不可变。</p>
+<p><strong>布尔型</strong>(bool)</p>
+<p><strong>空类型</strong>(NoneType)</p>
+<p><strong>异常型</strong>(Exception ValueError TypeError)</p>
+<p><strong>文件</strong><br>f = open(‘data.dat’,’rb’)<br>open是Python内置函数，使用指定的模式打开文件，返回文件对象</p>
+<p><strong>其他迭代对象</strong><br>生成器对象，range对象，zip对象，enumerate对象，map对象，filter对象等等<br>具有惰性求值的特点。</p>
+<h2 id="变量："><a href="#变量：" class="headerlink" title="变量："></a>变量：</h2><p>在python中，不需要事先声明变量名及其类型，直接赋值即可创建各种类型的对象变量。这一点适用于python的任何对象。</p>
+<pre><code>&gt;&gt;&gt; x=3</code></pre><p>创建了整形变量x并赋值为3</p>
+<pre><code>&gt;&gt;&gt; x=&apos;Hello world.&apos;</code></pre><p>创建了字符串变量x，并赋值为’Hello world.’。</p>
+<pre><code>&gt;&gt;&gt; print(type(x)) #查看变量类型</code></pre><p>x变为字符串了。</p>
+<pre><code>&gt;&gt;&gt; x=[1,2,3]</code></pre><p>x变为列表了<br>+python属于强类型编程语言，python解释器会根据赋值或运算来自动推断变量类型</p>
+<p>如果变量出现在赋值运算符或复合赋值运算符（例如+=，*=等等）的左边则表示创建变量或修改变量的值，否则表示引用该变量的值，这一点同样适用于使用下标来访问列表、字典等可变序列以及其他自定义对象中元素的情况。</p>
+<pre><code>&gt;&gt;&gt; x=3  #创建整型变量
+&gt;&gt;&gt; print(x**2)
+9</code></pre><p>·字符串和元组属于不可变序列，不能通过下标的方式来修改其中的元素值，试图修改元组中元素的值时会抛出异常<br>·在python中，允许多个变量指向同一个值，例如</p>
+<pre><code>&gt;&gt;&gt; x = 3
+&gt;&gt;&gt; id(x)
+1786684560
+&gt;&gt;&gt; y = x
+&gt;&gt;&gt; id(y)
+1786684560</code></pre><p>·然而，当为其中一个变量修改值以后，其内存地址将会变化，但这并不影响另一个变量，</p>
+<pre><code>&gt;&gt;&gt; x+=6
+&gt;&gt;&gt; id(x)
+1786684752
+&gt;&gt;&gt; y
+3
+&gt;&gt;&gt; id(y)
+1786684560</code></pre><p>·python采用的是基于值的内存管理方式，如果为不同变量赋值为相同值，这个值在内存中只有一份，多个变量指向同一块内存地址。</p>
+<p>·python具有自动内存管理功能，对于没有任何变量指向的值，python自动将其删除。python会跟踪所有的值，并自动删除不再有变量指向的值。<br>·最好用del命令显式把它删掉。这是一个好习惯。</p>
+<h3 id="变量名"><a href="#变量名" class="headerlink" title="变量名"></a>变量名</h3><p>必须以字母或下划线开头，下划线开头的变量在python中有特殊含义<br>不能有空格，标点符号<br>不能使用关键字<br>不建议使用系统内置模块名、类型名或函数名以及已导入的模块名及其成员名作为变量名，这样会改变其类型和含义。<br>变量名对英文字母大小写敏感。</p>
+<h3 id="数字"><a href="#数字" class="headerlink" title="数字"></a>数字</h3><p>·数字是不可变对象，可以表示任意大小的数字<br>·Python的IDLE可以作为简易计算器<br>·python中的整数可分为：十，十六，二，八进制。<br>·浮点数<br>·python内置支持复数类型。</p>
+<pre><code>&gt;&gt;&gt;c.real #查看c实数部分
+&gt;&gt;&gt;c.imag #查看c虚数部分
+&gt;&gt;&gt;a.conjugate() #返回共轭复数</code></pre><h3 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h3><p>·用单引号、双引号、三引号括起来的符号系列称为字符串，可以互相嵌套。<br>·不可变。<br>·空串表示为’’ “”</p>
+<p>·字符串合并</p>
+<pre><code>&gt;&gt;&gt; a=&apos;abc&apos;+&apos;123&apos;     #生成新对象</code></pre><p>·字符串格式化</p>
+<pre><code>&gt;&gt;&gt; a=3.6674
+&gt;&gt;&gt;&apos;%7.3f&apos;%a     
+&apos;3.667&apos;
+&gt;&gt;&gt; &quot;%d:%c&quot;%(65,65)
+&apos;65:A&apos;</code></pre><p>·转义字符</p>
+<pre><code>&gt;&gt;&gt; print(&apos;Hello\nWorld&apos;)
+Hello
+World</code></pre><p>·字符串界字符前面加字母r表示原始字符串，其中的特殊字符不进行转义，但字符串的最后一个字符不能是\。</p>
+<h2 id="运算符和表达式"><a href="#运算符和表达式" class="headerlink" title="运算符和表达式"></a>运算符和表达式</h2><table>
+<thead>
+<tr>
+<th align="left">运算符</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">+</td>
+<td>算数加法，列表、元组、字符串合并与连接，正号</td>
+</tr>
+<tr>
+<td align="left">-</td>
+<td>算数减法，集合差集，相反数</td>
+</tr>
+<tr>
+<td align="left">*</td>
+<td>算数乘法，序列重复</td>
+</tr>
+<tr>
+<td align="left">/</td>
+<td>真除法</td>
+</tr>
+<tr>
+<td align="left">//</td>
+<td>求整商，但如果操作数中有实数的话，结果为实数形式的整数</td>
+</tr>
+<tr>
+<td align="left">%</td>
+<td>求余数，字符串格式化</td>
+</tr>
+<tr>
+<td align="left">**</td>
+<td>幂运算</td>
+</tr>
+<tr>
+<td align="left">&lt;、&lt;=、&gt;、&gt;=、==、!=</td>
+<td>（值）大小比较，集合的包含关系比较</td>
+</tr>
+<tr>
+<td align="left">or</td>
+<td>逻辑或</td>
+</tr>
+<tr>
+<td align="left">and</td>
+<td>逻辑与</td>
+</tr>
+<tr>
+<td align="left">not</td>
+<td>逻辑非</td>
+</tr>
+<tr>
+<td align="left">in</td>
+<td>成员测试</td>
+</tr>
+<tr>
+<td align="left">is</td>
+<td>对象同一性测试，即测试是否为同一个对象或内存地址是否相同</td>
+</tr>
+<tr>
+<td align="left">|、^、&amp;、&lt;&lt;、&gt;&gt;、~</td>
+<td>位或、位异或、位于、左移位、右移位、位求反</td>
+</tr>
+<tr>
+<td align="left">&amp;、|、</td>
+<td>集合交集、并集、对称差集</td>
+</tr>
+<tr>
+<td align="left">@</td>
+<td>矩阵相乘运算符，numpy</td>
+</tr>
+</tbody></table>
+<p>·成员测试运算符in用于成员测试，即测试一个对象是否为另一个对象的元素</p>
+<pre><code>&gt;&gt;&gt;3 in[1,2,3]
+True
+
+&gt;&gt;&gt; 5 in range(1,10,1) #range()是用来生成指定范围数字的内置函数
+True
+
+&gt;&gt;&gt; for i in (3,5,7)        #成员，循环遍历。
+         print(i,end=&apos;\t&apos;)
+3    5    7</code></pre><p>·同一性测试运算符 is</p>
+<pre><code>&gt;&gt;&gt; 3 is 3
+True
+&gt;&gt;&gt; x=[300.300,300]
+&gt;&gt;&gt; x[0]==x[1]
+True</code></pre><p>·集合的运算</p>
+<pre><code>&gt;&gt;&gt;{1,2,3}|{3,4,5}     #并集，自动去除重复元素
+{1,2,3,4,5}
+&gt;&gt;&gt;{1,2,3}&amp;{3,4,5}    #交集
+{3}</code></pre><p>·逻辑运算符and和or具有惰性求值的特点</p>
+<pre><code>&gt;&gt;&gt; 3&gt;5 and a&gt;3    #注意，此时并没有定义变量a
+False
+
+&gt;&gt;&gt; 3&gt;5 or a&gt;3     #3&gt;5的值为False，所以需要计算后面表达式
+NameError:name &apos;a&apos; is not defined
+&gt;&gt;&gt; 3 and 5     #最后一个计算的表达式的值作为整个表达式的值
+5
+&gt;&gt;&gt; 3 not in [1,2,3]
+False</code></pre><p>·Python 3.5增加了一个新的矩阵相乘运算符@</p>
+<pre><code>&gt;&gt;&gt; import numpy</code></pre><p>·逗号不是运算符，只是一个普通分隔符。</p>
+<p>·在Python中，单个任何类型的对象或常数属于合法表达式，使用运算符连接的变量和常量以及函数调用的任意组合也属于合法的表达式。</p>
+
       
 
       
@@ -200,6 +369,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -250,7 +430,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://fIamingo.github.io/ub.io/categories/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://fIamingo.github.io/ub.io/2020/03/17/%E7%AC%94%E8%AE%B0-python%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-%E7%BD%91%E8%AF%BE%E6%9C%9F%E9%97%B4%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -262,6 +442,16 @@
 </article>
 
   
+<nav id="article-nav">
+  
+  
+    <a href="/2020/03/17/%E7%AC%94%E8%AE%B0-%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%EF%BC%88%E7%BD%91%E8%AF%BE%E6%9C%9F%E9%97%B4%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">[笔记]汇编语言与计算机组成（网课期间持续更新）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -283,7 +473,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#第1章-基础知识"><span class="toc-number">1.</span> <span class="toc-text">第1章 基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#python简介"><span class="toc-number">1.1.</span> <span class="toc-text">python简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python的对象模型"><span class="toc-number">1.2.</span> <span class="toc-text">python的对象模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#变量："><span class="toc-number">1.3.</span> <span class="toc-text">变量：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#变量名"><span class="toc-number">1.3.1.</span> <span class="toc-text">变量名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数字"><span class="toc-number">1.3.2.</span> <span class="toc-text">数字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字符串"><span class="toc-number">1.3.3.</span> <span class="toc-text">字符串</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#运算符和表达式"><span class="toc-number">1.4.</span> <span class="toc-text">运算符和表达式</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -341,7 +531,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
