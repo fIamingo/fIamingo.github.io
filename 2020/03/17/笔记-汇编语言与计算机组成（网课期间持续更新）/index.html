@@ -15,12 +15,15 @@
 <meta property="og:site_name" content="flamingoo的猫窝">
 <meta property="og:description" content="汇编与计算机组成，笔记也是持续到网课期间结束。做的不是很详细，因为很多地方数字逻辑都上过了，还有就是可能上课的时候有些地方没来得及记下来。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://fiamingo.github.io/2020/03/17/%E7%AC%94%E8%AE%B0-%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%EF%BC%88%E7%BD%91%E8%AF%BE%E6%9C%9F%E9%97%B4%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/QQ%E5%9B%BE%E7%89%8720200319102442.png">
+<meta property="og:image" content="http://fiamingo.github.io/2020/03/17/%E7%AC%94%E8%AE%B0-%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%EF%BC%88%E7%BD%91%E8%AF%BE%E6%9C%9F%E9%97%B4%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/QQ%E5%9B%BE%E7%89%8720200319104333.png">
 <meta property="article:published_time" content="2020-03-17T08:47:54.000Z">
-<meta property="article:modified_time" content="2020-03-17T08:51:37.817Z">
+<meta property="article:modified_time" content="2020-03-19T02:43:49.786Z">
 <meta property="article:author" content="fIamingo">
 <meta property="article:tag" content="汇编">
 <meta property="article:tag" content="机组">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://fiamingo.github.io/2020/03/17/%E7%AC%94%E8%AE%B0-%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%EF%BC%88%E7%BD%91%E8%AF%BE%E6%9C%9F%E9%97%B4%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/QQ%E5%9B%BE%E7%89%8720200319102442.png">
   
     <link rel="alternative" href="/atom.xml" title="flamingoo的猫窝" type="application/atom+xml">
   
@@ -211,6 +214,8 @@
 <p>机器数与真值：<br>称带“+”或“-”符号的数为真值。</p>
 <p>原码：范围-127~127<br>设机器字长为n+1位，其中最高位为符号位。n位是数值位，数值位就是真值的绝对值。<br>n为4时，原码的0表示<br>+0： 0 0000<br>-0： 1 0000</p>
 <p>反码：范围-127<del>127<br>补码：x取补再取补结果是x 范围-128</del>127<br>用补码进行加减法时，符号位可以和数值位等同处理<br>[X]补+[Y]补=[X+Y]补<br>[X]补+[-Y]补=[X-Y]补</p>
+<h1 id="第二章-计算机基本原理"><a href="#第二章-计算机基本原理" class="headerlink" title="第二章 计算机基本原理"></a>第二章 计算机基本原理</h1><h2 id="2-1计算机系统组成"><a href="#2-1计算机系统组成" class="headerlink" title="2.1计算机系统组成"></a>2.1计算机系统组成</h2><p>·计算机的基本工作原理是存储程序和程序控制。<br>·<strong>冯诺依曼原理</strong>的计算机结构<br>把所有二进制代码进行存储，存储后进行运算。<br><img src="QQ%E5%9B%BE%E7%89%8720200319102442.png" alt=""><br>1.计算机的发展<br>第1代为1946年开始的电子管计算机<br>第2代为1958年开始的晶体管计算机<br>第5代为1986年开始的巨大规模集成电路计算机<br>①冯诺依曼计算机的特点是：程序以二进制代码的形式存放再存储器中；所有的指令都是由操作码和地址吗组成；指令在其存储过程中按照执行的顺序；以运算器作为计算机结构的中心。</p>
+<p>②现代以存储器为中心的计算机硬件<br>各部件的功能：<br>·运算器ALU：用来完成算术运算和逻辑运算，并将运算的中间结果暂存在运算器内。<br>·存储器mem主/内：存放数据和程序。<br>·控制器：用来控制、指挥程序和数据的输入、运行以及处理运算结果。<br>·输入设备：将人们熟悉的信息形式转换为计算机能识别的信息形式，常见的有键盘、鼠标等。<br>·输出设备：可将计算机运算结果转换为人们熟悉的信息形式，如打印机，显示器等。<br>现代计算机的组成框图：<br><img src="QQ%E5%9B%BE%E7%89%8720200319104333.png" alt=""></p>
 
       
 
@@ -336,7 +341,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#课前须知"><span class="toc-number">1.</span> <span class="toc-text">课前须知</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第一章-汇编语言基础知识"><span class="toc-number"></span> <span class="toc-text">第一章 汇编语言基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1汇编语言简介"><span class="toc-number">1.</span> <span class="toc-text">1.1汇编语言简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-1机器语言与汇编语言"><span class="toc-number">1.1.</span> <span class="toc-text">1.1.1机器语言与汇编语言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-2汇编语言的组成"><span class="toc-number">1.2.</span> <span class="toc-text">1.1.2汇编语言的组成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-3为什么要学习汇编语言"><span class="toc-number">1.3.</span> <span class="toc-text">1.1.3为什么要学习汇编语言</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2计算机数据的表示"><span class="toc-number">2.</span> <span class="toc-text">1.2计算机数据的表示</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-1-不同进位计数制及其相互转换。"><span class="toc-number">2.1.</span> <span class="toc-text">1.2.1 不同进位计数制及其相互转换。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-3-带符号数的表示（数逻讲过-就不记多了）"><span class="toc-number">3.</span> <span class="toc-text">1.2.3 带符号数的表示（数逻讲过 就不记多了）</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#课前须知"><span class="toc-number">1.</span> <span class="toc-text">课前须知</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第一章-汇编语言基础知识"><span class="toc-number"></span> <span class="toc-text">第一章 汇编语言基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1汇编语言简介"><span class="toc-number">1.</span> <span class="toc-text">1.1汇编语言简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-1机器语言与汇编语言"><span class="toc-number">1.1.</span> <span class="toc-text">1.1.1机器语言与汇编语言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-2汇编语言的组成"><span class="toc-number">1.2.</span> <span class="toc-text">1.1.2汇编语言的组成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-3为什么要学习汇编语言"><span class="toc-number">1.3.</span> <span class="toc-text">1.1.3为什么要学习汇编语言</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2计算机数据的表示"><span class="toc-number">2.</span> <span class="toc-text">1.2计算机数据的表示</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-1-不同进位计数制及其相互转换。"><span class="toc-number">2.1.</span> <span class="toc-text">1.2.1 不同进位计数制及其相互转换。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-3-带符号数的表示（数逻讲过-就不记多了）"><span class="toc-number">3.</span> <span class="toc-text">1.2.3 带符号数的表示（数逻讲过 就不记多了）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第二章-计算机基本原理"><span class="toc-number"></span> <span class="toc-text">第二章 计算机基本原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1计算机系统组成"><span class="toc-number">1.</span> <span class="toc-text">2.1计算机系统组成</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -465,14 +470,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">日常</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ACM</a>
               </li>
              
@@ -482,6 +479,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">计图</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">日常</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -505,11 +510,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
