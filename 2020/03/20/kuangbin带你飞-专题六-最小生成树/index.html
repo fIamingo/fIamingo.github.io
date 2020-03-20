@@ -6,14 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://fIamingo.github.io">
-  <title>flamingoo的猫窝</title>
+  <title>[kuangbin带你飞] 专题六 最小生成树  | flamingoo的猫窝</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="flamingoo的猫窝">
-<meta property="og:url" content="http://fiamingo.github.io/page/3/index.html">
+  <meta name="description" content="前言感觉这个专题没并查集和最短路那些难啊，其实也就是并查集的应用吧，也有可能是因为我现在都只写前五题，前五题正好模板题多…我的畏难情绪确实挺严重的，本来下一个专题想选基础dp，因为我的dp确实很烂嘛，但是为了接触新算法，继续搞图论好了（不会tarjanQAQ），连通图gogogo。最小生成树这个专题确实没啥好说的了，还是通过以后的有这方面知识点的cf题来强化吧。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[kuangbin带你飞] 专题六 最小生成树 ">
+<meta property="og:url" content="http://fiamingo.github.io/2020/03/20/kuangbin%E5%B8%A6%E4%BD%A0%E9%A3%9E-%E4%B8%93%E9%A2%98%E5%85%AD-%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/index.html">
 <meta property="og:site_name" content="flamingoo的猫窝">
+<meta property="og:description" content="前言感觉这个专题没并查集和最短路那些难啊，其实也就是并查集的应用吧，也有可能是因为我现在都只写前五题，前五题正好模板题多…我的畏难情绪确实挺严重的，本来下一个专题想选基础dp，因为我的dp确实很烂嘛，但是为了接触新算法，继续搞图论好了（不会tarjanQAQ），连通图gogogo。最小生成树这个专题确实没啥好说的了，还是通过以后的有这方面知识点的cf题来强化吧。">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-03-20T15:20:35.000Z">
+<meta property="article:modified_time" content="2020-03-20T15:35:53.322Z">
 <meta property="article:author" content="fIamingo">
+<meta property="article:tag" content="-ACM -算法">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="flamingoo的猫窝" type="application/atom+xml">
@@ -156,36 +161,363 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-c-STL" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-kuangbin带你飞-专题六-最小生成树" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/22/c-STL/">C++ STL相关</a>
+    <h1 class="article-title" itemprop="name">
+      [kuangbin带你飞] 专题六 最小生成树 
     </h1>
   
 
         <!--显示阅读次数-->
 
+  <br/>
+  <a class="cloud-tie-join-count" href="javascript:void(0);" style="color:gray;font-size:14px;">
+  <span class="icon-sort"></span>
+  </a>
+
 <!--显示阅读次数完毕-->
         
         
-<a href="/2020/01/22/c-STL/" class="archive-article-date">
-  	<time datetime="2020-01-22T10:15:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-22</time>
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/2020/03/20/kuangbin%E5%B8%A6%E4%BD%A0%E9%A3%9E-%E4%B8%93%E9%A2%98%E5%85%AD-%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/" class="archive-article-date">
+  	<time datetime="2020-03-20T15:20:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-20</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>acm冬训中感觉自己c++的基础实在是太薄弱，C++ STL应该算是我们刷算法题应该学习的C++中的重点，所以我现在整理+学习一下C++ primer中涉及到这部分的知识。</p>
-        
-          <a class="article-more-a" href="/2020/01/22/c-STL/#more">more >></a>
-        
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>感觉这个专题没并查集和最短路那些难啊，其实也就是并查集的应用吧，也有可能是因为我现在都只写前五题，前五题正好模板题多…我的畏难情绪确实挺严重的，本来下一个专题想选基础dp，因为我的dp确实很烂嘛，但是为了接触新算法，继续搞图论好了（不会tarjanQAQ），连通图gogogo。最小生成树这个专题确实没啥好说的了，还是通过以后的有这方面知识点的cf题来强化吧。</p>
+<a id="more"></a>
+
+<h2 id="Jungle-Roads"><a href="#Jungle-Roads" class="headerlink" title="Jungle Roads"></a>Jungle Roads</h2><p><strong>题目：</strong><a href="https://vjudge.net/problem/POJ-1251" target="_blank" rel="noopener">POJ-1251</a></p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+#define maxn 80
+#include&lt;algorithm&gt;
+struct node
+{
+    int u,v;
+    int dis;
+    bool operator&lt;(const node&amp; rhs)const
+    {
+        return dis&lt;rhs.dis; 
+    }
+}edge[maxn];
+int father[30];
+
+int fi(int x)
+{
+    return (father[x]==x)?x:father[x]=fi(father[x]);
+}
+
+int main()
+{
+    int n;
+    for(int k=1;k&lt;=100&amp;&amp;cin&gt;&gt;n;k++)
+    {
+        if(n==0)
+        break;
+        for(int i=1;i&lt;=n;i++)
+        {
+            father[i]=i;
+        }
+        int res=0;
+        for(int i=1;i&lt;=n-1;i++)
+        {
+            char u;
+            int m;
+            cin&gt;&gt;u&gt;&gt;m;
+            for(int j=1;j&lt;=m;j++)
+            {
+                char v;
+                int dis;
+                cin&gt;&gt;v&gt;&gt;dis;
+                edge[++res].u=int(u-&apos;A&apos;+1);
+                edge[res].v=int(v-&apos;A&apos;+1);
+                edge[res].dis=dis;
+            }
+        }
+        sort(edge+1,edge+1+res);
+        int ans=0;
+        for(int i=1;i&lt;=res;i++)
+        {
+            int x,y;
+            x=fi(edge[i].u);y=fi(edge[i].v);
+            if(x!=y)
+            {
+                father[x]=y;
+                ans+=edge[i].dis;
+            }
+        }
+        cout&lt;&lt;ans&lt;&lt;endl;
+    }
+    return 0;
+}</code></pre><h2 id="Networking"><a href="#Networking" class="headerlink" title="Networking"></a>Networking</h2><p><strong>题目：</strong><a href="https://vjudge.net/problem/POJ-1287" target="_blank" rel="noopener">POJ-1287</a></p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+#define INF 105
+#include&lt;string.h&gt;
+int map[55][55];
+int n,m;
+int res;
+bool visit[55];
+int Prim()
+{
+    int min;
+    int x;
+    for(int k=1;k&lt;=n-1;k++)
+    {
+    min=INF;
+    for(int i=1;i&lt;=n;i++)
+    {
+        if(visit[i])
+            for(int j=1;j&lt;=n;j++)
+            {
+                if(!visit[j]&amp;&amp;map[i][j]&lt;min)
+                {
+                    min=map[i][j];
+                    x=j;
+                }
+            }
+    }
+    res+=min;
+    visit[x]=true;
+    }
+    return 0;
+}
+
+int main()
+{
+
+    while(1)
+    {    res=0;
+        cin&gt;&gt;n;
+        if(n==0)
+        break;
+        cin&gt;&gt;m;
+        memset(map,INF,sizeof(map));
+        memset(visit,false,sizeof(visit));
+        for(int i=1;i&lt;=m;i++)
+        {
+            int u,v,dis;
+            cin&gt;&gt;u&gt;&gt;v&gt;&gt;dis;
+            map[u][v]=map[v][u]=min(dis,map[u][v]);
+        }
+        visit[1]=true;
+        Prim();
+        cout&lt;&lt;res&lt;&lt;endl;
+    }
+}</code></pre><h2 id="Building-a-Space-Station"><a href="#Building-a-Space-Station" class="headerlink" title="Building a Space Station"></a>Building a Space Station</h2><p><strong>题目：</strong><a href="https://vjudge.net/problem/POJ-2031" target="_blank" rel="noopener">POJ-2031</a></p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+#define maxn 10000
+#include&lt;cmath&gt;
+#include&lt;algorithm&gt;
+
+struct fuck
+{
+    int u,v;
+    double dis;
+    bool operator&lt;(const fuck&amp; rhs)const
+    {
+        return dis&lt;rhs.dis;
+    }
+}edge[maxn];
+
+struct knode
+{
+    double x,y,z,r;
+}node[105];
+int father[105];
+
+double distant(int i,int j)
+{
+    double x2=(node[i].x-node[j].x)*(node[i].x-node[j].x);
+    double y2=(node[i].y-node[j].y)*(node[i].y-node[j].y);
+    double z2=(node[i].z-node[j].z)*(node[i].z-node[j].z);
+    double res=sqrt(x2+y2+z2)-node[i].r-node[j].r;
+    if(res&gt;=0)
+    return res;
+    else return 0;
+}
+
+int fi(int x)
+{
+    return father[x]==x?x:father[x]=fi(father[x]);
+}
+
+int main()
+{
+    int n;
+    while(cin&gt;&gt;n)
+    {
+        if(n==0)
+        break;
+        for(int i=1;i&lt;=n;i++)
+        {
+            int x,y,z,r;
+            cin&gt;&gt;node[i].x&gt;&gt;node[i].y&gt;&gt;node[i].z&gt;&gt;node[i].r;
+        }
+        int res=0;
+        for(int i=1;i&lt;=n;i++)
+        {
+            for(int j=i+1;j&lt;=n;j++)
+            {
+                edge[++res].dis=distant(i,j);
+                edge[res].u=i;
+                edge[res].v=j;
+            }
+        }
+        for(int i=1;i&lt;=n;i++)
+        father[i]=i;
+        sort(edge+1,edge+1+res);
+        double ans=0;
+        for(int i=1;i&lt;=res;i++)
+        {
+            int u=edge[i].u;
+            int v=edge[i].v;
+            double dis=edge[i].dis;
+            int x=fi(u);
+            int y=fi(v);
+            if(x==y) continue;
+            father[x]=y;
+            ans+=dis;
+        }
+        printf(&quot;%.3lf\n&quot;,ans);
+    }
+}</code></pre><h2 id="Constructing-Roads"><a href="#Constructing-Roads" class="headerlink" title="Constructing Roads"></a>Constructing Roads</h2><p><strong>题目：</strong><a href="https://vjudge.net/problem/POJ-2421" target="_blank" rel="noopener">POJ-2421</a></p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+#include&lt;algorithm&gt;
+int map[105][105];
+int father[105];
+struct knode{
+    int u,v;
+    int dis;
+    bool operator&lt;(const knode&amp; rhs)const{
+    return dis&lt;rhs.dis;
+    }
+}edge[10000];
+
+int fi(int x)
+{
+    return father[x]==x?x:father[x]=fi(father[x]);
+}
+
+int main()
+{
+    int N;
+    cin&gt;&gt;N;
+    int res=0;
+    for(int i=1;i&lt;=N;i++)
+    {
+        for(int j=1;j&lt;=N;j++)
+        {
+        cin&gt;&gt;map[i][j];
+        if(i&gt;j)
+        {
+            edge[++res].u=i;
+            edge[res].v=j;
+            edge[res].dis=map[i][j];
+        }
+        }
+    }
+    int Q;
+    cin&gt;&gt;Q;
+    for(int i=1;i&lt;=N;i++)
+    father[i]=i;
+    for(int i=1;i&lt;=Q;i++)
+    {
+        int u,v;
+        cin&gt;&gt;u&gt;&gt;v;
+        int x=fi(u);
+        int y=fi(v);
+        father[x]=y;
+    }
+    sort(edge+1,edge+1+res);
+    int ans=0;
+    for(int i=1;i&lt;=res;i++)
+    {
+        int u=edge[i].u;
+        int v=edge[i].v;
+        int x=fi(u);
+        int y=fi(v);
+        if(x!=y)
+        {
+            father[x]=y;
+            ans+=edge[i].dis;
+        }
+    }
+    cout&lt;&lt;ans&lt;&lt;endl;
+}</code></pre><h2 id="QS-Network"><a href="#QS-Network" class="headerlink" title="QS Network"></a>QS Network</h2><p><strong>题目：</strong><a href="https://vjudge.net/problem/POJ-1586" target="_blank" rel="noopener">ZOJ-1586</a></p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+#include&lt;algorithm&gt;
+#include&lt;vector&gt;
+int a[1005];
+struct HeapNode{
+    int v,u;
+    int dis;
+    bool operator &lt;(const HeapNode &amp;rhs)const{
+    return dis&lt;rhs.dis;
+    }
+}node[1000000];
+int father[1005];
+
+int fi(int x)
+{
+    return father[x]==x?x:father[x]=fi(father[x]);
+}
+
+int main()
+{
+    int t;
+    cin&gt;&gt;t;
+    while(t--)
+    {
+        int n;
+        cin&gt;&gt;n;
+        for(int i=1;i&lt;=n;i++)
+        cin&gt;&gt;a[i];
+        int res=0;
+        for(int i=1;i&lt;=n;i++)
+        {
+            for(int j=1;j&lt;=n;j++)
+            {
+                int t; cin&gt;&gt;t;
+                if(i&lt;j){
+                     node[++res].u=i;
+                     node[res].v=j;
+                     node[res].dis=t+a[j]+a[i];
+                }
+            }
+        }
+        sort(node+1,node+1+res);
+        for(int i=1;i&lt;=n;i++)
+        father[i]=i;
+        int ans=0;
+        for(int i=1;i&lt;=res;i++)
+        {
+            int u=node[i].u;
+            int v=node[i].v;
+            int x=fi(u);
+            int y=fi(v);
+            if(x==y)continue;
+            father[x]=y;
+            ans+=node[i].dis;
+        }
+        cout&lt;&lt;ans&lt;&lt;endl;
+    }
+}</code></pre>
       
 
       
@@ -198,7 +530,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">-ACM -算法</a>
         		</li>
       		
 		</ul>
@@ -207,16 +539,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/22/c-STL/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://fIamingo.github.io/ub.io/2020/03/20/kuangbin%E5%B8%A6%E4%BD%A0%E9%A3%9E-%E4%B8%93%E9%A2%98%E5%85%AD-%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2020/03/19/%E7%AE%80%E6%B4%81%E9%A2%98%E8%A7%A3-Codeforces-Round-628-Div-2/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">[简洁题解] Codeforces Round #628 (Div. 2) (A-E)</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -231,271 +622,32 @@
         </div>
         
         
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-浅谈jojo人气反派-杜王町的普通上班族”" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/22/%E6%B5%85%E8%B0%88jojo%E4%BA%BA%E6%B0%94%E5%8F%8D%E6%B4%BE-%E6%9D%9C%E7%8E%8B%E7%94%BA%E7%9A%84%E6%99%AE%E9%80%9A%E4%B8%8A%E7%8F%AD%E6%97%8F%E2%80%9D/">浅谈jojo人气反派---杜王町的普通上班族”</a>
-    </h1>
-  
-
-        <!--显示阅读次数-->
-
-<!--显示阅读次数完毕-->
-        
-        
-<a href="/2020/01/22/%E6%B5%85%E8%B0%88jojo%E4%BA%BA%E6%B0%94%E5%8F%8D%E6%B4%BE-%E6%9D%9C%E7%8E%8B%E7%94%BA%E7%9A%84%E6%99%AE%E9%80%9A%E4%B8%8A%E7%8F%AD%E6%97%8F%E2%80%9D/" class="archive-article-date">
-  	<time datetime="2020-01-22T06:47:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <br>
-<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1579688404951&di=609d096e8d9881251aa50541991ff092&imgtype=0&src=http%3A%2F%2Fi0.hdslb.com%2Fbfs%2Farticle%2F597b8ee57fa88291e04c75fc68d1591c3445f54e.jpg" width=450px align="middle">
-<br><br>
-JOJO以其凛冽的画风，令人窒息的剧情，受到观众的广大欢迎。<br>
-它对角色的塑造也是一流。这几天补完了不灭钻石。主角团的每个角色都给我留下深刻印象。<br>
-同时我也很喜欢这作的boss吉良吉影。
-<br>
-        
-          <a class="article-more-a" href="/2020/01/22/%E6%B5%85%E8%B0%88jojo%E4%BA%BA%E6%B0%94%E5%8F%8D%E6%B4%BE-%E6%9D%9C%E7%8E%8B%E7%94%BA%E7%9A%84%E6%99%AE%E9%80%9A%E4%B8%8A%E7%8F%AD%E6%97%8F%E2%80%9D/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">动漫</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/22/%E6%B5%85%E8%B0%88jojo%E4%BA%BA%E6%B0%94%E5%8F%8D%E6%B4%BE-%E6%9D%9C%E7%8E%8B%E7%94%BA%E7%9A%84%E6%99%AE%E9%80%9A%E4%B8%8A%E7%8F%AD%E6%97%8F%E2%80%9D/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Jungle-Roads"><span class="toc-number">2.</span> <span class="toc-text">Jungle Roads</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Networking"><span class="toc-number">3.</span> <span class="toc-text">Networking</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Building-a-Space-Station"><span class="toc-number">4.</span> <span class="toc-text">Building a Space Station</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Constructing-Roads"><span class="toc-number">5.</span> <span class="toc-text">Constructing Roads</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#QS-Network"><span class="toc-number">6.</span> <span class="toc-text">QS Network</span></a></li></ol>
+                    </div>
+                </span>
             </div>
         </div>
         
-        
     </div>
 </aside>
 
 
 
-
-  
-    <article id="post-AHU-ACM冬训日记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/19/AHU-ACM%E5%86%AC%E8%AE%AD%E6%97%A5%E8%AE%B0/">AHU-ACM冬训日记</a>
-    </h1>
-  
-
-        <!--显示阅读次数-->
-
-<!--显示阅读次数完毕-->
-        
-        
-<a href="/2020/01/19/AHU-ACM%E5%86%AC%E8%AE%AD%E6%97%A5%E8%AE%B0/" class="archive-article-date">
-  	<time datetime="2020-01-19T15:47:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在写这篇日志之前，冬训早已开始了。我现在正在想搜索部分的A题，已经卡了两天了。<br>因为上学期没选上c++课，以及基础太弱，所以有很多知识盲区。<br>冬训题目的算法基本上都在现学，但是希望坚持下来能有很大进步吧。<br>c++不熟确实是个大问题，这几天得赶快把c++重点内容看一下。<br>不然这题目真的没法推了，网上的博客基本又都是c++写的。  </p>
-        
-          <a class="article-more-a" href="/2020/01/19/AHU-ACM%E5%86%AC%E8%AE%AD%E6%97%A5%E8%AE%B0/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ACM</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/19/AHU-ACM%E5%86%AC%E8%AE%AD%E6%97%A5%E8%AE%B0/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Hello-world-0" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/17/Hello-world-0/">Hello world!</a>
-    </h1>
-  
-
-        <!--显示阅读次数-->
-
-<!--显示阅读次数完毕-->
-        
-        
-<a href="/2020/01/17/Hello-world-0/" class="archive-article-date">
-  	<time datetime="2020-01-17T10:58:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1579273590293&di=8c93b511b06a90f4f47f35e323dab3b2&imgtype=0&src=http%3A%2F%2Fimg.cwq.com%2F201712%2F1513127498165415.jpeg" alt="helloworld"><br>终于是把我的个人博客给搭好了，可喜可贺XD！所以用这第一篇小文章庆祝一下。</p>
-        
-          <a class="article-more-a" href="/2020/01/17/Hello-world-0/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">日常</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/17/Hello-world-0/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
-    </nav>
+  
+
+  
+
+  
+
   
 
 
@@ -534,8 +686,8 @@ JOJO以其凛冽的画风，令人窒息的剧情，受到观众的广大欢迎�
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

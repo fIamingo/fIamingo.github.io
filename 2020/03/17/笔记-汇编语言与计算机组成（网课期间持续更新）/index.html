@@ -18,7 +18,7 @@
 <meta property="og:image" content="http://fiamingo.github.io/2020/03/17/%E7%AC%94%E8%AE%B0-%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%EF%BC%88%E7%BD%91%E8%AF%BE%E6%9C%9F%E9%97%B4%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/QQ%E5%9B%BE%E7%89%8720200319102442.png">
 <meta property="og:image" content="http://fiamingo.github.io/2020/03/17/%E7%AC%94%E8%AE%B0-%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%EF%BC%88%E7%BD%91%E8%AF%BE%E6%9C%9F%E9%97%B4%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/QQ%E5%9B%BE%E7%89%8720200319104333.png">
 <meta property="article:published_time" content="2020-03-17T08:47:54.000Z">
-<meta property="article:modified_time" content="2020-03-20T07:37:57.682Z">
+<meta property="article:modified_time" content="2020-03-20T07:44:00.369Z">
 <meta property="article:author" content="fIamingo">
 <meta property="article:tag" content="汇编">
 <meta property="article:tag" content="机组">
@@ -222,12 +222,11 @@
 <h3 id="2-2-3存储器分段"><a href="#2-2-3存储器分段" class="headerlink" title="2.2.3存储器分段"></a>2.2.3存储器分段</h3><p>8086 地址总线20位 最大寻址空间1MB<br>1.分段的概念<br>内存并没有分段，分段只是CPU管理内存的方式。<br>2.段的类型<br>20=》16+16<br>20为物理地址 第一个16段地址，第二个16段偏移量<br>·代码段–用于存放指令，代码段段基址存放在段寄存器CS<br>·数据段–用于存放数据，数据段段基址段地址存放在段寄存器DS<br>·附加段<br>·堆栈段</p>
 <h3 id="2-2-4逻辑地址"><a href="#2-2-4逻辑地址" class="headerlink" title="2.2.4逻辑地址"></a>2.2.4逻辑地址</h3><p>逻辑地址是用户编程时使用的地址，分为段地址和偏移地址两部分。<br>·段地址：偏移地址<br>段*16+EA=PA</p>
 <h3 id="2-2-5CPU对内存的独写操作"><a href="#2-2-5CPU对内存的独写操作" class="headerlink" title="2.2.5CPU对内存的独写操作"></a>2.2.5CPU对内存的独写操作</h3><p>低地址访问，要读取多少字节要明确<br>Mov AX,[3]<br>Ax为寄存器（16bit）</p>
-<p>##2.3 中央处理器（CPU）中的寄存器<br>###2.3.1寄存器介绍<br>1.通用数据寄存器<br>·8086 CPU的所有寄存器都是16位的，可以存放两个字节。AX，BX，CX，DX<br>①AX：累加器。运算时常用<br>②BX：基址寄存器<br>③CX：计数寄存器<br>④DX：数据寄存器，常与AX配合使用，其中DX用来放高位，AX放低位。<br>2.地址寄存器<br>16位8086处理器有4个16位的通用地址寄存器。它们的主要作用是存放数据的所在偏移地址，也可以存放数据。这4个寄存器不能再拆分使用。</p>
+<h2 id="2-3-中央处理器（CPU）中的寄存器"><a href="#2-3-中央处理器（CPU）中的寄存器" class="headerlink" title="2.3 中央处理器（CPU）中的寄存器"></a>2.3 中央处理器（CPU）中的寄存器</h2><h3 id="2-3-1寄存器介绍"><a href="#2-3-1寄存器介绍" class="headerlink" title="2.3.1寄存器介绍"></a>2.3.1寄存器介绍</h3><p>1.通用数据寄存器<br>·8086 CPU的所有寄存器都是16位的，可以存放两个字节。AX，BX，CX，DX<br>①AX：累加器。运算时常用<br>②BX：基址寄存器<br>③CX：计数寄存器<br>④DX：数据寄存器，常与AX配合使用，其中DX用来放高位，AX放低位。<br>2.地址寄存器<br>16位8086处理器有4个16位的通用地址寄存器。它们的主要作用是存放数据的所在偏移地址，也可以存放数据。这4个寄存器不能再拆分使用。</p>
 <p>①SP：堆栈指针，这是一个专用的寄存器，存放堆栈栈顶的偏移地址。<br>②BP:基址指针，可以用来存放内存中数据的偏移地址<br>③SI：源变址寄存器<br>④DI：目的变址寄存器 [SI]–&gt;[DI]<br>3.段寄存器<br>①CS ②SS ③DS ④ES</p>
 <p>4.指令指针寄存器<br>IP:指令指针寄存器，存放即将执行指令的偏移地址。</p>
 <p>5.指令指针寄存器<br>·FLAGS：存放CPU的两类标志。<br>·状态标志 反应处理器当前的状态，如有无溢出，有无进位等：CF（无符号） PF AF ZF（判断0） SF OF（有符号）</p>
-<p>###2.3.2 CS和IP</p>
-
+<h3 id="2-3-2-CS和IP"><a href="#2-3-2-CS和IP" class="headerlink" title="2.3.2 CS和IP"></a>2.3.2 CS和IP</h3>
       
 
       
@@ -352,7 +351,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#课前须知"><span class="toc-number">1.</span> <span class="toc-text">课前须知</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第一章-汇编语言基础知识"><span class="toc-number"></span> <span class="toc-text">第一章 汇编语言基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1汇编语言简介"><span class="toc-number">1.</span> <span class="toc-text">1.1汇编语言简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-1机器语言与汇编语言"><span class="toc-number">1.1.</span> <span class="toc-text">1.1.1机器语言与汇编语言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-2汇编语言的组成"><span class="toc-number">1.2.</span> <span class="toc-text">1.1.2汇编语言的组成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-3为什么要学习汇编语言"><span class="toc-number">1.3.</span> <span class="toc-text">1.1.3为什么要学习汇编语言</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2计算机数据的表示"><span class="toc-number">2.</span> <span class="toc-text">1.2计算机数据的表示</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-1-不同进位计数制及其相互转换。"><span class="toc-number">2.1.</span> <span class="toc-text">1.2.1 不同进位计数制及其相互转换。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-3-带符号数的表示（数逻讲过-就不记多了）"><span class="toc-number">3.</span> <span class="toc-text">1.2.3 带符号数的表示（数逻讲过 就不记多了）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第二章-计算机基本原理"><span class="toc-number"></span> <span class="toc-text">第二章 计算机基本原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1计算机系统组成"><span class="toc-number">1.</span> <span class="toc-text">2.1计算机系统组成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-存储器"><span class="toc-number">2.</span> <span class="toc-text">2.2 存储器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-1-16位结构的CPU"><span class="toc-number">2.1.</span> <span class="toc-text">2.2.1 16位结构的CPU</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-2-内存中字的存储"><span class="toc-number">2.2.</span> <span class="toc-text">2.2.2 内存中字的存储</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-3存储器分段"><span class="toc-number">2.3.</span> <span class="toc-text">2.2.3存储器分段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-4逻辑地址"><span class="toc-number">2.4.</span> <span class="toc-text">2.2.4逻辑地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-5CPU对内存的独写操作"><span class="toc-number">2.5.</span> <span class="toc-text">2.2.5CPU对内存的独写操作</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#课前须知"><span class="toc-number">1.</span> <span class="toc-text">课前须知</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第一章-汇编语言基础知识"><span class="toc-number"></span> <span class="toc-text">第一章 汇编语言基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1汇编语言简介"><span class="toc-number">1.</span> <span class="toc-text">1.1汇编语言简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-1机器语言与汇编语言"><span class="toc-number">1.1.</span> <span class="toc-text">1.1.1机器语言与汇编语言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-2汇编语言的组成"><span class="toc-number">1.2.</span> <span class="toc-text">1.1.2汇编语言的组成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-3为什么要学习汇编语言"><span class="toc-number">1.3.</span> <span class="toc-text">1.1.3为什么要学习汇编语言</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2计算机数据的表示"><span class="toc-number">2.</span> <span class="toc-text">1.2计算机数据的表示</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-1-不同进位计数制及其相互转换。"><span class="toc-number">2.1.</span> <span class="toc-text">1.2.1 不同进位计数制及其相互转换。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-3-带符号数的表示（数逻讲过-就不记多了）"><span class="toc-number">3.</span> <span class="toc-text">1.2.3 带符号数的表示（数逻讲过 就不记多了）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第二章-计算机基本原理"><span class="toc-number"></span> <span class="toc-text">第二章 计算机基本原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1计算机系统组成"><span class="toc-number">1.</span> <span class="toc-text">2.1计算机系统组成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-存储器"><span class="toc-number">2.</span> <span class="toc-text">2.2 存储器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-1-16位结构的CPU"><span class="toc-number">2.1.</span> <span class="toc-text">2.2.1 16位结构的CPU</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-2-内存中字的存储"><span class="toc-number">2.2.</span> <span class="toc-text">2.2.2 内存中字的存储</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-3存储器分段"><span class="toc-number">2.3.</span> <span class="toc-text">2.2.3存储器分段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-4逻辑地址"><span class="toc-number">2.4.</span> <span class="toc-text">2.2.4逻辑地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-5CPU对内存的独写操作"><span class="toc-number">2.5.</span> <span class="toc-text">2.2.5CPU对内存的独写操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-中央处理器（CPU）中的寄存器"><span class="toc-number">3.</span> <span class="toc-text">2.3 中央处理器（CPU）中的寄存器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-1寄存器介绍"><span class="toc-number">3.1.</span> <span class="toc-text">2.3.1寄存器介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-2-CS和IP"><span class="toc-number">3.2.</span> <span class="toc-text">2.3.2 CS和IP</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -485,14 +484,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">日常</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
@@ -501,11 +492,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">日常</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">动漫</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -513,11 +512,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
+                <a href="javascript:void(0)" class="js-tag color3">动漫</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">CF</a>
+                <a href="javascript:void(0)" class="js-tag color4">-ACM -算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">水</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -529,15 +540,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">水</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color3">CF</a>
               </li>
             
             <div class="clearfix"></div>
