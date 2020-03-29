@@ -15,11 +15,18 @@
 <meta property="og:site_name" content="flamingoo的猫窝">
 <meta property="og:description" content="安大的第二轮网课开始了，这个笔记大概更新到网课期间结束吧，因为结束后就有书了！">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://fiamingo.github.io/2020/03/17/%E7%AC%94%E8%AE%B0-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86-%EF%BC%88%E7%BD%91%E8%AF%BE%E6%9C%9F%E9%97%B4%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/QQ%E5%9B%BE%E7%89%8720200323082205.png">
+<meta property="og:image" content="http://fiamingo.github.io/2020/03/17/%E7%AC%94%E8%AE%B0-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86-%EF%BC%88%E7%BD%91%E8%AF%BE%E6%9C%9F%E9%97%B4%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/QQ%E5%9B%BE%E7%89%8720200323090335.png">
+<meta property="og:image" content="http://fiamingo.github.io/2020/03/17/%E7%AC%94%E8%AE%B0-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86-%EF%BC%88%E7%BD%91%E8%AF%BE%E6%9C%9F%E9%97%B4%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/QQ%E5%9B%BE%E7%89%8720200323091829.png">
+<meta property="og:image" content="http://fiamingo.github.io/2020/03/17/%E7%AC%94%E8%AE%B0-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86-%EF%BC%88%E7%BD%91%E8%AF%BE%E6%9C%9F%E9%97%B4%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/QQ%E5%9B%BE%E7%89%8720200323092418.png">
+<meta property="og:image" content="http://fiamingo.github.io/2020/03/17/%E7%AC%94%E8%AE%B0-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86-%EF%BC%88%E7%BD%91%E8%AF%BE%E6%9C%9F%E9%97%B4%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/QQ%E5%9B%BE%E7%89%8720200323092855.png">
+<meta property="og:image" content="http://fiamingo.github.io/2020/03/17/%E7%AC%94%E8%AE%B0-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86-%EF%BC%88%E7%BD%91%E8%AF%BE%E6%9C%9F%E9%97%B4%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/QQ%E5%9B%BE%E7%89%8720200323094222.png">
 <meta property="article:published_time" content="2020-03-17T08:40:21.000Z">
-<meta property="article:modified_time" content="2020-03-17T08:46:54.690Z">
+<meta property="article:modified_time" content="2020-03-23T01:42:42.214Z">
 <meta property="article:author" content="fIamingo">
 <meta property="article:tag" content="数据库">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://fiamingo.github.io/2020/03/17/%E7%AC%94%E8%AE%B0-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86-%EF%BC%88%E7%BD%91%E8%AF%BE%E6%9C%9F%E9%97%B4%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/QQ%E5%9B%BE%E7%89%8720200323082205.png">
   
     <link rel="alternative" href="/atom.xml" title="flamingoo的猫窝" type="application/atom+xml">
   
@@ -221,7 +228,26 @@
 <p>2.数据的共享性高，冗余度低，易扩充<br>数据库系统从整体角度看待和描述数据，数据面向整个系统，可以被多个用户多个应用共享使用</p>
 <p>数据共享的好处<br>减少数据冗余，节省存储空间。<br>避免数据之间的不相容性和不一致性。<br>使系统抑郁扩充</p>
 <p>3.数据独立性高<br>物理独立性：<br>指用户的应用程序与存储在磁盘上的数据库中数据是相互独立的。<br>当数据的物理存储改变了，应用程序不用改变。<br>逻辑独立性：<br>指用户的应用程序与数据库的逻辑结构是相互独立的。数据的逻辑结构改变了，用户程序也可以不变。<br>数据独立性是由DBMS的二级映像功能来保证的</p>
-<p>数据由DBMS统一管理和控制<br>（1）数据的安全性保护（第四章）<br>保护数据，以防止不合法的使用造成的数据的泄密和破坏<br>（2）数据的完整性检查（第五章）<br>将数据控制在有效的范围内，或保证数据之间满足一定的关系。<br>（3）并发控制<br>对多用户的并发操作加以控制和协调，防止相互干扰而得到错误的结果。<br>（4）数据库恢复<br>将数据库从错误状态恢复到某一已知的正确状态。</p>
+<p>数据由DBMS统一管理和控制<br>（1）数据的安全性保护（第四章）<br>保护数据，以防止不合法的使用造成的数据的泄密和破坏<br>（2）数据的完整性检查（第五章）<br>将数据控制在有效的范围内，或保证数据之间满足一定的关系。<br>（3）并发控制<br>对多用户的并发操作加以控制和协调，防止相互干扰而得到错误的结果。<br>（4）数据库恢复<br>将数据库从错误状态恢复到某一已知的正确状态。<br><img src="QQ%E5%9B%BE%E7%89%8720200323082205.png" alt=""></p>
+<h2 id="1-2-数据模型"><a href="#1-2-数据模型" class="headerlink" title="1.2 数据模型"></a>1.2 数据模型</h2><p>·在数据库中用数据模型这个工具来<strong>抽象、表示和处理</strong>现实世界中的数据和信息。<br>·通俗地讲数据模型就是<strong>现实世界的模拟</strong><br>·数据模型应满足三方面要求<br>①能比较<strong>真实</strong>地模拟现实世界<br>②<strong>容易</strong>为人所<strong>理解</strong><br>③便于在计算机上<strong>实现</strong></p>
+<h3 id="1-2-1-两大类数据模型"><a href="#1-2-1-两大类数据模型" class="headerlink" title="1.2.1 两大类数据模型"></a>1.2.1 两大类数据模型</h3><p>（1）<strong>概念模型</strong> 也称信息模型，它是按用户的观点来对数据建模，用于数据库设计。<br>（2）<strong>逻辑模型和物理模型</strong><br>·逻辑模型主要包括网状模型、层次模型、关系模型、面向对象模型等，按计算机系统的观点对数据建模，用于DBMS的实现<br>·物理模型是对数据最底层的抽象，描述数据在系统内部的表示方式和存取方式，在磁盘或磁带上的存储方式和存取方法。</p>
+<p>现实世界👉概念模型👉逻辑模型👉物理模型</p>
+<h3 id="1-2-2-数据模型的组成要素"><a href="#1-2-2-数据模型的组成要素" class="headerlink" title="1.2.2 数据模型的组成要素"></a>1.2.2 数据模型的组成要素</h3><p>·<strong>数据结构</strong><br>描述数据库的组成对象，以及对象之间的联系<br>数据结构是对系统静态特性的描述</p>
+<p><strong>·数据操作</strong><br>对数据库中各种对象（型）的实例（值）允许执行的操作以及有关的操作规则<br>类型：查询，更新（包括插入、删除、修改）<br>数据操作是对系统动态特性的描述</p>
+<p><strong>·完整性约束条件</strong><br>一组完整性规则的集合<br>完整性规则：给定的数据模型中数据及其具有的制约和储存规则。<br>用以限定符合数据模型的数据库状态以及状态的变化，以保证数据的正确、有效、相容。</p>
+<h3 id="1-2-3-概念模型"><a href="#1-2-3-概念模型" class="headerlink" title="1.2.3 概念模型"></a>1.2.3 概念模型</h3><p>·信息世界中的概念<br>·两个实体型之间的联系<br>·用途：用于信息世界的建模，是现实世界到机器世界的一个中间层次，是数据库设计的有力工具，数据库设计人员和用户之间进行交流的语言。</p>
+<p>一、信息世界中的基本概念<br>（1）<strong>实体</strong>（Entity）<br>客观存在并可相互区别的事物称为实体，可以是具体的人、事、物或抽象的概念。<br>（2）<strong>属性</strong>（Attribute）<br>实体所具有的某一特征称为属性。<br>一个实体可以由若干个属性刻画。<br>（3）<strong>码</strong><br>唯一标识实体的属性集称为码。<br>（4）<strong>域</strong>（Domain）<br>属性的取值范围称为该属性的域。<br>（5）<strong>实体型</strong>（Emtity Type）<br>用实体名及其属性名集合来抽象和刻画同类实体称为实体型。<br>（6）<strong>实体集</strong>（Entity Set）<br>同一类型实体的集合称为实体集。<br>（7）<strong>联系</strong>（Relationship）<br>·现实世界中事物内部以及事物之间的联系在信息世界中反映为实体内部的联系和实体之间的联系。<br>·<strong>实体内部</strong>的联系通常是组成实体的各属性之间的联系<br>·<strong>实体之间</strong>的联系通常是指不同实体集之间的联系。</p>
+<p>二、两个实体型之间的联系<br>一对一联系（1：1）<br>·实例<br>一个班长只有一个正班长，一个班长只在一个班中任职<br>·定义<br>如果对于实体集A中的每一个实体，实体集B中至多有一个实体与之联系，反之亦然，<strong>则称实体集A与实体集B具有一对一联系，</strong>记为1：1</p>
+<p>一对多联系（1：n）<br>·实例<br>一个班级有若干个学生，每个学生只在一个班级学习<br>·定义：<br>如果对于实体集A中的每一个实体，实体集B中有n个实体（n≥0）与之联系，反之，对于实体集B中的每一个实体，实体集A中至多只有一个实体与之联系，则称<strong>实体集A与实体集有一对多联系</strong>，记为1：n<br><img src="QQ%E5%9B%BE%E7%89%8720200323090335.png" alt=""></p>
+<p>多对多联系（m：n）<br>·实例<br>课程与学生之间的联系：一门课程同时有若干个学生选修，一个学生可以同时选修多门课程<br>·定义：<br>如果对于实体集A中的每一个实体，实体集B中有n个实体（n≥0）与之联系，反之，对于实体集B中的每一个实体，实体集A中也有m个实体（m≥0）与之联系，则称实体集A与实体集B具有多对多联系，记为m：n</p>
+<p>实体-联系方法（E-R方法）<br>·用E-R图来描述现实世界的概念模型<br>·E-R方法也称为E-R模型<br>实体型：用矩阵表示，矩形框中写明实体名<br>属性：用椭圆形表示<br>联系：用菱形表示<br><img src="QQ%E5%9B%BE%E7%89%8720200323091829.png" alt=""><br>联系的属性：联系本身也是一种实体型，也可以有属性。如果一个联系具有属性，则这些属性也要用无向边与该联系连接起来。<br><img src="QQ%E5%9B%BE%E7%89%8720200323092418.png" alt=""></p>
+<h3 id="1-2-4-最常用的数据模型"><a href="#1-2-4-最常用的数据模型" class="headerlink" title="1.2.4 最常用的数据模型"></a>1.2.4 最常用的数据模型</h3><p>·<strong>非关系模型</strong><br><strong>层次模型</strong>：数据库系统中最早出现的数据模型，用树形结构来表示<br>基本层次联系：两个实体集之间的一对多联系。<br>①有且只有一个结点没有双亲结点，这个结点称为根结点<br>②根以外的其他结点有且只有一个双亲结点。<br><img src="QQ%E5%9B%BE%E7%89%8720200323092855.png" alt=""><br>特点：①结点的双亲唯一；②只能直接处理一对多的实体联系。③每个记录类型可以定义一个排序字段，称为码字段；④任何记录值只能通过其路径查看时，才能显示出全部意义。<br>·没有一个子女记录值能透过双亲独立存在。</p>
+<p><strong>层次模型的数据操纵</strong><br><strong>层次模型的完整性约束条件</strong>：<br>·无相应的双亲结点值就不能插入子女结点值。<br>·如果删除双亲结点值，则相应的子女结点值也被同时删除<br>·更新操作时，应更新所有相应记录，以保证数据的一致性。</p>
+<p><strong>优点</strong>：<br>①层次模型的数据结构比较简单清晰<br>②查询效率高，性能优于关系模型，不低于网状模型<br>③层次数据模型提供了良好的完整性支持</p>
+<p><strong>缺点</strong>：<br>①多对多联系表示不自然<br>②对插入和删除操作的限制多，应用程序的编写比较复杂<br>③查询子女结点必须通过双亲结点<br>④由于结构严密，层次命令趋于程序化</p>
+<p><strong>网状模型</strong><br>满足以下两个条件的基本层次联系的集合：<br>①允许一个以上的结点无双亲<br>②一个结点可以有多余一个的双亲。</p>
+<p>表示方法（与层次数据模型相同）<br><img src="QQ%E5%9B%BE%E7%89%8720200323094222.png" alt=""></p>
+<p>·关系模型<br>·面向对象模型<br>·关系对象模型</p>
 
       
 
@@ -343,7 +369,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#第一章-绪论"><span class="toc-number">1.</span> <span class="toc-text">第一章 绪论</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-数据库系统概述"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 数据库系统概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-1四个基本概念"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1.1四个基本概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-2-数据管理技术的产生"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.1.2 数据管理技术的产生</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-3数据库系统的特点"><span class="toc-number">1.1.3.</span> <span class="toc-text">1.1.3数据库系统的特点</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#第一章-绪论"><span class="toc-number">1.</span> <span class="toc-text">第一章 绪论</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-数据库系统概述"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 数据库系统概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-1四个基本概念"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1.1四个基本概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-2-数据管理技术的产生"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.1.2 数据管理技术的产生</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-3数据库系统的特点"><span class="toc-number">1.1.3.</span> <span class="toc-text">1.1.3数据库系统的特点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-数据模型"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 数据模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-1-两大类数据模型"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.2.1 两大类数据模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-2-数据模型的组成要素"><span class="toc-number">1.2.2.</span> <span class="toc-text">1.2.2 数据模型的组成要素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-3-概念模型"><span class="toc-number">1.2.3.</span> <span class="toc-text">1.2.3 概念模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-4-最常用的数据模型"><span class="toc-number">1.2.4.</span> <span class="toc-text">1.2.4 最常用的数据模型</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -472,10 +498,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ACM</a>
               </li>
              
@@ -496,7 +518,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">动漫</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -504,7 +534,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">动漫</a>
+                <a href="javascript:void(0)" class="js-tag color2">kuangbin带你飞</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -532,11 +562,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+                <a href="javascript:void(0)" class="js-tag color3">CF</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">CF</a>
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
             
             <div class="clearfix"></div>

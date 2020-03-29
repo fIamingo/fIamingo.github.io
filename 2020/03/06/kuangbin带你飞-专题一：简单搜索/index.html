@@ -16,9 +16,10 @@
 <meta property="og:description" content="前言马上就开学了，可以悠闲地写简单算法题补难点的CF题的日子也要结束了。这个kuangbin带你飞专题是我偶然间发现的，计划每个专题刷5道就换新专题来迅速过一遍常见算法，然后第6题之后的题有时间再补或者哪天感觉这一块太薄弱了拿来训练。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-03-05T16:11:20.000Z">
-<meta property="article:modified_time" content="2020-03-05T16:36:42.970Z">
+<meta property="article:modified_time" content="2020-03-23T09:05:30.914Z">
 <meta property="article:author" content="fIamingo">
 <meta property="article:tag" content="ACM">
+<meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="flamingoo的猫窝" type="application/atom+xml">
@@ -495,7 +496,77 @@ void solve()
              answ[i][j]=path[i][j];
          }
      }
-}</code></pre><h2 id="Find-The-Multiple"><a href="#Find-The-Multiple" class="headerlink" title="Find The Multiple"></a>Find The Multiple</h2><p><strong>题目:<a href="https://vjudge.net/problem/POJ-1426" target="_blank" rel="noopener">POJ-1426</a></strong><br><strong>题解:</strong>枚举每一位是0还是1，和上题思路差不多。很坑的是谁知道usigned long long就行了，还以为要用大数呢</p>
+}</code></pre><p>最近atcoder有道题和这题比较像，也放这<br><strong>题目</strong>：<a href="https://atcoder.jp/contests/abc159/tasks/abc159_e" target="_blank" rel="noopener">atcoder-ABC159-E</a></p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+int S[15][1005];
+int pre[15][1005];
+int pos[15];
+int ans=9999999;
+
+int square(int x,int y,int p,int q)
+{
+    return pre[y][q]-pre[x][q]-(pre[y][p]-pre[x][p]);
+}
+
+int H,W,K;
+
+int dfs(int x)
+{
+    if(x==H)
+    {
+        int res=0;
+        pos[0]=1;
+        pos[H]=1;
+        int u,v;
+        u=v=0;
+        for(int k=1;k&lt;H;k++)
+        if(pos[k]) res++;
+        for(int i=1;i&lt;=W;i++)
+        {
+            int flag=u=0;
+            for(int j=1;j&lt;=H;j++)
+            {
+                if(pos[j])
+                {
+                    int n;n=square(u,j,v,i);
+                    if(n&gt;K) { flag=1;break;}
+                    u=j;
+                }
+            }
+            if(flag){
+                if(v==i-1) return 0;
+                v=i-1;i--;res++;                
+            }
+        }
+        ans=min(ans,res);
+        return 0;
+    }
+    else{
+        pos[x]=0;
+        dfs(x+1);
+        pos[x]=1;
+        dfs(x+1);
+    }
+}
+
+int main()
+{
+    string str;
+    cin&gt;&gt;H&gt;&gt;W&gt;&gt;K;
+    for(int i=1;i&lt;=H;i++)
+    {
+        cin&gt;&gt;str;str=&apos;2&apos;+str;
+        for(int j=1;j&lt;=W;j++)
+    {
+        S[i][j]=str[j]-&apos;0&apos;;
+        pre[i][j]=pre[i][j-1]+pre[i-1][j]-pre[i-1][j-1]+S[i][j];
+    }
+}
+dfs(1);
+int m=square(1,3,3,5);
+cout&lt;&lt;ans&lt;&lt;endl;    
+} </code></pre><h2 id="Find-The-Multiple"><a href="#Find-The-Multiple" class="headerlink" title="Find The Multiple"></a>Find The Multiple</h2><p><strong>题目:<a href="https://vjudge.net/problem/POJ-1426" target="_blank" rel="noopener">POJ-1426</a></strong><br><strong>题解:</strong>枚举每一位是0还是1，和上题思路差不多。很坑的是谁知道usigned long long就行了，还以为要用大数呢</p>
 <pre><code>#include&lt;iostream&gt;
 using namespace std;
 unsigned long long u;
@@ -546,6 +617,10 @@ void dfs(int n,int i,unsigned long long sum)
 			 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ACM</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
         		</li>
       		
 		</ul>
@@ -782,10 +857,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ACM</a>
               </li>
              
@@ -806,7 +877,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">动漫</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -814,7 +893,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">动漫</a>
+                <a href="javascript:void(0)" class="js-tag color2">kuangbin带你飞</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -842,11 +921,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+                <a href="javascript:void(0)" class="js-tag color3">CF</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">CF</a>
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
             
             <div class="clearfix"></div>

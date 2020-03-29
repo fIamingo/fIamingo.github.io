@@ -16,7 +16,7 @@
 <meta property="og:description" content="这门课是蹭的，毕竟python还是挺重要的，科研训练之类的大概率会用到。可惜笔记依旧很多重点没能做到呢。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-03-17T08:54:08.000Z">
-<meta property="article:modified_time" content="2020-03-17T09:08:10.922Z">
+<meta property="article:modified_time" content="2020-03-24T08:28:53.712Z">
 <meta property="article:author" content="fIamingo">
 <meta property="article:tag" content="python">
 <meta name="twitter:card" content="summary">
@@ -361,6 +361,216 @@ NameError:name &apos;a&apos; is not defined
 False</code></pre><p>·Python 3.5增加了一个新的矩阵相乘运算符@</p>
 <pre><code>&gt;&gt;&gt; import numpy</code></pre><p>·逗号不是运算符，只是一个普通分隔符。</p>
 <p>·在Python中，单个任何类型的对象或常数属于合法表达式，使用运算符连接的变量和常量以及函数调用的任意组合也属于合法的表达式。</p>
+<h2 id="模块导入与使用"><a href="#模块导入与使用" class="headerlink" title="模块导入与使用"></a>模块导入与使用</h2><p>·imoprt 模块名</p>
+<pre><code>&gt;&gt;&gt; import math
+&gt;&gt;&gt; math.sin(0.5)    #求0.5的正弦
+&gt;&gt;&gt; import random
+&gt;&gt;&gt; x=random.random()    #获得[0,1)内的随机小数
+&gt;&gt;&gt; y=random.random()
+&gt;&gt;&gt; n=random.randint(1,100)        #获得[1.100]上的随机整数</code></pre><p>√可以使用dir()函数查看任意模块中所有的对象列表，如果调用带参数的dir()函数，则返回当前作用域所有名字列表。<br>√可以使用help()函数查看任意模块或函数的使用帮助。<br>√from 模块名 import 对象名[as 别名] #可以减少查询次数，提高执行速度<br>√from math import * #谨慎使用，和import math差不多</p>
+<pre><code>&gt;&gt;&gt; from math import sin
+&gt;&gt;&gt; sin(3)</code></pre><p>·python首先在当前目录中查找需要导入的模块文件，如果没有找到则从<strong>sys模块的path变量</strong>所指定的目录中查找。可以使用模块的path变量查看python导入模块时搜索模块的路径，也可以向其中append自定义</p>
+<h2 id="Python代码规范"><a href="#Python代码规范" class="headerlink" title="Python代码规范"></a>Python代码规范</h2><p>（1）缩进<br>·python程序是依靠代码块的缩进来体现代码之间的逻辑关系，缩进结束就表示一个代码块结束了。<br>·类定义、函数定义、选择结构、循环结构、with块，行尾的冒号表示缩进的开始。<br>·同一个级别的代码块的所尽量必须相同。<br>·一般而言，以4个空格为基本缩进单位。<br>（2）注释<br>·以#开始，表示本行#之后的内容为注释。<br>·包含在一对三引号”‘…”‘或””…””之间且不属于任何语句的内容将被解释器认为是注释</p>
+<pre><code>#读取并显示上面代码生成的csv文件内容
+with open(fn) as fp:
+    for line in csv.reader(fp):
+        if line:
+            print(*line)</code></pre><p>（3）每个import语句只导入一个模板，最好按标准库扩展库、自定义库的顺序依次导入</p>
+<pre><code>import csv
+import random
+import datetime
+import pandas as pd</code></pre><p>(4)如果一行语句太长，可以在行尾加上续行符\来换行分成多行，但是更建议用括号<br>(5)必要的空格与空行</p>
+<h2 id="Python文件名"><a href="#Python文件名" class="headerlink" title="Python文件名"></a>Python文件名</h2><p>· .py文件：Python源文件，由Python解释器负责解释执行。<br>· .pyw：Python源文件，常用于图形界面程序文件。<br>· .pyc：Python字节码文件，无法使用文本编辑器直接查看该文件内容，可用于隐藏Python源代码和提高运行速度。<br>· .pyo：<br>· .pyd：一般是由其他语言编写并编译的二进制文件，常用于实现某些软件工具的Python编辑接口插件或Python动态链接库。</p>
+<h2 id="编写自己的包与模块"><a href="#编写自己的包与模块" class="headerlink" title="编写自己的包与模块"></a>编写自己的包与模块</h2><p>·在包的每个目录中必须包含一个<strong>init</strong>.py文件，该文件可以是一个空文件，仅仅用于表示该目录是一个包。<br>·<em>init</em>.py文件的主要用途是设置<strong>all</strong>变量以及所包含的包初始化所需的代码。其中<strong>all</strong>变量中定义的对象可以在使用from…import*时全部正确导入。</p>
+<h2 id="常用内置函数"><a href="#常用内置函数" class="headerlink" title="常用内置函数"></a>常用内置函数</h2><p>内置函数不需要导入任何模块即可使用</p>
+<table>
+<thead>
+<tr>
+<th align="left">函数</th>
+<th>功能简要说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">abs(x)</td>
+<td>返回数字x的绝对值或复数x的模</td>
+</tr>
+<tr>
+<td align="left">all(iterable)</td>
+<td>如果对于可迭代对象中所有元素都等价于True，则返回True</td>
+</tr>
+<tr>
+<td align="left">any(iterable)</td>
+<td>只要有一个可迭代对象中存在元素x使得bool(x)为False，则返回True</td>
+</tr>
+<tr>
+<td align="left">bin(x)</td>
+<td>把整数x转换为二进制串表示形式</td>
+</tr>
+<tr>
+<td align="left">bool(x)</td>
+<td>返回x等价的布尔值True或False</td>
+</tr>
+<tr>
+<td align="left">bytes(x)</td>
+<td>生成字节串，或把指定对象x转换为字节串表示形式</td>
+</tr>
+<tr>
+<td align="left">callable(obj)</td>
+<td></td>
+</tr>
+<tr>
+<td align="left">ascii(obj)</td>
+<td></td>
+</tr>
+<tr>
+<td align="left">callable(obj)</td>
+<td></td>
+</tr>
+<tr>
+<td align="left">compile()</td>
+<td></td>
+</tr>
+<tr>
+<td align="left">complex(real,[imag])</td>
+<td>返回复数</td>
+</tr>
+<tr>
+<td align="left">chr(x)</td>
+<td></td>
+</tr>
+<tr>
+<td align="left">delattr(obj,name)</td>
+<td>删除属性</td>
+</tr>
+<tr>
+<td align="left">dir(obj)</td>
+<td>返回指定对象或模块obj的成员列表，如果不带参数返回当前作用域内所有标识符。</td>
+</tr>
+<tr>
+<td align="left">divmod(x,y)</td>
+<td>返回包含整商和余数的元组((x-x%y)/y,x%y)</td>
+</tr>
+<tr>
+<td align="left">enumerate(iterable[,start])</td>
+<td>返回包含元素形式为(0,iterable[0]),(1,iterable[1]),…的迭代器对象</td>
+</tr>
+<tr>
+<td align="left">eval(s[,globals[,locals]])</td>
+<td>计算并返回字符串s中表达式的值</td>
+</tr>
+<tr>
+<td align="left">filter(func,seq)</td>
+<td>返回filter对象，其中包含序列seq中使得单参数函数func返回值为True的那些元素</td>
+</tr>
+<tr>
+<td align="left">globals()</td>
+<td></td>
+</tr>
+<tr>
+<td align="left">hash[x]</td>
+<td>返回对象x的哈希值，如果x不可哈希则抛出异常</td>
+</tr>
+<tr>
+<td align="left">help(obj)</td>
+<td>返回对象obj的帮助信息</td>
+</tr>
+<tr>
+<td align="left">hex(x)</td>
+<td>把整数x转换为十六进制串</td>
+</tr>
+<tr>
+<td align="left">input([提示])</td>
+<td>显示提示，接受键盘输入的内容，返回字符串</td>
+</tr>
+<tr>
+<td align="left">isinstance(obj,class-or-type-or-tuple)</td>
+<td>测试对象obj是否属于指定类型。多个类型可放元组中</td>
+</tr>
+<tr>
+<td align="left">iter(…)</td>
+<td>返回指定对象的可迭代对象</td>
+</tr>
+<tr>
+<td align="left">len(obj)</td>
+<td>返回对象obj包含的元素个数</td>
+</tr>
+<tr>
+<td align="left">list([x])、set([x])、tuple([x])、dict([x])</td>
+<td>把对象x转换为列表，集合，元组或字典并返回，或生成空列表，集合元组或字典</td>
+</tr>
+<tr>
+<td align="left">locals()</td>
+<td></td>
+</tr>
+<tr>
+<td align="left">map(func,*iterables)</td>
+<td></td>
+</tr>
+<tr>
+<td align="left">max(x)、min(x)</td>
+<td></td>
+</tr>
+<tr>
+<td align="left">next(iterator[,default])</td>
+<td>返回可迭代对象x中的下一个元素，允许指定迭代结束之后继续迭代时返回的默认值</td>
+</tr>
+<tr>
+<td align="left">oct(x)</td>
+<td>把整数x转换为八进制串</td>
+</tr>
+<tr>
+<td align="left">open(name[,mode])</td>
+<td>以指定模式mode打开文件name并返回文件对对象</td>
+</tr>
+<tr>
+<td align="left">ord(x)</td>
+<td>返回一个字符x的Unicode编码</td>
+</tr>
+<tr>
+<td align="left">pow(x,y,z=None)</td>
+<td>返回x的y次方，等价于x ** y或(x ** y)%z</td>
+</tr>
+<tr>
+<td align="left">print(value,…,sep=’’,end=’\n’,file = sys.stdout,flush=False)</td>
+<td>基本输出函数</td>
+</tr>
+<tr>
+<td align="left">quit()</td>
+<td>退出当前解释器环境</td>
+</tr>
+<tr>
+<td align="left">range([start,]end[,step])</td>
+<td>返回range对象,其中包含左闭右开区间[start,end)内以step为步长的整数</td>
+</tr>
+<tr>
+<td align="left">round(x,[,小数位数])</td>
+<td></td>
+</tr>
+<tr>
+<td align="left">sorted(iterable,key=None,reverse=False)</td>
+<td>返回排序后的列表，其中iterable表示要排序的迭代对象，key用来指定排序规则或依据，reverse指定升序或降序</td>
+</tr>
+<tr>
+<td align="left">str(obj)</td>
+<td></td>
+</tr>
+<tr>
+<td align="left">sum(x,start=0)</td>
+<td>返回序列x中所有元素之和，要求序列x中所有元素必须为数字，允许指定起始值start，返回start+sum(x)</td>
+</tr>
+<tr>
+<td align="left">type(obj)</td>
+<td></td>
+</tr>
+<tr>
+<td align="left">zip(seql,[,seq2[…]])</td>
+<td></td>
+</tr>
+<tr>
+<td align="left">reduce(func,sequence[,initial])</td>
+<td></td>
+</tr>
+</tbody></table>
 
       
 
@@ -482,7 +692,7 @@ False</code></pre><p>·Python 3.5增加了一个新的矩阵相乘运算符@</p>
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#第1章-基础知识"><span class="toc-number">1.</span> <span class="toc-text">第1章 基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#python简介"><span class="toc-number">1.1.</span> <span class="toc-text">python简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python的对象模型"><span class="toc-number">1.2.</span> <span class="toc-text">python的对象模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#变量："><span class="toc-number">1.3.</span> <span class="toc-text">变量：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#变量名"><span class="toc-number">1.3.1.</span> <span class="toc-text">变量名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数字"><span class="toc-number">1.3.2.</span> <span class="toc-text">数字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字符串"><span class="toc-number">1.3.3.</span> <span class="toc-text">字符串</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#运算符和表达式"><span class="toc-number">1.4.</span> <span class="toc-text">运算符和表达式</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#第1章-基础知识"><span class="toc-number">1.</span> <span class="toc-text">第1章 基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#python简介"><span class="toc-number">1.1.</span> <span class="toc-text">python简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python的对象模型"><span class="toc-number">1.2.</span> <span class="toc-text">python的对象模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#变量："><span class="toc-number">1.3.</span> <span class="toc-text">变量：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#变量名"><span class="toc-number">1.3.1.</span> <span class="toc-text">变量名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数字"><span class="toc-number">1.3.2.</span> <span class="toc-text">数字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字符串"><span class="toc-number">1.3.3.</span> <span class="toc-text">字符串</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#运算符和表达式"><span class="toc-number">1.4.</span> <span class="toc-text">运算符和表达式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模块导入与使用"><span class="toc-number">1.5.</span> <span class="toc-text">模块导入与使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Python代码规范"><span class="toc-number">1.6.</span> <span class="toc-text">Python代码规范</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Python文件名"><span class="toc-number">1.7.</span> <span class="toc-text">Python文件名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编写自己的包与模块"><span class="toc-number">1.8.</span> <span class="toc-text">编写自己的包与模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用内置函数"><span class="toc-number">1.9.</span> <span class="toc-text">常用内置函数</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -611,10 +821,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ACM</a>
               </li>
              
@@ -635,7 +841,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">动漫</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -643,7 +857,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">动漫</a>
+                <a href="javascript:void(0)" class="js-tag color2">kuangbin带你飞</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -671,11 +885,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+                <a href="javascript:void(0)" class="js-tag color3">CF</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">CF</a>
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
             
             <div class="clearfix"></div>

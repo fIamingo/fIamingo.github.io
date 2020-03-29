@@ -18,7 +18,7 @@
 <meta property="og:image" content="http://fiamingo.github.io/2020/03/17/%E7%AC%94%E8%AE%B0-%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%EF%BC%88%E7%BD%91%E8%AF%BE%E6%9C%9F%E9%97%B4%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/QQ%E5%9B%BE%E7%89%8720200319102442.png">
 <meta property="og:image" content="http://fiamingo.github.io/2020/03/17/%E7%AC%94%E8%AE%B0-%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%EF%BC%88%E7%BD%91%E8%AF%BE%E6%9C%9F%E9%97%B4%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/QQ%E5%9B%BE%E7%89%8720200319104333.png">
 <meta property="article:published_time" content="2020-03-17T08:47:54.000Z">
-<meta property="article:modified_time" content="2020-03-20T07:44:00.369Z">
+<meta property="article:modified_time" content="2020-03-23T02:34:37.960Z">
 <meta property="article:author" content="fIamingo">
 <meta property="article:tag" content="汇编">
 <meta property="article:tag" content="机组">
@@ -207,7 +207,7 @@
 <p>学习思路：<br>建立cpu的整体概念–&gt;主机–&gt;通过总线和接口–&gt;输入/输出设备–&gt;计算机系统结构</p>
 <p>各部件学习思路：<br>门电路–&gt;芯片–&gt;部件</p>
 <h1 id="第一章-汇编语言基础知识"><a href="#第一章-汇编语言基础知识" class="headerlink" title="第一章 汇编语言基础知识"></a>第一章 汇编语言基础知识</h1><h2 id="1-1汇编语言简介"><a href="#1-1汇编语言简介" class="headerlink" title="1.1汇编语言简介"></a>1.1汇编语言简介</h2><h3 id="1-1-1机器语言与汇编语言"><a href="#1-1-1机器语言与汇编语言" class="headerlink" title="1.1.1机器语言与汇编语言"></a>1.1.1机器语言与汇编语言</h3><p>·机器指令：cpu能直接识别并遵照执行的指令，用二进制编码表示，由操作码，操作数组成，编码只含二进制0或1.<br>·机器语言：用二进制编码组成的机器指令的集合和一组使用机器指令的规则。<br>·汇编语言：对机器指令中的操作码用英文单词的缩写描述，对操作数用标号、变量、常量描述。</p>
-<p>汇编语言与机器语言是完全一对一的。<br>·用汇编语言编写的程序成为<strong>汇编源程序</strong>。<br>·汇编语言是一种符号语言，比机器语言容易理解和掌握，也容易调试和维护。但是汇编语言源程序要翻译成机器语言程序才可以由计算机执行。这个翻译的过程称为汇编，这种把汇编源程序编译成目标程序的语言加工程序称为<strong>汇编程序</strong>。</p>
+<p>汇编语言与机器语言是完全一对一的。<br>·用汇编语言编写的程序称为<strong>汇编源程序</strong>。<br>·汇编语言是一种符号语言，比机器语言容易理解和掌握，也容易调试和维护。但是汇编语言源程序要翻译成机器语言程序才可以由计算机执行。这个翻译的过程称为汇编，这种把汇编源程序编译成目标程序的语言加工程序称为<strong>汇编程序</strong>。</p>
 <h3 id="1-1-2汇编语言的组成"><a href="#1-1-2汇编语言的组成" class="headerlink" title="1.1.2汇编语言的组成"></a>1.1.2汇编语言的组成</h3><p>汇编语言由以下三类指令组成：<br>汇编指令：机器码的助记符，由对应的机器码。它是汇编语言的核心。<br>伪指令：没有对应的机器码，由编译器执行，计算机不执行。<br>宏指令</p>
 <h3 id="1-1-3为什么要学习汇编语言"><a href="#1-1-3为什么要学习汇编语言" class="headerlink" title="1.1.3为什么要学习汇编语言"></a>1.1.3为什么要学习汇编语言</h3><h2 id="1-2计算机数据的表示"><a href="#1-2计算机数据的表示" class="headerlink" title="1.2计算机数据的表示"></a>1.2计算机数据的表示</h2><h3 id="1-2-1-不同进位计数制及其相互转换。"><a href="#1-2-1-不同进位计数制及其相互转换。" class="headerlink" title="1.2.1 不同进位计数制及其相互转换。"></a>1.2.1 不同进位计数制及其相互转换。</h3><p>整数部分的最后一位位权是R0.</p>
 <h2 id="1-2-3-带符号数的表示（数逻讲过-就不记多了）"><a href="#1-2-3-带符号数的表示（数逻讲过-就不记多了）" class="headerlink" title="1.2.3 带符号数的表示（数逻讲过 就不记多了）"></a>1.2.3 带符号数的表示（数逻讲过 就不记多了）</h2><p>·带符号数最高位是符号位。<br>·整数的符号位为0，负数的符号位为1<br>·表示方法：原码，补码，反码。</p>
@@ -226,7 +226,8 @@
 <p>①SP：堆栈指针，这是一个专用的寄存器，存放堆栈栈顶的偏移地址。<br>②BP:基址指针，可以用来存放内存中数据的偏移地址<br>③SI：源变址寄存器<br>④DI：目的变址寄存器 [SI]–&gt;[DI]<br>3.段寄存器<br>①CS ②SS ③DS ④ES</p>
 <p>4.指令指针寄存器<br>IP:指令指针寄存器，存放即将执行指令的偏移地址。</p>
 <p>5.指令指针寄存器<br>·FLAGS：存放CPU的两类标志。<br>·状态标志 反应处理器当前的状态，如有无溢出，有无进位等：CF（无符号） PF AF ZF（判断0） SF OF（有符号）</p>
-<h3 id="2-3-2-CS和IP"><a href="#2-3-2-CS和IP" class="headerlink" title="2.3.2 CS和IP"></a>2.3.2 CS和IP</h3>
+<h3 id="2-3-2-CS和IP"><a href="#2-3-2-CS和IP" class="headerlink" title="2.3.2 CS和IP"></a>2.3.2 CS和IP</h3><h1 id="第三章汇编语言与实验"><a href="#第三章汇编语言与实验" class="headerlink" title="第三章汇编语言与实验"></a>第三章汇编语言与实验</h1><h3 id="3-1-1汇编语言的系统工作文件"><a href="#3-1-1汇编语言的系统工作文件" class="headerlink" title="3.1.1汇编语言的系统工作文件"></a>3.1.1汇编语言的系统工作文件</h3><p>·使用编辑程序边集源程序文件（.asm）<br>·使用汇编程序（MASM）将源程序文件（.asm）汇编成目标文件（.obj）<br>·使用连接程序（LINK），将目标文件（.obj）连接成可执行文件（.exe）<br>·使用debug调试程序</p>
+
       
 
       
@@ -351,7 +352,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#课前须知"><span class="toc-number">1.</span> <span class="toc-text">课前须知</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第一章-汇编语言基础知识"><span class="toc-number"></span> <span class="toc-text">第一章 汇编语言基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1汇编语言简介"><span class="toc-number">1.</span> <span class="toc-text">1.1汇编语言简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-1机器语言与汇编语言"><span class="toc-number">1.1.</span> <span class="toc-text">1.1.1机器语言与汇编语言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-2汇编语言的组成"><span class="toc-number">1.2.</span> <span class="toc-text">1.1.2汇编语言的组成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-3为什么要学习汇编语言"><span class="toc-number">1.3.</span> <span class="toc-text">1.1.3为什么要学习汇编语言</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2计算机数据的表示"><span class="toc-number">2.</span> <span class="toc-text">1.2计算机数据的表示</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-1-不同进位计数制及其相互转换。"><span class="toc-number">2.1.</span> <span class="toc-text">1.2.1 不同进位计数制及其相互转换。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-3-带符号数的表示（数逻讲过-就不记多了）"><span class="toc-number">3.</span> <span class="toc-text">1.2.3 带符号数的表示（数逻讲过 就不记多了）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第二章-计算机基本原理"><span class="toc-number"></span> <span class="toc-text">第二章 计算机基本原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1计算机系统组成"><span class="toc-number">1.</span> <span class="toc-text">2.1计算机系统组成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-存储器"><span class="toc-number">2.</span> <span class="toc-text">2.2 存储器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-1-16位结构的CPU"><span class="toc-number">2.1.</span> <span class="toc-text">2.2.1 16位结构的CPU</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-2-内存中字的存储"><span class="toc-number">2.2.</span> <span class="toc-text">2.2.2 内存中字的存储</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-3存储器分段"><span class="toc-number">2.3.</span> <span class="toc-text">2.2.3存储器分段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-4逻辑地址"><span class="toc-number">2.4.</span> <span class="toc-text">2.2.4逻辑地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-5CPU对内存的独写操作"><span class="toc-number">2.5.</span> <span class="toc-text">2.2.5CPU对内存的独写操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-中央处理器（CPU）中的寄存器"><span class="toc-number">3.</span> <span class="toc-text">2.3 中央处理器（CPU）中的寄存器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-1寄存器介绍"><span class="toc-number">3.1.</span> <span class="toc-text">2.3.1寄存器介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-2-CS和IP"><span class="toc-number">3.2.</span> <span class="toc-text">2.3.2 CS和IP</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#课前须知"><span class="toc-number">1.</span> <span class="toc-text">课前须知</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第一章-汇编语言基础知识"><span class="toc-number"></span> <span class="toc-text">第一章 汇编语言基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1汇编语言简介"><span class="toc-number">1.</span> <span class="toc-text">1.1汇编语言简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-1机器语言与汇编语言"><span class="toc-number">1.1.</span> <span class="toc-text">1.1.1机器语言与汇编语言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-2汇编语言的组成"><span class="toc-number">1.2.</span> <span class="toc-text">1.1.2汇编语言的组成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-3为什么要学习汇编语言"><span class="toc-number">1.3.</span> <span class="toc-text">1.1.3为什么要学习汇编语言</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2计算机数据的表示"><span class="toc-number">2.</span> <span class="toc-text">1.2计算机数据的表示</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-1-不同进位计数制及其相互转换。"><span class="toc-number">2.1.</span> <span class="toc-text">1.2.1 不同进位计数制及其相互转换。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-3-带符号数的表示（数逻讲过-就不记多了）"><span class="toc-number">3.</span> <span class="toc-text">1.2.3 带符号数的表示（数逻讲过 就不记多了）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第二章-计算机基本原理"><span class="toc-number"></span> <span class="toc-text">第二章 计算机基本原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1计算机系统组成"><span class="toc-number">1.</span> <span class="toc-text">2.1计算机系统组成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-存储器"><span class="toc-number">2.</span> <span class="toc-text">2.2 存储器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-1-16位结构的CPU"><span class="toc-number">2.1.</span> <span class="toc-text">2.2.1 16位结构的CPU</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-2-内存中字的存储"><span class="toc-number">2.2.</span> <span class="toc-text">2.2.2 内存中字的存储</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-3存储器分段"><span class="toc-number">2.3.</span> <span class="toc-text">2.2.3存储器分段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-4逻辑地址"><span class="toc-number">2.4.</span> <span class="toc-text">2.2.4逻辑地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-5CPU对内存的独写操作"><span class="toc-number">2.5.</span> <span class="toc-text">2.2.5CPU对内存的独写操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-中央处理器（CPU）中的寄存器"><span class="toc-number">3.</span> <span class="toc-text">2.3 中央处理器（CPU）中的寄存器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-1寄存器介绍"><span class="toc-number">3.1.</span> <span class="toc-text">2.3.1寄存器介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-2-CS和IP"><span class="toc-number">3.2.</span> <span class="toc-text">2.3.2 CS和IP</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第三章汇编语言与实验"><span class="toc-number"></span> <span class="toc-text">第三章汇编语言与实验</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-1汇编语言的系统工作文件"><span class="toc-number">0.1.</span> <span class="toc-text">3.1.1汇编语言的系统工作文件</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -480,10 +481,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ACM</a>
               </li>
              
@@ -504,7 +501,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">动漫</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -512,7 +517,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">动漫</a>
+                <a href="javascript:void(0)" class="js-tag color2">kuangbin带你飞</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -540,11 +545,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+                <a href="javascript:void(0)" class="js-tag color3">CF</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">CF</a>
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
             
             <div class="clearfix"></div>

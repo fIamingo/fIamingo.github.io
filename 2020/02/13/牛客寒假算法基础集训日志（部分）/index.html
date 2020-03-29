@@ -20,7 +20,7 @@
 <meta property="og:image" content="http://fiamingo.github.io/2020/02/13/%E7%89%9B%E5%AE%A2%E5%AF%92%E5%81%87%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%E9%9B%86%E8%AE%AD%E6%97%A5%E5%BF%97%EF%BC%88%E9%83%A8%E5%88%86%EF%BC%89/%E9%AD%94%E6%B3%95.png">
 <meta property="og:image" content="http://fiamingo.github.io/2020/02/13/%E7%89%9B%E5%AE%A2%E5%AF%92%E5%81%87%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%E9%9B%86%E8%AE%AD%E6%97%A5%E5%BF%97%EF%BC%88%E9%83%A8%E5%88%86%EF%BC%89/%E6%9E%84%E9%80%A0.png">
 <meta property="article:published_time" content="2020-02-12T17:23:01.000Z">
-<meta property="article:modified_time" content="2020-02-26T16:56:41.033Z">
+<meta property="article:modified_time" content="2020-03-26T04:37:04.366Z">
 <meta property="article:author" content="fIamingo">
 <meta property="article:tag" content="ACM">
 <meta property="article:tag" content="算法">
@@ -748,7 +748,80 @@ int main()
         printf(&quot;\n&quot;);
     }
     return 0;
-}</code></pre>
+}</code></pre><h1 id="哈诺塔"><a href="#哈诺塔" class="headerlink" title="哈诺塔"></a>哈诺塔</h1><hr>
+<p><strong>题目描述</strong></p>
+<blockquote>
+<p>现在你有 N 块矩形木板，第 i 块木板的尺寸是 Xi*Yi，你想用这些木板来玩汉诺塔的游戏。    我们知道玩汉诺塔游戏需要把若干木板按照上小下大的顺序堆叠在一起，但因为木板是矩形，所以有一个问题：<br>第 i 块木板能放在第 j 块木板上方当且仅当 Xi&lt;Xj 且 Yi&lt;Yj，于是你很可能没法把所有的木板按照一定的次序叠放起来。    你想把这些木板分为尽可能少的组，使得每组内的木板都能按照一定的次序叠放。<br>你需要给出任意一种合理的分组方案。<br>提醒：“任意”意味着你的答案不必和标准输出完全一致，只要正确即可。 </p>
+</blockquote>
+<p><strong>输入描述</strong></p>
+<blockquote>
+<p>第一行，一个正整数 N接下来 N 行，每行两个正整数表示 Xi 和 Yi对于所有的数据，1≤N≤100,000，1≤Xi,Yi≤N，Xi 互不相等且 Yi 互不相等</p>
+</blockquote>
+<p><strong>输出描述</strong></p>
+<blockquote>
+<p>输出文件包含两行，第一行一个正整数，表示最少组数第二行 N 个正整数，依次表示你的方案中每块木板分在了哪一组组的编号必须是从 1 开始的连续整数</p>
+</blockquote>
+<p><strong>输入样例</strong></p>
+<blockquote>
+<p>3<br>1 1<br>2 3<br>3 2</p>
+</blockquote>
+<p><strong>输出样例</strong></p>
+<blockquote>
+<p>2<br>1 1 2</p>
+</blockquote>
+<p>Dilworth定理：U的链划分使用的最少集合数，等于它的最大反链长度。<br>这个题对x排序后，就转化成了偏序问题，x按递增顺序排序后，那么最大的反链长度就是y按递减排序的最长子序列，因为这样这条链的任意两个点，都（xi-xj）（yi-yj）&lt;0，是不可比的。<br>最长下降子序列和最长上升子序列的长度算法有一种二分优化的贪心的算法，将复杂度减小到O(nlogn),同时这种跑这个算法的时候还能同时把划分也给算出来。</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+#define maxn 100005
+#include&lt;algorithm&gt;
+struct knode
+{
+    int x;int y;
+    int loc;
+    bool operator&lt;(const knode &amp;rhs)const
+    {
+        if(x==rhs.x)
+        return y&lt;rhs.y;
+        else return x&lt;rhs.x;
+    }
+}node[maxn];
+int array[maxn];
+int ans[maxn];
+
+int main()
+{
+    int N;
+    cin&gt;&gt;N;    
+
+    for(int i=1;i&lt;=N;i++)
+    {
+        cin&gt;&gt;node[i].x&gt;&gt;node[i].y;
+        node[i].loc=i;
+    }
+    sort(node+1,node+1+N);
+    int start=1,end=1;
+    array[1]=node[1].y;
+    ans[node[1].loc]=1;
+    for(int i=2;i&lt;=N;i++)
+    {
+        int y=node[i].y;
+        if(y&lt;array[end])
+        {
+        array[++end]=y;
+        ans[node[i].loc]=end;
+        }
+        else {
+            int k;
+            k=upper_bound(array+start,array+end+1,y,greater&lt;int&gt;())-array;
+            array[k]=y;
+            ans[node[i].loc]=k;
+            }
+    }
+    cout&lt;&lt;end&lt;&lt;endl;
+    for(int i=1;i&lt;=N;i++)
+    cout&lt;&lt;ans[i]&lt;&lt;&quot; &quot;;
+    cout&lt;&lt;endl;
+} </code></pre>
       
 
       
@@ -873,7 +946,7 @@ int main()
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#牛牛的Link-Power-II-线段树"><span class="toc-number">2.</span> <span class="toc-text">牛牛的Link Power II(线段树)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#μ’s的影响力-快速幂矩阵"><span class="toc-number">3.</span> <span class="toc-text">μ’s的影响力(快速幂矩阵)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#建通道-位运算"><span class="toc-number">4.</span> <span class="toc-text">建通道(位运算)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#施魔法（dp）"><span class="toc-number">5.</span> <span class="toc-text">施魔法（dp）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#求函数-线段树"><span class="toc-number">6.</span> <span class="toc-text">求函数(线段树)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#牛牛的DRB迷宫II（构造）"><span class="toc-number">7.</span> <span class="toc-text">牛牛的DRB迷宫II（构造）</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#牛牛的Link-Power-II-线段树"><span class="toc-number">2.</span> <span class="toc-text">牛牛的Link Power II(线段树)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#μ’s的影响力-快速幂矩阵"><span class="toc-number">3.</span> <span class="toc-text">μ’s的影响力(快速幂矩阵)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#建通道-位运算"><span class="toc-number">4.</span> <span class="toc-text">建通道(位运算)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#施魔法（dp）"><span class="toc-number">5.</span> <span class="toc-text">施魔法（dp）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#求函数-线段树"><span class="toc-number">6.</span> <span class="toc-text">求函数(线段树)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#牛牛的DRB迷宫II（构造）"><span class="toc-number">7.</span> <span class="toc-text">牛牛的DRB迷宫II（构造）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#哈诺塔"><span class="toc-number">8.</span> <span class="toc-text">哈诺塔</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -1002,10 +1075,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ACM</a>
               </li>
              
@@ -1026,7 +1095,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">动漫</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1034,7 +1111,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">动漫</a>
+                <a href="javascript:void(0)" class="js-tag color2">kuangbin带你飞</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1062,11 +1139,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+                <a href="javascript:void(0)" class="js-tag color3">CF</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">CF</a>
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
             
             <div class="clearfix"></div>

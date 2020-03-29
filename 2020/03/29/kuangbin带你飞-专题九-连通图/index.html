@@ -6,14 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://fIamingo.github.io">
-  <title>Tag: 动漫 | flamingoo的猫窝</title>
+  <title>[kuangbin带你飞] 专题九 连通图 | flamingoo的猫窝</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="flamingoo的猫窝">
-<meta property="og:url" content="http://fiamingo.github.io/tags/%E5%8A%A8%E6%BC%AB/index.html">
+  <meta name="description" content="前言实话实说这专题感觉难度来了，虽然做的几个可能都是模板题，但是它的模板现在我也只是会写了，写也可能调试很久，然后并不能完全理解。最不能理解的就是为什么搜索到一个结点与它邻接的结点如果已经搜索过是以min(low[x],dfn[y])来更新它的low[x]而不是以min(low[x],low[y])。不过姑且用用模板。第四题还没写，因为不会LCA的内容，其他的题照常有时间就补。下一场专题考虑选dp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[kuangbin带你飞] 专题九 连通图">
+<meta property="og:url" content="http://fiamingo.github.io/2020/03/29/kuangbin%E5%B8%A6%E4%BD%A0%E9%A3%9E-%E4%B8%93%E9%A2%98%E4%B9%9D-%E8%BF%9E%E9%80%9A%E5%9B%BE/index.html">
 <meta property="og:site_name" content="flamingoo的猫窝">
+<meta property="og:description" content="前言实话实说这专题感觉难度来了，虽然做的几个可能都是模板题，但是它的模板现在我也只是会写了，写也可能调试很久，然后并不能完全理解。最不能理解的就是为什么搜索到一个结点与它邻接的结点如果已经搜索过是以min(low[x],dfn[y])来更新它的low[x]而不是以min(low[x],low[y])。不过姑且用用模板。第四题还没写，因为不会LCA的内容，其他的题照常有时间就补。下一场专题考虑选dp">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-03-29T12:27:44.000Z">
+<meta property="article:modified_time" content="2020-03-29T13:01:27.921Z">
 <meta property="article:author" content="fIamingo">
+<meta property="article:tag" content="ACM">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="kuangbin带你飞">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="flamingoo的猫窝" type="application/atom+xml">
@@ -156,104 +163,539 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-kuangbin带你飞-专题九-连通图" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/01/31/flamingoo%E7%9A%84%E6%97%A5%E5%B8%B8-%E6%90%9E%E7%AC%91%E7%95%AA%E6%8E%A8%E8%8D%90/" class="archive-article-date">
-  	<time datetime="2020-01-31T15:35:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-31</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/01/31/flamingoo%E7%9A%84%E6%97%A5%E5%B8%B8-%E6%90%9E%E7%AC%91%E7%95%AA%E6%8E%A8%E8%8D%90/">flamingoo喜欢的日常/搞笑番推荐（3.10更新）</a>
+    <h1 class="article-title" itemprop="name">
+      [kuangbin带你飞] 专题九 连通图
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        <!--显示阅读次数-->
+
+  <br/>
+  <a class="cloud-tie-join-count" href="javascript:void(0);" style="color:gray;font-size:14px;">
+  <span class="icon-sort"></span>
+  </a>
+
+<!--显示阅读次数完毕-->
+        
+        
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/2020/03/29/kuangbin%E5%B8%A6%E4%BD%A0%E9%A3%9E-%E4%B8%93%E9%A2%98%E4%B9%9D-%E8%BF%9E%E9%80%9A%E5%9B%BE/" class="archive-article-date">
+  	<time datetime="2020-03-29T12:27:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>实话实说这专题感觉难度来了，虽然做的几个可能都是模板题，但是它的模板现在我也只是会写了，写也可能调试很久，然后并不能完全理解。最不能理解的就是为什么搜索到一个结点与它邻接的结点如果已经搜索过是以min(low[x],dfn[y])来更新它的low[x]而不是以min(low[x],low[y])。不过姑且用用模板。第四题还没写，因为不会LCA的内容，其他的题照常有时间就补。<br>下一场专题考虑选dp，因为最近刚上青名TUT，感觉cf偏思维，所以dp啥的就很重要，然而我背包模型的都不是很会。<br>之后的图论专题大概会选二分图吧。希望不懒。</p>
+<a id="more"></a>
+<h2 id="Network-of-Schools"><a href="#Network-of-Schools" class="headerlink" title="Network of Schools"></a>Network of Schools</h2><p><strong>题目:<a href="https://vjudge.net/problem/POJ-1236" target="_blank" rel="noopener">POJ-1236</a></strong></p>
+<p>tarjan强连通分量缩点，subtask1其实就是求缩点后入度为1的点个数，从这些点开始遍历便能访问到所有结点了。<br>subtask2是求max（入度为0的点个数，入度为1的点个数），首尾相连。</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+#include&lt;vector&gt;
+#define maxn 105
+#include&lt;stack&gt;
+stack&lt;int&gt; S;
+vector&lt;int&gt; edge[maxn];
+int dfn[maxn];
+int low[maxn];
+int sp[maxn];
+int mark=0,p=0;
+bool added[maxn][maxn];
+int ru[maxn];int chu[maxn];
+
+void tarjan(int x)
+{
+    if(dfn[x]) return ;
+    dfn[x]=++p;
+    low[x]=dfn[x];
+    S.push(x);
+    for(int i=0;i&lt;edge[x].size();i++)
+    {
+        int y=edge[x][i];
+        if(!dfn[y]){
+            tarjan(y);
+            low[x]=min(low[x],low[y]);
+        }else if(!sp[y]){
+            low[x]=min(low[x],dfn[y]);
+        }
+    }
+    if(dfn[x]==low[x])
+    {
+        mark++;
+        int n=S.top();
+        while(dfn[n]!=low[n])
+        {
+            sp[n]=mark;
+            S.pop();n=S.top();
+        }
+        sp[n]=mark;S.pop();
+    }
+}
+
+int main()
+{
+    int N;
+    cin&gt;&gt;N;
+    for(int i=1;i&lt;=N;i++)
+    {
+        int j;
+        while(cin&gt;&gt;j)
+        {
+            if(j==0)
+            break;
+            edge[i].push_back(j); 
+        }
+    }
+    for(int i=1;i&lt;=N;i++)
+    tarjan(i);
+    for(int i=1;i&lt;=N;i++)
+    {
+        int x,y;
+        for(int j=0;j&lt;edge[i].size();j++)
+        {
+            x=sp[i];y=sp[edge[i][j]];
+            if(x!=y &amp;&amp; !added[x][y])
+            {
+                added[x][y]=true;
+                ru[y]++;chu[x]++;
+            }
+        }
+    }
+    int c=0,r=0;
+    for(int i=1;i&lt;=mark;i++)
+    {
+        if(ru[i]==0)
+        r++;
+        if(chu[i]==0)
+        c++;
+    }
+    cout&lt;&lt;r&lt;&lt;endl;
+    if(mark!=1)
+    cout&lt;&lt;max(r,c)&lt;&lt;endl;
+    else cout&lt;&lt;0&lt;&lt;endl;
+}     </code></pre><h2 id="Network"><a href="#Network" class="headerlink" title="Network"></a>Network</h2><p><strong>题目:<a href="https://vjudge.net/problem/UVA-315" target="_blank" rel="noopener">UVA-315</a></strong></p>
+<p>这题的读入好恶心啊，有向图和无向图的tarjan区别在于无向图访问访问过的结点时不是看它是否在栈中而只是判断一下是不是它的父节点。这题调了超久。<br>割点的模板，对于根节点割点的条件为有2棵以上的子树。对于非根结点：low[v]&gt;=dfn[u]</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+#define maxn 105
+#include&lt;vector&gt;
+vector&lt;int&gt; G[maxn];    
+int dfn[maxn];
+int low[maxn];
+int mark=0;
+bool cnt[maxn];
+
+void tarjan(int x,int pa)
+{
+    if(dfn[x]) return ;
+    int child = 0;
+    dfn[x] = ++mark; 
+    low[x] = dfn[x];
+    for(int i = 0; i &lt; G[x].size(); i++)
+    {
+        int y = G[x][i];
+        if(!dfn[y]){
+            tarjan(y,x);
+            low[x] = min(low[x],low[y]);
+            child ++;
+            if(pa &amp;&amp; dfn[x] &lt;= low[y])
+            cnt[x] = true;
+        }else if(y != pa)
+        {
+            low[x] = min(low[x],dfn[y]);
+        }
+
+    }    
+    if(!pa &amp;&amp; child &gt;= 2 )
+    cnt[x] =true;
+}
+
+int main()
+{
+    int N;
+    int a,b;
+    while(cin &gt;&gt; N,N)
+    {
+        while(cin &gt;&gt; a, a){
+            while(getchar()!=&apos;\n&apos;){
+                cin &gt;&gt; b;
+                G[a].push_back(b);
+                G[b].push_back(a);
+            }
+        }
+        tarjan(1,0);
+        int ans = 0;
+        for(int i = 1;i &lt;= N; i++)
+        {
+            if(cnt[i])
+            ans++;
+        }
+        cout&lt;&lt;ans&lt;&lt;endl;
+        for(int i = 1;i &lt;= N;i++)
+        {
+            G[i].clear();
+            dfn[i] = low[i] = cnt[i] = 0;
+        }
+    }
+}</code></pre><h2 id="Critical-Links"><a href="#Critical-Links" class="headerlink" title="Critical Links"></a>Critical Links</h2><p><strong>题目:<a href="https://vjudge.net/problem/UVA-796" target="_blank" rel="noopener">UVA-796</a></strong></p>
+<p>UVA的题怎么读入都这么非主流呢，而且这题还不给数据范围。<br>这题算是桥的模板题，先缩点，然后边的两边的点属于不同的双连通份量，那么这个边就是桥。<br>缩点后就是一个树，每条边都是一个桥啦。</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+#include&lt;vector&gt;
+#define maxn 11000
+#include&lt;stack&gt;
+#include&lt;algorithm&gt;
+vector&lt;int&gt; G[maxn];
+struct node{
+    int u;int v;
+}edge[maxn*10];
+int dfn[maxn];
+int low[maxn];
+int sp[maxn];
+int father[maxn];
+int p=0,mark=0;
+stack&lt;int&gt; S;
+
+int cmp(node a,node b)
+{
+    if(a.u==b.u)
+    return a.v&lt;b.v;
+    else return a.u&lt;b.u;
+}
+
+void tarjan(int x)
+{
+    if(dfn[x]) return ;
+    dfn[x]=++p;low[x]=dfn[x];
+    S.push(x);
+    for(int i = 0; i &lt; G[x].size(); i ++)
+    {
+        int v=G[x][i];
+        if(!dfn[v])
+        {
+            father[v]=x;
+            tarjan(v); low[x] = min(low[x], low[v]);
+        }
+        else if(v != father[x]) 
+        low[x] = min(low[x] ,dfn[v]);
+    }
+    if(dfn[x] == low[x])
+    {
+        mark++;
+        int m = S.top();
+        while(dfn[m] != low[m])
+        {
+            sp[m]=mark;
+            S.pop(); m = S.top();
+        }
+        sp[m] = mark; S.pop();
+    }
+}
+
+int main()
+{
+    int t,res; 
+    while(scanf(&quot;%d&quot;,&amp;t)!=EOF)
+    {    
+        res=0;mark=0;p=0;
+        for(int ben = 1;ben &lt;= t; ben ++)
+        {
+            int n,m,q;
+            scanf(&quot;%d (%d)&quot;,&amp;n,&amp;q);
+            for(int i = 1;i &lt;= q;i++)
+            {
+                cin&gt;&gt;m;
+                G[n].push_back(m);
+                if(n&lt;m)
+                {
+                    edge[++res].u = n;
+                    edge[res].v = m; 
+                } 
+            }        
+        }
+        for(int i = 0; i &lt; t; i ++)
+        tarjan(i);
+        int ans=0;
+        for(int i = 1; i &lt;= res; i++)
+        {
+            int u = edge[i].u;
+            int v = edge[i].v;
+            int x = sp[u];
+            int y = sp[v];
+            if( x != y )
+            {
+                edge[++ans].u = u;
+                edge[ans].v = v;        
+            }
+        }
+        sort(edge+1,edge+1+ans,cmp);
+        cout&lt;&lt;ans&lt;&lt;&quot; critical links&quot;&lt;&lt;endl;
+        for(int i=1;i &lt;= ans;i++)
+        {
+            cout&lt;&lt;edge[i].u&lt;&lt;&quot; - &quot;&lt;&lt;edge[i].v&lt;&lt;endl;
+        }
+        cout&lt;&lt;endl;
+        for(int i=0;i &lt; t;i++)
+        {
+            G[i].clear();
+            dfn[i]=0;
+            sp[i]=0;
+            father[i]=0;
+        }
+    }
+} </code></pre><h2 id="Redundant-Paths"><a href="#Redundant-Paths" class="headerlink" title="Redundant Paths"></a>Redundant Paths</h2><p><strong>题目:<a href="https://vjudge.net/problem/POJ-3177" target="_blank" rel="noopener">POJ-3177</a></strong></p>
+<p>同样是桥的模板题</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+#include&lt;vector&gt;
+#define maxn 5005
+#include&lt;stack&gt;
+vector&lt;int&gt; G[maxn];
+int dfn[maxn];
+int low[maxn];
+bool added[maxn][maxn];
+int sp[maxn];
+int p=0,mark=0;
+stack&lt;int&gt; S;
+struct node
+{
+    int u;
+    int v;
+}edge[10005];
+bool leaf[maxn];
+int res[maxn];
+
+void tarjan(int x,int pa)
+{
+    if(dfn[x]) return ;
+    dfn[x] = ++p;low[x] = dfn[x];
+    S.push(x);
+    for(int i = 0; i &lt; G[x].size(); i++)
+    {
+        int y = G[x][i];
+        if(!dfn[y])
+        {
+            tarjan(y,x);
+            low[x] = min(low[x],low[y]);
+        }
+        else if(y!=pa)
+        {
+            low[x] = min(low[x], dfn[y]);
+        }
+    }
+    if(dfn[x] == low[x])
+    {
+        mark++;
+        int n = S.top();
+        while(dfn[n] != low[n])
+        {
+            sp[n] = mark;
+            S.pop(); n = S.top();
+        }
+        sp[n] = mark;S.pop();
+    }
+}
+
+int main()
+{
+    int F,R;
+    while(cin&gt;&gt;F&gt;&gt;R)
+    {
+    p = 0; mark = 0;
+    for(int i = 1; i &lt;= R; i++)
+    {
+        int u,v;
+        cin&gt;&gt; u &gt;&gt; v;
+        G[u].push_back(v);
+        G[v].push_back(u);
+        edge[i].u = u;
+        edge[i].v = v;  
+    }
+    tarjan(1,0);
+    for(int i = 1;i &lt;= R;i++)
+    {
+        int x = sp[edge[i].u];
+        int y = sp[edge[i].v];
+        if(x == y) continue;
+        if(!res[x]){
+            res[x] = y; leaf[x] = true;
+        } else if(res[x] != y)
+        leaf[x] = false;
+        if(!res[y]){
+            res[y] = x; leaf[y] = true;
+        } else if(res[y] != x)
+        leaf[y] = false;
+    }
+    int ans=0;
+    for(int i = 1;i&lt;= mark;i++)
+    {
+        if(leaf[i]==true)
+        ans++;
+        leaf[i] = false;
+        res [i] = 0;
+    }
+    ans = (ans+1)/2;
+    cout &lt;&lt; ans &lt;&lt; endl;
+    for(int i=1;i&lt;=F;i++)
+    {
+        G[i].clear();
+        dfn[i] = 0;
+        low[i] = 0;
+        sp[i] = 0;
+    }
+    }
+}</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">动漫</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/01/22/%E6%B5%85%E8%B0%88jojo%E4%BA%BA%E6%B0%94%E5%8F%8D%E6%B4%BE-%E6%9D%9C%E7%8E%8B%E7%94%BA%E7%9A%84%E6%99%AE%E9%80%9A%E4%B8%8A%E7%8F%AD%E6%97%8F%E2%80%9D/" class="archive-article-date">
-  	<time datetime="2020-01-22T06:47:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/01/22/%E6%B5%85%E8%B0%88jojo%E4%BA%BA%E6%B0%94%E5%8F%8D%E6%B4%BE-%E6%9D%9C%E7%8E%8B%E7%94%BA%E7%9A%84%E6%99%AE%E9%80%9A%E4%B8%8A%E7%8F%AD%E6%97%8F%E2%80%9D/">浅谈jojo人气反派---杜王町的普通上班族”</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ACM</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">动漫</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">kuangbin带你飞</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://fIamingo.github.io/ub.io/2020/03/29/kuangbin%E5%B8%A6%E4%BD%A0%E9%A3%9E-%E4%B8%93%E9%A2%98%E4%B9%9D-%E8%BF%9E%E9%80%9A%E5%9B%BE/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2020/03/22/%E6%B8%B8%E6%88%8F%E6%97%A5%E5%BF%97-%E7%94%9F%E5%8C%96%E5%A5%87%E5%85%B5%EF%BC%9A%E6%97%A0%E9%99%90/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">[游戏日志] 生化奇兵：无限（通关前持续更新）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Network-of-Schools"><span class="toc-number">2.</span> <span class="toc-text">Network of Schools</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Network"><span class="toc-number">3.</span> <span class="toc-text">Network</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Critical-Links"><span class="toc-number">4.</span> <span class="toc-text">Critical Links</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redundant-Paths"><span class="toc-number">5.</span> <span class="toc-text">Redundant Paths</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -292,9 +734,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
