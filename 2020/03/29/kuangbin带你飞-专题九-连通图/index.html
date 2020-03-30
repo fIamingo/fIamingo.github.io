@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="http://fIamingo.github.io">
   <title>[kuangbin带你飞] 专题九 连通图 | flamingoo的猫窝</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言实话实说这专题感觉难度来了，虽然做的几个可能都是模板题，但是它的模板现在我也只是会写了，写也可能调试很久，然后并不能完全理解。最不能理解的就是为什么搜索到一个结点与它邻接的结点如果已经搜索过是以min(low[x],dfn[y])来更新它的low[x]而不是以min(low[x],low[y])。不过姑且用用模板。第四题还没写，因为不会LCA的内容，其他的题照常有时间就补。下一场专题考虑选dp">
+  <meta name="description" content="前言实话实说这专题感觉难度来了，虽然做的几个可能都是模板题，但是它的模板现在我也只是会写了，写也可能调试很久，然后并不能完全理解。最不能理解的就是为什么搜索到一个结点与它邻接的结点如果已经搜索过是以min(low[x],dfn[y])来更新它的low[x]而不是以min(low[x],low[y])。不过姑且用用模板。第四题还没写（已补），因为不会LCA的内容，其他的题照常有时间就补。下一场专题考">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[kuangbin带你飞] 专题九 连通图">
 <meta property="og:url" content="http://fiamingo.github.io/2020/03/29/kuangbin%E5%B8%A6%E4%BD%A0%E9%A3%9E-%E4%B8%93%E9%A2%98%E4%B9%9D-%E8%BF%9E%E9%80%9A%E5%9B%BE/index.html">
 <meta property="og:site_name" content="flamingoo的猫窝">
-<meta property="og:description" content="前言实话实说这专题感觉难度来了，虽然做的几个可能都是模板题，但是它的模板现在我也只是会写了，写也可能调试很久，然后并不能完全理解。最不能理解的就是为什么搜索到一个结点与它邻接的结点如果已经搜索过是以min(low[x],dfn[y])来更新它的low[x]而不是以min(low[x],low[y])。不过姑且用用模板。第四题还没写，因为不会LCA的内容，其他的题照常有时间就补。下一场专题考虑选dp">
+<meta property="og:description" content="前言实话实说这专题感觉难度来了，虽然做的几个可能都是模板题，但是它的模板现在我也只是会写了，写也可能调试很久，然后并不能完全理解。最不能理解的就是为什么搜索到一个结点与它邻接的结点如果已经搜索过是以min(low[x],dfn[y])来更新它的low[x]而不是以min(low[x],low[y])。不过姑且用用模板。第四题还没写（已补），因为不会LCA的内容，其他的题照常有时间就补。下一场专题考">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-03-29T12:27:44.000Z">
-<meta property="article:modified_time" content="2020-03-29T13:01:27.921Z">
+<meta property="article:modified_time" content="2020-03-30T05:50:38.253Z">
 <meta property="article:author" content="fIamingo">
 <meta property="article:tag" content="ACM">
 <meta property="article:tag" content="算法">
@@ -197,7 +197,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>实话实说这专题感觉难度来了，虽然做的几个可能都是模板题，但是它的模板现在我也只是会写了，写也可能调试很久，然后并不能完全理解。最不能理解的就是为什么搜索到一个结点与它邻接的结点如果已经搜索过是以min(low[x],dfn[y])来更新它的low[x]而不是以min(low[x],low[y])。不过姑且用用模板。第四题还没写，因为不会LCA的内容，其他的题照常有时间就补。<br>下一场专题考虑选dp，因为最近刚上青名TUT，感觉cf偏思维，所以dp啥的就很重要，然而我背包模型的都不是很会。<br>之后的图论专题大概会选二分图吧。希望不懒。</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>实话实说这专题感觉难度来了，虽然做的几个可能都是模板题，但是它的模板现在我也只是会写了，写也可能调试很久，然后并不能完全理解。最不能理解的就是为什么搜索到一个结点与它邻接的结点如果已经搜索过是以min(low[x],dfn[y])来更新它的low[x]而不是以min(low[x],low[y])。不过姑且用用模板。第四题还没写（已补），因为不会LCA的内容，其他的题照常有时间就补。<br>下一场专题考虑选dp，因为最近刚上青名TUT，感觉cf偏思维，所以dp啥的就很重要，然而我背包模型的都不是很会。<br>之后的图论专题大概会选二分图吧。希望不懒。</p>
 <a id="more"></a>
 <h2 id="Network-of-Schools"><a href="#Network-of-Schools" class="headerlink" title="Network of Schools"></a>Network of Schools</h2><p><strong>题目:<a href="https://vjudge.net/problem/POJ-1236" target="_blank" rel="noopener">POJ-1236</a></strong></p>
 <p>tarjan强连通分量缩点，subtask1其实就是求缩点后入度为1的点个数，从这些点开始遍历便能访问到所有结点了。<br>subtask2是求max（入度为0的点个数，入度为1的点个数），首尾相连。</p>
@@ -556,7 +556,102 @@ int main()
         sp[i] = 0;
     }
     }
-}</code></pre>
+}</code></pre><h2 id="Redundant-Paths-1"><a href="#Redundant-Paths-1" class="headerlink" title="Redundant Paths"></a>Redundant Paths</h2><p><strong>题目:<a href="https://vjudge.net/problem/POJ-3694" target="_blank" rel="noopener">POJ-3694</a></strong></p>
+<p>tarjan+桥+LCA，在tranjan的一遍dfs中把桥的数量数出来，并且判断哪些边是桥，然后后面加边的时候，两点之间就有一个环，把换上的所有桥换成正常边，并且更新图中桥的数量。有了dfn数组还挺好得到LCA的。（话说tarjan求LCA不是离线的吗）</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+#include&lt;vector&gt;
+#define maxn 100005
+vector&lt;int&gt; G[maxn];
+bool cnt[maxn];
+int dfn[maxn];
+int low[maxn];
+int pre[maxn];
+int p,ans;
+
+void tarjan(int x,int pa)
+{
+    if(dfn[x]) return ;
+    dfn[x] = low[x] = ++p;
+    for(int i = 0;i &lt; G[x].size(); i++)
+    {
+        int y = G[x][i];
+        if(!dfn[y])
+        {
+            pre[y] = x;
+            tarjan(y,x);
+            low[x] = min(low[x],low[y]);
+            if(low[y] &gt; dfn[x])
+            {
+                ans++;
+                cnt[y] = true;
+            }
+        }
+        else if(pa != y)
+        low[x] = min(low[x],dfn[y]);
+    } 
+}
+
+void LCA(int u,int v)
+{
+    if(dfn[u] &lt; dfn[v]) swap(u,v);
+    while(dfn[u] &gt; dfn[v])
+    {
+        if(cnt[u]) {
+            cnt[u] = false;
+            ans--;
+        }
+        u = pre[u];
+    }
+    if(dfn[u] == dfn[v]) return ;
+    else while(dfn[v] &gt; dfn[u])
+    {
+        if(cnt[v]){
+            cnt[v] = false;
+            ans--;
+        }
+        v = pre[v];
+    }
+    return ;
+}
+
+int main()
+{
+    int N,M,times = 0;
+    while(cin &gt;&gt; N &gt;&gt; M)
+    {
+
+        if(N == 0 &amp;&amp; M == 0)
+        break;
+        p = 0;
+        ans = 0;
+        for(int i = 1;i &lt;= M ; i++)
+        {
+            int A,B;
+            cin &gt;&gt; A &gt;&gt; B;
+            G[A].push_back(B);
+            G[B].push_back(A);  
+        }
+        tarjan(1,0);
+        int t;
+        cin &gt;&gt; t;
+        cout &lt;&lt; &quot;Case &quot;&lt;&lt;++times&lt;&lt;&quot;:&quot;&lt;&lt;endl;
+        for(int i = 1;i &lt;= t; i++)
+        {
+            int u,v;
+            cin &gt;&gt; u &gt;&gt; v;
+            LCA(u,v);
+            cout &lt;&lt; ans &lt;&lt; endl; 
+        }
+        cout &lt;&lt; endl;
+        for(int i = 1;i &lt;= N; i++)
+        {
+            dfn[i] = low[i] = pre[i] = 0;
+            cnt[i] = false;
+            G[i].clear();
+        }
+    }
+}     </code></pre>
       
 
       
@@ -676,7 +771,7 @@ int main()
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Network-of-Schools"><span class="toc-number">2.</span> <span class="toc-text">Network of Schools</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Network"><span class="toc-number">3.</span> <span class="toc-text">Network</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Critical-Links"><span class="toc-number">4.</span> <span class="toc-text">Critical Links</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redundant-Paths"><span class="toc-number">5.</span> <span class="toc-text">Redundant Paths</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Network-of-Schools"><span class="toc-number">2.</span> <span class="toc-text">Network of Schools</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Network"><span class="toc-number">3.</span> <span class="toc-text">Network</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Critical-Links"><span class="toc-number">4.</span> <span class="toc-text">Critical Links</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redundant-Paths"><span class="toc-number">5.</span> <span class="toc-text">Redundant Paths</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redundant-Paths-1"><span class="toc-number">6.</span> <span class="toc-text">Redundant Paths</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -809,14 +904,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">计图</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
@@ -829,15 +916,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">计图</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">动漫</a>
+                <a href="javascript:void(0)" class="js-tag color4">C++</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">C++</a>
+                <a href="javascript:void(0)" class="js-tag color3">动漫</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -869,11 +964,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">CF</a>
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+                <a href="javascript:void(0)" class="js-tag color3">CF</a>
               </li>
             
             <div class="clearfix"></div>
