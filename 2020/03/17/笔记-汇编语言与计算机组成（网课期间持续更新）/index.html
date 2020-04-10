@@ -18,7 +18,7 @@
 <meta property="og:image" content="http://fiamingo.github.io/2020/03/17/%E7%AC%94%E8%AE%B0-%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%EF%BC%88%E7%BD%91%E8%AF%BE%E6%9C%9F%E9%97%B4%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/QQ%E5%9B%BE%E7%89%8720200319102442.png">
 <meta property="og:image" content="http://fiamingo.github.io/2020/03/17/%E7%AC%94%E8%AE%B0-%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%EF%BC%88%E7%BD%91%E8%AF%BE%E6%9C%9F%E9%97%B4%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/QQ%E5%9B%BE%E7%89%8720200319104333.png">
 <meta property="article:published_time" content="2020-03-17T08:47:54.000Z">
-<meta property="article:modified_time" content="2020-03-23T02:34:37.960Z">
+<meta property="article:modified_time" content="2020-04-06T02:00:11.522Z">
 <meta property="article:author" content="fIamingo">
 <meta property="article:tag" content="汇编">
 <meta property="article:tag" content="机组">
@@ -227,6 +227,83 @@
 <p>4.指令指针寄存器<br>IP:指令指针寄存器，存放即将执行指令的偏移地址。</p>
 <p>5.指令指针寄存器<br>·FLAGS：存放CPU的两类标志。<br>·状态标志 反应处理器当前的状态，如有无溢出，有无进位等：CF（无符号） PF AF ZF（判断0） SF OF（有符号）</p>
 <h3 id="2-3-2-CS和IP"><a href="#2-3-2-CS和IP" class="headerlink" title="2.3.2 CS和IP"></a>2.3.2 CS和IP</h3><h1 id="第三章汇编语言与实验"><a href="#第三章汇编语言与实验" class="headerlink" title="第三章汇编语言与实验"></a>第三章汇编语言与实验</h1><h3 id="3-1-1汇编语言的系统工作文件"><a href="#3-1-1汇编语言的系统工作文件" class="headerlink" title="3.1.1汇编语言的系统工作文件"></a>3.1.1汇编语言的系统工作文件</h3><p>·使用编辑程序边集源程序文件（.asm）<br>·使用汇编程序（MASM）将源程序文件（.asm）汇编成目标文件（.obj）<br>·使用连接程序（LINK），将目标文件（.obj）连接成可执行文件（.exe）<br>·使用debug调试程序</p>
+<h3 id="3-1-3常用的DOS命令"><a href="#3-1-3常用的DOS命令" class="headerlink" title="3.1.3常用的DOS命令"></a>3.1.3常用的DOS命令</h3><p>1.盘:   ;选择盘符<br>2.CD    ;选择目录<br>3.DIR   ;显示目录和文件<br>4.REN   ;改变文件名<br>5.COPY  ;复制文件<br>6.TYPE  ;显示文本文件的内容<br>7.HELP  ;显示命令格式和用法</p>
+<p>例3.1单个字符的键盘输入与显示输出程序</p>
+<pre><code>code segment
+    assume  cs:code     ;代码段，cs代表段寄存器，段地址为code开头的地址
+start:mov ah,1            ;start是偏移地址起点，1号命令输入字符
+      int 21h
+      mov dl,al
+      add dl,1
+      mov ah,2           ;2号命令显示字符
+      int 21h
+      mov ah,4ch         ;4ch停机
+      int 21h
+code  ends
+      end start         ；偏移地址回去初始时start的位置</code></pre><h3 id="3-3程序实例的上机步骤"><a href="#3-3程序实例的上机步骤" class="headerlink" title="3.3程序实例的上机步骤"></a>3.3程序实例的上机步骤</h3><p>编辑–建立ASM源程序文件<br>汇编–产生OBJ二进制目标文件<br>连接–产生EXE可执行文件</p>
+<h4 id="3-3-6-程序的调试"><a href="#3-3-6-程序的调试" class="headerlink" title="3.3.6 程序的调试"></a>3.3.6 程序的调试</h4><p>调试程序DEBUG.EXE是windows自带的<br>DEBUG Hello.EXE<br>“-“DEBUG命令提示符</p>
+<p><strong>1.反汇编命令</strong><br>·格式1： U 地址<br>地址用偏移地址或者段地址：偏移地址表示。<br><strong>2.运行程序命令G</strong><br>·格式：G[=起始地址][终止地址]<br><strong>3.跟踪程序命令T</strong><br>·格式：T[=起始地址]<br>单步执行程序 ，在指令执行中逐步进行跟踪，若省去地址，则从CS:IP现行值执行。<br>·格式2：T[=起始地址][指令条数]</p>
+<p><strong>4.单步执行程序指令P</strong><br>P命令，用以执行循环、重复的字符串指令、软件中断或子例程。</p>
+<p><strong>5.退出DEUBG</strong><br>Q命令</p>
+<h3 id="3-5-几个常用的DOS系统功能调用"><a href="#3-5-几个常用的DOS系统功能调用" class="headerlink" title="3.5 几个常用的DOS系统功能调用"></a>3.5 几个常用的DOS系统功能调用</h3><p>21H号终端是DOS提供给用户的用于调用系统功能的终端，它有近百个功能供用户选择使用<br>（1）在AH寄存器中设置系统功能调用号<br>（2）在指定寄存器中设置入口参数<br>（3）执行指令INT 21H，实现中断服务程序的功能调用<br>（4）根据出口参数分析功能调用执行情况</p>
+<p><strong>1.键盘输入一个字符并回显</strong><br>·DOS功能调用 INT 21H<br>-功能号：AH=01H<br>-出口参数：AL=输入字符的ASCII码</p>
+<p><strong>2.显示一个字符</strong><br>-功能号：AH=02H<br>-入口参数：DL=输出字符<br>功能：在显示器当前光标位置显示给定的字符，光标右移一个字符位置</p>
+<p><strong>3.显示字符串</strong><br>-功能号：AH=09H<br>入口参数：DS:DX=欲显示字符串在主存中的首地址；字符串应以$(24H)结束<br>功能：显示由DS：DX指定的字符串<br>DS是数据段段地址，DX是偏移地址</p>
+<p><strong>4.键盘输入到缓冲区</strong></p>
+<p><strong>5.结束程序返回DOS</strong><br>AH=4CH<br>入口参数：AL=返回码<br>功能：结束程序返回DOS。程序终止地址的判断。</p>
+<p>MOV AH, 4CH<br>INT 21H</p>
+<h1 id="第4章-操作数的寻址方法（寻找opd）"><a href="#第4章-操作数的寻址方法（寻找opd）" class="headerlink" title="第4章 操作数的寻址方法（寻找opd）"></a>第4章 操作数的寻址方法（寻找opd）</h1><p>opc+opd</p>
+<p>任何一个运行的程序至少在内存中<br>地址是内存的存储单元编号。<br>20位的物理地址，可以分为16位的段地址和16位的偏移地址（有效地址）。<br>X86的汇编，内存的大小是1MB，因此物理地址是20位的，以字节编址。<br>所有的物理地址，有效地址，偏移地址都是针对内存单元的。<br>寄存器的地址就是寄存器的名字。</p>
+<p>一条指令如何在底层运行：<br>1）程序段一定存储在内存中。<br>2）从第一条指令开始：CS:IP<br>3）取指令，译码器（取操作数），执行。<br>当取操作数之前，指令已从内存中取出。</p>
+<p>·计算机中的指令由操作码和操作数组成。<br>·操作数字段可以有一个、两个或三个，通常称为一地址、二地址或三地址指令。<br>·二地址指令中两个操作数分别称为源操作数和目的操作数。<br>·所谓寻址方式就是指令中寻找操作数的方式。</p>
+<h2 id="4-1立即寻址方法（无需再找，数据在代码段中）"><a href="#4-1立即寻址方法（无需再找，数据在代码段中）" class="headerlink" title="4.1立即寻址方法（无需再找，数据在代码段中）"></a>4.1立即寻址方法（无需再找，数据在代码段中）</h2><p>·立即寻址方式<br>操作数就在指令中，紧跟在操作码之后，操作数作为指令的一部分存放在代码段。<br>无需再找，无数据段的地址。</p>
+<p>eg.MOV AL,6H<br>执行完此指令后(AL)=06H<br>6为立即数。</p>
+<pre><code>MOV AX,12AFH
+AX=12AFX，即AH=12H,AL=AFH</code></pre><p>·执行时无需去内存取数，因此称为立即数<br>·主要用于寄存器赋初值<br>·立即数只能作为源操作数，并且长度与目的操作数一致。</p>
+<h2 id="4-2寄存器寻址方法（A是寄存器名）"><a href="#4-2寄存器寻址方法（A是寄存器名）" class="headerlink" title="4.2寄存器寻址方法（A是寄存器名）"></a>4.2寄存器寻址方法（A是寄存器名）</h2><p>[无需访问内存，opd在寄存器中]<br>操作数就是寄存器中的值。指令中给出寄存器名。<br>eg. MOV AX.BX<br>指令执行后，AX=BX,BX保持不变。<br>·以上两种寻址方式都与存储器无关。<br>·以下各种寻址方式的操作数都在存储器中。<br>·偏移地址也称为有效地址（EA）</p>
+<h2 id="4-3-直接寻址方式-指令中的A就等于opd的EA"><a href="#4-3-直接寻址方式-指令中的A就等于opd的EA" class="headerlink" title="4.3 直接寻址方式(指令中的A就等于opd的EA)"></a>4.3 直接寻址方式(指令中的A就等于opd的EA)</h2><p>·操作数的有效地址EA就在指令中。机器默认段地址在DS中。<br>按照DS：EA去内存中取数<br>（1）存储器读操作<br>MOV AX,DS:[2000H]<br>该指令表示从数据段的2000H单元读出一个字送入AX<br>其中(DS)=1500H,(17000H)=31H,(17001H)=65H,(AX)=1020H。</p>
+<p>（2）存储读写操作<br>（3）符号地址<br>直接寻址方式除了用数值作为有效地址之外，还可以用符号地址的形式，为存储单元定义一个名字，该名字就是符号地址。如果把存储单元看成变量。<br>（4）段前缀</p>
+<h2 id="4-4寄存器间接寻址方式"><a href="#4-4寄存器间接寻址方式" class="headerlink" title="4.4寄存器间接寻址方式"></a>4.4寄存器间接寻址方式</h2><p>·操作数的有效地址在寄存器中，只允许使用BX,BP,SI和DI寄存器。<br>A是寄存器名，EA=（Reg）内容<br>物理地址 = 10H×(DS)+(BX)<br>物理地址 = 10H×(DS)+(SI)<br>物理地址 = 10H×(DS)+(DI)<br>物理地址 = 10H×(SS)+(BP)</p>
+<pre><code>MOV AX,[BX]
+MOV SS:[DI],AX</code></pre><h2 id="4-5寄存器相对寻址方式"><a href="#4-5寄存器相对寻址方式" class="headerlink" title="4.5寄存器相对寻址方式"></a>4.5寄存器相对寻址方式</h2><p>·操作数的有效地址是一个寄存器和位移量之和<br>A是寄存器名+位移量<br>EA = （寄存器）内容+位移量<br>物理地址 = 10H × (DS) + (BX) + 8(16)位位移量<br>物理地址 = 10H × (DS) + (si) + 8(16)<br>eg. MOV AX,TOP[SI]<br>以上指令TOP为符号地址，即位移量。</p>
+<h2 id="4-6基址变址方式"><a href="#4-6基址变址方式" class="headerlink" title="4.6基址变址方式"></a>4.6基址变址方式</h2><p>·操作数的有效地址是一个基址寄存器和一个变址寄存器的内容之和<br>基址寄存器BX和BP，变址寄存器SI和DI<br>A是两个寄存器名<br>EA=（寄存器1）内容+（寄存器2）内容<br>默认段寄存器搭配和寄存器间接寻址方式一样</p>
+<pre><code>MOV AX,[BX+DI]</code></pre><h2 id="4-7相对基址变址寻址方式"><a href="#4-7相对基址变址寻址方式" class="headerlink" title="4.7相对基址变址寻址方式"></a>4.7相对基址变址寻址方式</h2><p>·操作数的有效地址是一个基址寄存器和一个变址寄存器以及一个位移量之和。<br>EA=（寄存器1）内容+（寄存器2）内容+相对量</p>
+<pre><code>MOV AX,MASK[BX][SI]    </code></pre><h1 id="第5章-常用指令系统"><a href="#第5章-常用指令系统" class="headerlink" title="第5章 常用指令系统"></a>第5章 常用指令系统</h1><p>·80×86汇编语言指令的一般格式<br>[标号:] 指令助记符 [操作数] [;注释]<br>·[]中的内容为可选项<br>·例如<br>START: MOV AX, DATA  ;DATA送AX<br>·标号：符号地址，表示指令在内存中的位置，标号后应加冒号:。<br>·指令助记符：指令名称，是指令功能的英文缩写。<br>·操作数：指令要操作的数据或数据所在的地址。寄存器，常量，变量，表达式。<br>·注释：每行以分号“;”开头，汇编程序不处理。<br>·8086指令系统可以分为5组<br>（1）数据传送指令<br>（2）算术运算指令<br>（3）逻辑指令与移位指令<br>（4）串操作指令<br>（5）程序转移指令</p>
+<h2 id="5-1数据传送指令"><a href="#5-1数据传送指令" class="headerlink" title="5.1数据传送指令"></a>5.1数据传送指令</h2><h3 id="5-1-1通用数据传送指令"><a href="#5-1-1通用数据传送指令" class="headerlink" title="5.1.1通用数据传送指令"></a>5.1.1通用数据传送指令</h3><p>（1）MOV 传送指令<br>格式： MOV DST,SRC<br>操作：(DST)←(SRC)<br>DST表示目的操作数，SRC表示源操作数。<br>·功能：将源操作数传送到目的操作数。</p>
+<p>双操作数指令的规定<br>·源操作数与目的操作数的长度必须一致</p>
+<pre><code>MOV [0002],5 ;长度未知，是错的，至少一个长度是明确的
+MOV w/bptr[0002], 5        ;内存有前缀时可以
+MOV AX,BL     ;长度不一致
+
+MOV BYTE PTR[BX],0
+MOV WORD PTR[BX],0</code></pre><p>·源操作数与目的操作数不能同时为存储器<br>·目的操作数不能为CS和IP，因为CS:IP是程序当前地址<br>·目的操作数不可以是立即数。</p>
+<pre><code>MOV AX,DATA_SEG
+MOV DS,AX             ;(DS)=Data_seg,不能直接给DS赋值</code></pre><p>以下指令是错误的：</p>
+<pre><code>MOV DS,DATA_SEG
+MOV DS,ES  ;段寄存器之间不能直接传送
+MOV CS,AX
+MOV DS,1234</code></pre><p>传送变量</p>
+<pre><code>MOV BX,TABLE ;假定TABLE是16位变量
+MOV BL,TABLE ;是错误的，TABLE是16位的变量，操作长度不一致。
+MOV [BX],TABLE  ;两个操作数不能同为内存单元</code></pre><p>传送地址<br>    MOV BX,OFFSET TABLE  ;-U之后直接是取立即数<br>OFFSET为偏移地址属性操作符，通常是把变量TABLE的偏移地址送给BX。<br>以下指令是错误的</p>
+<pre><code>MOV BL OFFSET TABLE </code></pre><p>(2)PUSH进栈指令<br>格式：PUSH SRC<br>操作：(SP)←(sp)-2<br>    ((sP)+1,(SP))←(SRC)<br>堆栈：后进先出内存区，<strong>以字为单位传送</strong>，SS:SP总是指向栈顶<br>X86下，16bit，2字节</p>
+<p>(3)POP 出栈指令<br>格式 POP SRC</p>
+<pre><code>MOV BX,1234H
+PUSH BX
+POP Ax  ;把对应单元的值取出来给AX
+PUSH [2016]        ;把地址为DS:[2016]的字送往栈顶(SS:SP所指内存)
+POP [2016]    </code></pre><p>堆栈段是系统开辟的，可以不认为定义，也可以人为定义。</p>
+<p>(4)XCHG交换指令<br>格式:XCHG OPR1,OPR2<br>操作：(DPR1)←→(OPR2)<br>功能：把两个操作数互换位置<br>遵循双操作数指令的规定，但操作数不能为立即数。</p>
+<pre><code>XCHG AX,BX        ;两个寄存器长度相等
+XCHG AX,[BX]    ;AX要求[BX]也取字单元</code></pre><h3 id="5-1-2累加器专用传送指令"><a href="#5-1-2累加器专用传送指令" class="headerlink" title="5.1.2累加器专用传送指令"></a>5.1.2累加器专用传送指令</h3><p>·IN       ;从I/O端口输入<br>·OUT    ;向I/O端口输出</p>
+<p>·其中I/O端口是CPU与外设传送数据的接口，单独编址，不属于内存，端口地址范围0000~FFFFH<br>这组指令只限于AL,AX</p>
+<p>（1）IN输入指令<br>长格式：<br>IN AL,PORT(字节); 00~FFH      ;比如40H，是把40H端口的输入给AL<br>IN AX,PORT(字)</p>
+<p>短格式：IN AL,DX(字节);PORT放入DX<br>        IN AX,DX(字)</p>
+<h3 id="5-1-3-地址传送指令"><a href="#5-1-3-地址传送指令" class="headerlink" title="5.1.3 地址传送指令"></a>5.1.3 地址传送指令</h3><p>（1）LEA 有效地址送寄存器<br>·格式：LEA REG,SRC  目的操作数只能是寄存器，原操作数必须是内存。<br>·操作：REG←SRC<br>·功能：把源操作数的有效地址EA送到指定的寄存器</p>
+<pre><code>LEA BX,TABLE
+MOV BX,OFFSET TABLE ;两条指令等效，TABLE的有效地址总是16位。</code></pre><p>（2）LDS指针送寄存器和DS指令<br>·格式：LDS REG,SRC<br>·操作：REG←(SRC)<br>    DS←(SRC+2)<br>·功能：把源操作数SRC所指向的内存单元中的两个字送到指定的寄存器REG和DS。</p>
+<pre><code>LDS SI,[BX]</code></pre><p>(3)LES指针送寄存器和ES指令<br>·格式：LES REG,SRC</p>
+<h3 id="5-1-4标志寄存器传送指令"><a href="#5-1-4标志寄存器传送指令" class="headerlink" title="5.1.4标志寄存器传送指令"></a>5.1.4标志寄存器传送指令</h3><p>·LAHF  标志寄存器FLAGS的低字节送AH<br>·SAHF  AH送FLAGS的低字节<br>·PUSHF 标志进栈<br>·POPF  标志出栈<br>·以上传送类指令均不影响标志位，除SAHF，POPF外。</p>
 
       
 
@@ -352,7 +429,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#课前须知"><span class="toc-number">1.</span> <span class="toc-text">课前须知</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第一章-汇编语言基础知识"><span class="toc-number"></span> <span class="toc-text">第一章 汇编语言基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1汇编语言简介"><span class="toc-number">1.</span> <span class="toc-text">1.1汇编语言简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-1机器语言与汇编语言"><span class="toc-number">1.1.</span> <span class="toc-text">1.1.1机器语言与汇编语言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-2汇编语言的组成"><span class="toc-number">1.2.</span> <span class="toc-text">1.1.2汇编语言的组成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-3为什么要学习汇编语言"><span class="toc-number">1.3.</span> <span class="toc-text">1.1.3为什么要学习汇编语言</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2计算机数据的表示"><span class="toc-number">2.</span> <span class="toc-text">1.2计算机数据的表示</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-1-不同进位计数制及其相互转换。"><span class="toc-number">2.1.</span> <span class="toc-text">1.2.1 不同进位计数制及其相互转换。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-3-带符号数的表示（数逻讲过-就不记多了）"><span class="toc-number">3.</span> <span class="toc-text">1.2.3 带符号数的表示（数逻讲过 就不记多了）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第二章-计算机基本原理"><span class="toc-number"></span> <span class="toc-text">第二章 计算机基本原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1计算机系统组成"><span class="toc-number">1.</span> <span class="toc-text">2.1计算机系统组成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-存储器"><span class="toc-number">2.</span> <span class="toc-text">2.2 存储器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-1-16位结构的CPU"><span class="toc-number">2.1.</span> <span class="toc-text">2.2.1 16位结构的CPU</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-2-内存中字的存储"><span class="toc-number">2.2.</span> <span class="toc-text">2.2.2 内存中字的存储</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-3存储器分段"><span class="toc-number">2.3.</span> <span class="toc-text">2.2.3存储器分段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-4逻辑地址"><span class="toc-number">2.4.</span> <span class="toc-text">2.2.4逻辑地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-5CPU对内存的独写操作"><span class="toc-number">2.5.</span> <span class="toc-text">2.2.5CPU对内存的独写操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-中央处理器（CPU）中的寄存器"><span class="toc-number">3.</span> <span class="toc-text">2.3 中央处理器（CPU）中的寄存器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-1寄存器介绍"><span class="toc-number">3.1.</span> <span class="toc-text">2.3.1寄存器介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-2-CS和IP"><span class="toc-number">3.2.</span> <span class="toc-text">2.3.2 CS和IP</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第三章汇编语言与实验"><span class="toc-number"></span> <span class="toc-text">第三章汇编语言与实验</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-1汇编语言的系统工作文件"><span class="toc-number">0.1.</span> <span class="toc-text">3.1.1汇编语言的系统工作文件</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#课前须知"><span class="toc-number">1.</span> <span class="toc-text">课前须知</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第一章-汇编语言基础知识"><span class="toc-number"></span> <span class="toc-text">第一章 汇编语言基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1汇编语言简介"><span class="toc-number">1.</span> <span class="toc-text">1.1汇编语言简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-1机器语言与汇编语言"><span class="toc-number">1.1.</span> <span class="toc-text">1.1.1机器语言与汇编语言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-2汇编语言的组成"><span class="toc-number">1.2.</span> <span class="toc-text">1.1.2汇编语言的组成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-3为什么要学习汇编语言"><span class="toc-number">1.3.</span> <span class="toc-text">1.1.3为什么要学习汇编语言</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2计算机数据的表示"><span class="toc-number">2.</span> <span class="toc-text">1.2计算机数据的表示</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-1-不同进位计数制及其相互转换。"><span class="toc-number">2.1.</span> <span class="toc-text">1.2.1 不同进位计数制及其相互转换。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-3-带符号数的表示（数逻讲过-就不记多了）"><span class="toc-number">3.</span> <span class="toc-text">1.2.3 带符号数的表示（数逻讲过 就不记多了）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第二章-计算机基本原理"><span class="toc-number"></span> <span class="toc-text">第二章 计算机基本原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1计算机系统组成"><span class="toc-number">1.</span> <span class="toc-text">2.1计算机系统组成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-存储器"><span class="toc-number">2.</span> <span class="toc-text">2.2 存储器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-1-16位结构的CPU"><span class="toc-number">2.1.</span> <span class="toc-text">2.2.1 16位结构的CPU</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-2-内存中字的存储"><span class="toc-number">2.2.</span> <span class="toc-text">2.2.2 内存中字的存储</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-3存储器分段"><span class="toc-number">2.3.</span> <span class="toc-text">2.2.3存储器分段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-4逻辑地址"><span class="toc-number">2.4.</span> <span class="toc-text">2.2.4逻辑地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-5CPU对内存的独写操作"><span class="toc-number">2.5.</span> <span class="toc-text">2.2.5CPU对内存的独写操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-中央处理器（CPU）中的寄存器"><span class="toc-number">3.</span> <span class="toc-text">2.3 中央处理器（CPU）中的寄存器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-1寄存器介绍"><span class="toc-number">3.1.</span> <span class="toc-text">2.3.1寄存器介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-2-CS和IP"><span class="toc-number">3.2.</span> <span class="toc-text">2.3.2 CS和IP</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第三章汇编语言与实验"><span class="toc-number"></span> <span class="toc-text">第三章汇编语言与实验</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-1汇编语言的系统工作文件"><span class="toc-number">0.1.</span> <span class="toc-text">3.1.1汇编语言的系统工作文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-3常用的DOS命令"><span class="toc-number">0.2.</span> <span class="toc-text">3.1.3常用的DOS命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3程序实例的上机步骤"><span class="toc-number">0.3.</span> <span class="toc-text">3.3程序实例的上机步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-6-程序的调试"><span class="toc-number">0.3.1.</span> <span class="toc-text">3.3.6 程序的调试</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-几个常用的DOS系统功能调用"><span class="toc-number">0.4.</span> <span class="toc-text">3.5 几个常用的DOS系统功能调用</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第4章-操作数的寻址方法（寻找opd）"><span class="toc-number"></span> <span class="toc-text">第4章 操作数的寻址方法（寻找opd）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1立即寻址方法（无需再找，数据在代码段中）"><span class="toc-number">1.</span> <span class="toc-text">4.1立即寻址方法（无需再找，数据在代码段中）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2寄存器寻址方法（A是寄存器名）"><span class="toc-number">2.</span> <span class="toc-text">4.2寄存器寻址方法（A是寄存器名）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-直接寻址方式-指令中的A就等于opd的EA"><span class="toc-number">3.</span> <span class="toc-text">4.3 直接寻址方式(指令中的A就等于opd的EA)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4寄存器间接寻址方式"><span class="toc-number">4.</span> <span class="toc-text">4.4寄存器间接寻址方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-5寄存器相对寻址方式"><span class="toc-number">5.</span> <span class="toc-text">4.5寄存器相对寻址方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-6基址变址方式"><span class="toc-number">6.</span> <span class="toc-text">4.6基址变址方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-7相对基址变址寻址方式"><span class="toc-number">7.</span> <span class="toc-text">4.7相对基址变址寻址方式</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第5章-常用指令系统"><span class="toc-number"></span> <span class="toc-text">第5章 常用指令系统</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1数据传送指令"><span class="toc-number">1.</span> <span class="toc-text">5.1数据传送指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-1通用数据传送指令"><span class="toc-number">1.1.</span> <span class="toc-text">5.1.1通用数据传送指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-2累加器专用传送指令"><span class="toc-number">1.2.</span> <span class="toc-text">5.1.2累加器专用传送指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-3-地址传送指令"><span class="toc-number">1.3.</span> <span class="toc-text">5.1.3 地址传送指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-4标志寄存器传送指令"><span class="toc-number">1.4.</span> <span class="toc-text">5.1.4标志寄存器传送指令</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -485,19 +562,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">计图</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">日常</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">计图</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -521,15 +598,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">-ACM -算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">水</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">游戏</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -537,7 +606,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+                <a href="javascript:void(0)" class="js-tag color3">游戏</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -550,6 +619,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CF</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
             
             <div class="clearfix"></div>

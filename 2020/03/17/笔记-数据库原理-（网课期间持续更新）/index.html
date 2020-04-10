@@ -24,7 +24,7 @@
 <meta property="og:image" content="http://fiamingo.github.io/2020/03/17/%E7%AC%94%E8%AE%B0-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86-%EF%BC%88%E7%BD%91%E8%AF%BE%E6%9C%9F%E9%97%B4%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/QQ%E5%9B%BE%E7%89%8720200323095022.png">
 <meta property="og:image" content="http://fiamingo.github.io/2020/03/17/%E7%AC%94%E8%AE%B0-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86-%EF%BC%88%E7%BD%91%E8%AF%BE%E6%9C%9F%E9%97%B4%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/QQ%E5%9B%BE%E7%89%8720200330082913.png">
 <meta property="article:published_time" content="2020-03-17T08:40:21.000Z">
-<meta property="article:modified_time" content="2020-03-30T01:02:34.538Z">
+<meta property="article:modified_time" content="2020-04-06T01:23:30.820Z">
 <meta property="article:author" content="fIamingo">
 <meta property="article:tag" content="数据库">
 <meta name="twitter:card" content="summary">
@@ -272,6 +272,45 @@
 <p>保证数据的物理独立性<br>·当数据库的存储结构改变了，数据库管理员修改模式/内模式映像，使模式保持不变<br>·从而应用程序不受影响。保证了数据与程序的物理独立性。</p>
 <p>数据库模式<br>·全局逻辑结构是数据库的中心与关键<br>·独立于数据库的其他层次<br>·设计数据库模式结构时应首先确定数据库的逻辑模式<br>由DBMS统一管理和控制</p>
 <h2 id="1-4数据库系统的组成"><a href="#1-4数据库系统的组成" class="headerlink" title="1.4数据库系统的组成"></a>1.4数据库系统的组成</h2><p>数据库<br>数据库管理系统<br>应用系统<br>数据库管理员</p>
+<h1 id="关系数据库"><a href="#关系数据库" class="headerlink" title="关系数据库"></a>关系数据库</h1><p>提出关系模型的是美国IBM公司的E.F.Codd<br>·1970年提出关系数据模型<br>·之后提出了关系代数和关系演算的概念<br>·1972年提出了关系的第一、第二、第三范式<br>·1974年提出了关系的BC范式</p>
+<h2 id="2-1关系数据结构及形式化定义"><a href="#2-1关系数据结构及形式化定义" class="headerlink" title="2.1关系数据结构及形式化定义"></a>2.1关系数据结构及形式化定义</h2><h3 id="2-1-1关系"><a href="#2-1-1关系" class="headerlink" title="2.1.1关系"></a>2.1.1关系</h3><p>·单一的数据结构—关系<br>现实世界中的实体以及实体间的各种联系均用关系来表示。<br>·逻辑结构—二维表<br>从用户角度来看，关系模型中数据的逻辑结构是一张二维表。<br>·建立在集合代数的基础上</p>
+<p>1.域（Domain）<br>域是一组具有相同数据类型的值的集合。例如：<br>整数 实数<br>2.笛卡尔积（Cartesian Product）<br>给定一组域D1,D2,….DN，这些域中可以有相同的值，D1,D2,…DN的笛卡尔积为：<br>D1×D2×…×DN = （{d1,d2,…dn}|di∈Di，i=1，2，…,n）<br>所有域的所有取值的一个组合</p>
+<p>元组<br>·笛卡尔积中的每一个元素(d1,d2,…dn)叫作一个n元组<br>分量<br>笛卡尔积元素（d1,d2,…dn）中的每一个值di叫作一个分量</p>
+<p>基数<br>·若Di（i=1，2，…n）为有限集，其基数为mi（i=1，2，…,n），则Di×D2×…×Dn的基数M为：<br>M = Πmi<br>笛卡尔积的表示可以表示为一个二维表<br>表中的每行对应一个元组，表中的每一列对应一个域</p>
+<p><strong>1）关系</strong><br>D1×D2×….×Dn的子集叫作在域D1,D2,…DN上的关系<br>R（D1，D2，Dn）<br><strong>2）元组</strong><br>关系中的每个元素是关系中的元组，通常用t表示<br><strong>4）关系的表示</strong><br>关系是一个二维表，表的每行对应一个元组，表的每列对应一个域<br><strong>5）属性</strong><br>·关系中不同列可以对应相同域<br>·为了加以区分，必须对每列取一个名字，属性<br><strong>6）候选码</strong><br>若关系中的某一属性组的值能唯一的标识一个元组，则称该属性组为候选码<br>简单的情况：候选码只包含一个属性<br>全码<br>最极端的情况：关系模式的所有属性组是这个关系模式的候选码，称为全码。</p>
+<p>主码：若一个关系有多个候选码，则选定其中一个为主码<br>主属性：候选码的诸属性称为主属性。<br>笛卡尔积的某个子集才有实际含义。</p>
+<p><strong>7）三类关系</strong><br>基本关系（基本表或基表）<br>实际存在的表，是实际存储数据的逻辑表示<br>查询表<br>查询结构对应的表<br>视图表<br>由基本表或其他试图表导出的表，是虚表，不对应实际存储的数据</p>
+<p><strong>8）基本关系的形式</strong><br>①列是同质的<br>②不同的列可出自同一个域<br>·其中的每一列称为一个属性<br>·不同的属性要给予不同的属性名<br>③列的顺序无所谓，列的次序可以任意交换<br>④任意两个元组的候选码值不能相同<br>⑤行的顺序无所谓，行的次序可以任意交换<br>⑥分量必须取原子值（不可分）这是规范条件中的最基本一条</p>
+<p>3.关系（Relation）</p>
+<h3 id="2-1-2关系模式"><a href="#2-1-2关系模式" class="headerlink" title="2.1.2关系模式"></a>2.1.2关系模式</h3><p>1.什么是关系模式<br>关系模式是型<br>关系是值<br>关系模式是对关系的描述<br>·元组集合的结构<br>    属性构成<br>    属性来自的域<br>    属性与域之间的映像关系<br>·元组语义以及完整性约束条件<br>·属性间的数据依赖关系集合</p>
+<p>关系模式可以形式化的表示为：<br>R(U,D,DOM,F)<br>R:关系名<br>U：组成该关系的属性名集合<br>D：属性组U中属性来自的域<br>DOM：属性向域的映像集合<br>F：属性间的数据依赖关系集合</p>
+<p>关系模式通常可以简记为<br>R(U)或R（A1,A2,…AN）<br>R：关系名<br>A1,A2,…An：属性名</p>
+<p>关系模式<br>对关系的描述，静态的，稳定的<br>关系：关系模式在某一时刻的状态或内容<br>动态的，随时间不断变化的<br>关系模式和关系往往统称为关系</p>
+<h3 id="2-1-3关系数据库"><a href="#2-1-3关系数据库" class="headerlink" title="2.1.3关系数据库"></a>2.1.3关系数据库</h3><p>关系数据库的型域值<br>关系数据库的型：关系数据库模式对关系数据库的描述。<br>关系数据库的值：关系模式在某一时刻对应的关系的集合，简称为关系数据库。</p>
+<h3 id="2-1-4关系数据库的存储结构"><a href="#2-1-4关系数据库的存储结构" class="headerlink" title="2.1.4关系数据库的存储结构"></a>2.1.4关系数据库的存储结构</h3><p>关系数据库的逻辑结构表示：“表”<br>关系数据库的物理结构<br>一个表对应一个操作系统文件，物理结构交给操作系统完成<br>从操作系统那里申请若干个文件</p>
+<h2 id="2-2关系操作"><a href="#2-2关系操作" class="headerlink" title="2.2关系操作"></a>2.2关系操作</h2><p><strong>常用的关系操作：</strong><br>·查询：选择、投影、连接、除、并、交、差</p>
+<blockquote>
+<p>·查询的表达能力是其中最主要的部分<br>·选择、投影、并、差、笛卡尔积是5种基本操作</p>
+</blockquote>
+<p>·数据更新：插入、删除、修改</p>
+<p><strong>关系操作的特点：</strong><br>·集合操作方式：操作的对象和结果都是集合，一次一集合的方式</p>
+<p><strong>关系代数语言</strong><br>·用对关系的运算来表达查询要求<br>·代表：ISBL</p>
+<p><strong>关系演算语言：用谓词来表达查询要求</strong><br>·元组关系演算语言<br>·域关系演算语言</p>
+<p><strong>具有关系代数和关系演算双重特点的语言</strong><br>·代表：SQL<br>·SQL的功能：查询功能、数据定义、数据控制、数据操纵<br>·SQL语言是一种高度非过程化的语言。</p>
+<h2 id="2-3关系的完整性"><a href="#2-3关系的完整性" class="headerlink" title="2.3关系的完整性"></a>2.3关系的完整性</h2><h3 id="2，3，1关系的三类完整性约束"><a href="#2，3，1关系的三类完整性约束" class="headerlink" title="2，3，1关系的三类完整性约束"></a>2，3，1关系的三类完整性约束</h3><p>实体完整性和参照完整性：关系模型必须满足的完整性约束，称为关系的两个不变性，应该由关系系统自动支持。<br>用户定义的完整性：应用领域需要遵循的约束条件，体现了具体领域中的语义约束</p>
+<h3 id="2-3-2-实体完整性"><a href="#2-3-2-实体完整性" class="headerlink" title="2.3.2 实体完整性"></a>2.3.2 实体完整性</h3><p>若属性A是基本关系R的主属性，则属性A不能取空值。<br>例：<br>SAP(SUPERVISOR,SPECIALITY,POSTGRADUATE)<br>POSTGRADUATE:主码（假设研究生不会重名）不能取空值</p>
+<p>规则说明：<br>（1）实体完整性规则是针对基本关系而言的。<br>（2）现实世界中的实体是可以区分的，即他们具有某种唯一性标识。<br>（3）关系模型中以主码作为唯一性标识。<br>（4）主码中的属性即主属性不能取空值。</p>
+<h3 id="2-3-3-参照完整性"><a href="#2-3-3-参照完整性" class="headerlink" title="2.3.3 参照完整性"></a>2.3.3 参照完整性</h3><p>1.关系间的引用<br>·再关系模型中实体及实体间的联系都是用关系来描述的，因此可能存在着关系与关系间的引用。<br>例如：学生实体、专业实体<br>学生（学号，姓名，性别，专业，年龄）<br>专业（专业号，专业名）<br>·学生关系引用了专业关系的主码“专业号”<br>·学生关系中的专业号值必须是确实存在的专业的专业号，即专业关系中有该专业的记录。</p>
+<p>例如：学生、课程、学生与课程之间的多对多联系<br>学生（学号，姓名，性别，专业号，年龄）<br>课程（课程号，课程名，学分）<br>选修（学号，课程名，成绩）</p>
+<p>例如：学生实体及其内部的一对多联系<br>学生（学号，姓名，性别，专业号，年龄，班长）</p>
+<p>2.外码<br>·设F是基本关系R的一个或一组属性，但不是关系R的码。如果F是基本关系R的一个或一组属性，但不是关系R的码。如果F与基本关系S的主码KS相对应，则称F是基本关系R的外码<br>基本关系R称为参照关系<br>基本关系S称为被参照关系<br>R(Kr,F,…)—–&gt;S(Ks,….)<br>[例]：学生关系的“专业号”与专业关系的主码“专业号”相对应<br>·“专业号”属性是学生关系的外码<br>·专业关系是被参照关系，学生关系为参照关系。</p>
+<p>3.参照完整性规则<br>若属性（或属性组）F是基本关系R的外码它与基本关系S中的主码Ks相对应（基本关系R和S不一定是不同的关系），则对于R中每个元组在F上的值必须为：<br>·或者取空值（F的每个属性值均为空值）<br>·或者等于S中某个元组的主码值<br>[例1]：<br>学生关系中每个元组的“专业号”属性只取两类值：<br>（1）空值，表示尚未给该学生分配专业<br>（2）非空值，这时该值必须是专业关系中某个元组的“专业号”值，表示该学生不可能分配一个不存在的专业。<br>[例2]<br>选修（学号，课程号，成绩）<br>“学号”和“课程号”可能的取值(注意实体完整性)<br>[例3]：<br>学生（学号，姓名，性别，专业号，年龄，班长）<br>“班长”属性值可以取两类值：<br>（1）空值，表示该学生所在班级尚未选出班长<br>（2）非空值，该值是班长的学号</p>
+<h3 id="2-3-4用户定义的完整性"><a href="#2-3-4用户定义的完整性" class="headerlink" title="2.3.4用户定义的完整性"></a>2.3.4用户定义的完整性</h3><p>[例]：<br>课程（课程号，课程名，学分）<br>·课程号属性必须取唯一值<br>·非主属性课程名也不能取空值<br>·学分只能取值{1,2,3,4}</p>
+<h2 id="2-4关系代数"><a href="#2-4关系代数" class="headerlink" title="2.4关系代数"></a>2.4关系代数</h2><p>关系代数运算符<br>集合运算符 ∩ - ∪ ×</p>
+<p>含义 交 差 并 笛卡尔积<br>比较运算符&gt; ≥ ＜ ≤ == &lt;&gt;</p>
+<p>专门的关系运算符 σ Π   ÷<br>选择投影连接除</p>
+<p>逻辑运算符<br>非与或</p>
+<p>传统的集合运算：<br>·R和S<br> 具有相同的目n（即两个关系都有n个属性）<br> 相应的属性取自同一个域<br>·R∪S<br> 仍为n目关系，由属性R或属于S的元组组成<br> R∪S={t|t∈RVt∈S}</p>
 
       
 
@@ -393,7 +432,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#第一章-绪论"><span class="toc-number">1.</span> <span class="toc-text">第一章 绪论</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-数据库系统概述"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 数据库系统概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-1四个基本概念"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1.1四个基本概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-2-数据管理技术的产生"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.1.2 数据管理技术的产生</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-3数据库系统的特点"><span class="toc-number">1.1.3.</span> <span class="toc-text">1.1.3数据库系统的特点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-数据模型"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 数据模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-1-两大类数据模型"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.2.1 两大类数据模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-2-数据模型的组成要素"><span class="toc-number">1.2.2.</span> <span class="toc-text">1.2.2 数据模型的组成要素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-3-概念模型"><span class="toc-number">1.2.3.</span> <span class="toc-text">1.2.3 概念模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-4-最常用的数据模型"><span class="toc-number">1.2.4.</span> <span class="toc-text">1.2.4 最常用的数据模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-5层次模型-：数据库系统中最早出现的数据模型，用树形结构来表示"><span class="toc-number">1.2.5.</span> <span class="toc-text">1.2.5层次模型**：数据库系统中最早出现的数据模型，用树形结构来表示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-6网状模型"><span class="toc-number">1.2.6.</span> <span class="toc-text">1.2.6网状模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-7关系模型"><span class="toc-number">1.2.7.</span> <span class="toc-text">1.2.7关系模型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3数据库系统结构"><span class="toc-number">1.3.</span> <span class="toc-text">1.3数据库系统结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-1数据库系统模式的概念"><span class="toc-number">1.3.1.</span> <span class="toc-text">1.3.1数据库系统模式的概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-2数据库系统的三级模式结构"><span class="toc-number">1.3.2.</span> <span class="toc-text">1.3.2数据库系统的三级模式结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-3数据库的二级映像和物理独立性"><span class="toc-number">1.3.3.</span> <span class="toc-text">1.3.3数据库的二级映像和物理独立性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4数据库系统的组成"><span class="toc-number">1.4.</span> <span class="toc-text">1.4数据库系统的组成</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#第一章-绪论"><span class="toc-number">1.</span> <span class="toc-text">第一章 绪论</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-数据库系统概述"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 数据库系统概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-1四个基本概念"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1.1四个基本概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-2-数据管理技术的产生"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.1.2 数据管理技术的产生</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-3数据库系统的特点"><span class="toc-number">1.1.3.</span> <span class="toc-text">1.1.3数据库系统的特点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-数据模型"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 数据模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-1-两大类数据模型"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.2.1 两大类数据模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-2-数据模型的组成要素"><span class="toc-number">1.2.2.</span> <span class="toc-text">1.2.2 数据模型的组成要素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-3-概念模型"><span class="toc-number">1.2.3.</span> <span class="toc-text">1.2.3 概念模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-4-最常用的数据模型"><span class="toc-number">1.2.4.</span> <span class="toc-text">1.2.4 最常用的数据模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-5层次模型-：数据库系统中最早出现的数据模型，用树形结构来表示"><span class="toc-number">1.2.5.</span> <span class="toc-text">1.2.5层次模型**：数据库系统中最早出现的数据模型，用树形结构来表示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-6网状模型"><span class="toc-number">1.2.6.</span> <span class="toc-text">1.2.6网状模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-7关系模型"><span class="toc-number">1.2.7.</span> <span class="toc-text">1.2.7关系模型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3数据库系统结构"><span class="toc-number">1.3.</span> <span class="toc-text">1.3数据库系统结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-1数据库系统模式的概念"><span class="toc-number">1.3.1.</span> <span class="toc-text">1.3.1数据库系统模式的概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-2数据库系统的三级模式结构"><span class="toc-number">1.3.2.</span> <span class="toc-text">1.3.2数据库系统的三级模式结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-3数据库的二级映像和物理独立性"><span class="toc-number">1.3.3.</span> <span class="toc-text">1.3.3数据库的二级映像和物理独立性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4数据库系统的组成"><span class="toc-number">1.4.</span> <span class="toc-text">1.4数据库系统的组成</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#关系数据库"><span class="toc-number">2.</span> <span class="toc-text">关系数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1关系数据结构及形式化定义"><span class="toc-number">2.1.</span> <span class="toc-text">2.1关系数据结构及形式化定义</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-1关系"><span class="toc-number">2.1.1.</span> <span class="toc-text">2.1.1关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-2关系模式"><span class="toc-number">2.1.2.</span> <span class="toc-text">2.1.2关系模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-3关系数据库"><span class="toc-number">2.1.3.</span> <span class="toc-text">2.1.3关系数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-4关系数据库的存储结构"><span class="toc-number">2.1.4.</span> <span class="toc-text">2.1.4关系数据库的存储结构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2关系操作"><span class="toc-number">2.2.</span> <span class="toc-text">2.2关系操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3关系的完整性"><span class="toc-number">2.3.</span> <span class="toc-text">2.3关系的完整性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2，3，1关系的三类完整性约束"><span class="toc-number">2.3.1.</span> <span class="toc-text">2，3，1关系的三类完整性约束</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-2-实体完整性"><span class="toc-number">2.3.2.</span> <span class="toc-text">2.3.2 实体完整性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-3-参照完整性"><span class="toc-number">2.3.3.</span> <span class="toc-text">2.3.3 参照完整性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-4用户定义的完整性"><span class="toc-number">2.3.4.</span> <span class="toc-text">2.3.4用户定义的完整性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4关系代数"><span class="toc-number">2.4.</span> <span class="toc-text">2.4关系代数</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -526,19 +565,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">计图</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">日常</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">计图</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -562,15 +601,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">-ACM -算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">水</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">游戏</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -578,7 +609,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+                <a href="javascript:void(0)" class="js-tag color3">游戏</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -591,6 +622,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CF</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
             
             <div class="clearfix"></div>

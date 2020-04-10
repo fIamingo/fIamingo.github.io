@@ -6,14 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://fIamingo.github.io">
-  <title>Tag: 水 | flamingoo的猫窝</title>
+  <title>[kuangbin带你飞] 专题十二 dp | flamingoo的猫窝</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="flamingoo的猫窝">
-<meta property="og:url" content="http://fiamingo.github.io/tags/%E6%B0%B4/index.html">
+  <meta name="description" content="前言最近很怠惰，算法题也没每天坚持了。原因之一是学校的作业多，原因之二是游戏瘾又犯了，不知为啥就又开始打ow了。这个专题不打算像以前一样写个五题就先放那了，准备一直写的，然后数位dp，区间dp之类的也放在这个专题里。就是前面的几道题可能比较水，甚至有几个题可以不用dp，我也不知道为什么。然后很多LIS的专题。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[kuangbin带你飞] 专题十二 dp">
+<meta property="og:url" content="http://fiamingo.github.io/2020/04/10/kuangbin%E5%B8%A6%E4%BD%A0%E9%A3%9E-%E4%B8%93%E9%A2%98%E5%8D%81%E4%BA%8C-dp/index.html">
 <meta property="og:site_name" content="flamingoo的猫窝">
+<meta property="og:description" content="前言最近很怠惰，算法题也没每天坚持了。原因之一是学校的作业多，原因之二是游戏瘾又犯了，不知为啥就又开始打ow了。这个专题不打算像以前一样写个五题就先放那了，准备一直写的，然后数位dp，区间dp之类的也放在这个专题里。就是前面的几道题可能比较水，甚至有几个题可以不用dp，我也不知道为什么。然后很多LIS的专题。">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-04-10T13:49:03.000Z">
+<meta property="article:modified_time" content="2020-04-10T14:41:19.152Z">
 <meta property="article:author" content="fIamingo">
+<meta property="article:tag" content="ACM">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="kuangbin带你飞">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="flamingoo的猫窝" type="application/atom+xml">
@@ -156,61 +163,396 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-kuangbin带你飞-专题十二-dp" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/03/11/%E6%91%B8%E9%B1%BC-%E7%9C%8B%E6%AD%8C%E8%AF%8D%E5%AD%A6%E6%97%A5%E8%AF%AD/" class="archive-article-date">
-  	<time datetime="2020-03-11T06:58:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-11</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/11/%E6%91%B8%E9%B1%BC-%E7%9C%8B%E6%AD%8C%E8%AF%8D%E5%AD%A6%E6%97%A5%E8%AF%AD/">[摸鱼]看歌词学日语(4.2更新一首v家曲)</a>
+    <h1 class="article-title" itemprop="name">
+      [kuangbin带你飞] 专题十二 dp
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        <!--显示阅读次数-->
+
+  <br/>
+  <a class="cloud-tie-join-count" href="javascript:void(0);" style="color:gray;font-size:14px;">
+  <span class="icon-sort"></span>
+  </a>
+
+<!--显示阅读次数完毕-->
+        
+        
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/2020/04/10/kuangbin%E5%B8%A6%E4%BD%A0%E9%A3%9E-%E4%B8%93%E9%A2%98%E5%8D%81%E4%BA%8C-dp/" class="archive-article-date">
+  	<time datetime="2020-04-10T13:49:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近很怠惰，算法题也没每天坚持了。原因之一是学校的作业多，原因之二是游戏瘾又犯了，不知为啥就又开始打ow了。<br>这个专题不打算像以前一样写个五题就先放那了，准备一直写的，然后数位dp，区间dp之类的也放在这个专题里。就是前面的几道题可能比较水，甚至有几个题可以不用dp，我也不知道为什么。然后很多LIS的专题。</p>
+<a id="more"></a>
+<h2 id="Ignatius-and-the-Princess-IV"><a href="#Ignatius-and-the-Princess-IV" class="headerlink" title="Ignatius and the Princess IV"></a>Ignatius and the Princess IV</h2><p><strong>题目：</strong><a href="https://vjudge.net/problem/HDU-1029" target="_blank" rel="noopener">HDU-1029</a></p>
+<p>真水题，完全不用动态规划，直接map一下就行了</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+#include&lt;map&gt;
+map&lt;int,int&gt; ma;
+int main()
+{
+    int N;
+    while(cin &gt;&gt; N)
+    {
+        for(int i = 1; i &lt;= N; i++)
+        {
+            int m;
+            cin &gt;&gt; m;
+            ma[m]++;
+        }
+        int n = (N + 1)/2;
+        int ans ;
+        for(auto i:ma)
+        {
+            int m = i.second;
+            if(m &gt;= n)
+            ans = i.first;
+        }
+        cout &lt;&lt; ans &lt;&lt; endl;
+        ma.clear();
+    }
+} </code></pre><h2 id="Monkey-and-Banana"><a href="#Monkey-and-Banana" class="headerlink" title="Monkey and Banana"></a>Monkey and Banana</h2><p><strong>题目：</strong><a href="https://vjudge.net/problem/HDU-1069" target="_blank" rel="noopener">HDU-1069</a></p>
+<p>LIS的应用，每次要把(x,y,z)的六种情况都存在数组里。</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+#include&lt;algorithm&gt;
+struct knode
+{
+    int x;
+    int y;
+    int z;
+    bool operator&lt;(const knode &amp;rhs)const{
+    if(x == rhs.x)
+    return y &lt; rhs.y;
+    else 
+    return x &lt; rhs.x;
+    }
+}node[200];
+int dp[200];
+int main()
+{
+    int n; int times = 0;
+    while(cin &gt;&gt; n)
+    {
+        if(n == 0)
+        break;
+        times++;
+        for(int i = 1; i &lt;= n; i++)
+        {
+            int x,y,z;
+            cin &gt;&gt; x &gt;&gt; y &gt;&gt; z;
+            node[6*i-5].x = x; node[6*i-5].y = y; node[6*i-5].z = z;
+            node[6*i-4].x = y; node[6*i-4].y = x; node[6*i-4].z = z;
+            node[6*i-3].x = z; node[6*i-3].y = y; node[6*i-3].z = x;
+            node[6*i-2].x = x; node[6*i-2].y = z; node[6*i-2].z = y;
+            node[6*i-1].x = y; node[6*i-1].y = z; node[6*i-1].z = x;
+            node[6*i].x = z; node[6*i].y = x; node[6*i].z = y;
+        }
+        sort(node + 1, node + 1 + 6*n);
+        for(int i = 1; i &lt;= 6*n; i++)
+        {
+            dp[i] = node[i].z;
+            for(int j = 1; j &lt;= i; j++)
+            {
+                if(node[j].y &lt; node[i].y &amp;&amp; node[j].x &lt;node[i].x)
+                dp[i] = max(dp[i] , dp[j] + node[i].z);
+            }
+        }
+        int ans = 0;
+        for(int i = 1; i &lt;= 6*n ; i++)
+        {
+        ans = max(ans , dp[i]);
+        dp[i] = 0;
+        }
+        cout &lt;&lt; &quot;Case &quot;&lt;&lt;times&lt;&lt;&quot;: maximum height = &quot;&lt;&lt; ans &lt;&lt; endl;
+    }
+}</code></pre><h2 id="Doing-Homework"><a href="#Doing-Homework" class="headerlink" title="Doing Homework"></a>Doing Homework</h2><p><strong>题目：</strong><a href="https://vjudge.net/problem/HDU-1074" target="_blank" rel="noopener">HDU-1074</a></p>
+<p>状态压缩，N最大为15，将每个状态用一个二进制数来代替，二进制的第i位，代表第i个作业已经做了。而这个状态就可以由这个数字第i位为0的状态转移过来。</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+#define maxn 1&lt;&lt;16
+#define INF 9999999
+#include&lt;cmath&gt;
+struct homework
+{
+    string S;
+    int C;
+    int D;
+}hw[16];
+int dp[maxn];
+int pre[maxn];
+int times[maxn];
+
+void dfs(int now)
+{
+    if(now == 0)
+    return ;
+    int last = pre[now];
+    dfs(last);
+    int node = now - last;
+    int j = log2(node)+1;
+    cout &lt;&lt; hw[j].S &lt;&lt; endl;
+}
+
+int main()
+{
+    int T; cin &gt;&gt; T;
+    while(T--)
+    {
+        int N;
+        cin &gt;&gt; N;
+        for(int i = 1;i &lt;= N;i++)
+        cin &gt;&gt; hw[i].S &gt;&gt; hw[i].D &gt;&gt;hw[i].C;
+        int end = (1&lt;&lt;N)-1;
+        for(int i = 1;i &lt;= end; i++)
+        {
+            dp[i] = INF;
+            for(int j = 1;j &lt;= N;j++)
+            {
+                int state = (1&lt;&lt;(j-1));
+                if((state &amp; i) == 0)
+                continue;
+                int tmp = i-state;
+                int cost;
+                if(times[tmp] + hw[j].C &lt;= hw[j].D)
+                cost = 0;
+                else cost = times[tmp] + hw[j].C - hw[j].D;
+                if(dp[i] &gt;= dp[tmp] + cost)
+                {
+                    dp[i] = dp[tmp] + cost;
+                    pre[i] = tmp;
+                    times[i] = times[tmp] + hw[j].C;
+                }
+            }
+        }
+        cout&lt;&lt;dp[end]&lt;&lt;endl;
+        dfs(end);
+    }
+}</code></pre><h2 id="Super-Jumping-Jumping-Jumping"><a href="#Super-Jumping-Jumping-Jumping" class="headerlink" title="Super Jumping!Jumping!Jumping!"></a>Super Jumping!Jumping!Jumping!</h2><p><strong>题目：</strong><a href="https://vjudge.net/problem/HDU-1087" target="_blank" rel="noopener">HDU-1087</a></p>
+<p>也是LIS的应用，O(n<sup>2</sup>)反正数字小能用。</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+#define maxn 1005
+int dp[maxn];
+int res[maxn];
+int main()
+{
+    int N;
+    while(cin &gt;&gt; N)
+    {
+        if(N == 0)
+        break;
+        for(int i = 1; i &lt;= N; i++)
+        {
+            cin &gt;&gt; res[i];
+        }
+        for(int i = 1; i &lt;= N; i++)
+        {
+            dp[i] =res[i];
+            for(int j = 1; j &lt; i;j++)
+            {
+                if(res[j] &lt; res[i])
+                dp[i] = max(dp[i],dp[j]+res[i]);
+            }
+        }
+        int ans = 0;
+        for(int i = 1;i &lt;= N;i++)
+        ans = max(ans,dp[i]);
+        cout &lt;&lt; ans &lt;&lt; endl;
+    }
+}</code></pre><h2 id="最少拦截系统"><a href="#最少拦截系统" class="headerlink" title="最少拦截系统"></a>最少拦截系统</h2><p><strong>题目：</strong><a href="https://vjudge.net/problem/HDU-1257" target="_blank" rel="noopener">HDU-1257</a></p>
+<p>LIS模板题了，不过这题我用的贪心+二分</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+#include&lt;algorithm&gt;
+#define maxn 100005
+int array[maxn];
+int dp[maxn];
+int main()
+{//注意是多组数据 
+    int n;    
+    while(cin &gt;&gt; n)
+    {
+        for(int i = 1; i &lt;= n ; i++)
+        cin &gt;&gt; array[i];
+    int len = 0;
+    dp[++len] = array[1];
+    for(int i = 2;i &lt;= n; i++ )
+    {
+        if(array[i] &gt;= dp[len])
+            dp[++len] = array[i];
+        else{
+            int m = upper_bound(dp + 1,dp + len + 1,array[i])-dp;
+            dp[m] = array[i];
+        }
+    }
+    cout &lt;&lt; len &lt;&lt; endl;
+    }
+} </code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">水</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ACM</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">kuangbin带你飞</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://fIamingo.github.io/ub.io/2020/04/10/kuangbin%E5%B8%A6%E4%BD%A0%E9%A3%9E-%E4%B8%93%E9%A2%98%E5%8D%81%E4%BA%8C-dp/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2020/04/10/kuangbin%E5%B8%A6%E4%BD%A0%E9%A3%9E-%E4%B8%93%E9%A2%98%E5%8D%81-%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          [kuangbin带你飞] 专题十 匹配问题
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2020/03/31/%E7%AE%80%E6%B4%81%E9%A2%98%E8%A7%A3/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">[题解] Codeforces Round #629 (Div. 3)A-F</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ignatius-and-the-Princess-IV"><span class="toc-number">2.</span> <span class="toc-text">Ignatius and the Princess IV</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Monkey-and-Banana"><span class="toc-number">3.</span> <span class="toc-text">Monkey and Banana</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Doing-Homework"><span class="toc-number">4.</span> <span class="toc-text">Doing Homework</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Super-Jumping-Jumping-Jumping"><span class="toc-number">5.</span> <span class="toc-text">Super Jumping!Jumping!Jumping!</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最少拦截系统"><span class="toc-number">6.</span> <span class="toc-text">最少拦截系统</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -249,9 +591,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
