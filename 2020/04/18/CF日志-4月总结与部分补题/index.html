@@ -16,10 +16,10 @@
 <meta property="og:description" content="前言第三阶段网课果然忙起来了。总的来说，坚持打cf比赛没什么问题，但就是没什么时间补题了。而且理论来说我应该挺忙，因为除了学业还有很多其他的事情要去研究，但也希望每天能睡好，希望能利用好时间吧！上面说了没什么时间补题了，博客也懒得写了，所以干脆就每个月写个本月参加的比赛的总结，并且慢慢地补部分题，也不再去写比赛时ac了的题目的总结了（除非印象很深或者侥幸ac的那种）。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-04-17T16:12:33.000Z">
-<meta property="article:modified_time" content="2020-04-17T16:37:42.145Z">
+<meta property="article:modified_time" content="2020-04-22T13:27:04.043Z">
 <meta property="article:author" content="fIamingo">
-<meta property="article:tag" content="CF">
 <meta property="article:tag" content="ACM">
+<meta property="article:tag" content="CF">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="flamingoo的猫窝" type="application/atom+xml">
@@ -284,8 +284,141 @@ int main()
         for(int i = 1; i &lt;= 200;i++)
         pos[i].clear();
     }
-}</code></pre><h2 id="Codeforces-Round-635-Div-2"><a href="#Codeforces-Round-635-Div-2" class="headerlink" title="Codeforces Round #635 (Div. 2)"></a>Codeforces Round #635 (Div. 2)</h2><p>这场换小号打的，终于是div2成功ac了3题QAQ，虽然加的分不多。<br>现在感觉很多div2的安排是：c是贪心，d是二分这样。<br>这场就是啊，感觉贪心总算是能看出来一点了，开始一直wa也是发现错误了，贪心也不能无脑贪心啊。<br>然后接下来是补掉D题。</p>
+}</code></pre><h2 id="Codeforces-Round-635-Div-2"><a href="#Codeforces-Round-635-Div-2" class="headerlink" title="Codeforces Round #635 (Div. 2)"></a>Codeforces Round #635 (Div. 2)</h2><p>这场换小号打的，终于是div2成功ac了3题QAQ，虽然加的分不多。<br>现在感觉很多div2的安排是：c是贪心，d是二分这样。<br>这场就是啊，感觉贪心总算是能看出来一点了，开始一直wa也是发现错误了，贪心也不能无脑贪心啊。<br>然后接下来是补掉D题。<br>这题的思路就是分别遍历一遍三个数组，遍历某个数组时，分别在另外两个数组中二分查找第一个大于等于这个数组中的数字的数和第一个小于等于这个数组中的数字的数。这三个数字计算的结果就可能是答案，和ans进行比较。<br>这几天好忙，竟然今天才把这题补了。。。今天晚上的CF比赛加油！</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+#include&lt;algorithm&gt;
+typedef long long ll;
+int r[100005];
+int g[100005];
+int b[100005];
 
+ll ans;
+
+ll cal(int a,int b,int c)
+{
+    return (ll)(a-b)*(a-b)+(ll)(a-c)*(a-c)+(ll)(b-c)*(b-c);
+}
+
+solve(int r[],int g[],int b[],int nr,int ng,int nb)     //第一个是中间的数，第二个是比中间的数大的，第三个是比中间的数小的 
+{
+    for(int i = 1; i &lt;= nr; i++)
+    {
+        int num = r[i];
+        int kg = lower_bound(g + 1,g + 1 + ng,num) - g;
+        int kb = upper_bound(b + 1,b + 1 + nb,num) - b;
+        if(kb == 1||kg == ng + 1)
+        continue;
+        ans = min(ans,cal(num,g[kg],b[kb-1]));
+    } 
+    return ans;
+}
+
+int main()
+{
+    int t;
+    cin &gt;&gt; t;
+    while(t--)
+    {
+        int nr,ng,nb;
+        cin &gt;&gt; nr &gt;&gt; ng &gt;&gt; nb;
+        for(int i = 1;i &lt;= nr; i++)
+        cin &gt;&gt; r[i];
+        for(int i = 1;i &lt;= ng; i++)
+        cin &gt;&gt; g[i];
+        for(int i = 1;i &lt;= nb; i++)
+        cin &gt;&gt; b[i];
+        sort(r+1,r+1+nr);
+        sort(g+1,g+1+ng);
+        sort(b+1,b+1+nb);
+        ans = cal(r[1],g[1],b[1]);
+        solve(r,g,b,nr,ng,nb);
+        solve(r,b,g,nr,nb,ng);
+        solve(g,r,b,ng,nr,nb);
+        solve(g,b,r,ng,nb,nr);
+        solve(b,r,g,nb,nr,ng);
+        solve(b,g,r,nb,ng,nr);
+        cout &lt;&lt; ans &lt;&lt; endl;
+    }
+}</code></pre><h2 id="Codeforces-Round-636-Div-3"><a href="#Codeforces-Round-636-Div-3" class="headerlink" title="Codeforces Round #636 (Div. 3)"></a>Codeforces Round #636 (Div. 3)</h2><p>这场老实说挺可惜的，半个小时ac了前三个题后，D题的思路其实也很快就有了，感觉是要用树状数组，就是根据a[i]与a[n-i+1]，就知道x为a[i]+a[n-i+1]时不用替换，x在[min(a[i],a[n-i+1])+1,max(a[i],a[n-i+1])+k]这个区间中时，只需要替换1次，在这个区间外，也就是[2,min(a[i],a[n-i+1]+1))和(max(a[i],a[n-i+1])+k,2k]这个区间中时，需要替换2次。所以遍历数组前n/2位，每次对区间进行操作。但是我对树状数组的应用不太熟练，并且老想着应该D题不会涉及数据结构吧，然后纠结到只剩一个小时的时候，才开始写树状数组。并且写完后，一直在debug，写了两个bug，比赛时只查出一个，就是最开始写的时min(a[i],a[n-i+1])没有+1，然而a[i]题目范围为[1,k]。还有个bug，数组开小了，开的200005，竟然只是wa不是re，总之错过了上一波打分的机遇，不过竟然还是上了20+分，感觉现在上分没以前难啊很奇怪。接下来我又要换大号上分了！<br>今天把D题交过了后，在网上搜了下题解，看到个差分数组，嗯，这个知识点也去补一下，mark一下。<br>然后E题还是要补一下，最短路的题我还是挺喜欢</p>
+<p>D题今天的AC代码：</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+#define int long long
+int a[200005];
+int bit[400005];
+int k;
+int lowbit(int x)
+{
+    return x&amp;(-x);
+}    
+
+void add(int i,int x)
+{
+    while(i&lt;=2*k)
+    {
+        bit[i]+=x;
+        i+=lowbit(i);
+    }
+}
+
+void sub(int i,int x)
+{
+    while(i&lt;=2*k) 
+    {
+        bit[i]-=x;
+        i+=lowbit(i);
+    } 
+}
+
+
+int sum(int i)
+{
+    int s=0; 
+    while(i&gt;0)    
+    {            
+        s+=bit[i];
+        i-=lowbit(i);
+    }
+     return s;
+}
+
+signed main()
+{
+    int t;
+    cin &gt;&gt; t;
+    while(t--)
+    {
+        int n;
+        cin &gt;&gt; n &gt;&gt; k;
+        for(int i = 1; i &lt;= n; i++)
+        cin &gt;&gt; a[i];
+        for(int i = 1; i &lt;= n/2; i++)
+        {
+            int s = min(a[i],a[n-i+1])+1;
+            int l = max(a[i],a[n-i+1])+k;
+            int mid = a[i] + a[n-i+1];
+            add(s,1);
+            sub(mid,1);
+            add(mid+1,1);
+            sub(l+1,1);
+            add(1,2);
+            sub(s,2);
+            add(l+1,2);
+            sub(2*k+1,2);
+        }
+        int ans =9999999;
+        for(int i = 2; i &lt;= 2*k;i++)
+        {
+            ans = min(ans,sum(i));
+        }
+        for(int i = 1; i &lt;= 2*k ; i++)
+        bit[i] = 0;
+        for(int i = 1; i &lt;= n; i++)
+        a[i] = 0;
+        cout &lt;&lt; ans&lt;&lt;endl;
+    }
+}</code></pre>
       
 
       
@@ -298,11 +431,11 @@ int main()
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">CF</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ACM</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ACM</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">CF</a>
         		</li>
       		
 		</ul>
@@ -401,7 +534,7 @@ int main()
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Codeforces-Round-632-Div-2"><span class="toc-number">2.</span> <span class="toc-text">Codeforces Round #632 (Div. 2)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Codeforces-Round-634-Div-3"><span class="toc-number">3.</span> <span class="toc-text">Codeforces Round #634 (Div. 3)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Codeforces-Round-635-Div-2"><span class="toc-number">4.</span> <span class="toc-text">Codeforces Round #635 (Div. 2)</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Codeforces-Round-632-Div-2"><span class="toc-number">2.</span> <span class="toc-text">Codeforces Round #632 (Div. 2)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Codeforces-Round-634-Div-3"><span class="toc-number">3.</span> <span class="toc-text">Codeforces Round #634 (Div. 3)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Codeforces-Round-635-Div-2"><span class="toc-number">4.</span> <span class="toc-text">Codeforces Round #635 (Div. 2)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Codeforces-Round-636-Div-3"><span class="toc-number">5.</span> <span class="toc-text">Codeforces Round #636 (Div. 3)</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -530,18 +663,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">日常</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">CF</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ACM</a>
               </li>
              
@@ -554,11 +675,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">C++</a>
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">日常</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">CF</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -567,6 +696,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">动漫</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">C++</a>
               </li>
              
               <li class="article-tag-list-item">
