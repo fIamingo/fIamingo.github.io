@@ -16,7 +16,7 @@
 <meta property="og:description" content="前言第三阶段网课果然忙起来了。总的来说，坚持打cf比赛没什么问题，但就是没什么时间补题了。而且理论来说我应该挺忙，因为除了学业还有很多其他的事情要去研究，但也希望每天能睡好，希望能利用好时间吧！上面说了没什么时间补题了，博客也懒得写了，所以干脆就每个月写个本月参加的比赛的总结，并且慢慢地补部分题，也不再去写比赛时ac了的题目的总结了（除非印象很深或者侥幸ac的那种）。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-04-17T16:12:33.000Z">
-<meta property="article:modified_time" content="2020-04-22T13:27:04.043Z">
+<meta property="article:modified_time" content="2020-04-25T06:55:29.447Z">
 <meta property="article:author" content="fIamingo">
 <meta property="article:tag" content="ACM">
 <meta property="article:tag" content="CF">
@@ -418,6 +418,92 @@ signed main()
         a[i] = 0;
         cout &lt;&lt; ans&lt;&lt;endl;
     }
+}</code></pre><h2 id="Codeforces-Round-637-Div-2-Thanks-Ivan-Belonogov"><a href="#Codeforces-Round-637-Div-2-Thanks-Ivan-Belonogov" class="headerlink" title="Codeforces Round #637 (Div. 2) - Thanks, Ivan Belonogov!"></a>Codeforces Round #637 (Div. 2) - Thanks, Ivan Belonogov!</h2><p>这场是个英文阅读场，ac了三题，但是耗时和wa都很拉跨，掉了11分。<br>总结就是写这场时我整个人都晕乎乎的有点困，读题也特别慢。<br>A，B题都WA了一次以上，A好像至今都不知道题目到底什么意思但是最后就是迷迷糊糊的ac了。<br>前两题写慢了，并且写的心态有点炸，然后看c题的时候那个阅读量直接炸了，看懂题也花了几十分钟。<br>看题后第一感觉是模拟，但是觉得不至于，后来发现就是个贪心题，我当时躺床上冷静了一下然后就交题了。<br>交完C题后，只有半个小时了，看D，又是阅读题，放弃了。<br>第二天把D题补了，就是背包dp，特殊的地方是要倒序dp，思路不难，但是也写了很久。感觉bfs应该也行？<br>希望下一场不会有这么大阅读量了，感觉英语水平这个问题我也不可能短时间上升。<br>现在小号比较接近蓝（差41）分，要是后面几场都能上分（虽然用大号打），5月初应该就能变蓝了。<br>放个D题代码，这题感觉挺好的</p>
+<p>D题补题代码</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+#include&lt;string.h&gt;
+int arr[2005];
+int p[10] = {119,18,93,91,58,107,111,82,127,123};
+int num[2005][10];
+int pre[2005][2005];
+int dp[2005][2005];
+
+void comple(int x,int pos)
+{
+    int l = 10;
+    for(int i = 0; i &lt;= 9;i++)
+    {
+        int flag = 1;
+        int res = 0;
+        int xx = x; int pp = p[i];
+        for(int j = 1; j &lt;= 7;j++)
+        {
+            if((xx &amp; 1) == 1 &amp;&amp; (pp &amp; 1) == 0)
+            {
+                flag = 0;
+                break;
+            }
+            if((xx &amp; 1) == 0 &amp;&amp; (pp&amp;1) ==1)
+            res++;
+            xx &gt;&gt;= 1;
+            pp &gt;&gt;= 1;
+        }
+        if(flag)
+        num[pos][i] = res;
+        else
+        num[pos][i] = 2006;
+    }
+}
+
+int main()
+{
+    int n; 
+    int k;
+    cin &gt;&gt; n &gt;&gt; k;
+    string str;
+    for(int i = 1; i&lt;= n;i++)
+    {
+        cin &gt;&gt; str;
+        str = &apos;#&apos; + str;
+        for(int j = 1; j &lt;=7;j++)
+        {        
+            arr[i] = arr[i]&lt;&lt;1;
+            int l;
+            l = str[j]-&apos;0&apos;;
+            arr[i] = arr[i]+l;
+        }
+    }
+    for(int i = 1; i &lt;= n;i++)
+    {
+        comple(arr[i],i);
+    }
+    memset(dp,-1,sizeof(dp));
+    dp[n+1][0] = 0;
+    for(int i = n; i &gt;= 1; i--)
+    {
+        for(int j = 0; j &lt;= k; j++)
+        {
+            for(int z = 0; z &lt;= 9; z++)
+            {
+                if(num[i][z] &gt; j ||dp[i+1][j-num[i][z]] == -1)
+                continue;
+                dp[i][j] = z;
+                pre[i][j]= j-num[i][z];
+            }
+        }
+    }
+    if(dp[1][k] == -1)
+    cout &lt;&lt; -1 &lt;&lt; endl;
+    else{
+        int q = k;
+        for(int i = 1; i &lt;= n; i++){
+            cout &lt;&lt; dp[i][q];
+            q = pre[i][q];
+        }
+        cout &lt;&lt; endl;    
+    }
+    return 0;
 }</code></pre>
       
 
@@ -505,6 +591,15 @@ signed main()
   
 <nav id="article-nav">
   
+    <a href="/2020/05/22/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0-%E6%B5%85%E8%B0%88%E8%88%9E%E8%B9%88%E9%93%BE-dancing-links-%E4%B8%8E%E6%95%B0%E7%8B%AC/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          [算法笔记] 浅谈舞蹈链(dancing links)与数独
+        
+      </div>
+    </a>
+  
   
     <a href="/2020/04/10/kuangbin%E5%B8%A6%E4%BD%A0%E9%A3%9E-%E4%B8%93%E9%A2%98%E5%8D%81-%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">[kuangbin带你飞] 专题十 匹配问题</div>
@@ -534,7 +629,7 @@ signed main()
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Codeforces-Round-632-Div-2"><span class="toc-number">2.</span> <span class="toc-text">Codeforces Round #632 (Div. 2)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Codeforces-Round-634-Div-3"><span class="toc-number">3.</span> <span class="toc-text">Codeforces Round #634 (Div. 3)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Codeforces-Round-635-Div-2"><span class="toc-number">4.</span> <span class="toc-text">Codeforces Round #635 (Div. 2)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Codeforces-Round-636-Div-3"><span class="toc-number">5.</span> <span class="toc-text">Codeforces Round #636 (Div. 3)</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Codeforces-Round-632-Div-2"><span class="toc-number">2.</span> <span class="toc-text">Codeforces Round #632 (Div. 2)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Codeforces-Round-634-Div-3"><span class="toc-number">3.</span> <span class="toc-text">Codeforces Round #634 (Div. 3)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Codeforces-Round-635-Div-2"><span class="toc-number">4.</span> <span class="toc-text">Codeforces Round #635 (Div. 2)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Codeforces-Round-636-Div-3"><span class="toc-number">5.</span> <span class="toc-text">Codeforces Round #636 (Div. 3)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Codeforces-Round-637-Div-2-Thanks-Ivan-Belonogov"><span class="toc-number">6.</span> <span class="toc-text">Codeforces Round #637 (Div. 2) - Thanks, Ivan Belonogov!</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -667,10 +762,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">CF</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
@@ -679,7 +770,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color3">CF</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -688,6 +779,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">日常</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">C++</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -703,11 +806,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">C++</a>
+                <a href="javascript:void(0)" class="js-tag color3">游戏</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -719,15 +826,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">游戏</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
+                <a href="javascript:void(0)" class="js-tag color5">算法笔记</a>
               </li>
             
             <div class="clearfix"></div>

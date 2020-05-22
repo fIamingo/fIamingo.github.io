@@ -24,7 +24,7 @@
 <meta property="og:image" content="http://fiamingo.github.io/2020/03/17/%E7%AC%94%E8%AE%B0-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86-%EF%BC%88%E7%BD%91%E8%AF%BE%E6%9C%9F%E9%97%B4%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/QQ%E5%9B%BE%E7%89%8720200323095022.png">
 <meta property="og:image" content="http://fiamingo.github.io/2020/03/17/%E7%AC%94%E8%AE%B0-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86-%EF%BC%88%E7%BD%91%E8%AF%BE%E6%9C%9F%E9%97%B4%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/QQ%E5%9B%BE%E7%89%8720200330082913.png">
 <meta property="article:published_time" content="2020-03-17T08:40:21.000Z">
-<meta property="article:modified_time" content="2020-04-16T02:18:56.147Z">
+<meta property="article:modified_time" content="2020-04-27T02:03:09.710Z">
 <meta property="article:author" content="fIamingo">
 <meta property="article:tag" content="数据库">
 <meta name="twitter:card" content="summary">
@@ -311,6 +311,97 @@
 <p>专门的关系运算符 σ Π   ÷<br>选择投影连接除</p>
 <p>逻辑运算符<br>非与或</p>
 <p>传统的集合运算：<br>·R和S<br> 具有相同的目n（即两个关系都有n个属性）<br> 相应的属性取自同一个域<br>·R∪S<br> 仍为n目关系，由属性R或属于S的元组组成<br> R∪S={t|t∈RVt∈S}</p>
+<h1 id="第三章-关系数据库标准语言SQL"><a href="#第三章-关系数据库标准语言SQL" class="headerlink" title="第三章 关系数据库标准语言SQL"></a>第三章 关系数据库标准语言SQL</h1><h2 id="3-1-SQL概述"><a href="#3-1-SQL概述" class="headerlink" title="3.1 SQL概述"></a>3.1 SQL概述</h2><p>·SQL结构化查询语言，是关系数据库的标准语言。<br>·SQL是一个通用的，功能极强的关系数据库语言。</p>
+<h3 id="3-3-1-SQL标准的发展过程"><a href="#3-3-1-SQL标准的发展过程" class="headerlink" title="3.3.1 SQL标准的发展过程"></a>3.3.1 SQL标准的发展过程</h3><h3 id="3-3-2-SQL语言特点"><a href="#3-3-2-SQL语言特点" class="headerlink" title="3.3.2 SQL语言特点"></a>3.3.2 SQL语言特点</h3><p>1.综合统一<br>集数据定义语言（DDL）数据操纵语言（DML），数据控制语言（DCL）功能与一体。<br>可以独立完成数据库生命周期中的全部活动<br>2.高度非过程化<br>3.面向集合的操作方式<br>4.以同一种语法结构提供多种使用方式<br>·SQL是独立的语言<br>·SQL又是嵌入式语言<br>5.语言简洁，易学易用</p>
+<p>数据查询 SELECT<br>数据定义 CREATE DROP ALTER<br>数据操纵 INSERT UPDATE DELETE<br>数据控制 GRANT,REVOKE</p>
+<h3 id="3-1-3-SQL的基本概念"><a href="#3-1-3-SQL的基本概念" class="headerlink" title="3.1.3 SQL的基本概念"></a>3.1.3 SQL的基本概念</h3><p>SQL语言支持关系数据库三级模式结构</p>
+<h2 id="3-3-数据定义"><a href="#3-3-数据定义" class="headerlink" title="3.3 数据定义"></a>3.3 数据定义</h2><p>SQL的数据定义功能：模式定义、表定义、视图和索引的定义</p>
+<h3 id="3-3-1-模式的定义"><a href="#3-3-1-模式的定义" class="headerlink" title="3.3.1 模式的定义"></a>3.3.1 模式的定义</h3><p>·定义模式实际上定义了一个命名空间<br>·在这个空间中可以定义该模式包含的数据库对象，例如基本表、视图、索引等。<br>在CREATE SCHEMA中可以接受CREATE TABLE,CREATE VIEW 和GRANT字句。<br>·语句格式<br>CREATE SCHEMA &lt;模式名&gt; AUTHORIAZAION &lt;作者名&gt;<br>DROP SCHEMA &lt;模式名&gt; &lt;CASCADE|RESTRICT&gt;<br>·CASCADE（级联）<br>·RESTRICT（限制）</p>
+<h3 id="3-3-2-基本表的定义、删除与修改"><a href="#3-3-2-基本表的定义、删除与修改" class="headerlink" title="3.3.2 基本表的定义、删除与修改"></a>3.3.2 基本表的定义、删除与修改</h3><p>一、定义基本表<br>CREATE TABLE&lt;表名&gt;<br>(&lt;列名&gt;&lt;数据类型&gt; &lt;约束性条件&gt;);</p>
+<p>二、数据类型</p>
+<p>三、模式与表<br>·每一个基本表都属于一个模式<br>·一个模式包含多个基本表<br>·定义基本表所属模式</p>
+<p>方式一：在表中明显地给出模式名<br>方式二：在创建模式语句中同时创建表<br>方法三：</p>
+<p>四、修改基本表<br>ALTER TABLE&lt;表明&gt;<br>[ADD&lt;新列名&gt;&lt;数据类型&gt;[完整性约束]]<br>[DROP&lt;完整性约束名&gt;]<br>[ALTER COLUMN&lt;列名&gt;&lt;数据类型&gt;]</p>
+<p>五、删除基本表<br>DROP TABLE &lt;表明&gt; [RESTRICT|CASCADE]</p>
+<h3 id="3-3-3-索引的建立与删除"><a href="#3-3-3-索引的建立与删除" class="headerlink" title="3.3.3 索引的建立与删除"></a>3.3.3 索引的建立与删除</h3><p>建立索引的目的：加快查询速度<br>RDMS中索引一般采用B+树、HASH索引来实现<br>索引是关系数据库的内部实现技术，属于内模式的范畴</p>
+<p>一、建立索引<br>CREATE[UNIQUE][CLUSTER] INDEX &lt;索引名&gt;<br>ON &lt;表名&gt;()</p>
+<p>二、删除索引<br>DROP INDEX &lt;索引名&gt;;</p>
+<h2 id="3-4-数据查询"><a href="#3-4-数据查询" class="headerlink" title="3.4 数据查询"></a>3.4 数据查询</h2><p>语句格式<br>SELECT[ALL|DISTINCT] &lt;目标列表达式&gt;<br>                        [,&lt;目标列表达式&gt;]…<br>FROM&lt;表名或视图名&gt;[,&lt;表名或视图名&gt;]…<br>[WHERE&lt;条件表达式&gt;]<br>[GROUP BY &lt;列名1&gt;][HAVING&lt;条件表达式&gt;]</p>
+<p>一、选择表中的若干列<br>二、选择表中的若干元组</p>
+<h2 id="3-5视图"><a href="#3-5视图" class="headerlink" title="3.5视图"></a>3.5视图</h2><p>虚表，是从一个或几个基本表（或视图）导出的表</p>
+<h3 id="3-6-1-定义视图"><a href="#3-6-1-定义视图" class="headerlink" title="3.6.1 定义视图"></a>3.6.1 定义视图</h3><p>一、建立视图</p>
+<h1 id="第四章-数据库安全"><a href="#第四章-数据库安全" class="headerlink" title="第四章 数据库安全"></a>第四章 数据库安全</h1><p>问题的提出<br>·数据库的一大特点是数据可以共享<br>·数据共享必然带来数据库的安全性问题<br>·数据库系统中的数据共享不能是无条件的。</p>
+<h2 id="4-1-计算机安全的概述"><a href="#4-1-计算机安全的概述" class="headerlink" title="4.1 计算机安全的概述"></a>4.1 计算机安全的概述</h2><h3 id="4-1-1计算机系统的三类安全性问题"><a href="#4-1-1计算机系统的三类安全性问题" class="headerlink" title="4.1.1计算机系统的三类安全性问题"></a>4.1.1计算机系统的三类安全性问题</h3><p>计算机系统安全性<br>·为计算机建立和采取的各种安全保护措施，以保护计算机系统中的硬件、软件和数据，防止其因偶然或恶意的原因使系统遭到破坏</p>
+<p>三类计算机系统安全性问题<br>·技术安全性<br>·管理安全类<br>·政策法律类</p>
+<h3 id="4-1-2-安全标准简介"><a href="#4-1-2-安全标准简介" class="headerlink" title="4.1.2 安全标准简介"></a>4.1.2 安全标准简介</h3><p>TCSEC标准：美国国防部可信计算机系统评估准则<br>CC标准：通用准则<br>TCSEC/TDI标准的基本内容<br>TCSEC/TDI安全级别划分</p>
+<h2 id="4-2-数据库安全性控制概述"><a href="#4-2-数据库安全性控制概述" class="headerlink" title="4.2 数据库安全性控制概述"></a>4.2 数据库安全性控制概述</h2><p>非法使用数据库的情况<br>·编写合法程序绕过DBMS及其授权机制<br>·直接或编写应用程序执行非授权操作<br>·通过多次合法查询数据库从中推导出一些保密数据</p>
+<p>·计算机系统中，安全措施一级一级层层设置<br>数据库安全性控制的常用方法</p>
+<h3 id="4-2-1-用户标识和鉴定"><a href="#4-2-1-用户标识和鉴定" class="headerlink" title="4.2.1 用户标识和鉴定"></a>4.2.1 用户标识和鉴定</h3><p>系统提供的最外层保护措施<br>用户标识<br>口令：系统核对口令以鉴别用户身份<br>用户名和口令易被窃取：每个用户预先约定好一个计算过程或者函数。</p>
+<h3 id="4-2-2-存取控制"><a href="#4-2-2-存取控制" class="headerlink" title="4.2.2 存取控制"></a>4.2.2 存取控制</h3><p>存取控制机制的组成<br>·定义用户权限<br>·合法权限检查</p>
+<p>用户权限定义和合法权检查机制一起组成了DBMS的安全子系统<br>常用存取控制方法<br>·自主存取控制 C2级，灵活<br>·强制存取控制 B1级，严格</p>
+<h3 id="4-2-3-自主存取控制方法"><a href="#4-2-3-自主存取控制方法" class="headerlink" title="4.2.3 自主存取控制方法"></a>4.2.3 自主存取控制方法</h3><p>通过SQL的GRANT语句和REVOKE语句实现<br>用户权限组成<br>·数据对象<br>·操作类型<br>定义用户存取权限：定义用户可以在哪些数据库对象上进行哪些类型的操作<br>定义存取权限称为授权</p>
+<h3 id="4-2-4-授权与回收"><a href="#4-2-4-授权与回收" class="headerlink" title="4.2.4 授权与回收"></a>4.2.4 授权与回收</h3><p>一、GRANT<br>grant语句的一般格式<br>GRANT&lt;权限&gt;,[&lt;权限&gt;]<br>[ON &lt;对象类型&gt; &lt;对象名&gt;]<br>TO &lt;用户&gt;[,&lt;用户&gt;]…<br>[WITH GRANT OPTION];<br>语义：将对指定操作对象的指定操作权限授予指定用户</p>
+<p>·发出GRANT<br>DBA<br>数据库对象创建者（即属主OWNER）<br>拥有该权限的用户</p>
+<p>·按受权限的用户<br>一个或多个具体用户<br>PUBLIC(全体用户)</p>
+<p>WITH GRANT OPTION字句：<br>·指定：可以再授权<br>·没有指定：不能传播</p>
+<p>不允许循环授权</p>
+<p>[例1] 把查询Student表权限授给用户U1<br>GRANT SELECT<br>ON TABLE Student<br>TO U1;</p>
+<p>[例2] 把对Student表和Course表的全部权限授予用户U2和U3<br>GRANT ALL PRIVILIGES<br>ON TABLE Student,Course<br>TO U2,U3;</p>
+<p>[例3]把对表SC的查询权限授予所有用户<br>GRANT SELECT<br>ON TABLE SC<br>TO PUBLIC;</p>
+<p>[例4]把查询Student表和修改学生学号的权限授给用户U4<br>GRANT UPDATE(Sno),SELECT<br>ON TABLE Student<br>TO U4;<br>对属性列的授权时必须明确指出相应属性列名。</p>
+<p>[例5]把对表SC的INSERT权限授予U5用户，并允许他再将此权限授予其他用户<br>GRANT INSERT<br>ON TABLE SC<br>TO U5<br>WITH GRANT OPTION;</p>
+<p>二、REVOKE<br>授予的权限可以由DBA或其他授权者用REVOKE语句收回<br>REVOKE语句的一般格式为：</p>
+<p>[例10]把用户U5对SC表的INSERT权限收回<br>REVOKE INSERT<br>ON TABLE SC<br>FROM U5 CASCADE;</p>
+<p>小结：SQL灵活的授权机制<br>DBA：拥有所有对象的所有权限<br>·不同的权限授予不同的用户。<br>用户：拥有自己建立的对象的全部的操作权限<br>·GRANT：授予其他用户<br>被授予的用户<br>·“继续授权”许可：再授予<br>所有授予出去的权力再必要时又都可用REVOKE语句收回</p>
+<p>三、创建数据库模式的权限<br>DBA在创建用户时实现<br>GREATE USER语句格式<br>    CREATE USER <username><br>    [WITH] [DBA|RESOURCE|CONNECT]</p>
+<h3 id="4-2-5-数据库角色"><a href="#4-2-5-数据库角色" class="headerlink" title="4.2.5 数据库角色"></a>4.2.5 数据库角色</h3><p>数据库角色：被命名的一组与数据库操作相关的权限</p>
+<p>一、角色的创建<br>CREATE ROLE &lt;角色名&gt;<br>二、给角色授权<br>三、将一个角色授予其他的角色或用户<br>四、角色权限的收回</p>
+<p>GREATE ROLE R1;<br>GRANT SELECT,UPDATE,INSERT<br>ON TABLE Student<br>TO R1;<br>GRANT R1<br>TO 王平，张明，赵玲;</p>
+<p>自主存取控制缺点：可能存在数据的“无意泄露”<br>原因：这种机制仅仅通过对数据的存取权限来进行安全控制，而数据本身并无安全性标记。<br>解决：对系统控制下的所有主客体实施强制存取控制策略</p>
+<h3 id="4-2-6-强制存取控制方法"><a href="#4-2-6-强制存取控制方法" class="headerlink" title="4.2.6 强制存取控制方法"></a>4.2.6 强制存取控制方法</h3><p>强制存取控制（MAC）<br>保证更高的安全性<br>用户不能直接感知或进行控制</p>
+<p>主体是系统中的活动实体<br>DBMS所管理的实际用户<br>代表用户的各进程</p>
+<p>客体是系统中的被动实体，是受主体操纵的</p>
+<p>敏感度标记（Label）<br>·绝密<br>·机密<br>·可信<br>·公开<br>主体的敏感度标记称为许可证级别（Clearance Level）<br>客体的敏感度标记称为密级（Classification Level）</p>
+<p>强制存取控制规则<br>（1）仅当主体的许可证级别大于或等于客体的密级时，该主体才能读取相应的客体<br>（2）仅当主体的许可证级别小于或等于客体的密级时，该主体才能写相应的客体。<br>修正规则<br>·主体的许可证级别&lt;=客体的密级-&gt;主体能写客体<br>规则的共同点<br>禁止了拥有高许可证级别的主体更新低密级的数据对象</p>
+<p>MAC与DAC<br>DAC与MAC共同构成DBMS的安全机制<br>实现MAC时要首先实现DAC</p>
+<h2 id="4-3-视图机制"><a href="#4-3-视图机制" class="headerlink" title="4.3 视图机制"></a>4.3 视图机制</h2><p>[例]<br>CREATE VIEW CS_STUDENT<br>AS<br>SELECT *<br>FROM STUDENT<br>WHERE SDEPT = ‘CS’</p>
+<p>在视图上进一步定义存取权限<br>GRANT……</p>
+<h2 id="4-4审计"><a href="#4-4审计" class="headerlink" title="4.4审计"></a>4.4审计</h2><p>什么是审计<br>审计日志：将用户对数据库的所有操作记录在上面<br>DBA利用审计日志，找出非法存取数据的人、时间和内容<br>C2以上安全级别的DBMS必须具有</p>
+<p>审计分为<br>用户级审计<br>·针对自己创建的数据库表或视图进行审计<br>·记录所有用户对这些表或视图的一切成功和不成功的访问要求以及各种类型的SQL操作<br>系统级审计</p>
+<p>AUDIT语句：设置审计功能<br>NOAUDIT语句：取消审计功能<br>[例] 对修改SC表结构或修改SC表数据的操作进行审计。<br>AUDIT ALTER,UPDATE<br>ON SC;</p>
+<p>[例16] 取消对SC表的一切审计<br>NOAUDIT ALTER,UPDATE<br>ON SC;</p>
+<h2 id="4-5-数据加密"><a href="#4-5-数据加密" class="headerlink" title="4.5 数据加密"></a>4.5 数据加密</h2><p>防止数据库中数据在存储和传输中失密的有效手段</p>
+<h2 id="4-6-统计数据库安全性"><a href="#4-6-统计数据库安全性" class="headerlink" title="4.6 统计数据库安全性"></a>4.6 统计数据库安全性</h2><p>统计数据库<br>·允许用户查询狙击类型的信息（如合计、平均值）<br>·不允许查询单个记录信息</p>
+<p>统计数据库中特殊的安全性问题<br>·隐蔽的信息通道<br>·能从合法的查询中推到出不合法的信息。</p>
+<p>规则1：任何查询至少要涉及N(N足够大)个以上的记录<br>规则2：<br>规则3：</p>
+<p>数据库安全机制的设计目标：<br>视图破坏安全的人所花费的代价&gt;&gt;得到的利益</p>
+<h2 id="4-7小结"><a href="#4-7小结" class="headerlink" title="4.7小结"></a>4.7小结</h2><h1 id="数据库完整性"><a href="#数据库完整性" class="headerlink" title="数据库完整性"></a>数据库完整性</h1><p>数据库的完整性：数据的正确性和相容性</p>
+<p>为维护数据库的完整性，DBMS必须：<br>1.提供定义完整性约束条件的机制<br>2.提供完整性检查的方法<br>3.违约处理</p>
+<h2 id="5-1-实体完整性"><a href="#5-1-实体完整性" class="headerlink" title="5.1 实体完整性"></a>5.1 实体完整性</h2><p>规则：实体完整性规则<br>若属性A是基本关系R的主属性，则属性A不能取空值<br>参照完整性：<br>用户定义的完整性：</p>
+<h3 id="5-1-1-实体完整性定义"><a href="#5-1-1-实体完整性定义" class="headerlink" title="5.1.1 实体完整性定义"></a>5.1.1 实体完整性定义</h3><p>关系模型的实体完整性<br>CREATE TABLE中用PRIMARY KEY定义<br>单属性构成的码有两种说明方法<br>·定义为列级约束条件<br>·定义为表级约束条件<br>对多个属性构成的码只有一种说明方法<br>·定义为表级约束条件</p>
+<p>[例]<br>CREATE TABLE STUDENT<br>(Sno CHAR(9) PRIMARYKEY<br>);</p>
+<p>CREATE TABLE STUDENT<br>(SNO CHAR(9)<br>…<br>PRIMARY KEY(SNO))<br>);</p>
+<p>CREATE TABLE SC<br>(<br>SNO CHAR(9) NOT NULL,<br>CNO CHAR(4) NOT NULL,<br>PRIMARY KEY(SNO,CNO)<br>);</p>
+<h3 id="5-1-2-实体完整性检查和违约处理"><a href="#5-1-2-实体完整性检查和违约处理" class="headerlink" title="5.1.2 实体完整性检查和违约处理"></a>5.1.2 实体完整性检查和违约处理</h3><p>插入或对主码列进行更新操作时，RDMS按照实体完整性规则自动进行检查。包括：<br>1.检查主码值是否唯一，如果不唯一则拒绝插入或修改。<br>2.检查主码的各个属性是否为空，只要有一个为空就拒绝插入或修改。</p>
+<p>检查记录中主码值是否唯一的一种方法是进行全表扫描<br>索引</p>
+<h2 id="参照完整性"><a href="#参照完整性" class="headerlink" title="参照完整性"></a>参照完整性</h2><h3 id="5-2-1-参照完整性定义"><a href="#5-2-1-参照完整性定义" class="headerlink" title="5.2.1 参照完整性定义"></a>5.2.1 参照完整性定义</h3><p>关系模型的参照完整性定义<br>·在CREATE TABLE 中用FOREIGN KEY 短语定义哪些列为外码。<br>· REFERENCES</p>
+<p>[例]只能在表级定义参照完整性</p>
+<p>CREATE TABLE SC<br>(SNO CHAR(9) NOT NULL,<br> CNO CHAR(9) NOT NULL,<br> GRADE SMALLINT,<br> PRIMARY KEY(SNO,CNO),<br> FOREIGN KEY(SNO) REFERENCES STUDENT(SNO)<br> FOREIGN KEY(CNO) REFERENCES COURSE(CNO)<br> );</p>
+<h3 id="5-3-用户定义的完整性"><a href="#5-3-用户定义的完整性" class="headerlink" title="5.3 用户定义的完整性"></a>5.3 用户定义的完整性</h3><p>RDBMS提供，而不必由应用程序承担</p>
+<h3 id="5-3-1-属性上的约束条件的定义"><a href="#5-3-1-属性上的约束条件的定义" class="headerlink" title="5.3.1 属性上的约束条件的定义"></a>5.3.1 属性上的约束条件的定义</h3><p>CREATE TABLE时定义<br>1.不允许取空值<br>NOT NULL<br>2.列值唯一<br>UNIQUE<br>3.用CHECK短语指定列值<br>[例]CHECK(Ssex IN(‘男’，‘女’))</p>
+<p>CREATE TABLE STUDENT<br>(SNO CAHR(9),<br>SNAME CHAR(8) NOT NULL,<br>SSEX CHAR(2),<br>SAGE SMALLINT,<br>SDEPT CHAR(20)<br>PRIMARY KEY(SNO),<br>CHECK(SSEX=’女’ OR SNAME NOT LIKE ‘Ms.%’)<br>)</p>
+<p>CREATE TABLE STUDENT<br>(SNO NUMERIC(6)<br>CONSTRAINT C1 CHECK(SNO BETWEEN 90000 AND 99999),<br>SNAME CHAR(20)<br>CONSTRAINT C2 NOT NULL<br>)</p>
+<p>修改表中的完整性约束<br>ALTER TABLE STUDENT<br>DROP CONSTRAINT C1;<br>ALTER TABLE STUDENT<br>ADD CONSTRAINT C1 CHECK(SNO BETWEEN 900000 AND 999999);<br>ALTER TABLE StUDENT<br>DROP CONSTRAINT C3;<br>ALTER TABLE STUDENT<br>ADD CONSTRAINT C3 CHECK(SAGE &lt; 40);</p>
+<p>域中的完整性限制<br>SQL支持域的概念，并可以用CREATE DOMAIN语句建立一个域以及该域应该满足的完整性约束条件。<br>CREATE DOMAIN GenderDomain CHAR(2)<br>CHECK (VALUE IN(‘男’,’女’));</p>
+<h2 id="5-6-触发器"><a href="#5-6-触发器" class="headerlink" title="5.6 触发器"></a>5.6 触发器</h2><p>触发器（Trigger）是用户定义在关系表上的一类由事件驱动的特殊过程<br>·由服务器自动激活</p>
+<h3 id="5-6-1-定义触发器"><a href="#5-6-1-定义触发器" class="headerlink" title="5.6.1 定义触发器"></a>5.6.1 定义触发器</h3><p>CREATE TRIGGER&lt;触发器名&gt;<br>{BEFORE|AFTER}&lt;触发事件&gt; ON &lt;表名&gt;<br>FOR EACH{ROW|STATEMENT}<br>[WHEN&lt;触发条件&gt;]<br>&lt;触发动作体&gt;</p>
+<p>定义触发器的语法说明：<br>1.创建者：表的拥有者<br>2.触发器名<br>3.表名：触发器的目标表<br>4.触发事件：INSERT、DELETE、UPDATE<br>AFTER/BEBORE<br>5.触发器类型<br>行级触发器（FOR EACH ROW）<br>语句级触发器（FOR EACH STATEMENT）<br>6.触发条件<br>触发条件为真<br>省略WHEN触发条件<br>7.触发动作体<br>触发动作体可以是一个匿名PL/SQL过程快<br>也可以是对自己创建存储过程的调用</p>
+<p>[eg]<br>  CREATE TRIGGER INSERT_OR_UPDATE_SAL<br>  BEFORE INSERT OR UPDATE ON TEACHER<br>  FOR EACH ROW<br>  AS BEGIN<br>    IF(new.job=’教授’) AND(new.Sal&lt;4000)THEN<br>    new.Sal :=4000;<br>    END IF;<br>  END;</p>
+<p>  [EG]<br>  CREATE TABLE Sal_log<br>  (Eno NUMERIC(4) REFERENCES TEACHER(ENO),<br>  SAL NUMERIC(7,2),<br>  USERNAME CHAR(10,<br>  DATE TIMESTAMP)<br>  );</p>
+<p>  CREATE TRIGGER INSERT_SAL<br>  AFTER INSERT ON TEACHER<br>  FOR EACH ROW<br>  AS BEGIN<br>  INSERT INTO SAL_LOG VALUES(<br>  NEW.ENO,NEW.SAL,CURRENT_USER,CURRENT_TIMESTAMP);<br>  END;</p>
+<h3 id="5-6-2-激活触发器"><a href="#5-6-2-激活触发器" class="headerlink" title="5.6.2 激活触发器"></a>5.6.2 激活触发器</h3><p>触发器的执行，是由触发事件激活的，并由数据库服务器自动执行<br>一个数据表上可能定义了多个触发器<br>同一个表上的多个触发器激活时执行顺序：<br>1.BEFORE<br>2.SQL<br>3.AFTER</p>
+<p>[例] UPDATE Teacher SET SAL = 800 WHERE ENAME =’陈平’</p>
+<h3 id="5-6-3删除触发器"><a href="#5-6-3删除触发器" class="headerlink" title="5.6.3删除触发器"></a>5.6.3删除触发器</h3><p>DROP TRIGGER&lt;触发器名&gt; ON &lt;表名&gt;;<br>触发器必须是一个已经创建的触发器，并且只能</p>
 
       
 
@@ -432,7 +523,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#第一章-绪论"><span class="toc-number">1.</span> <span class="toc-text">第一章 绪论</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-数据库系统概述"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 数据库系统概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-1四个基本概念"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1.1四个基本概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-2-数据管理技术的产生"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.1.2 数据管理技术的产生</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-3数据库系统的特点"><span class="toc-number">1.1.3.</span> <span class="toc-text">1.1.3数据库系统的特点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-数据模型"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 数据模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-1-两大类数据模型"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.2.1 两大类数据模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-2-数据模型的组成要素"><span class="toc-number">1.2.2.</span> <span class="toc-text">1.2.2 数据模型的组成要素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-3-概念模型"><span class="toc-number">1.2.3.</span> <span class="toc-text">1.2.3 概念模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-4-最常用的数据模型"><span class="toc-number">1.2.4.</span> <span class="toc-text">1.2.4 最常用的数据模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-5层次模型-：数据库系统中最早出现的数据模型，用树形结构来表示"><span class="toc-number">1.2.5.</span> <span class="toc-text">1.2.5层次模型**：数据库系统中最早出现的数据模型，用树形结构来表示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-6网状模型"><span class="toc-number">1.2.6.</span> <span class="toc-text">1.2.6网状模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-7关系模型"><span class="toc-number">1.2.7.</span> <span class="toc-text">1.2.7关系模型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3数据库系统结构"><span class="toc-number">1.3.</span> <span class="toc-text">1.3数据库系统结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-1数据库系统模式的概念"><span class="toc-number">1.3.1.</span> <span class="toc-text">1.3.1数据库系统模式的概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-2数据库系统的三级模式结构"><span class="toc-number">1.3.2.</span> <span class="toc-text">1.3.2数据库系统的三级模式结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-3数据库的二级映像和物理独立性"><span class="toc-number">1.3.3.</span> <span class="toc-text">1.3.3数据库的二级映像和物理独立性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4数据库系统的组成"><span class="toc-number">1.4.</span> <span class="toc-text">1.4数据库系统的组成</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#关系数据库"><span class="toc-number">2.</span> <span class="toc-text">关系数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1关系数据结构及形式化定义"><span class="toc-number">2.1.</span> <span class="toc-text">2.1关系数据结构及形式化定义</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-1关系"><span class="toc-number">2.1.1.</span> <span class="toc-text">2.1.1关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-2关系模式"><span class="toc-number">2.1.2.</span> <span class="toc-text">2.1.2关系模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-3关系数据库"><span class="toc-number">2.1.3.</span> <span class="toc-text">2.1.3关系数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-4关系数据库的存储结构"><span class="toc-number">2.1.4.</span> <span class="toc-text">2.1.4关系数据库的存储结构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2关系操作"><span class="toc-number">2.2.</span> <span class="toc-text">2.2关系操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3关系的完整性"><span class="toc-number">2.3.</span> <span class="toc-text">2.3关系的完整性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2，3，1关系的三类完整性约束"><span class="toc-number">2.3.1.</span> <span class="toc-text">2，3，1关系的三类完整性约束</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-2-实体完整性"><span class="toc-number">2.3.2.</span> <span class="toc-text">2.3.2 实体完整性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-3-参照完整性"><span class="toc-number">2.3.3.</span> <span class="toc-text">2.3.3 参照完整性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-4用户定义的完整性"><span class="toc-number">2.3.4.</span> <span class="toc-text">2.3.4用户定义的完整性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4关系代数"><span class="toc-number">2.4.</span> <span class="toc-text">2.4关系代数</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#第一章-绪论"><span class="toc-number">1.</span> <span class="toc-text">第一章 绪论</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-数据库系统概述"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 数据库系统概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-1四个基本概念"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1.1四个基本概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-2-数据管理技术的产生"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.1.2 数据管理技术的产生</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-3数据库系统的特点"><span class="toc-number">1.1.3.</span> <span class="toc-text">1.1.3数据库系统的特点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-数据模型"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 数据模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-1-两大类数据模型"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.2.1 两大类数据模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-2-数据模型的组成要素"><span class="toc-number">1.2.2.</span> <span class="toc-text">1.2.2 数据模型的组成要素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-3-概念模型"><span class="toc-number">1.2.3.</span> <span class="toc-text">1.2.3 概念模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-4-最常用的数据模型"><span class="toc-number">1.2.4.</span> <span class="toc-text">1.2.4 最常用的数据模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-5层次模型-：数据库系统中最早出现的数据模型，用树形结构来表示"><span class="toc-number">1.2.5.</span> <span class="toc-text">1.2.5层次模型**：数据库系统中最早出现的数据模型，用树形结构来表示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-6网状模型"><span class="toc-number">1.2.6.</span> <span class="toc-text">1.2.6网状模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-7关系模型"><span class="toc-number">1.2.7.</span> <span class="toc-text">1.2.7关系模型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3数据库系统结构"><span class="toc-number">1.3.</span> <span class="toc-text">1.3数据库系统结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-1数据库系统模式的概念"><span class="toc-number">1.3.1.</span> <span class="toc-text">1.3.1数据库系统模式的概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-2数据库系统的三级模式结构"><span class="toc-number">1.3.2.</span> <span class="toc-text">1.3.2数据库系统的三级模式结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-3数据库的二级映像和物理独立性"><span class="toc-number">1.3.3.</span> <span class="toc-text">1.3.3数据库的二级映像和物理独立性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4数据库系统的组成"><span class="toc-number">1.4.</span> <span class="toc-text">1.4数据库系统的组成</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#关系数据库"><span class="toc-number">2.</span> <span class="toc-text">关系数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1关系数据结构及形式化定义"><span class="toc-number">2.1.</span> <span class="toc-text">2.1关系数据结构及形式化定义</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-1关系"><span class="toc-number">2.1.1.</span> <span class="toc-text">2.1.1关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-2关系模式"><span class="toc-number">2.1.2.</span> <span class="toc-text">2.1.2关系模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-3关系数据库"><span class="toc-number">2.1.3.</span> <span class="toc-text">2.1.3关系数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-4关系数据库的存储结构"><span class="toc-number">2.1.4.</span> <span class="toc-text">2.1.4关系数据库的存储结构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2关系操作"><span class="toc-number">2.2.</span> <span class="toc-text">2.2关系操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3关系的完整性"><span class="toc-number">2.3.</span> <span class="toc-text">2.3关系的完整性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2，3，1关系的三类完整性约束"><span class="toc-number">2.3.1.</span> <span class="toc-text">2，3，1关系的三类完整性约束</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-2-实体完整性"><span class="toc-number">2.3.2.</span> <span class="toc-text">2.3.2 实体完整性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-3-参照完整性"><span class="toc-number">2.3.3.</span> <span class="toc-text">2.3.3 参照完整性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-4用户定义的完整性"><span class="toc-number">2.3.4.</span> <span class="toc-text">2.3.4用户定义的完整性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4关系代数"><span class="toc-number">2.4.</span> <span class="toc-text">2.4关系代数</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第三章-关系数据库标准语言SQL"><span class="toc-number">3.</span> <span class="toc-text">第三章 关系数据库标准语言SQL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-SQL概述"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 SQL概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-1-SQL标准的发展过程"><span class="toc-number">3.1.1.</span> <span class="toc-text">3.3.1 SQL标准的发展过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-2-SQL语言特点"><span class="toc-number">3.1.2.</span> <span class="toc-text">3.3.2 SQL语言特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-3-SQL的基本概念"><span class="toc-number">3.1.3.</span> <span class="toc-text">3.1.3 SQL的基本概念</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-数据定义"><span class="toc-number">3.2.</span> <span class="toc-text">3.3 数据定义</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-1-模式的定义"><span class="toc-number">3.2.1.</span> <span class="toc-text">3.3.1 模式的定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-2-基本表的定义、删除与修改"><span class="toc-number">3.2.2.</span> <span class="toc-text">3.3.2 基本表的定义、删除与修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-3-索引的建立与删除"><span class="toc-number">3.2.3.</span> <span class="toc-text">3.3.3 索引的建立与删除</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-数据查询"><span class="toc-number">3.3.</span> <span class="toc-text">3.4 数据查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-5视图"><span class="toc-number">3.4.</span> <span class="toc-text">3.5视图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-6-1-定义视图"><span class="toc-number">3.4.1.</span> <span class="toc-text">3.6.1 定义视图</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第四章-数据库安全"><span class="toc-number">4.</span> <span class="toc-text">第四章 数据库安全</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-计算机安全的概述"><span class="toc-number">4.1.</span> <span class="toc-text">4.1 计算机安全的概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-1计算机系统的三类安全性问题"><span class="toc-number">4.1.1.</span> <span class="toc-text">4.1.1计算机系统的三类安全性问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-2-安全标准简介"><span class="toc-number">4.1.2.</span> <span class="toc-text">4.1.2 安全标准简介</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-数据库安全性控制概述"><span class="toc-number">4.2.</span> <span class="toc-text">4.2 数据库安全性控制概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-1-用户标识和鉴定"><span class="toc-number">4.2.1.</span> <span class="toc-text">4.2.1 用户标识和鉴定</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-2-存取控制"><span class="toc-number">4.2.2.</span> <span class="toc-text">4.2.2 存取控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-3-自主存取控制方法"><span class="toc-number">4.2.3.</span> <span class="toc-text">4.2.3 自主存取控制方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-4-授权与回收"><span class="toc-number">4.2.4.</span> <span class="toc-text">4.2.4 授权与回收</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-5-数据库角色"><span class="toc-number">4.2.5.</span> <span class="toc-text">4.2.5 数据库角色</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-6-强制存取控制方法"><span class="toc-number">4.2.6.</span> <span class="toc-text">4.2.6 强制存取控制方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-视图机制"><span class="toc-number">4.3.</span> <span class="toc-text">4.3 视图机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4审计"><span class="toc-number">4.4.</span> <span class="toc-text">4.4审计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-5-数据加密"><span class="toc-number">4.5.</span> <span class="toc-text">4.5 数据加密</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-6-统计数据库安全性"><span class="toc-number">4.6.</span> <span class="toc-text">4.6 统计数据库安全性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-7小结"><span class="toc-number">4.7.</span> <span class="toc-text">4.7小结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#数据库完整性"><span class="toc-number">5.</span> <span class="toc-text">数据库完整性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-实体完整性"><span class="toc-number">5.1.</span> <span class="toc-text">5.1 实体完整性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-1-实体完整性定义"><span class="toc-number">5.1.1.</span> <span class="toc-text">5.1.1 实体完整性定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-2-实体完整性检查和违约处理"><span class="toc-number">5.1.2.</span> <span class="toc-text">5.1.2 实体完整性检查和违约处理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参照完整性"><span class="toc-number">5.2.</span> <span class="toc-text">参照完整性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-1-参照完整性定义"><span class="toc-number">5.2.1.</span> <span class="toc-text">5.2.1 参照完整性定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-用户定义的完整性"><span class="toc-number">5.2.2.</span> <span class="toc-text">5.3 用户定义的完整性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-1-属性上的约束条件的定义"><span class="toc-number">5.2.3.</span> <span class="toc-text">5.3.1 属性上的约束条件的定义</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-6-触发器"><span class="toc-number">5.3.</span> <span class="toc-text">5.6 触发器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-6-1-定义触发器"><span class="toc-number">5.3.1.</span> <span class="toc-text">5.6.1 定义触发器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-6-2-激活触发器"><span class="toc-number">5.3.2.</span> <span class="toc-text">5.6.2 激活触发器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-6-3删除触发器"><span class="toc-number">5.3.3.</span> <span class="toc-text">5.6.3删除触发器</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -565,10 +656,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">CF</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
@@ -577,7 +664,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color3">CF</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -586,6 +673,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">日常</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">C++</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -601,11 +700,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">C++</a>
+                <a href="javascript:void(0)" class="js-tag color3">游戏</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -617,15 +720,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">游戏</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
+                <a href="javascript:void(0)" class="js-tag color5">算法笔记</a>
               </li>
             
             <div class="clearfix"></div>

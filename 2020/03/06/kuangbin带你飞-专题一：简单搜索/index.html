@@ -16,7 +16,7 @@
 <meta property="og:description" content="前言马上就开学了，可以悠闲地写简单算法题补难点的CF题的日子也要结束了。这个kuangbin带你飞专题是我偶然间发现的，计划每个专题刷5道就换新专题来迅速过一遍常见算法，然后第6题之后的题有时间再补或者哪天感觉这一块太薄弱了拿来训练。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-03-05T16:11:20.000Z">
-<meta property="article:modified_time" content="2020-04-17T00:02:48.215Z">
+<meta property="article:modified_time" content="2020-05-20T15:43:21.800Z">
 <meta property="article:author" content="fIamingo">
 <meta property="article:tag" content="ACM">
 <meta property="article:tag" content="算法">
@@ -604,7 +604,316 @@ void dfs(int n,int i,unsigned long long sum)
     if(flag)
     return ;
     dfs(n,i+1,sum*10+1);
-}</code></pre>
+}</code></pre><h2 id="Fire"><a href="#Fire" class="headerlink" title="Fire!"></a>Fire!</h2><p><strong>题目:<a href="https://vjudge.net/problem/UVA-11624" target="_blank" rel="noopener">POJ-1426</a></strong><br><strong>题解:</strong>只需要用bfs看看每个边界的点是不是人比火跑到那的时间短。</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+#include&lt;queue&gt;
+#include&lt;utility&gt;
+int map[1005][1005];
+int cost1[1005][1005];
+int cost2[1005][1005];
+int visit[1005][1005];
+int step[4][2] = {0,1,0,-1,1,0,-1,0};
+int R,C;
+pair&lt;int,int&gt; start;
+
+void bfs1()
+{
+    for(int i = 1; i &lt;= R; i++)
+    for(int j = 1; j &lt;= C; j++)
+    {
+        visit[i][j] = false;
+        cost1[i][j] = 10000000;
+    }
+    queue&lt;pair&lt;int,int&gt;&gt; Q;
+    Q.push(start);
+    cost1[start.first][start.second] = 0;
+    while(!Q.empty())
+    {
+        int x = Q.front().first;
+        int y = Q.front().second;
+        Q.pop();
+        visit[x][y] = true;
+        for(int i = 0; i &lt; 4; i++)
+        {
+            int xx = x + step[i][0];
+            int yy = y + step[i][1];
+            if(xx &gt;= 1 &amp;&amp; xx &lt;= R &amp;&amp; yy &gt;= 1 &amp;&amp; yy &lt;= C &amp;&amp;map[xx][yy] == 1 &amp;&amp; !visit[xx][yy])
+            {
+                visit[xx][yy] = true;
+                cost1[xx][yy] = cost1[x][y] + 1;
+                Q.push(make_pair(xx,yy));
+            }
+        }
+    }
+}
+
+void bfs2()
+{
+    for(int i = 1; i &lt;= R; i++)
+    for(int j = 1; j &lt;= C; j++)
+    {
+        visit[i][j] = false;
+        if(map[i][j] != 2)
+        cost2[i][j] = 10000000;
+    }     
+    queue&lt;pair&lt;int,int&gt;&gt; Q;
+    for(int i = 1; i &lt;= R; i++)
+    for(int j = 1; j &lt;= C; j++)
+    if(map[i][j] == 2)
+    Q.push(make_pair(i,j));
+    while(!Q.empty())
+    {
+        int x = Q.front().first;
+        int y = Q.front().second;
+        Q.pop();
+        visit[x][y] = true;
+        for(int i = 0; i &lt; 4; i++)
+        {
+            int xx = x + step[i][0];
+            int yy = y + step[i][1];
+            if(xx &gt;= 1 &amp;&amp; xx &lt;= R &amp;&amp; yy &gt;= 1 &amp;&amp; yy &lt;= C &amp;&amp;map[xx][yy] == 1 &amp;&amp; !visit[xx][yy])
+            {
+                visit[xx][yy] = true;
+                cost2[xx][yy] = cost2[x][y] + 1;
+                Q.push(make_pair(xx,yy));
+            }
+        }
+    }
+}
+
+int main()
+{
+    std::ios::sync_with_stdio(false);
+    std::cin.tie(0);
+    int t;
+    cin &gt;&gt; t;
+    while(t--)
+    {
+        cin &gt;&gt; R &gt;&gt; C;
+        for(int i = 1; i &lt;= R; i++)
+        for(int j = 1; j &lt;= C; j++)
+        {
+            char ch;
+            cin &gt;&gt; ch;
+            if(ch == &apos;#&apos;)
+            map[i][j] = 0;
+            else if(ch == &apos;.&apos;)
+            map[i][j] = 1;
+            else if(ch == &apos;J&apos;)
+            {
+            map[i][j] = 1;
+            start = make_pair(i,j);
+            }
+            else if(ch == &apos;F&apos;)
+            map[i][j] = 2;
+        }
+        bfs1();
+        bfs2();
+        int ans = 10000000;
+        for(int i = 1; i &lt;= C; i++)
+        {
+            if(map[1][i] == 1 &amp;&amp; cost1[1][i] &lt; cost2[1][i])
+            ans = min(ans,cost1[1][i]);
+            if(map[R][i] == 1 &amp;&amp; cost1[R][i] &lt; cost2[R][i])
+            ans = min(ans,cost1[R][i]);
+        }
+        for(int i = 1; i &lt;= R; i++)
+        {
+            if(map[i][1] == 1 &amp;&amp; cost1[i][1] &lt; cost2[i][1])
+            ans = min(ans,cost1[i][1]);
+            if(map[i][C] == 1 &amp;&amp; cost1[i][C] &lt; cost2[i][C])
+            ans = min(ans,cost1[i][C]); 
+        }
+        if(ans == 10000000)
+        cout &lt;&lt; &quot;IMPOSSIBLE&quot; &lt;&lt; endl;
+        else
+        cout &lt;&lt; ans + 1 &lt;&lt; endl;
+        for(int i = 1; i &lt;= R; i++)
+        for(int j = 1; j &lt;= C; j++)
+        cost1[i][j] = cost2[i][j] = map[i][j] =  visit[i][j] = 0;
+    }
+    return 0;
+}</code></pre><h2 id="迷宫问题"><a href="#迷宫问题" class="headerlink" title="迷宫问题"></a>迷宫问题</h2><p><strong>题目:<a href="https://vjudge.net/problem/POJ-3984" target="_blank" rel="noopener">POJ-3984</a></strong> </p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+int maze[6][6];
+bool visit[6][6];
+int path[4][2] ={1,0,0,1,-1,0,0,-1}; 
+int last[6][6][2];
+#include&lt;queue&gt;
+struct node{
+    int x;
+    int y;
+};
+
+void dfs(int x,int y)
+{
+    if(x!=0 || y!= 0)
+    dfs(last[x][y][0],last[x][y][1]);
+    cout &lt;&lt; &quot;(&quot;&lt;&lt;x&lt;&lt;&quot;, &quot;&lt;&lt;y&lt;&lt;&quot;)&quot;&lt;&lt;endl;    
+    return ;
+}
+
+int main()
+{
+    std::ios::sync_with_stdio(false);
+    std::cin.tie(0);
+    for(int i = 0; i &lt;= 4; i++)
+        for(int j = 0; j &lt;= 4; j++)
+        cin &gt;&gt; maze[i][j];
+    queue&lt;node&gt;Q;
+    Q.push({0,0});
+    while(!Q.empty())
+    {
+        node a;
+        a = Q.front();
+        Q.pop();
+        int x = a.x;
+        int y = a.y;
+        for(int i = 0; i &lt; 4; i++ )
+        {
+            int xx = x + path[i][0];
+            int yy = y + path[i][1];
+            if(!visit[xx][yy] &amp;&amp; maze[xx][yy] == 0 &amp;&amp; xx &lt;= 4 &amp;&amp; xx &gt;= 0 &amp;&amp; yy &lt;= 4 &amp;&amp; yy &gt;=0 )
+            {
+                visit[xx][yy] = true;
+                Q.push({xx,yy});
+                last[xx][yy][0] = x;
+                last[xx][yy][1] = y;
+            }
+        }
+    }
+    dfs(4,4);
+    return 0;
+} </code></pre><h2 id="Oil-Deposits"><a href="#Oil-Deposits" class="headerlink" title="Oil Deposits"></a>Oil Deposits</h2><p><strong>题目:<a href="https://vjudge.net/problem/HDU-1241" target="_blank" rel="noopener">HDU-1241</a></strong> </p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+#include&lt;string.h&gt;
+int map[105][105];
+bool visit[105][105];
+int dir[8][2] = {1,0,-1,0,0,1,0,-1,1,1,1,-1,-1,1,-1,-1};
+int m,n;
+void dfs(int x, int y)
+{
+    for(int i = 0 ; i &lt; 8; i++)
+    {
+        int xx = x + dir[i][0];
+        int yy = y + dir[i][1];
+        if(xx &lt;= m &amp;&amp; xx &gt;= 1 &amp;&amp; y &lt;= n &amp;&amp; y&gt;= 1 &amp;&amp; map[xx][yy] &amp;&amp; !visit[xx][yy])
+        {
+            visit[xx][yy] = true;
+            dfs(xx,yy);
+        }
+    }
+}
+
+int main()
+{
+    std::ios::sync_with_stdio(false);
+    std::cin.tie(0);
+    while(cin &gt;&gt; m &gt;&gt; n)
+    {
+    memset(visit,false,sizeof(visit));
+    if(!m &amp;&amp; !n)
+    break;
+    for(int i = 1; i &lt;= m; i++)
+    for(int j = 1; j &lt;= n; j++)
+    {
+        char ch;
+        cin &gt;&gt; ch;
+        if(ch == &apos;*&apos;)
+        map[i][j] = 0;
+        else map[i][j] = 1;
+    }
+    int ans = 0;
+    for(int i = 1; i &lt;= m; i++)
+    for(int j = 1; j &lt;= n; j++)
+    if(map[i][j] &amp;&amp; !visit[i][j])
+    {
+        dfs(i,j);
+        ans++;
+    }
+    cout &lt;&lt; ans &lt;&lt; endl;
+    }
+        return 0;
+}</code></pre><h2 id="Prime-Path"><a href="#Prime-Path" class="headerlink" title="Prime Path"></a>Prime Path</h2><p><strong>题目:<a href="https://vjudge.net/problem/POJ-3126" target="_blank" rel="noopener">POJ-3126</a></strong> </p>
+<pre><code>#include&lt;iostream&gt;    
+using namespace std;
+#include&lt;vector&gt;
+#include&lt;queue&gt;
+bool prime[10005];
+int p[10005];
+int visit[10005];
+vector&lt;int&gt; v;
+
+int main()
+{
+    std::ios::sync_with_stdio(false);
+    std::cin.tie(0);
+    int n = 10000;
+    int toc = 0;
+    for(int i=2;i&lt;=n;i++)
+    {
+        if(!prime[i])
+        {
+        p[++toc]=i;
+        }
+        for(int j=1;j&lt;=toc &amp;&amp; i*p[j]&lt;=n;j++)
+        {
+        prime[i*p[j]]=1;
+           if (i%p[j]==0) break;
+        }
+    } 
+    int t;
+    cin &gt;&gt; t;
+    while(t--)
+    {
+        int last,next;
+        cin &gt;&gt; last &gt;&gt; next;
+        v.push_back(last);
+        v.push_back(next);
+        queue&lt;int&gt; Q;
+        Q.push(last);
+        visit[last] = 1;
+        while(!Q.empty())
+        {
+            int cur = Q.front();
+            if(cur == next)
+            break;
+            Q.pop();
+            int h[4];
+            int now = cur;
+            for(int i = 3 ; i &gt;= 0; i--)
+            {
+                h[i] = cur % 10;
+                cur = cur / 10;
+            }
+            for(int i = 0;i &lt; 4; i++)
+            {
+                for(int j = 1;j &lt;= 10;j++)
+                {
+                    h[i] = (h[i] + 1)%10;
+                    if(i == 0 &amp;&amp; h[i] == 0)
+                    continue;
+                    int sum = h[0]*1000+h[1]*100+h[2]*10+h[3];
+                    if(!prime[sum] &amp;&amp; !visit[sum])
+                    {
+                        visit[sum] = visit[now] + 1;
+                        v.push_back(sum);
+                        Q.push(sum);
+                    }
+                }
+            }
+        }
+        cout &lt;&lt; visit[next] - 1 &lt;&lt; endl;
+        for(int i = 0; i &lt; v.size(); i++)
+        {
+            visit[v[i]] = 0;
+        }
+        v.clear();
+    }
+} </code></pre>
       
 
       
@@ -733,7 +1042,7 @@ void dfs(int n,int i,unsigned long long sum)
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#棋盘问题"><span class="toc-number">2.</span> <span class="toc-text">棋盘问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dungeon-Master"><span class="toc-number">3.</span> <span class="toc-text">Dungeon Master</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Catch-That-Cow"><span class="toc-number">4.</span> <span class="toc-text">Catch That Cow</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fliptile"><span class="toc-number">5.</span> <span class="toc-text">Fliptile</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Find-The-Multiple"><span class="toc-number">6.</span> <span class="toc-text">Find The Multiple</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#棋盘问题"><span class="toc-number">2.</span> <span class="toc-text">棋盘问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dungeon-Master"><span class="toc-number">3.</span> <span class="toc-text">Dungeon Master</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Catch-That-Cow"><span class="toc-number">4.</span> <span class="toc-text">Catch That Cow</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fliptile"><span class="toc-number">5.</span> <span class="toc-text">Fliptile</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Find-The-Multiple"><span class="toc-number">6.</span> <span class="toc-text">Find The Multiple</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fire"><span class="toc-number">7.</span> <span class="toc-text">Fire!</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#迷宫问题"><span class="toc-number">8.</span> <span class="toc-text">迷宫问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Oil-Deposits"><span class="toc-number">9.</span> <span class="toc-text">Oil Deposits</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Prime-Path"><span class="toc-number">10.</span> <span class="toc-text">Prime Path</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -866,10 +1175,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">CF</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
@@ -878,7 +1183,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color3">CF</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -887,6 +1192,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">日常</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">C++</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -902,11 +1219,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">C++</a>
+                <a href="javascript:void(0)" class="js-tag color3">游戏</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -918,15 +1239,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">游戏</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
+                <a href="javascript:void(0)" class="js-tag color5">算法笔记</a>
               </li>
             
             <div class="clearfix"></div>
