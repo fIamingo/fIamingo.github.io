@@ -22,7 +22,7 @@
 <meta property="og:image" content="http://fiamingo.github.io/2020/05/22/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0-%E6%B5%85%E8%B0%88%E8%88%9E%E8%B9%88%E9%93%BE-dancing-links-%E4%B8%8E%E6%95%B0%E7%8B%AC/6.png">
 <meta property="og:image" content="http://fiamingo.github.io/2020/05/22/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0-%E6%B5%85%E8%B0%88%E8%88%9E%E8%B9%88%E9%93%BE-dancing-links-%E4%B8%8E%E6%95%B0%E7%8B%AC/7.png">
 <meta property="article:published_time" content="2020-05-22T13:57:17.000Z">
-<meta property="article:modified_time" content="2020-05-22T15:06:09.923Z">
+<meta property="article:modified_time" content="2020-05-23T04:25:42.254Z">
 <meta property="article:author" content="fIamingo">
 <meta property="article:tag" content="ACM">
 <meta property="article:tag" content="算法">
@@ -451,8 +451,181 @@ struct DLX{
         return false;
     }
 };
-DLX dlx;</code></pre><h2 id="数独模型"><a href="#数独模型" class="headerlink" title="数独模型"></a>数独模型</h2><p>我好累啊，码字辛苦，未完待续！</p>
+DLX dlx;</code></pre><h2 id="数独模型"><a href="#数独模型" class="headerlink" title="数独模型"></a>数独模型</h2><p>有了舞蹈链的模板，现在考虑建模了。<br>建表要考虑行列的大小及其意义是什么。<br>行是方案，数独中有81个格子，每个格子可以选择9个值，所以有729行，每一行代表这样一个方案。<br>列是需要满足的条件，我们都知道数独的规则。<br>数独格子有9行，9列，9宫，并且每行每列每个宫都要同时存在1-9。<br>这样舞蹈链中就有9<em>9</em>3列了，然而这就结束了吗，其实还有一个明显的条件，那就是每个格子都填了值。有81个格子，所以要增加81列。<br>最终列的个数是9<em>9</em>4。</p>
+<p>来看一到例题：<a href="https://vjudge.net/problem/POJ-3074" target="_blank" rel="noopener">sudoku POJ-3074</a><br>题意其实就是让你填张数独。<br>我们的格子分为两种，一种是已经题目中填过的，一种是让你填的。<br>我们可以考虑到没填过的格子，对于这样的每个格子加9行，分别表示这个格子放的是1，2，3…9.并且每行要增加四个结点。<br>比如第3行的第4个未填值，增加9行，分别表示(3,4)填了1，2，3，..9。<br>(3，4)填1时，增加的四个结点的含义就是(3，4)填了值，第3行填过1，第4列填过1，第2个宫填过1。<br>对于填过的格子，我的想法是：删去它占的列，比如如果题目中(3，4)填了1，分别删去上面那四个列。这样之后填的值就不会与这个点冲突。<br>要注意的是，要先加列后删列。否则删去的列可能又会在后面加回来，所以要分别操作。<br>我看到其他博客是对于填过的格子，加上那四个列，由于dancing的时候优化过，先填列上结点最少的，所以肯定是先填了题目中给定的点，所以这两种方法都可以。</p>
+<p>这道题我的AC代码：</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+#include&lt;string.h&gt;
+#define clr(x) memset(x,0,sizeof(x)) 
+#define clrlow(x) memset(x,-1,sizeof(x))
+#define maxn 810*4    
+#define maxnode 810*4
 
+struct DLX{
+    int n,m;
+    int U[maxnode],D[maxnode],L[maxnode],R[maxnode],col[maxnode],row[maxnode];
+    int H[maxn],S[maxn];
+    int ansed,ans[maxn],size;
+
+    void init(int _n,int _m)
+    {
+        n = _n;
+        m = _m;
+        for(int i = 0; i &lt;= m; i++)
+        {
+            S[i] = 0;
+            U[i] = i;
+            D[i] = i;
+            L[i] = i - 1;
+            R[i] = i + 1;
+            col[i] = i;
+            row[i] = 0;
+        }
+        L[0] = m;
+        R[m] = 0;
+        size = m;
+        clrlow(H);
+        clr(ans);
+        ansed = 0;
+        return;
+    }
+
+    void push(int r,int c)
+    {
+        size++;
+        S[c]++;
+        D[size] = D[c];
+        U[size] = c;
+        U[D[c]] = size;
+        D[c] = size;
+        row[size] = r;
+        col[size] = c;
+        if(H[r] &lt; 0)
+        {
+            H[r] = size;
+            R[size] = L[size] = size;
+        }
+        else
+        {
+            L[size] = H[r];
+            R[size] = R[H[r]];
+            L[R[H[r]]] = size;
+            R[H[r]] = size;
+        }
+    }
+
+    void del(int c)
+    {
+        R[L[c]] = R[c];
+        L[R[c]] = L[c];
+        for(int i = D[c]; i != c; i = D[i])
+            for(int j = R[i]; j != i; j = R[j])
+            {
+                D[U[j]] = D[j];
+                U[D[j]] = U[j];
+                S[col[j]]--;
+            }
+        return ;
+    }
+
+    void reback(int c)
+    {
+        for(int i = U[c]; i != c; i = U[i])
+            for(int j = L[i]; j != i; j = L[j])
+            {
+                D[U[j]] = j;
+                U[D[j]] = j;
+                S[col[j]]++;
+            }    
+        R[L[c]] = c;
+        L[R[c]] = c;
+        return ;
+    }
+
+    bool dancing(int dep)
+    {
+        if(R[0] == 0)
+        {
+            ansed = dep;
+            return true;
+        }
+        int c = R[0];
+        for(int i = R[0]; i != 0; i = R[i]){
+            if(S[i] &lt; S[c])
+            c = i;
+        }
+        del(c);
+        for(int i = D[c]; i != c; i = D[i])
+        {
+            ans[dep] = row[i];
+            for(int j = R[i]; j != i; j = R[j])
+                del(col[j]);
+            if(dancing(dep+1))
+                return true;
+            for(int j = L[i];j != i; j = L[j])
+                reback(col[j]);    
+        }
+        reback(c);
+        return false;
+    }
+};
+DLX dlx;
+
+int main()
+{
+    while(1)
+    {
+        string str;
+        cin &gt;&gt; str;
+        if(str == &quot;end&quot;)
+        break;
+        str = &apos;#&apos; + str;
+        dlx.init(729,324);
+         for(int i = 1; i &lt;= 81; i++)
+        {
+            int x = (i - 1)/9 + 1;
+            int y = (i - 1)%9 + 1;
+            int z = (x - 1)/3*3 + (y - 1)/3 + 1;
+            if(str[i] == &apos;.&apos;)
+            {
+                for(int j = 1; j &lt;= 9; j++)
+                {
+                    int d = (i - 1)*9 + j;
+                    dlx.push(d, i);
+                    dlx.push(d,81+(x-1)*9 + j);
+                    dlx.push(d,162+(y-1)*9 + j);
+                    dlx.push(d,243+(z-1)*9 + j);
+                }
+            }
+        }
+        for(int i = 1; i &lt;= 81 ; i ++)
+        {
+            if(str[i] == &apos;.&apos;)
+            continue;    
+            int num = str[i] - &apos;0&apos; + 0;
+            int x = (i - 1)/9 + 1;
+            int y = (i - 1)%9 + 1;
+            int z = (x - 1)/3*3 + (y - 1)/3 + 1;
+            dlx.del(i);
+            dlx.del(81 + (x - 1) * 9 + num);
+            dlx.del(162 + (y - 1) * 9 + num);
+            dlx.del(243 + (z - 1) * 9 + num);
+        }
+        dlx.dancing(0);
+        int dep = dlx.ansed;
+        for(int i = 0; i &lt; dep ; i++)
+        {
+            int num = dlx.ans[i];
+            int l = (num - 1)/9 + 1; //在第几个格子 
+            int k = (num - 1)%9 + 1; //数字是几
+            str[l] = k + &apos;0&apos; + 0; 
+        }
+        for(int i = 1; i &lt;= 81;i++)
+        cout &lt;&lt; str[i];
+        cout &lt;&lt; endl;
+    }
+} </code></pre>
       
 
       
@@ -749,15 +922,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">游戏</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+                <a href="javascript:void(0)" class="js-tag color3">游戏</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -766,6 +935,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">机组</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
