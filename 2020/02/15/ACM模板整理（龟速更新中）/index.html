@@ -17,7 +17,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://fiamingo.github.io/2020/02/15/ACM%E6%A8%A1%E6%9D%BF%E6%95%B4%E7%90%86%EF%BC%88%E9%BE%9F%E9%80%9F%E6%9B%B4%E6%96%B0%E4%B8%AD%EF%BC%89/%E8%B4%B9%E9%A9%AC.jpg">
 <meta property="article:published_time" content="2020-02-15T14:41:58.000Z">
-<meta property="article:modified_time" content="2020-06-23T08:24:01.074Z">
+<meta property="article:modified_time" content="2020-07-10T18:25:02.441Z">
 <meta property="article:author" content="fIamingo">
 <meta property="article:tag" content="ACM">
 <meta name="twitter:card" content="summary">
@@ -696,6 +696,662 @@ void tarjan(int x)
         }
         sp[n]=mark;S.pop();
     }
+}</code></pre><h1 id="计算几何"><a href="#计算几何" class="headerlink" title="计算几何"></a>计算几何</h1><p>来自墙角猫的github<br><a href="https://github.com/Feynman1999/Corner-Cat-Code-Template-For-ACMICPC/blob/master/4-计算几何.md#线" target="_blank" rel="noopener">https://github.com/Feynman1999/Corner-Cat-Code-Template-For-ACMICPC/blob/master/4-计算几何.md#线</a></p>
+<h5 id="点与向量"><a href="#点与向量" class="headerlink" title="点与向量"></a>点与向量</h5><pre><code>//点与向量
+#include &lt;vector&gt;
+#include &lt;cmath&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+const double eps=1e-10;
+const double PI=acos(-1.0);
+
+struct Point{
+    double x,y;
+    Point(double x=0,double y=0):x(x),y(y){}
+};
+typedef Point Vector;
+typedef vector&lt;Point&gt; Polygon;
+
+Vector operator -(Point a,Point b){
+    return Vector(a.x-b.x,a.y-b.y);
+}
+Vector operator +(Point a,Point b){
+    return Vector(a.x+b.x,a.y+b.y);
+}
+Vector operator *(Vector a,double p){
+    return Vector(a.x*p,a.y*p);
+}
+Vector operator /(Vector a,double p){
+    return Vector(a.x/p,a.y/p);
+}
+bool operator &lt;(const Point&amp; a,const Point&amp; b){
+    return a.x&lt;b.x||(a.x==b.x&amp;&amp;a.y&lt;b.y);//在有精度需求，比如使用lower_bound的时候，加上dcmp()
+}
+int dcmp(double x){
+    if(fabs(x)&lt;eps)return 0;
+    if(x&lt;0)return -1;
+    return 1;
+}
+bool operator ==(const Point&amp; a,const Point&amp; b){
+    return dcmp(a.x-b.x)==0&amp;&amp;dcmp(a.y-b.y)==0;
+}
+double Dot(Vector a,Vector b){
+    return a.x*b.x+a.y*b.y;
+}//点积
+double Cross(Vector a,Vector b){
+    return a.x*b.y-a.y*b.x;
+}//叉积 
+int quadrant(Point a)
+{
+    if(a.x&gt;0&amp;&amp;a.y&gt;=0)return 1;
+    if(a.x&lt;=0&amp;&amp;a.y&gt;0)return 2;
+    if(a.x&lt;0&amp;&amp;a.y&lt;=0)return 3;
+    return 4;
+}
+bool cmp(Point a,Point b)
+{
+    if(quadrant(a)!=quadrant(b))return quadrant(a)&lt;quadrant(b);
+    return Cross(a,b)&gt;0;
+}
+double Length(Vector a){
+    return sqrt(Dot(a,a));
+}//长度
+//返回逆时针旋转90度的单位法向量；
+Vector Normal(Vector a){
+    double l=Length(a);
+    return Vector(-a.y/l,a.x/l);
+}
+//返回单位向量；
+Vector normal(Vector a){
+    double l=Length(a);
+    return Vector(a.x/l,a.y/l);
+}
+//返回向量夹角，无方向
+double Angle(Vector a,Vector b){
+    return acos(Dot(a,b)/Length(a)/Length(b));
+}
+//逆时针旋转向量
+Vector Rotate(Vector a,double rad){
+    return Vector(a.x*cos(rad)-a.y*sin(rad),a.x*sin(rad)+a.y*cos(rad));
+}
+//求p+v*t与q+w*t的交点，使用时确保Cross(v,w)不等于0
+Point GetlineIntersection(Point p,Vector v,Point q,Vector w){
+    Vector u=p-q;
+    double t=Cross(w,u)/Cross(v,w);
+    return p+v*t;
+}
+//求p到直线ab的距离
+double DistanceToline(Point p,Point a,Point b){
+    Vector v1=p-a,v2=b-a;
+    return fabs(Cross(v1,v2)/Length(v2));
+}
+//求p到线段ab的距离
+double DistanceToSegment(Point p,Point a,Point b){
+    if(a==b)return Length(p-a);
+    Vector v1=b-a,v2=p-a,v3=p-b;
+    if(dcmp(Dot(v1,v2)&lt;0))return Length(p-a);
+    else if(dcmp(Dot(v1,v3))&gt;0)return Length(p-b);
+    else return fabs(Cross(v1,v2)/Length(v1));
+}
+//线段a1a2与线段b1b2规范相交返回真
+bool SegmenProperIntersection(Point a1,Point a2,Point b1,Point b2){
+    double c1=Cross(a2-a1,b1-a1),c2=Cross(a2-a1,b2-a1);
+    double c3=Cross(b2-b1,a1-b1),c4=Cross(b2-b1,a2-b1);
+    return dcmp(c1)*dcmp(c2)&lt;0&amp;&amp;dcmp(c3)*dcmp(c4)&lt;0;
+}
+//点p在线段a1a2上返回真
+bool OnSegment(Point p,Point a1,Point a2){
+    return dcmp(Cross(a1-p,a2-p))==0&amp;&amp;dcmp(Dot(a1-p,a2-p))&lt;0;
+}
+//点p在ab上的投影
+Point GetLineProjection(Point P,Point A,Point B)
+{
+    Vector v=B-A;
+    return A+v*(Dot(v,P-A)/Dot(v,v));
+}
+//与 x 轴的夹角，取值范围为 (-π，π]
+double angle(Vector v){
+    return atan2(v.y,v.x);
+}
+//求线段a1,a2到线段b1,b2的最短距离
+double disSegmenttoSegment(Point a1,Point a2,Point b1,Point b2)
+{
+    double ans=DistanceToSegment(a1,b1,b2);
+    ans=min(ans,DistanceToSegment(a2,b1,b2));
+    ans=min(ans,DistanceToSegment(b1,a1,a2));
+    ans=min(ans,DistanceToSegment(b2,a1,a2));
+    return ans;
+}</code></pre><h5 id="线"><a href="#线" class="headerlink" title="线"></a>线</h5><pre><code>struct Line{
+    Point p;//点
+    Vector v;//向量
+    double ang;
+    Line(){}
+    Line(Point p,Vector v):p(p),v(v){ang=atan2(v.y,v.x);}
+    Point point(double t){return p+v*t;}
+    bool operator &lt;(const Line&amp; L)const{
+        return ang&lt;L.ang;
+    }
+};
+//点在直线的左边
+bool OnLeft(Line l,Point p)
+{
+    return Cross(l.v,p-l.p)&gt;0;
+}
+//两直线交点
+Point GetIntersection(Line a,Line b)
+{
+    Vector u=a.p-b.p;
+    double t=Cross(b.v,u)/Cross(a.v,b.v);
+    return a.p+a.v*t;
+}</code></pre><h5 id="多边形"><a href="#多边形" class="headerlink" title="多边形"></a>多边形</h5><pre><code>typedef vector&lt;Point&gt; Polygon;
+//多边形的有向面积，逆时针为正
+double PolygonArea(Point po[],int n) {
+    double area = 0.0;
+    for(int i = 1; i &lt; n-1; i++) {
+        area += Cross(po[i]-po[0], po[i+1]-po[0]);
+    }
+    return area * 0.5;
+}
+double PolygonArea(Polygon po) {
+    int n=po.size();
+    double area = 0.0;
+    for(int i = 1; i &lt; n-1; i++) {
+        area += Cross(po[i]-po[0], po[i+1]-po[0]);
+    }
+    return area * 0.5;
+}
+//用有向直线A-&gt;B切割多边形poly， 返回“左侧”。 如果退化，可能会返回一个单点或者线段
+//复杂度O(n2);
+Polygon CutPolygon(Polygon poly, Point A, Point B) {
+    Polygon newpoly;
+    int n = poly.size();
+    for(int i = 0; i &lt; n; i++) {
+        Point C = poly[i];
+        Point D = poly[(i+1)%n];
+        if(dcmp(Cross(B-A, C-A)) &gt;= 0) newpoly.push_back(C);
+        if(dcmp(Cross(B-A, C-D)) != 0) {
+            Point ip = GetLineIntersection(A, B-A, C, D-C);
+            if(OnSegment(ip, C, D)) newpoly.push_back(ip);
+        }
+    }
+    return newpoly;
+}
+//点是否在多边形内
+int isPointInPolygon(Point p,Point poly[],int n)
+{
+    int wn=0;
+    for(int i=0;i&lt;n;i++){ 
+        if(poly[i]==p||poly[(i+1)%n]==p||OnSegment(p,poly[i],poly[(i+1)%n]))return -1;
+        int k=dcmp(Cross(poly[(i+1)%n]-poly[i],p-poly[i]));
+        int d1=dcmp(poly[i].y-p.y);
+        int d2=dcmp(poly[(i+1)%n].y-p.y);
+        if(k&gt;0&amp;&amp;d1&lt;=0&amp;&amp;d2&gt;0)
+            wn++;
+        if(k&lt;0&amp;&amp;d2&lt;=0&amp;&amp;d1&gt;0)
+            wn--;
+    }
+    if(wn!=0)return 1;//内部
+    return 0;//外部
+}
+
+//闵可夫斯基和
+int Polygonsum(Point a[],Point b[],int n1,int n2,Point ch[])
+{
+    ch[0]=a[0]+b[0];
+    a[n1]=a[0];
+    b[n2]=b[0];
+    int p1=1,p2=1,p=1;
+    while(p1&lt;=n1&amp;&amp;p2&lt;=n2){
+        if(Cross(a[p1]-a[p1-1],b[p2]-b[p2-1])&gt;0){
+            ch[p]=ch[p-1]+a[p1]-a[p1-1];
+            p1++;
+        }
+        else {
+            ch[p]=ch[p-1]+b[p2]-b[p2-1];
+            p2++;
+        }
+        p++;
+    }
+    while(p1&lt;=n1){
+        ch[p]=ch[p-1]+a[p1]-a[p1-1];
+        p1++;
+        p++;
+    }
+    while(p2&lt;=n2){
+        ch[p]=ch[p-1]+b[p2]-b[p2-1];
+        p2++;
+        p++;
+    }
+    return p;
+}
+
+//求凸包，ch为返回凸包，m为凸包内点的数目，&lt;=不允许点在边上，
+int ConvecHull(Point* p,int n,Point* ch)
+{
+    sort(p,p+n);
+    int m=0;
+    for(int i=0;i&lt;n;i++){
+        while(m&gt;1&amp;&amp;dcmp(Cross(ch[m-1]-ch[m-2],p[i]-ch[m-2])&lt;=0))m--;//注意&lt;=与&lt;的区别
+        ch[m++]=p[i];
+    }
+    int k=m;
+    for(int i=n-2;i&gt;=0;i--){
+        while(m&gt;k&amp;&amp;dcmp(Cross(ch[m-1]-ch[m-2],p[i]-ch[m-2])&lt;=0))m--;//注意&lt;=与&lt;的区别
+        ch[m++]=p[i];
+    }
+    if(n&gt;1)m--;
+    return m;
+}
+
+double cross(Point a,Point b,Point c)
+{
+    return Cross(a-c,b-c);
+}
+double CPIA(Point a[], Point b[], int na, int nb){//传入两个三角形，求相交部分的凸包
+    Point p[20], tmp[20];           //复制点集与临时点集（P其实可以用B来做
+    int tn, sflag, eflag;           //每轮相交凸包的点，叉乘符号
+    a[na] = a[0], b[nb] = b[0];     //末点用初点复制方便首末点连边
+    memcpy(p,b,sizeof(Point)*(nb + 1));         //把B复制到P
+    for(int i=0;i&lt;na&amp;&amp;nb&gt;2;i++){                //扫一次A
+        sflag=dcmp(cross(a[i+1],p[0],a[i]));    //取A两点与B第一点求叉乘符号
+        for(int j=tn=0;j&lt;nb;j++,sflag=eflag){   //扫一次B，更新TMP，TN是点数
+            if(sflag&gt;=0)tmp[tn++]=p[j];         //叉乘为正就是B数组的那个点压入
+            eflag=dcmp(cross(a[i+1],p[j+1],a[i]));//求叉乘符号
+            if((sflag^eflag)==-2)tmp[tn++]=GetlineIntersection(a[i],a[i+1]-a[i],p[j],p[j+1]-p[j]);
+            //tmp[tn++]=intersection(a[i],a[i+1],p[j],p[j+1]);//求交点
+        }
+        memcpy(p, tmp, sizeof(Point) * tn);     //把TMP复制到P
+        nb = tn, p[nb] = p[0];//TN即TMP点数记到NB
+    }//其实该是NP表示P数组个数，这里省了个变量就用NB表示，下面第二行做参数而已
+    if(nb &lt; 3) return 0.0;      //相交部分凸包不够三个点，面积就是0
+    return PolygonArea(p, nb);  //求出相交凸包部分的面积
+}
+double SPIA(Point a[], Point b[], int na, int nb){//传入两个多边形的点
+    int i,j;                            //循环变量
+    Point t1[4],t2[4];                  //其实T13与T23没用上
+    double res=0,num1,num2;             //答案初始化，及叉乘符号
+    a[na]=t1[0]=a[0],b[nb]=t2[0]=b[0];  //初始化T1,T2和ANA,BNB
+    for(i=2;i&lt;na;i++){                  //扫一次第一个多边形全部点
+        t1[1]=a[i-1],t1[2]=a[i];        //每次在第一个多边形取两个点赋给T11,T12
+        num1=dcmp(cross(t1[1],t1[2],t1[0]));//求出叉乘符号
+        if(num1&lt;0)swap(t1[1],t1[2]);    //小于0则改变T11,T12可使叉乘符号变正，实即改变T1三个点的顺逆
+        for(j=2;j&lt;nb;j++){              //扫一次第二个多边形全部点
+            t2[1]=b[j-1],t2[2]=b[j];    //然后再在第二个多边形取两个点赋给T21,T22
+            num2=dcmp(cross(t2[1],t2[2],t2[0]));//求出叉乘符号
+            if(num2&lt;0)swap(t2[1],t2[2]);//小于0则改变T11,T12可使叉乘符号变正，实即改变T1三个点的顺逆
+            res+=CPIA(t1,t2,3,3)*num1*num2;       //累加相交部分面积
+        }
+    }
+    res=fabs(res);
+    return PolygonArea(a,na)+PolygonArea(b,nb)-res;
+}</code></pre><h5 id="圆"><a href="#圆" class="headerlink" title="圆"></a>圆</h5><pre><code>struct Circle{
+    Point c;
+    double r;
+    Circle(){};
+    Circle(Point c,double r=0):c(c),r(r){}
+    Point point(double a){
+        return Point(c.x+cos(a)*r,c.y+sin(a)*r);
+    }
+};
+//圆与三角形交
+double TriAngleCircleInsection(Circle C, Point A, Point B)
+{
+    Vector OA = A-C.c, OB = B-C.c;
+    Vector BA = A-B, BC = C.c-B;
+    Vector AB = B-A, AC = C.c-A;
+    double DOA = Length(OA), DOB = Length(OB),DAB = Length(AB), r = C.r;
+    if(dcmp(Cross(OA,OB)) == 0) return 0;
+    if(dcmp(DOA-C.r) &lt; 0 &amp;&amp; dcmp(DOB-C.r) &lt; 0) return Cross(OA,OB)*0.5;
+    else if(DOB &lt; r &amp;&amp; DOA &gt;= r)
+    {
+        double x = (Dot(BA,BC) + sqrt(r*r*DAB*DAB-Cross(BA,BC)*Cross(BA,BC)))/DAB;
+        double TS = Cross(OA,OB)*0.5;
+        double ang=TS*(1-x/DAB)*2/r/DOA;
+        ang=fabs(ang);
+        if(ang&gt;1)ang=1;
+        return asin(ang)*r*r*0.5+TS*x/DAB;
+    }
+    else if(DOB &gt;= r &amp;&amp; DOA &lt; r)
+    {
+        double y = (Dot(AB,AC)+sqrt(r*r*DAB*DAB-Cross(AB,AC)*Cross(AB,AC)))/DAB;
+        double TS = Cross(OA,OB)*0.5;
+        double ang=TS*(1-y/DAB)*2/r/DOB;
+        ang=fabs(ang);
+        if(ang&gt;1)ang=1;
+        return asin(ang)*r*r*0.5+TS*y/DAB;
+    }
+    else if(fabs(Cross(OA,OB)) &gt;= r*DAB || Dot(AB,AC) &lt;= 0 || Dot(BA,BC) &lt;= 0)
+    {
+        double ang=Cross(OA,OB)/DOA/DOB;
+        ang=fabs(ang);
+        if(ang&gt;1)ang=1;
+        if(Dot(OA,OB) &lt; 0)
+        {
+            if(Cross(OA,OB) &lt; 0) return (-acos(-1.0)-asin(ang))*r*r*0.5;
+            else                 return ( acos(-1.0)-asin(ang))*r*r*0.5;
+        }
+        else                     return asin(ang)*r*r*0.5;
+    }
+    else
+    {
+        double x = (Dot(BA,BC)+sqrt(r*r*DAB*DAB-Cross(BA,BC)*Cross(BA,BC)))/DAB;
+        double y = (Dot(AB,AC)+sqrt(r*r*DAB*DAB-Cross(AB,AC)*Cross(AB,AC)))/DAB;
+        double TS = Cross(OA,OB)*0.5;
+        double ang=TS*(1-x/DAB)*2/r/DOA;
+        ang=fabs(ang);
+        if(ang&gt;1)ang=1;
+        double ang2=TS*(1-y/DAB)*2/r/DOB;
+        ang2=fabs(ang);
+        if(ang2&gt;1)ang2=1;
+        return (asin(ang)+asin(ang))*r*r*0.5 + TS*((x+y)/DAB-1);
+    }
+}
+//求圆与直线的交点,t1,t2为(at+b)^2+(ct+d)^2=r^2的解，交点放入sol
+int getLineCircleIntersection(Line L,Circle C,double&amp; t1,double&amp; t2,vector&lt;Point&gt;&amp; sol)
+{
+    double a=L.v.x,b=L.p.x-C.c.x,c=L.v.y,d=L.p.y-C.c.y;
+    double e=a*a+c*c,f=2*(a*b+c*d),g=b*b+d*d-C.r*C.r;
+    double delta=f*f-4*e*g;
+    if(dcmp(delta)&lt;0)return 0;
+    if(dcmp(delta)==0){
+        t1=t2=-f/(2*e);
+        sol.push_back(L.point(t1));
+        return 1;
+    }
+    t1=(-f-sqrt(delta))/(2*e);
+    sol.push_back(L.point(t1));
+    t2=(-f+sqrt(delta))/(2*e);
+    sol.push_back(L.point(t2));
+    return 2;
+}
+//求圆与圆的交点，交点放入sol
+int getCircleCircleIntersection(Circle C1,Circle C2,vector&lt;Point&gt;&amp; sol)
+{
+    double d=Length(C1.c-C2.c);
+    if(dcmp(d)==0){
+        if(dcmp(C1.r-C2.r)==0)return -1;//两圆重合
+        return 0;
+    }
+    if(dcmp(C1.r+C2.r-d)&lt;0)return 0;
+    if(dcmp(fabs(C1.r-C2.r)-d)&gt;0)return 0;
+    double  a=angle(C2.c-C1.c);//直线c1c2
+    double da=acos((C1.r*C1.r+d*d-C2.r*C2.r)/(2*C1.r*d));//c1c2到c1p1的角
+    Point p1=C1.point(a-da),p2=C1.point(a+da);    
+    sol.push_back(p1);
+    if(p1==p2)return 1;
+    sol.push_back(p2);
+    return 2;
+}
+//求点与圆的切线
+int getTangents(Point p,Circle C,Vector* v){
+    Vector u=C.c-p;
+    double dist=Length(u);
+    if(dcmp(dist-C.r)&lt;0)return 0;
+    else if(dcmp(dist-C.r)==0){
+        v[0]=Rotate(u,PI/2);
+        return 1;
+    }
+    else {
+        double ang=asin(C.r/dist);
+        v[0]=Rotate(u,-ang);
+        v[1]=Rotate(u,+ang);
+        return 2;
+    }
+}
+//两圆的公切线
+int getTangents(Circle A,Circle B,Point* a,Point* b)
+{
+    int cnt=0;
+    if(A.r&lt;B.r)
+    {
+        swap(A,B);
+        swap(a,b);
+    }
+    double d2=(A.c.x-B.c.x)*(A.c.x-B.c.x)+(A.c.y-B.c.y)*(A.c.y-B.c.y);//圆心距离的平方
+    double rdiff=A.r-B.r;
+    double rsum=A.r+B.r;
+    if(d2&lt;rdiff*rdiff) return 0;
+    //两圆的圆心距离小于半径差
+    //内含
+    double base=atan2(B.c.y-A.c.y,B.c.x-A.c.x);//圆心连线的极角
+    if(d2==0&amp;&amp;A.r==B.r) return -1;//两圆重合
+    if(d2==rdiff*rdiff) {
+        a[cnt]=A.point(base);b[cnt]=B.point(base);
+        cnt++;
+        return 1;
+    }
+    //外公切线
+    double ang=acos((A.r-B.r)/sqrt(d2));
+    a[cnt]=A.point(base+ang);b[cnt]=B.point(base+ang);cnt++;
+    a[cnt]=A.point(base-ang);b[cnt]=B.point(base-ang);cnt++;
+    if(d2==rsum*rsum){    
+        a[cnt]=A.point(base);b[cnt]=B.point(base+PI);cnt++;
+    }
+    else if(d2&gt;rsum*rsum){//相离
+        double ang=acos((A.r+B.r)/sqrt(d2));
+        a[cnt]=A.point(base+ang);b[cnt]=B.point(PI+base+ang);cnt++;    
+        a[cnt]=A.point(base-ang);b[cnt]=B.point(PI+base-ang);cnt++;
+    }
+    return cnt;
+}</code></pre><h5 id="半平面交"><a href="#半平面交" class="headerlink" title="半平面交"></a>半平面交</h5><pre><code>int HalfplaneIntersection(Line* L,int n,Point* poly)
+{
+    sort(L,L+n);
+    int first,last;
+    Point *p=new Point[n];//会在函数内开大容量数组，请在使用时注意开成全局！！！！！
+    Line *q=new Line[n];//会在函数内开大容量数组，请在使用时注意开成全局！！！！！
+    q[first=last=0]=L[0];
+    for(int i=1;i&lt;n;i++){
+        while(first&lt;last&amp;&amp;!OnLeft(L[i],p[last-1]))last--;
+        while(first&lt;last&amp;&amp;!OnLeft(L[i],p[first]))first++;
+        q[++last]=L[i];
+        if(fabs(Cross(q[last].v,q[last-1].v))&lt;eps){
+            last--;
+            if(OnLeft(q[last],L[i].p))q[last]=L[i];
+        }
+        if(first&lt;last)p[last-1]=GetIntersection(q[last-1],q[last]);
+    }
+    while(first&lt;last&amp;&amp;!OnLeft(q[first],p[last-1]))last--;
+    if(last-first&lt;=1)return 0;
+    p[last]=GetIntersection(q[last],q[first]);
+    int m=0;
+    for(int i=first;i&lt;=last;i++)poly[m++]=p[i];
+    return m;
+}//会在函数内开大容量数组，请在使用时注意开成全局</code></pre><h5 id="平面直线图（PSGL）"><a href="#平面直线图（PSGL）" class="headerlink" title="平面直线图（PSGL）"></a>平面直线图（PSGL）</h5><pre><code>struct Edge
+{
+    int from, to; // 起点，终点，左边的面编号
+    double ang;
+    Edge(int f,int t,double a):from(f),to(t),ang(a) {}
+};
+// 平面直线图（PSGL）实现
+struct PSLG {
+    int n, m, face_cnt;
+    double x[maxn], y[maxn];
+    vector&lt;Edge&gt; edges;
+    vector&lt;int&gt; G[maxn];
+    int vis[maxn*2];  // 每条边是否已经访问过
+    int left[maxn*2]; // 左面的编号(该边在哪个面内)
+    int prev[maxn*2]; // 相同起点的上一条边（即顺时针旋转碰到的下一条边）的编号
+    vector&lt;Polygon&gt; faces;
+    double area[maxn]; // 每个polygon的面积
+
+    void init(int n) {
+        this-&gt;n = n;
+        for(int i = 0; i &lt; n; i++) G[i].clear();
+        edges.clear();
+        faces.clear();
+    }
+
+    // 有向线段from-&gt;to的极角
+    double getAngle(int from, int to) {
+        return atan2(y[to]-y[from], x[to]-x[from]);
+    }
+
+    void AddEdge(int from, int to) {
+        edges.push_back((Edge){from, to, getAngle(from, to)});
+        edges.push_back((Edge){to, from, getAngle(to, from)});
+        m = edges.size();
+        G[from].push_back(m-2);
+        G[to].push_back(m-1);
+    }
+
+    // 找出faces并计算面积
+    void Build() {
+        for(int u = 0; u &lt; n; u++) {
+            // 给从u出发的各条边按极角排序
+            int d = G[u].size();
+            for(int i = 0; i &lt; d; i++)
+                for(int j = i+1; j &lt; d; j++) // 这里偷个懒，假设从每个点出发的线段不会太多
+                    if(edges[G[u][i]].ang &gt; edges[G[u][j]].ang) swap(G[u][i], G[u][j]);
+            for(int i = 0; i &lt; d; i++)
+                prev[G[u][(i+1)%d]] = G[u][i];  //u点出发的第i条边顺时针转的第一条边是prev[i]
+        }
+
+        memset(vis, 0, sizeof(vis));
+        face_cnt = 0;
+        for(int u = 0; u &lt; n; u++)
+            for(int i = 0; i &lt; G[u].size(); i++) {
+                int e = G[u][i];  //逆时针转的第i条边
+                if(!vis[e]) { // 逆时针找圈
+                    face_cnt++;
+                    Polygon poly;
+                    for(;;) {
+                        vis[e] = 1; left[e] = face_cnt;
+                        int from = edges[e].from;
+                        poly.push_back(Point(x[from], y[from]));
+                        //cout&lt;&lt;x[from]&lt;&lt;&quot;   &quot;&lt;&lt;y[from]&lt;&lt;&quot;   &quot;;
+                        e = prev[e^1];                    //反向边顺时针第一条
+                        if(e == G[u][i]) break;       //回到原点
+                        assert(vis[e] == 0);
+                    }
+                    //cout&lt;&lt;endl;
+                    faces.push_back(poly);
+                }
+            }
+
+        for(int i = 0; i &lt; faces.size(); i++) {
+            area[i] = PolygonArea(faces[i]);
+        }
+    }
+};</code></pre><h5 id="旋转卡壳"><a href="#旋转卡壳" class="headerlink" title="旋转卡壳"></a>旋转卡壳</h5><pre><code>//向量(b-a)与向量（c-a)的叉积，相当于三角形abc的有向面积的2倍
+double cross(Point a,Point b,Point c)
+{
+    return Cross(b-a,c-a);
+}
+
+//求凸包内最远点
+long long getmaxdistance(Point a[],int n)
+{
+    int j=2;
+    double ans=0;
+    a[n]=a[0];//方便写下一个点，避免取模
+    for(int i=0;i&lt;n;i++){
+        while(fabs(cross(a[i],a[i+1],a[j+1]))&gt;fabs(cross(a[i],a[i+1],a[j])))j=(j+1)%n;
+        //通过比较面积大小，比较到直线的距离
+        ans=max(ans,Length2(a[j]-a[i]));
+    }
+    return ans;
+}
+
+//求2个凸包间的最短距离
+double getmindistance(Point p1[],Point p2[],int n1,int n2)
+{
+    int i=0,j=0;
+    for(int k=0;k&lt;n1;k++){
+        if(p1[k].y&lt;p1[i].y)i=k;//找出p1中的y最小值的点
+    }
+    for(int k=0;k&lt;n2;k++){
+        if(p2[k].y&gt;p2[j].y)j=k;//找出p2中的y最大值的点
+    }
+    p1[n1]=p1[0];
+    p2[n2]=p2[0];    
+    double ans=99999999999;
+    for(int k=0;k&lt;n1;k++){
+        //循环n1次，相当于求p1中每一条边与p2的最近距离
+        while((cross(p1[i],p1[i+1],p2[j+1])-cross(p1[i],p1[i+1],p2[j]))&gt;eps)
+            j=(j+1)%n2;
+        ans=min(ans,disSegmenttoSegment(p1[i],p1[i+1],p2[j],p2[j+1]));//求线段间的最短距离
+        i=(i+1)%n1;
+    }
+    return ans;
+}
+
+//求凸包的内4个点组成的最大四边形面积
+double solve(Point a[],int n)
+{
+    a[n]=a[0];
+    int p1,p2;
+    double ans=0;
+    for(int i=0;i&lt;n;i++){
+        p1=(i+0)%n;
+        p2=(i+1)%n;
+        for(int j=i+1;j&lt;n;j++){
+            while(cross(a[i],a[j],a[p1+1])&lt;cross(a[i],a[j],a[p1]))p1=(p1+1)%n;
+            while(cross(a[i],a[j],a[p2+1])&gt;cross(a[i],a[j],a[p2]))p2=(p2+1)%n;
+            ans=max(ans,cross(a[i],a[j],a[p2])-cross(a[i],a[j],a[p1]));
+        }
+    }
+    return ans;
+}
+//平面最大三角形
+double getans(Point p[],int n)
+{
+    if(n&lt;3)return 0;
+    p[n]=p[0];
+    ll ans=0;
+    int j=1,k=1;
+    for(int i=0;i&lt;n;i++){
+        while(Cross(p[j]-p[i],p[k]-p[i])&lt;Cross(p[j]-p[i],p[k+1]-p[i]))k=(k+1)%n;
+        while(Cross(p[j]-p[i],p[k]-p[i])&lt;Cross(p[j+1]-p[i],p[k]-p[i]))j=(j+1)%n;
+        ans=max(ans,Cross(p[j]-p[i],p[k]-p[i]));
+    }
+    return (double)ans/2;
+}</code></pre><h5 id="凸包"><a href="#凸包" class="headerlink" title="凸包"></a>凸包</h5><pre><code>struct Face{
+    int v[3];
+    Vector3 normal(Point3 *p)const{
+        return Cross(p[v[1]]-p[v[0]],p[v[2]]-p[v[0]]);
+    }
+    int cansee(Point3 *p,int i)const{
+        return Dot(p[i]-p[v[0]],normal(p))&gt;0?1:0;
+    }
+};
+const int N=1e3;
+int vis[N][N];
+//三维凸包，记得使用前扰动点，以避免特殊情况
+vector&lt;Face&gt; CH3D(Point3 *p,int n)
+{
+    vector&lt;Face&gt; cur;
+    //记得提前扰动
+    cur.push_back((Face){{0,1,2}});
+    cur.push_back((Face){{2,1,0}});
+    for(int i=3;i&lt;n;i++){
+        vector&lt;Face&gt; next;
+        for(int j=0;j&lt;cur.size();j++){
+            Face&amp; f=cur[j];
+            int res=f.cansee(p,i);
+            if(!res)next.push_back(f);
+            for(int k=0;k&lt;3;k++)vis[f.v[k]][f.v[(k+1)%3]]=res;
+        }
+        for(int j=0;j&lt;cur.size();j++){
+            for(int k=0;k&lt;3;k++){
+                int a=cur[j].v[k],b=cur[j].v[(k+1)%3];
+                if(vis[a][b]!=vis[b][a]&amp;&amp;vis[a][b]){
+                    next.push_back((Face){{a,b,i}});
+                }
+            }
+        }
+        cur=next;
+    }
+    return cur;
+}
+double rand01(){
+    return rand()/(double)RAND_MAX;
+}
+double randeps(){
+    return (rand01()-0.5)*eps;
+}
+Point3 add_noise(Point3 p)
+{
+    return Point3(p.x+randeps(),p.y+randeps(),p.z+randeps());
 }</code></pre>
       
 
@@ -817,7 +1473,7 @@ void tarjan(int x)
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#数学"><span class="toc-number">1.</span> <span class="toc-text">数学</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#快速幂："><span class="toc-number">1.0.0.0.1.</span> <span class="toc-text">快速幂：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#快速幂矩阵"><span class="toc-number">1.0.0.0.2.</span> <span class="toc-text">快速幂矩阵</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#素数线性筛法"><span class="toc-number">1.0.0.0.3.</span> <span class="toc-text">素数线性筛法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#扩展欧几里得"><span class="toc-number">1.0.0.0.4.</span> <span class="toc-text">扩展欧几里得</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#公式定理"><span class="toc-number">1.0.0.0.5.</span> <span class="toc-text">公式定理</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#数据结构"><span class="toc-number">2.</span> <span class="toc-text">数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#线段树"><span class="toc-number">2.0.0.0.1.</span> <span class="toc-text">线段树</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#字典树（前缀树）"><span class="toc-number">2.0.0.0.2.</span> <span class="toc-text">字典树（前缀树）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#树状数组（一维）"><span class="toc-number">2.0.0.0.3.</span> <span class="toc-text">树状数组（一维）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#树状数组（二维）"><span class="toc-number">2.0.0.0.4.</span> <span class="toc-text">树状数组（二维）</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#技巧"><span class="toc-number">3.</span> <span class="toc-text">技巧</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#离散化"><span class="toc-number">3.0.0.0.1.</span> <span class="toc-text">离散化</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#LCA树上倍增"><span class="toc-number">3.0.0.0.2.</span> <span class="toc-text">LCA树上倍增</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#高精度类"><span class="toc-number">3.0.0.0.3.</span> <span class="toc-text">高精度类</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#二分"><span class="toc-number">3.0.0.0.4.</span> <span class="toc-text">二分</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#字符串"><span class="toc-number">4.</span> <span class="toc-text">字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#字符串哈希-自己写的还没验证"><span class="toc-number">4.0.0.0.1.</span> <span class="toc-text">字符串哈希(自己写的还没验证)</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#图论"><span class="toc-number">5.</span> <span class="toc-text">图论</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#dijkstra-待测试"><span class="toc-number">5.0.0.0.1.</span> <span class="toc-text">dijkstra(待测试)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#tarjan"><span class="toc-number">5.0.0.0.2.</span> <span class="toc-text">tarjan</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#数学"><span class="toc-number">1.</span> <span class="toc-text">数学</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#快速幂："><span class="toc-number">1.0.0.0.1.</span> <span class="toc-text">快速幂：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#快速幂矩阵"><span class="toc-number">1.0.0.0.2.</span> <span class="toc-text">快速幂矩阵</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#素数线性筛法"><span class="toc-number">1.0.0.0.3.</span> <span class="toc-text">素数线性筛法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#扩展欧几里得"><span class="toc-number">1.0.0.0.4.</span> <span class="toc-text">扩展欧几里得</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#公式定理"><span class="toc-number">1.0.0.0.5.</span> <span class="toc-text">公式定理</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#数据结构"><span class="toc-number">2.</span> <span class="toc-text">数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#线段树"><span class="toc-number">2.0.0.0.1.</span> <span class="toc-text">线段树</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#字典树（前缀树）"><span class="toc-number">2.0.0.0.2.</span> <span class="toc-text">字典树（前缀树）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#树状数组（一维）"><span class="toc-number">2.0.0.0.3.</span> <span class="toc-text">树状数组（一维）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#树状数组（二维）"><span class="toc-number">2.0.0.0.4.</span> <span class="toc-text">树状数组（二维）</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#技巧"><span class="toc-number">3.</span> <span class="toc-text">技巧</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#离散化"><span class="toc-number">3.0.0.0.1.</span> <span class="toc-text">离散化</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#LCA树上倍增"><span class="toc-number">3.0.0.0.2.</span> <span class="toc-text">LCA树上倍增</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#高精度类"><span class="toc-number">3.0.0.0.3.</span> <span class="toc-text">高精度类</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#二分"><span class="toc-number">3.0.0.0.4.</span> <span class="toc-text">二分</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#字符串"><span class="toc-number">4.</span> <span class="toc-text">字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#字符串哈希-自己写的还没验证"><span class="toc-number">4.0.0.0.1.</span> <span class="toc-text">字符串哈希(自己写的还没验证)</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#图论"><span class="toc-number">5.</span> <span class="toc-text">图论</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#dijkstra-待测试"><span class="toc-number">5.0.0.0.1.</span> <span class="toc-text">dijkstra(待测试)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#tarjan"><span class="toc-number">5.0.0.0.2.</span> <span class="toc-text">tarjan</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#计算几何"><span class="toc-number">6.</span> <span class="toc-text">计算几何</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#点与向量"><span class="toc-number">6.0.0.0.1.</span> <span class="toc-text">点与向量</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#线"><span class="toc-number">6.0.0.0.2.</span> <span class="toc-text">线</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#多边形"><span class="toc-number">6.0.0.0.3.</span> <span class="toc-text">多边形</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#圆"><span class="toc-number">6.0.0.0.4.</span> <span class="toc-text">圆</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#半平面交"><span class="toc-number">6.0.0.0.5.</span> <span class="toc-text">半平面交</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#平面直线图（PSGL）"><span class="toc-number">6.0.0.0.6.</span> <span class="toc-text">平面直线图（PSGL）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#旋转卡壳"><span class="toc-number">6.0.0.0.7.</span> <span class="toc-text">旋转卡壳</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#凸包"><span class="toc-number">6.0.0.0.8.</span> <span class="toc-text">凸包</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -954,31 +1610,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">日常</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">计图</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">C++</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">动漫</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -990,15 +1626,35 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">日常</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">动漫</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">计图</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">水</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">游戏</a>
+                <a href="javascript:void(0)" class="js-tag color5">算法笔记</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">算法笔记</a>
+                <a href="javascript:void(0)" class="js-tag color3">游戏</a>
               </li>
             
             <div class="clearfix"></div>
