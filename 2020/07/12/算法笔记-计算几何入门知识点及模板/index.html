@@ -57,7 +57,7 @@
 <meta property="og:image" content="https://latex.codecogs.com/gif.latex?(x,y)=P&plus;v%5Ccdot&space;%5Cfrac%7Bw%5Ctimes&space;u%7D%7Bv%5Ctimes&space;w%7D">
 <meta property="og:image" content="https://latex.codecogs.com/gif.latex?u=-%5Cvec%7BPQ%7D">
 <meta property="article:published_time" content="2020-07-11T17:10:20.000Z">
-<meta property="article:modified_time" content="2020-07-14T08:07:44.532Z">
+<meta property="article:modified_time" content="2020-07-19T14:10:47.372Z">
 <meta property="article:author" content="fIamingo">
 <meta property="article:tag" content="ACM">
 <meta property="article:tag" content="算法">
@@ -773,6 +773,201 @@ int main()
                 printf(&quot;Case %d: There are %d pieces.\n&quot;,++t,ecnt+2-cnt);
         poi.clear();
     }    
+}</code></pre><h2 id="Boarding-Wrapping"><a href="#Boarding-Wrapping" class="headerlink" title="Boarding Wrapping"></a>Boarding Wrapping</h2><p><strong>题目</strong> <a href="https://vjudge.net/contest/379321#problem/C" target="_blank" rel="noopener">Boarding Wrapping</a></p>
+<p>其实就是求几个长方形的面积和与这几个长方形的点组成的凸包的面积之比就行了。<br>长方形的顶点比较好求，做个旋转就行了。</p>
+<pre><code>#include&lt;iostream&gt; 
+#include &lt;vector&gt;
+#include &lt;cmath&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+const double eps=1e-10;
+const double PI=acos(-1.0);
+
+struct Point{
+    double x,y;
+    Point(double x=0,double y=0):x(x),y(y){}
+};
+typedef Point Vector;
+typedef vector&lt;Point&gt; Polygon;
+
+Vector operator -(Point a,Point b){
+    return Vector(a.x-b.x,a.y-b.y);
+}
+Vector operator +(Point a,Point b){
+    return Vector(a.x+b.x,a.y+b.y);
+}
+Vector operator *(Vector a,double p){
+    return Vector(a.x*p,a.y*p);
+}
+Vector operator /(Vector a,double p){
+    return Vector(a.x/p,a.y/p);
+}
+bool operator &lt;(const Point&amp; a,const Point&amp; b){
+    return a.x&lt;b.x||(a.x==b.x&amp;&amp;a.y&lt;b.y);//在有精度需求，比如使用lower_bound的时候，加上dcmp()
+}
+int dcmp(double x){
+    if(fabs(x)&lt;eps)return 0;
+    if(x&lt;0)return -1;
+    return 1;
+}    
+bool operator ==(const Point&amp; a,const Point&amp; b){
+    return dcmp(a.x-b.x)==0&amp;&amp;dcmp(a.y-b.y)==0;
+}
+double Dot(Vector a,Vector b){
+    return a.x*b.x+a.y*b.y;
+}//点积
+double Cross(Vector a,Vector b){
+    return a.x*b.y-a.y*b.x;
+}//叉积     
+int quadrant(Point a)
+{
+    if(a.x&gt;0&amp;&amp;a.y&gt;=0)return 1;
+    if(a.x&lt;=0&amp;&amp;a.y&gt;0)return 2;
+    if(a.x&lt;0&amp;&amp;a.y&lt;=0)return 3;
+    return 4;
+}
+bool cmp(Point a,Point b)
+{
+    if(quadrant(a)!=quadrant(b))return quadrant(a)&lt;quadrant(b);
+    return Cross(a,b)&gt;0;
+}
+double Length(Vector a){
+    return sqrt(Dot(a,a));
+}//长度
+//返回逆时针旋转90度的单位法向量；
+Vector Normal(Vector a){
+    double l=Length(a);
+    return Vector(-a.y/l,a.x/l);
+}
+//返回单位向量；
+Vector normal(Vector a){
+    double l=Length(a);
+    return Vector(a.x/l,a.y/l);
+}
+//返回向量夹角，无方向
+double Angle(Vector a,Vector b){
+    return acos(Dot(a,b)/Length(a)/Length(b));
+}
+//逆时针旋转向量
+Vector Rotate(Vector a,double rad){
+    return Vector(a.x*cos(rad)-a.y*sin(rad),a.x*sin(rad)+a.y*cos(rad));
+}
+//求p+v*t与q+w*t的交点，使用时确保Cross(v,w)不等于0
+Point GetlineIntersection(Point p,Vector v,Point q,Vector w){
+    Vector u=p-q;
+    double t=Cross(w,u)/Cross(v,w);
+    return p+v*t;
+}
+//求p到直线ab的距离
+double DistanceToline(Point p,Point a,Point b){
+    Vector v1=p-a,v2=b-a;
+    return fabs(Cross(v1,v2)/Length(v2));
+}
+//求p到线段ab的距离
+double DistanceToSegment(Point p,Point a,Point b){
+    if(a==b)return Length(p-a);
+    Vector v1=b-a,v2=p-a,v3=p-b;
+    if(dcmp(Dot(v1,v2)&lt;0))return Length(p-a);
+    else if(dcmp(Dot(v1,v3))&gt;0)return Length(p-b);
+    else return fabs(Cross(v1,v2)/Length(v1));
+}
+//线段a1a2与线段b1b2规范相交返回真
+bool SegmenProperIntersection(Point a1,Point a2,Point b1,Point b2){
+    double c1=Cross(a2-a1,b1-a1),c2=Cross(a2-a1,b2-a1);
+    double c3=Cross(b2-b1,a1-b1),c4=Cross(b2-b1,a2-b1);
+    return dcmp(c1)*dcmp(c2)&lt;0&amp;&amp;dcmp(c3)*dcmp(c4)&lt;0;
+}
+//点p在线段a1a2上返回真
+bool OnSegment(Point p,Point a1,Point a2){
+    return dcmp(Cross(a1-p,a2-p))==0&amp;&amp;dcmp(Dot(a1-p,a2-p))&lt;0;
+}
+//点p在ab上的投影
+Point GetLineProjection(Point P,Point A,Point B)
+{
+    Vector v=B-A;
+    return A+v*(Dot(v,P-A)/Dot(v,v));
+}
+//与 x 轴的夹角，取值范围为 (-π，π]
+double angle(Vector v){
+    return atan2(v.y,v.x);
+}
+//求线段a1,a2到线段b1,b2的最短距离
+double disSegmenttoSegment(Point a1,Point a2,Point b1,Point b2)
+{
+    double ans=DistanceToSegment(a1,b1,b2);
+    ans=min(ans,DistanceToSegment(a2,b1,b2));
+    ans=min(ans,DistanceToSegment(b1,a1,a2));
+    ans=min(ans,DistanceToSegment(b2,a1,a2));
+    return ans;
+}
+
+typedef vector&lt;Point&gt; Polygon;
+
+//求凸包，ch为返回凸包，m为凸包内点的数目，&lt;=不允许点在边上，
+int ConvecHull(Point* p,int n,Point* ch)    
+{
+    sort(p,p+n);
+    int m=0;
+    for(int i=0;i&lt;n;i++){
+        while(m&gt;1&amp;&amp;dcmp(Cross(ch[m-1]-ch[m-2],p[i]-ch[m-2])&lt;=0))m--;//注意&lt;=与&lt;的区别
+        ch[m++]=p[i];
+    }
+    int k=m;
+    for(int i=n-2;i&gt;=0;i--){
+        while(m&gt;k&amp;&amp;dcmp(Cross(ch[m-1]-ch[m-2],p[i]-ch[m-2])&lt;=0))m--;//注意&lt;=与&lt;的区别
+        ch[m++]=p[i];
+    }
+    if(n&gt;1)m--;
+    return m;
+}
+
+double PolygonArea(Point po[],int n) {
+    double area = 0.0;
+    for(int i = 1; i &lt; n-1; i++) {
+        area += Cross(po[i]-po[0], po[i+1]-po[0]);
+    }
+    return area * 0.5;
+}
+
+Point res[2405];
+Point ans[2405];
+int main()
+{
+    std::ios::sync_with_stdio(false);
+    cin.tie(0);
+    int N;
+    cin &gt;&gt; N;
+    while(N--)
+    {
+        int n;
+        cin &gt;&gt; n;
+        int toc = 0;
+        double sum = 0;
+        for(int i = 1; i &lt;= n; i++)
+        {
+            double x,y,w,h,theta;
+            cin &gt;&gt; x &gt;&gt; y &gt;&gt; w &gt;&gt; h &gt;&gt; theta;
+            theta = 3.1415926*theta/180;
+            sum += w*h;
+            Vector center(x,y);
+            Vector v1(-w/2,h/2);
+            v1 = Rotate(v1,-theta) + center;
+            Vector v2(-w/2,-h/2);
+            v2 = Rotate(v2,-theta) + center;
+            Vector v3(w/2,h/2);
+            v3 = Rotate(v3,-theta) + center;
+            Vector v4(w/2,-h/2);
+            v4 = Rotate(v4,-theta) + center;    
+            res[toc++] = v1;
+            res[toc++] = v2;
+            res[toc++] = v3;    
+            res[toc++] = v4;
+        }
+        int m = ConvecHull(res,toc,ans);    
+        double area = PolygonArea(ans,m);
+        printf(&quot;%0.1lf %\n&quot;,100*sum/area);
+    }
 }</code></pre>
       
 
@@ -893,7 +1088,7 @@ int main()
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-向量"><span class="toc-number"></span> <span class="toc-text">1.向量</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-点和向量的表示"><span class="toc-number">1.</span> <span class="toc-text">1.1 点和向量的表示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-基本向量运算"><span class="toc-number">2.</span> <span class="toc-text">1.2 基本向量运算</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-1-向量加法"><span class="toc-number">2.1.</span> <span class="toc-text">1.2.1 向量加法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-2-向量减法"><span class="toc-number">2.2.</span> <span class="toc-text">1.2.2 向量减法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-3-向量模长"><span class="toc-number">2.3.</span> <span class="toc-text">1.2.3 向量模长</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-4-向量数乘"><span class="toc-number">2.4.</span> <span class="toc-text">1.2.4 向量数乘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-5-向量内积（点积）"><span class="toc-number">2.5.</span> <span class="toc-text">1.2.5 向量内积（点积）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-6向量外积（叉积）"><span class="toc-number">2.6.</span> <span class="toc-text">1.2.6向量外积（叉积）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-7-向量旋转"><span class="toc-number">2.7.</span> <span class="toc-text">1.2.7 向量旋转</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-直线与线段"><span class="toc-number"></span> <span class="toc-text">2.直线与线段</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-线段相交问题"><span class="toc-number">0.1.</span> <span class="toc-text">2.1 线段相交问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-点到直线的距离"><span class="toc-number">0.2.</span> <span class="toc-text">2.2 点到直线的距离</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-两直线交点"><span class="toc-number">0.3.</span> <span class="toc-text">2.3 两直线交点</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-多边形"><span class="toc-number"></span> <span class="toc-text">3. 多边形</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-点和多边形的位置关系"><span class="toc-number">1.</span> <span class="toc-text">3.1 点和多边形的位置关系</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-例题"><span class="toc-number"></span> <span class="toc-text">4. 例题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Morley’s-Theorem"><span class="toc-number">1.</span> <span class="toc-text">Morley’s Theorem</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#That-Nice-Euler-Circuit"><span class="toc-number">2.</span> <span class="toc-text">That Nice Euler Circuit</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-向量"><span class="toc-number"></span> <span class="toc-text">1.向量</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-点和向量的表示"><span class="toc-number">1.</span> <span class="toc-text">1.1 点和向量的表示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-基本向量运算"><span class="toc-number">2.</span> <span class="toc-text">1.2 基本向量运算</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-1-向量加法"><span class="toc-number">2.1.</span> <span class="toc-text">1.2.1 向量加法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-2-向量减法"><span class="toc-number">2.2.</span> <span class="toc-text">1.2.2 向量减法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-3-向量模长"><span class="toc-number">2.3.</span> <span class="toc-text">1.2.3 向量模长</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-4-向量数乘"><span class="toc-number">2.4.</span> <span class="toc-text">1.2.4 向量数乘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-5-向量内积（点积）"><span class="toc-number">2.5.</span> <span class="toc-text">1.2.5 向量内积（点积）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-6向量外积（叉积）"><span class="toc-number">2.6.</span> <span class="toc-text">1.2.6向量外积（叉积）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-7-向量旋转"><span class="toc-number">2.7.</span> <span class="toc-text">1.2.7 向量旋转</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-直线与线段"><span class="toc-number"></span> <span class="toc-text">2.直线与线段</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-线段相交问题"><span class="toc-number">0.1.</span> <span class="toc-text">2.1 线段相交问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-点到直线的距离"><span class="toc-number">0.2.</span> <span class="toc-text">2.2 点到直线的距离</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-两直线交点"><span class="toc-number">0.3.</span> <span class="toc-text">2.3 两直线交点</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-多边形"><span class="toc-number"></span> <span class="toc-text">3. 多边形</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-点和多边形的位置关系"><span class="toc-number">1.</span> <span class="toc-text">3.1 点和多边形的位置关系</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-例题"><span class="toc-number"></span> <span class="toc-text">4. 例题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Morley’s-Theorem"><span class="toc-number">1.</span> <span class="toc-text">Morley’s Theorem</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#That-Nice-Euler-Circuit"><span class="toc-number">2.</span> <span class="toc-text">That Nice Euler Circuit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Boarding-Wrapping"><span class="toc-number">3.</span> <span class="toc-text">Boarding Wrapping</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -1030,14 +1225,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">计图</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
@@ -1050,11 +1237,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color3">计图</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1066,15 +1257,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">游戏</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">算法笔记</a>
+                <a href="javascript:void(0)" class="js-tag color2">水</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">水</a>
+                <a href="javascript:void(0)" class="js-tag color5">算法笔记</a>
               </li>
             
             <div class="clearfix"></div>

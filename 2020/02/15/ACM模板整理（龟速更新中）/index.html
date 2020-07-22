@@ -17,7 +17,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://fiamingo.github.io/2020/02/15/ACM%E6%A8%A1%E6%9D%BF%E6%95%B4%E7%90%86%EF%BC%88%E9%BE%9F%E9%80%9F%E6%9B%B4%E6%96%B0%E4%B8%AD%EF%BC%89/%E8%B4%B9%E9%A9%AC.jpg">
 <meta property="article:published_time" content="2020-02-15T14:41:58.000Z">
-<meta property="article:modified_time" content="2020-07-19T09:30:52.386Z">
+<meta property="article:modified_time" content="2020-07-22T12:23:22.109Z">
 <meta property="article:author" content="fIamingo">
 <meta property="article:tag" content="ACM">
 <meta name="twitter:card" content="summary">
@@ -250,10 +250,20 @@ void Pow(ll a[][N],ll n,int m)
         prime[i*p[j]]=1;
         if (i%p[j]==0) break;
     }
- } </code></pre><h5 id="扩展欧几里得"><a href="#扩展欧几里得" class="headerlink" title="扩展欧几里得"></a>扩展欧几里得</h5><pre><code>void gcd(int a,int b,int&amp; d,int&amp; x,int&amp; y){
-    if(!b){d=a;x=1;y=0; }
-    else { gcd(b, a%b, y, x); y-=x*(a/b); }
-}</code></pre><h5 id="公式定理"><a href="#公式定理" class="headerlink" title="公式定理"></a>公式定理</h5><blockquote>
+ } </code></pre><h5 id="扩展欧几里得"><a href="#扩展欧几里得" class="headerlink" title="扩展欧几里得"></a>扩展欧几里得</h5><pre><code>ll e_gcd(ll a, ll b, ll &amp;x, ll &amp;y){
+    if(!b){
+        x=1;y=0;
+        return a;
+    }
+    ll ans = e_gcd(b,a%b,x,y);
+    ll temp = x;
+    x = y;
+    y = temp - a/b*y;
+    return ans;
+}</code></pre><blockquote>
+<p>贝祖定理：如果a、b是整数，那么一定存在整数x、y使得ax+by=gcd(a,b)。<br>换句话说，如果ax+by=m有解，那么m一定是gcd(a,b)的若干倍。<br>有一个直接的应用就是如果ax+by=1有解，那么gcd(a,b)=1； </p>
+</blockquote>
+<h5 id="公式定理"><a href="#公式定理" class="headerlink" title="公式定理"></a>公式定理</h5><blockquote>
 <p>费马小定理：如果p是一个质数，而整数a不是p的倍数，则有a<sup>p-1</sup>≡1(mod p)。<br>推论：<img src="%E8%B4%B9%E9%A9%AC.jpg" alt=""></p>
 </blockquote>
 <h1 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h1><h5 id="线段树"><a href="#线段树" class="headerlink" title="线段树"></a>线段树</h5><pre><code>#include&lt;iostream&gt;
@@ -1903,14 +1913,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">计图</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
@@ -1923,11 +1925,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color3">计图</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1939,15 +1945,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">游戏</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">算法笔记</a>
+                <a href="javascript:void(0)" class="js-tag color2">水</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">水</a>
+                <a href="javascript:void(0)" class="js-tag color5">算法笔记</a>
               </li>
             
             <div class="clearfix"></div>
