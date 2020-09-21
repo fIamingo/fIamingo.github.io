@@ -6,20 +6,14 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://fIamingo.github.io">
-  <title>[简洁题解] Codeforces Round #625 Div2（A-F） | flamingoo的猫窝</title>
+  <title>flamingoo的猫窝</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言剩下的时间不多了，我尽量把A-F都补完，但是因为水平原因，可能每场比赛总会有一两题补题的时候很花时间，至少补到D，只要补到E就写个题解吧，像这场的E就写了很久，还有F至今不会（现在已补完）。学期正式开始后，也要坚持每周打一场codeforces，然后补题。不过绩点也很香啊，上学期被政治课给拖分严重，所以这学期政治课都得提前背了，还有汇编那么难。今天群里辅导员竟然公布了成绩，感觉我还是能在保研边">
-<meta property="og:type" content="article">
-<meta property="og:title" content="[简洁题解] Codeforces Round #625 Div2（A-F）">
-<meta property="og:url" content="http://fiamingo.github.io/2020/03/06/%E7%AE%80%E6%B4%81%E9%A2%98%E8%A7%A3-Codeforces-Round-625%EF%BC%88A-E%EF%BC%89/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="flamingoo的猫窝">
+<meta property="og:url" content="http://fiamingo.github.io/page/4/index.html">
 <meta property="og:site_name" content="flamingoo的猫窝">
-<meta property="og:description" content="前言剩下的时间不多了，我尽量把A-F都补完，但是因为水平原因，可能每场比赛总会有一两题补题的时候很花时间，至少补到D，只要补到E就写个题解吧，像这场的E就写了很久，还有F至今不会（现在已补完）。学期正式开始后，也要坚持每周打一场codeforces，然后补题。不过绩点也很香啊，上学期被政治课给拖分严重，所以这学期政治课都得提前背了，还有汇编那么难。今天群里辅导员竟然公布了成绩，感觉我还是能在保研边">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-03-06T08:22:52.000Z">
-<meta property="article:modified_time" content="2020-03-06T14:17:45.130Z">
 <meta property="article:author" content="fIamingo">
-<meta property="article:tag" content="ACM">
-<meta property="article:tag" content="CF">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="flamingoo的猫窝" type="application/atom+xml">
@@ -162,382 +156,36 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-简洁题解-Codeforces-Round-625（A-E）" class="article article-type-post " itemscope itemprop="blogPost">
+            
+  
+    <article id="post-Hello-world-0" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 class="article-title" itemprop="name">
-      [简洁题解] Codeforces Round #625 Div2（A-F）
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/17/Hello-world-0/">Hello world!</a>
     </h1>
   
 
         <!--显示阅读次数-->
 
-  <br/>
-  <a class="cloud-tie-join-count" href="javascript:void(0);" style="color:gray;font-size:14px;">
-  <span class="icon-sort"></span>
-  </a>
-
 <!--显示阅读次数完毕-->
         
         
-        <!-- 不蒜子统计 -->
-        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
-              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
-        </span>
-
-<a href="/2020/03/06/%E7%AE%80%E6%B4%81%E9%A2%98%E8%A7%A3-Codeforces-Round-625%EF%BC%88A-E%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2020-03-06T08:22:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-06</time>
+<a href="/2020/01/17/Hello-world-0/" class="archive-article-date">
+  	<time datetime="2020-01-17T10:58:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-17</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>剩下的时间不多了，我尽量把A-F都补完，但是因为水平原因，可能每场比赛总会有一两题补题的时候很花时间，至少补到D，只要补到E就写个题解吧，像这场的E就写了很久，还有F至今不会（现在已补完）。学期正式开始后，也要坚持每周打一场codeforces，然后补题。<br>不过绩点也很香啊，上学期被政治课给拖分严重，所以这学期政治课都得提前背了，还有汇编那么难。今天群里辅导员竟然公布了成绩，感觉我还是能在保研边缘挣扎一下的，所以这学期也不会比上学期轻松多少吧。<br>说回来这场我就AC了两题，结果竟然加了71分，果然差点灰名后触底反弹了吗，突然对上分有点期待了。</p>
-<a id="more"></a>  
-
-<p>这场比赛的地址：<a href="https://codeforces.com/contest/1321" target="_blank" rel="noopener">https://codeforces.com/contest/1321</a><br><br></p>
-<h2 id="A-Contest-for-Robots"><a href="#A-Contest-for-Robots" class="headerlink" title="A. Contest for Robots"></a>A. Contest for Robots</h2><p>题解：-1的情况只有Robo-Coder能做出来的题BionicSolver都能做出来了，求出只有Robo-Coder能做出来的题数目和只有BionicSolver能做出来的题数目，作比较，看前者加几次自己能大于等于后者。</p>
-<pre><code>#include&lt;iostream&gt;
-using namespace std;
-int a[105];
-int main()
-{
-    int n;
-    cin&gt;&gt;n;
-    for(int i=1;i&lt;=n;i++)
-    {
-        cin&gt;&gt;a[i];
-    }
-    int x,y;
-    x=0;y=0;
-    int m;
-    for(int i=1;i&lt;=n;i++)
-    {
-        cin&gt;&gt;m;
-        if(m==1&amp;&amp;a[i]==0)
-        y++;
-        else if(m==0&amp;&amp;a[i]==1)
-        x++;
-    }
-    if(y&lt;x)
-    {
-    cout&lt;&lt;1&lt;&lt;endl; return 0;
-    }
-    if(x==0)
-    {
-    cout&lt;&lt;-1&lt;&lt;endl; return 0;
-    }
-    int i=1;
-    int res=x;
-    while(x&lt;=y)
-    {
-        x+=res;
-        i++;
-    }
-    cout&lt;&lt;i&lt;&lt;endl;
-}</code></pre><h2 id="B-Journey-Planning"><a href="#B-Journey-Planning" class="headerlink" title="B. Journey Planning"></a>B. Journey Planning</h2><p>题解：维护下标为b[i]-i的数组，每次维护的时候和最大值比个大小就行了，注意b[i]-i可能是赋值，所以作为数组下标时加个400000防re。</p>
-<pre><code>#include&lt;iostream&gt;
-using namespace std;
-typedef long long ll;
-ll array[800005];
-int main()
-{
-    int n;
-    ll c,maxi;
-    maxi=0;
-    cin&gt;&gt;n;
-    for(int i=1;i&lt;=n;i++)
-    {
-        cin&gt;&gt;c;
-        array[c-i+400000]+=c;
-        maxi=max(maxi,array[c-i+400000]);
-    }
-    cout&lt;&lt;maxi&lt;&lt;endl;
-}</code></pre><h2 id="C-Remove-Adjacent"><a href="#C-Remove-Adjacent" class="headerlink" title="C. Remove Adjacent"></a>C. Remove Adjacent</h2><p>题解：暴力加贪心。字符串最长只有100，所以每次遍历整个数组删去满足要求的最大的字母，这样就不会少数了。stl真好使。</p>
-<pre><code>#include&lt;iostream&gt;
-using namespace std;
-string str;
-int id;
-int count=0;
-int solve()
-{
-    id=0;
-    char maxi=&apos;a&apos;-1;
-    for(int i=1;i&lt;=str.size()-2;i++)
-    {
-        if(str[i-1]+1==str[i]||str[i]==str[i+1]+1)
-        {
-            if(str[i]&gt;maxi)
-            {
-                id=i;
-                maxi=str[i];
-            }
-        }
-    }
-    return id;
-}
-
-int main()
-{
-    int n;
-    cin&gt;&gt;n;
-    cin&gt;&gt;str;
-    str=&apos;#&apos;+str+&apos;#&apos;;
-    while(solve())
-    {
-        str.erase(id,1);
-        count++;
-    }
-    cout&lt;&lt;count&lt;&lt;endl;
-    }     </code></pre><h2 id="D-Navigation-System"><a href="#D-Navigation-System" class="headerlink" title="D. Navigation System"></a>D. Navigation System</h2><p>题解:迪杰斯特拉算出每个结点到终点结点的最短路径。判断最小的情况看是否dist[path[i]]=dist[path[i-1]]-1,因为若是相等的话最好的情况就是系统给出这条路并且走的也是这条路，但是不相等的话肯定就走的不是系统给的这条路，肯定是饶了远路。最大的情况首先就是上面那个等式不成立（判断的是这个结点的下一个结点），或者这个点有两条以上到达终点的最短路。</p>
-<pre><code>#include&lt;iostream&gt;
-using namespace std;
-#define maxn 200005
-#include&lt;vector&gt;
-#include&lt;queue&gt;
-
-struct HeapNode{
-    int d,u;
-    bool operator&lt;(const HeapNode&amp; rhs) const{
-    return d&gt;rhs.d;
-    }
-};
-vector&lt;HeapNode&gt; G[maxn];
-int dist[maxn];
-int path[maxn];
-priority_queue&lt;HeapNode&gt; Q;
-int pre[maxn];
-int main()
-{
-    int n,m,k;
-    cin&gt;&gt;n&gt;&gt;m;
-    for(int i=1;i&lt;=n;i++)
-    dist[i]=maxn;
-    int u,v;
-    for(int i=1;i&lt;=m;i++)
-    {
-        cin&gt;&gt;u&gt;&gt;v;
-        G[v].push_back({1,u});
-    }
-    cin&gt;&gt;k;
-    for(int i=1;i&lt;=k;i++)
-    cin&gt;&gt;path[i];
-    dist[path[k]]=0;
-    Q.push({0,path[k]});
-    while(!Q.empty())
-    {
-        HeapNode cur;
-        cur=Q.top();
-        Q.pop();
-        int x=cur.u;
-        for(int i=0;i&lt;G[x].size();i++)
-        {    
-            HeapNode H;
-            H=G[x][i];
-            if(H.d+dist[x]&lt;dist[H.u])
-            {
-                dist[H.u]=H.d+dist[x];
-                H.d=dist[H.u];
-                Q.push(H);
-                pre[H.u]=1;
-            }
-            else if(H.d+dist[x]==dist[H.u])
-            {
-                pre[H.u]++;
-            }
-        }
-    }
-    int mini=0,maxi=0;
-    for(int i=1;i&lt;=k;i++)
-    {
-        if(pre[path[i]]&gt;1||(i!=k&amp;&amp;dist[path[i]]!=dist[path[i+1]]+1))
-        maxi++;
-        if(i!=1&amp;&amp;dist[path[i]]!=dist[path[i-1]]-1)
-        mini++;
-    }
-    cout&lt;&lt;mini&lt;&lt;&quot; &quot;&lt;&lt;maxi&lt;&lt;endl;
-    return 0;
-} </code></pre><h2 id="E-World-of-Darkraft-Battle-for-Azathoth"><a href="#E-World-of-Darkraft-Battle-for-Azathoth" class="headerlink" title="E World of Darkraft: Battle for Azathoth"></a>E World of Darkraft: Battle for Azathoth</h2><p>题解：二维偏序问题。思想一般就是排序一维，然后用线段树去维护另一维。这题对武器的攻击力，防具的防御力以及对怪兽的防御力排序，然后遍历一遍武器，武器按照攻击力递增顺序出现，然后按照怪兽的防御力小于武器的攻击力依次将怪兽的价值加入线段树中，范围是用二分查询到的防具（这个防具应该是防御力刚大于怪兽的攻击力的防具）的位置到m，更新的时候更新区间，线段树储存防具创造的最多价值，（所以线段树初始化时每个叶子结点的值为负的防具的价值。）但是不包含武器的价值，所以最后减去武器的价值。</p>
-<pre><code>#include&lt;iostream&gt;
-using namespace std;
-#define minn -2e10 
-typedef long long ll;
-#include&lt;algorithm&gt;
-ll BiTree[900000];
-struct knode
-{
-    int ai;
-    ll c;
-}a[200005];
-struct node
-{
-    int bi;
-    ll c;
-}b[200005];
-ll z[200005];
-ll lazy[900005];
-struct monster
-{
-    int x;
-    int y;
-    ll z;
-}mo[200005];
-int cmp1(knode x,knode y)
-{
-    if(x.ai==y.ai)
-    return x.c&lt;y.c;
-    else
-    return x.ai&lt;y.ai;
-}
-int cmp2(node a,node b)
-{
-    if(a.bi==b.bi)
-    return a.c&lt;b.c;
-    else
-    return a.bi&lt;b.bi;
-}
-int cmp(monster a,monster b)
-{
-    if(a.x==b.x)
-    return a.y&lt;b.y;
-    else
-    return a.x&lt;b.x;
-}
-
-void build_tree(int no,int start,int end)
-{
-    if(start==end)
-    {
-        BiTree[no]=-b[start].c;
-        return ;
-    }
-    int mid=(start+end)/2;
-    int left_node=no*2;
-    int right_node=no*2+1;
-    build_tree(left_node,start,mid);
-    build_tree(right_node,mid+1,end);
-    BiTree[no]=max(BiTree[left_node],BiTree[right_node]);
-}
-
-void update(int no,int start,int end,int l,int r,int val)
-{
-    if(l&lt;=start&amp;&amp;end&lt;=r)
-    {
-    lazy[no]+=val;
-    BiTree[no]+=val;return ;
-    }
-    int mid=(start+end)/2;
-    int left_node=no*2;
-    int right_node=2*no+1;
-    if(lazy[no])
-    {
-        BiTree[left_node]+=lazy[no];
-        BiTree[right_node]+=lazy[no];
-        lazy[left_node]+=lazy[no];
-        lazy[right_node]+=lazy[no];
-        lazy[no]=0;
-    }
-    if(l&lt;=mid)update(left_node,start,mid,l,r,val);
-    if(r&gt;mid)update(right_node,mid+1,end,l,r,val);
-    BiTree[no]=max(BiTree[left_node],BiTree[right_node]);
-}
-
-int main()
-{
-    int n,m,p;
-    cin&gt;&gt;n&gt;&gt;m&gt;&gt;p;
-    for(int i=1;i&lt;=n;i++)
-    scanf(&quot;%d%lld&quot;,&amp;a[i].ai,&amp;a[i].c); 
-    for(int i=1;i&lt;=m;i++)
-    scanf(&quot;%d%lld&quot;,&amp;b[i].bi,&amp;b[i].c);
-    sort(a+1,a+1+n,cmp1);
-    sort(b+1,b+1+m,cmp2);
-    for(int i=1;i&lt;=m;i++) z[i]=b[i].bi;
-    for(int i=1;i&lt;=p;i++)
-    {
-        scanf(&quot;%d%d%lld&quot;,&amp;mo[i].x,&amp;mo[i].y,&amp;mo[i].z);
-    }
-    sort(mo+1,mo+1+p,cmp);
-    build_tree(1,1,m);
-    ll ans=minn;
-    int pos=1;
-    for(int i=1;i&lt;=n;i++)
-    {
-        if(a[i].ai!=a[i-1].ai)
-        {
-            for(;mo[pos].x&lt;a[i].ai&amp;&amp;pos&lt;=p;pos++)
-            {
-                int l=1,r=m,mid,ak=m+1;
-                while(l&lt;=r)
-                {
-                     mid=(l+r)/2;
-                    if(z[mid]&gt;mo[pos].y)
-                    {
-                        ak=mid;
-                        r=mid-1;
-                    }
-                    else l=mid+1;
-                }
-                if(ak&lt;=m)update(1,1,m,ak,m,mo[pos].z);
-            }
-            ans=max(ans,BiTree[1]-a[i].c);
-        }
-    }
-    cout&lt;&lt;ans&lt;&lt;endl;    
-}</code></pre><h2 id="F-Reachable-Strings"><a href="#F-Reachable-Strings" class="headerlink" title="F. Reachable Strings"></a>F. Reachable Strings</h2><p>题解：字符串哈希。这个哈希不是哈希的原来字符串，是哈希字符串中0的位置（0在奇数位还是偶数位）。因为两个字符串，0的位置分布相同，例如11001与01101中0的分布都是奇-&gt;偶，可以互相转换，00110与01100中0的分布都为奇-&gt;偶-&gt;奇,可以相互转换。至于为什么满足这样的条件就能相互转换，我的理解是因为从011变到110相当于0右移两位，但0所处的位置的奇偶性没变，并且如果奇数位上的0遇到偶数上的0，两个0挨着是无法越过的。所以00110与01100要是编码的话相当于101（奇数位为1偶数位为0）这样两个字符串的哈希值就相同了。我们还要维护字符串数组中0的个数，因为Hash[l…r]=Hash[r]-Hash[l-1]*p^(r-l+1)。哈希数组要开两个，分别是子串从奇数位开始和子串从偶数位开始的情况，因为从奇数位开始的子串的奇数位为从偶数位开始的子串中的偶数位。</p>
-<pre><code>#include&lt;iostream&gt;
-using namespace std;
-typedef long long ll;
-ll Hash1[200005]; //从奇数位开头 
-ll Hash2[200005]; //从偶数位开头 
-ll pos[200005];
-int cnt[200005];
-#define p 233
-#define mod 100000009
-
-ll query(int l,int r)
-{
-    if(l&amp;1)
-    return (Hash1[r]-Hash1[l-1]*pos[cnt[r]-cnt[l-1]]%mod+mod)%mod;
-    else return (Hash2[r]-Hash2[l-1]*pos[cnt[r]-cnt[l-1]]%mod+mod)%mod; 
-}    
-
-int main()
-{
-    int n;
-    cin&gt;&gt;n;
-    string t;
-    cin&gt;&gt;t;
-    t=&apos;#&apos;+t;
-    pos[0]=1;
-    for(int i=1;i&lt;=t.size();i++)
-    {
-        pos[i]=pos[i-1]*p%mod;
-        if(t[i]==&apos;0&apos;)
-        {    cnt[i]=cnt[i-1]+1;
-            Hash1[i]=(Hash1[i-1]*p+(i&amp;1)+1)%mod;
-            Hash2[i]=(Hash2[i-1]*p+((i+1)&amp;1)+1)%mod; 
-        }
-        else
-        {
-            cnt[i]=cnt[i-1];
-            Hash1[i]=Hash1[i-1];
-            Hash2[i]=Hash2[i-1];
-        }
-    }
-    int k,l,r,len;cin&gt;&gt;k;
-    for(int j=1;j&lt;=k;j++)
-    {
-        cin&gt;&gt;l&gt;&gt;r&gt;&gt;len;
-        if(query(l,l+len-1)==query(r,r+len-1))
-        cout&lt;&lt;&quot;Yes&quot;&lt;&lt;endl;
-        else cout&lt;&lt;&quot;No&quot;&lt;&lt;endl;
-    }    
-} </code></pre>
+        <p><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1579273590293&di=8c93b511b06a90f4f47f35e323dab3b2&imgtype=0&src=http%3A%2F%2Fimg.cwq.com%2F201712%2F1513127498165415.jpeg" alt="helloworld"><br>终于是把我的个人博客给搭好了，可喜可贺XD！所以用这第一篇小文章庆祝一下。</p>
+        
+          <a class="article-more-a" href="/2020/01/17/Hello-world-0/#more">more >></a>
+        
       
 
       
@@ -550,11 +198,11 @@ int main()
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ACM</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">CF</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">日常</a>
         		</li>
       		
 		</ul>
@@ -563,84 +211,16 @@ int main()
       
 
       
-
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/01/17/Hello-world-0/">展开全文 >></a>
+        </p>
       
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
-        </div>
-      </div>
-    </span>
-  </div>
-</div>
 
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://fIamingo.github.io/ub.io/2020/03/06/%E7%AE%80%E6%B4%81%E9%A2%98%E8%A7%A3-Codeforces-Round-625%EF%BC%88A-E%EF%BC%89/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2020/03/09/kuangbin%E5%B8%A6%E4%BD%A0%E9%A3%9E-%E4%B8%93%E9%A2%98%E4%BA%8C-%E5%B9%B6%E6%9F%A5%E9%9B%86/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          [kuangbin带你飞] 专题五：并查集
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2020/03/06/kuangbin%E5%B8%A6%E4%BD%A0%E9%A3%9E-%E4%B8%93%E9%A2%98%E4%B8%80%EF%BC%9A%E7%AE%80%E5%8D%95%E6%90%9C%E7%B4%A2/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">[kuangbin带你飞]专题一：简单搜索</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -655,32 +235,17 @@ int main()
         </div>
         
         
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#A-Contest-for-Robots"><span class="toc-number">2.</span> <span class="toc-text">A. Contest for Robots</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#B-Journey-Planning"><span class="toc-number">3.</span> <span class="toc-text">B. Journey Planning</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#C-Remove-Adjacent"><span class="toc-number">4.</span> <span class="toc-text">C. Remove Adjacent</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#D-Navigation-System"><span class="toc-number">5.</span> <span class="toc-text">D. Navigation System</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#E-World-of-Darkraft-Battle-for-Azathoth"><span class="toc-number">6.</span> <span class="toc-text">E World of Darkraft: Battle for Azathoth</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#F-Reachable-Strings"><span class="toc-number">7.</span> <span class="toc-text">F. Reachable Strings</span></a></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
-        
     </div>
 </aside>
 
 
 
-  
-  
-  
 
   
-
   
-
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/page/3/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+    </nav>
   
 
 
@@ -719,8 +284,8 @@ int main()
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: false,
-		isPost: true,
+		isHome: true,
+		isPost: false,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
