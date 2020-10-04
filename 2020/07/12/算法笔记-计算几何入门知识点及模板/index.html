@@ -56,8 +56,11 @@
 <meta property="og:image" content="http://fiamingo.github.io/2020/07/12/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0-%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95%E5%85%A5%E9%97%A8%E7%9F%A5%E8%AF%86%E7%82%B9%E5%8F%8A%E6%A8%A1%E6%9D%BF/3.png">
 <meta property="og:image" content="https://latex.codecogs.com/gif.latex?(x,y)=P&plus;v%5Ccdot&space;%5Cfrac%7Bw%5Ctimes&space;u%7D%7Bv%5Ctimes&space;w%7D">
 <meta property="og:image" content="https://latex.codecogs.com/gif.latex?u=-%5Cvec%7BPQ%7D">
+<meta property="og:image" content="https://latex.codecogs.com/gif.latex?P_%7B0%7DP_%7B1%7D...P_%7Bn-1%7D,">
+<meta property="og:image" content="https://latex.codecogs.com/gif.latex?%5Ctheta&space;_%7Bi%7D=%5Cleft%5C%7B%5Cbegin%7Bmatrix%7D&space;%3C%5Coverrightarrow%7BAP_%7Bi%7D%7D,%5Coverrightarrow%7BAP_%7Bi&plus;1%7D%7D%3E,i%3Cn-1%5C%5C%3C%5Coverrightarrow%7BAP_%7Bn-1%7D%7D,%5Coverrightarrow%7BAP_%7B0%7D%7D%3E,i=n-1&space;%5Cend%7Bmatrix%7D%5Cright.">
+<meta property="og:image" content="https://latex.codecogs.com/gif.latex?%5Csum_%7Bi=0%7D%5E%7Bn-1%7D%5Ctheta&space;_%7Bi%7D=2%5Cpi">
 <meta property="article:published_time" content="2020-07-11T17:10:20.000Z">
-<meta property="article:modified_time" content="2020-07-19T14:10:47.372Z">
+<meta property="article:modified_time" content="2020-10-04T13:04:47.473Z">
 <meta property="article:author" content="fIamingo">
 <meta property="article:tag" content="ACM">
 <meta property="article:tag" content="算法">
@@ -365,7 +368,25 @@ Point GetIntersection(Line a,Line b)
     Vector u=a.p-b.p;
     double t=Cross(b.v,u)/Cross(a.v,b.v);
     return a.p+a.v*t;
-}</code></pre><h1 id="3-多边形"><a href="#3-多边形" class="headerlink" title="3. 多边形"></a>3. 多边形</h1><h2 id="3-1-点和多边形的位置关系"><a href="#3-1-点和多边形的位置关系" class="headerlink" title="3.1 点和多边形的位置关系"></a>3.1 点和多边形的位置关系</h2><h1 id="4-例题"><a href="#4-例题" class="headerlink" title="4. 例题"></a>4. 例题</h1><h2 id="Morley’s-Theorem"><a href="#Morley’s-Theorem" class="headerlink" title="Morley’s Theorem"></a>Morley’s Theorem</h2><p><strong>题目</strong> <a href="https://vjudge.net/contest/379321#problem/A" target="_blank" rel="noopener">Morley’s Theorem </a></p>
+}</code></pre><h1 id="3-多边形"><a href="#3-多边形" class="headerlink" title="3. 多边形"></a>3. 多边形</h1><h2 id="3-1-点和多边形的位置关系"><a href="#3-1-点和多边形的位置关系" class="headerlink" title="3.1 点和多边形的位置关系"></a>3.1 点和多边形的位置关系</h2><p><font size = 3 face = "Times">设有(凸)n(n≥3)边形<a href="https://www.codecogs.com/eqnedit.php?latex=P_{0}P_{1}...P_{n-1}," target="_blank"><img src="https://latex.codecogs.com/gif.latex?P_{0}P_{1}...P_{n-1}," title="P_{0}P_{1}...P_{n-1}," /></a>点的顺序为顺时针或逆时针，以及点A,记</p>
+<p><a href="https://www.codecogs.com/eqnedit.php?latex=\theta&space;_{i}=\left\{\begin{matrix}&space;<\overrightarrow{AP_{i}},\overrightarrow{AP_{i&plus;1}}>,i<n-1\\<\overrightarrow{AP_{n-1}},\overrightarrow{AP_{0}}>,i=n-1&space;\end{matrix}\right." target="_blank"><img src="https://latex.codecogs.com/gif.latex?\theta&space;_{i}=\left\{\begin{matrix}&space;<\overrightarrow{AP_{i}},\overrightarrow{AP_{i&plus;1}}>,i<n-1\\<\overrightarrow{AP_{n-1}},\overrightarrow{AP_{0}}>,i=n-1&space;\end{matrix}\right." title="\theta _{i}=\left\{\begin{matrix} <\overrightarrow{AP_{i}},\overrightarrow{AP_{i+1}}>,i<n-1\\<\overrightarrow{AP_{n-1}},\overrightarrow{AP_{0}}>,i=n-1 \end{matrix}\right." /></a></font>  </p>
+<p>点在多边形内等价于<a href="https://www.codecogs.com/eqnedit.php?latex=\sum_{i=0}^{n-1}\theta&space;_{i}=2\pi" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\sum_{i=0}^{n-1}\theta&space;_{i}=2\pi" title="\sum_{i=0}^{n-1}\theta _{i}=2\pi" /></a></p>
+<pre><code>int isPointInPolygon(Point p,Point poly[],int n)
+{
+    int wn=0;
+    for(int i=0;i&lt;n;i++){ 
+        if(poly[i]==p||poly[(i+1)%n]==p||OnSegment(p,poly[i],poly[(i+1)%n]))return -1;
+        int k=dcmp(Cross(poly[(i+1)%n]-poly[i],p-poly[i]));
+        int d1=dcmp(poly[i].y-p.y);
+        int d2=dcmp(poly[(i+1)%n].y-p.y);
+        if(k&gt;0&amp;&amp;d1&lt;=0&amp;&amp;d2&gt;0)
+            wn++;
+        if(k&lt;0&amp;&amp;d2&lt;=0&amp;&amp;d1&gt;0)
+            wn--;
+    }
+    if(wn!=0)return 1;//内部
+    return 0;//外部
+}</code></pre><h1 id="4-例题"><a href="#4-例题" class="headerlink" title="4. 例题"></a>4. 例题</h1><h2 id="Morley’s-Theorem"><a href="#Morley’s-Theorem" class="headerlink" title="Morley’s Theorem"></a>Morley’s Theorem</h2><p><strong>题目</strong> <a href="https://vjudge.net/contest/379321#problem/A" target="_blank" rel="noopener">Morley’s Theorem </a></p>
 <blockquote>
 <p>莫利定理（Morley’s theorem），也称为莫雷角三分线定理。将三角形的三个内角三等分，靠近某边的两条三分角线相交得到一个交点，则这样的三个交点可以构成一个正三角形。这个三角形常被称作莫利正三角形。</p>
 </blockquote>
@@ -968,7 +989,458 @@ int main()
         double area = PolygonArea(ans,m);
         printf(&quot;%0.1lf %\n&quot;,100*sum/area);
     }
-}</code></pre>
+}</code></pre><h2 id="Most-Distant-Point-from-the-Sea"><a href="#Most-Distant-Point-from-the-Sea" class="headerlink" title="Most Distant Point from the Sea"></a>Most Distant Point from the Sea</h2><p><strong>题目</strong> <a href="https://icpcarchive.ecs.baylor.edu/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1891" target="_blank" rel="noopener">Most Distant Point from the Sea </a><br>半平面交知识点ac的第一道题，依然是我想不出来的思路。我只能看出来题意是求内切圆的最大半径，之后的就不会了，正解是二分一下内切圆的半径，然后每条边向内部平移这个长度，如果能构成多边形，也就是这个模板里的半平面交函数返回值不为0，就说明我们选的半径小了，还能继续增加，如果为0，说明半径选大了，半平面交之后没有凸包了。然后多次二分迭代。</p>
+<pre><code>#include &lt;vector&gt;
+#include &lt;cmath&gt;
+#include &lt;algorithm&gt;
+#include &lt;iostream&gt; 
+
+using namespace std;
+
+const double eps=1e-10;
+const double PI=acos(-1.0);
+
+struct Point{
+    double x,y;
+    Point(double x=0,double y=0):x(x),y(y){}
+};
+typedef Point Vector;
+typedef vector&lt;Point&gt; Polygon;
+
+Vector operator -(Point a,Point b){
+    return Vector(a.x-b.x,a.y-b.y);
+}
+Vector operator +(Point a,Point b){
+    return Vector(a.x+b.x,a.y+b.y);
+}
+Vector operator *(Vector a,double p){
+    return Vector(a.x*p,a.y*p);
+}
+Vector operator /(Vector a,double p){
+    return Vector(a.x/p,a.y/p);
+}
+bool operator &lt;(const Point&amp; a,const Point&amp; b){
+    return a.x&lt;b.x||(a.x==b.x&amp;&amp;a.y&lt;b.y);//在有精度需求，比如使用lower_bound的时候，加上dcmp()    
+}
+int dcmp(double x){
+    if(fabs(x)&lt;eps)return 0;
+    if(x&lt;0)return -1;
+    return 1;
+}
+bool operator ==(const Point&amp; a,const Point&amp; b){
+    return dcmp(a.x-b.x)==0&amp;&amp;dcmp(a.y-b.y)==0;
+}
+double Dot(Vector a,Vector b){
+    return a.x*b.x+a.y*b.y;
+}//点积
+double Cross(Vector a,Vector b){
+    return a.x*b.y-a.y*b.x;
+}//叉积 
+int quadrant(Point a)
+{
+    if(a.x&gt;0&amp;&amp;a.y&gt;=0)return 1;
+    if(a.x&lt;=0&amp;&amp;a.y&gt;0)return 2;
+    if(a.x&lt;0&amp;&amp;a.y&lt;=0)return 3;
+    return 4;
+}
+bool cmp(Point a,Point b)
+{
+    if(quadrant(a)!=quadrant(b))return quadrant(a)&lt;quadrant(b);
+    return Cross(a,b)&gt;0;
+}
+double Length(Vector a){
+    return sqrt(Dot(a,a));
+}//长度
+//返回逆时针旋转90度的单位法向量；
+Vector Normal(Vector a){
+    double l=Length(a);
+    return Vector(-a.y/l,a.x/l);
+}
+//返回单位向量；
+Vector normal(Vector a){
+    double l=Length(a);
+    return Vector(a.x/l,a.y/l);    
+}
+//返回向量夹角，无方向
+double Angle(Vector a,Vector b){
+    return acos(Dot(a,b)/Length(a)/Length(b));
+}
+//逆时针旋转向量
+Vector Rotate(Vector a,double rad){
+    return Vector(a.x*cos(rad)-a.y*sin(rad),a.x*sin(rad)+a.y*cos(rad));
+}
+//求p+v*t与q+w*t的交点，使用时确保Cross(v,w)不等于0
+Point GetlineIntersection(Point p,Vector v,Point q,Vector w){
+    Vector u=p-q;
+    double t=Cross(w,u)/Cross(v,w);
+    return p+v*t;
+}
+//求p到直线ab的距离
+double DistanceToline(Point p,Point a,Point b){
+    Vector v1=p-a,v2=b-a;
+    return fabs(Cross(v1,v2)/Length(v2));
+}
+//求p到线段ab的距离
+double DistanceToSegment(Point p,Point a,Point b){
+    if(a==b)return Length(p-a);
+    Vector v1=b-a,v2=p-a,v3=p-b;
+    if(dcmp(Dot(v1,v2)&lt;0))return Length(p-a);
+    else if(dcmp(Dot(v1,v3))&gt;0)return Length(p-b);
+    else return fabs(Cross(v1,v2)/Length(v1));
+}
+//线段a1a2与线段b1b2规范相交返回真
+bool SegmenProperIntersection(Point a1,Point a2,Point b1,Point b2){
+    double c1=Cross(a2-a1,b1-a1),c2=Cross(a2-a1,b2-a1);
+    double c3=Cross(b2-b1,a1-b1),c4=Cross(b2-b1,a2-b1);
+    return dcmp(c1)*dcmp(c2)&lt;0&amp;&amp;dcmp(c3)*dcmp(c4)&lt;0;
+}    
+//点p在线段a1a2上返回真
+bool OnSegment(Point p,Point a1,Point a2){
+    return dcmp(Cross(a1-p,a2-p))==0&amp;&amp;dcmp(Dot(a1-p,a2-p))&lt;0;
+}
+//点p在ab上的投影
+Point GetLineProjection(Point P,Point A,Point B)
+{
+    Vector v=B-A;
+    return A+v*(Dot(v,P-A)/Dot(v,v));
+}
+//与 x 轴的夹角，取值范围为 (-π，π]
+double angle(Vector v){
+    return atan2(v.y,v.x);
+}    
+//求线段a1,a2到线段b1,b2的最短距离
+double disSegmenttoSegment(Point a1,Point a2,Point b1,Point b2)
+{
+    double ans=DistanceToSegment(a1,b1,b2);
+    ans=min(ans,DistanceToSegment(a2,b1,b2));
+    ans=min(ans,DistanceToSegment(b1,a1,a2));
+    ans=min(ans,DistanceToSegment(b2,a1,a2));
+    return ans;
+}
+
+struct Line{
+    Point p;//点
+    Vector v;//向量
+    double ang;
+    Line(){}
+    Line(Point p,Vector v):p(p),v(v){ang=atan2(v.y,v.x);}
+    Point point(double t){return p+v*t;}
+    bool operator &lt;(const Line&amp; L)const{    
+    return ang&lt;L.ang;
+    }
+};
+//点在直线的左边
+bool OnLeft(Line l,Point p)
+{
+    return Cross(l.v,p-l.p)&gt;0;
+}
+//两直线交点
+Point GetIntersection(Line a,Line b)
+{
+    Vector u=a.p-b.p;
+    double t=Cross(b.v,u)/Cross(a.v,b.v);
+    return a.p+a.v*t;
+}
+
+typedef vector&lt;Point&gt; Polygon;
+//多边形的有向面积，逆时针为正
+double PolygonArea(Point po[],int n) {
+    double area = 0.0;
+    for(int i = 1; i &lt; n-1; i++) {
+        area += Cross(po[i]-po[0], po[i+1]-po[0]);
+    }
+    return area * 0.5;
+}
+double PolygonArea(Polygon po) {
+    int n=po.size();
+    double area = 0.0;
+    for(int i = 1; i &lt; n-1; i++) {
+        area += Cross(po[i]-po[0], po[i+1]-po[0]);
+    }
+    return area * 0.5;
+}
+
+int n;
+Point p[105];
+Point poly[105];
+Line q[105];
+Line L[105];
+
+int HalfplaneIntersection(Line* L,int n,Point* poly)
+{
+    int first,last;
+    q[first=last=0]=L[0];
+    for(int i=1;i&lt;n;i++){
+        while(first&lt;last&amp;&amp;!OnLeft(L[i],p[last-1]))last--;
+        while(first&lt;last&amp;&amp;!OnLeft(L[i],p[first]))first++;
+        q[++last]=L[i];
+        if(fabs(Cross(q[last].v,q[last-1].v))&lt;eps){
+            last--;
+            if(OnLeft(q[last],L[i].p))q[last]=L[i];
+        }
+        if(first&lt;last)p[last-1]=GetIntersection(q[last-1],q[last]);
+    }
+    while(first&lt;last&amp;&amp;!OnLeft(q[first],p[last-1]))last--;
+    if(last-first&lt;=1)return 0;
+    p[last]=GetIntersection(q[last],q[first]);
+    int m=0;
+    for(int i=first;i&lt;=last;i++)poly[m++]=p[i];
+    return m;
+}//会在函数内开大容量数组，请在使用时注意开成全局
+
+Line ini[105];
+
+int solve(double mid){
+    for(int i = 0; i &lt; n; i++){
+        L[i] = ini[i];
+        L[i].p = ini[i].p + Normal(ini[i].v)*mid;
+    }
+    int m =    HalfplaneIntersection(L,n,poly);
+    return m;
+}
+Point point[105];
+
+int main(){
+    while(cin &gt;&gt; n){
+        if(n == 0)
+        break;
+        for(int i = 0; i &lt; n; i++){
+            cin &gt;&gt; point[i].x &gt;&gt; point[i].y;
+        }
+        point[n] = point[0];
+        for(int i = 0; i &lt; n; i++){
+            ini[i].p = point[i];
+            ini[i].v = point[i+1] - point[i];
+        }
+        sort(ini,ini+n);
+        double start = 0;
+        double end = 1e9;
+        double ans;
+        while(start &lt;= end){
+            double mid = (start+end)/2;
+            double res = solve(mid);
+            if(res == 0 &amp;&amp; dcmp(end-start) == 0)
+            {
+                ans = mid;
+                break;
+            }else if(res &gt; 0)
+            start = mid;
+            else end = mid;
+        }
+        printf(&quot;%.6lf\n&quot;,ans);
+    }
+}</code></pre><h2 id="Jungle-Outpost"><a href="#Jungle-Outpost" class="headerlink" title="Jungle Outpost"></a>Jungle Outpost</h2><p><strong>题目</strong> <a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=4221" target="_blank" rel="noopener">Most Distant Point from the Sea </a><br>这道题思路和上道题差不多，都是二分+半平面交，这道题的关键还是想清楚敌人炸掉瞭望台时只用考虑最优情况的连续炸掉m个点形成的半平面交。</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+#include &lt;vector&gt;
+#include &lt;cmath&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+const double eps=1e-10;
+const double PI=acos(-1.0);
+
+struct Point{
+    double x,y;
+    Point(double x=0,double y=0):x(x),y(y){}
+};
+typedef Point Vector;
+typedef vector&lt;Point&gt; Polygon;
+
+Vector operator -(Point a,Point b){
+    return Vector(a.x-b.x,a.y-b.y);
+}
+Vector operator +(Point a,Point b){
+    return Vector(a.x+b.x,a.y+b.y);
+}
+Vector operator *(Vector a,double p){
+    return Vector(a.x*p,a.y*p);
+}
+Vector operator /(Vector a,double p){
+    return Vector(a.x/p,a.y/p);
+}
+bool operator &lt;(const Point&amp; a,const Point&amp; b){
+    return a.x&lt;b.x||(a.x==b.x&amp;&amp;a.y&lt;b.y);//在有精度需求，比如使用lower_bound的时候，加上dcmp()
+}
+int dcmp(double x){
+    if(fabs(x)&lt;eps)return 0;
+    if(x&lt;0)return -1;
+    return 1;
+}
+bool operator ==(const Point&amp; a,const Point&amp; b){
+    return dcmp(a.x-b.x)==0&amp;&amp;dcmp(a.y-b.y)==0;
+}    
+double Dot(Vector a,Vector b){
+    return a.x*b.x+a.y*b.y;
+}//点积
+double Cross(Vector a,Vector b){
+    return a.x*b.y-a.y*b.x;
+}//叉积 
+int quadrant(Point a)
+{
+    if(a.x&gt;0&amp;&amp;a.y&gt;=0)return 1;
+    if(a.x&lt;=0&amp;&amp;a.y&gt;0)return 2;
+    if(a.x&lt;0&amp;&amp;a.y&lt;=0)return 3;
+    return 4;
+}
+bool cmp(Point a,Point b)
+{
+    if(quadrant(a)!=quadrant(b))return quadrant(a)&lt;quadrant(b);
+    return Cross(a,b)&gt;0;
+}
+double Length(Vector a){
+    return sqrt(Dot(a,a));
+}//长度
+//返回逆时针旋转90度的单位法向量；
+Vector Normal(Vector a){
+    double l=Length(a);
+    return Vector(-a.y/l,a.x/l);
+}
+//返回单位向量；
+Vector normal(Vector a){
+    double l=Length(a);
+    return Vector(a.x/l,a.y/l);
+}    
+//返回向量夹角，无方向
+double Angle(Vector a,Vector b){
+    return acos(Dot(a,b)/Length(a)/Length(b));
+}
+//逆时针旋转向量
+Vector Rotate(Vector a,double rad){
+    return Vector(a.x*cos(rad)-a.y*sin(rad),a.x*sin(rad)+a.y*cos(rad));
+}
+//求p+v*t与q+w*t的交点，使用时确保Cross(v,w)不等于0
+Point GetlineIntersection(Point p,Vector v,Point q,Vector w){
+    Vector u=p-q;
+    double t=Cross(w,u)/Cross(v,w);
+    return p+v*t;
+}
+//求p到直线ab的距离
+double DistanceToline(Point p,Point a,Point b){    
+    Vector v1=p-a,v2=b-a;
+    return fabs(Cross(v1,v2)/Length(v2));
+}
+//求p到线段ab的距离
+double DistanceToSegment(Point p,Point a,Point b){
+    if(a==b)return Length(p-a);    
+    Vector v1=b-a,v2=p-a,v3=p-b;    
+    if(dcmp(Dot(v1,v2)&lt;0))return Length(p-a);
+    else if(dcmp(Dot(v1,v3))&gt;0)return Length(p-b);    
+    else return fabs(Cross(v1,v2)/Length(v1));
+}
+//线段a1a2与线段b1b2规范相交返回真
+bool SegmenProperIntersection(Point a1,Point a2,Point b1,Point b2){
+    double c1=Cross(a2-a1,b1-a1),c2=Cross(a2-a1,b2-a1);
+    double c3=Cross(b2-b1,a1-b1),c4=Cross(b2-b1,a2-b1);
+    return dcmp(c1)*dcmp(c2)&lt;0&amp;&amp;dcmp(c3)*dcmp(c4)&lt;0;
+}
+//点p在线段a1a2上返回真
+bool OnSegment(Point p,Point a1,Point a2){
+    return dcmp(Cross(a1-p,a2-p))==0&amp;&amp;dcmp(Dot(a1-p,a2-p))&lt;0;
+}
+//点p在ab上的投影
+Point GetLineProjection(Point P,Point A,Point B)
+{
+    Vector v=B-A;
+    return A+v*(Dot(v,P-A)/Dot(v,v));
+}
+//与 x 轴的夹角，取值范围为 (-π，π]
+double angle(Vector v){
+    return atan2(v.y,v.x);
+}
+//求线段a1,a2到线段b1,b2的最短距离
+double disSegmenttoSegment(Point a1,Point a2,Point b1,Point b2)
+{
+    double ans=DistanceToSegment(a1,b1,b2);
+    ans=min(ans,DistanceToSegment(a2,b1,b2));
+    ans=min(ans,DistanceToSegment(b1,a1,a2));
+    ans=min(ans,DistanceToSegment(b2,a1,a2));
+    return ans;
+}
+
+struct Line{
+    Point p;//点
+    Vector v;//向量
+    double ang;
+    Line(){}
+    Line(Point p,Vector v):p(p),v(v){ang=atan2(v.y,v.x);}
+    Point point(double t){return p+v*t;}
+    bool operator &lt;(const Line&amp; L)const{
+        return ang&lt;L.ang;
+    }
+};
+//点在直线的左边
+bool OnLeft(Line l,Point p)
+{
+    return Cross(l.v,p-l.p)&gt;0;
+}
+//两直线交点
+Point GetIntersection(Line a,Line b)
+{
+    Vector u=a.p-b.p;
+    double t=Cross(b.v,u)/Cross(a.v,b.v);
+    return a.p+a.v*t;
+}
+
+Line L[50005];
+Point p[50005];
+Line q[50005];
+Point poly[50005];
+
+int HalfplaneIntersection(Line* L,int n,Point* poly)
+{
+    sort(L,L+n);
+    int first,last;
+    q[first=last=0]=L[0];
+    for(int i=1;i&lt;n;i++){
+        while(first&lt;last&amp;&amp;!OnLeft(L[i],p[last-1]))last--;
+        while(first&lt;last&amp;&amp;!OnLeft(L[i],p[first]))first++;
+        q[++last]=L[i];
+        if(fabs(Cross(q[last].v,q[last-1].v))&lt;eps){
+            last--;
+            if(OnLeft(q[last],L[i].p))q[last]=L[i];
+        }
+        if(first&lt;last)p[last-1]=GetIntersection(q[last-1],q[last]);
+    }
+    while(first&lt;last&amp;&amp;!OnLeft(q[first],p[last-1]))last--;
+       if(last-first&lt;=1)return 0;
+       p[last]=GetIntersection(q[last],q[first]);
+       int m=0;
+    for(int i=first;i&lt;=last;i++)poly[m++]=p[i];
+    return m;
+}//会在函数内开大容量数组，请在使用时注意开成全局
+
+Point point[50005];
+int n;
+int solve(int m){
+    for(int i = 0; i &lt; n; i++){
+        L[i].p = point[i];
+        L[i].v = point[(i+1+m)%n] - point[i];
+    }
+    return HalfplaneIntersection(L,n,poly);
+
+}
+
+int main(){
+    cin &gt;&gt; n;
+    for(int i = 0; i &lt; n; i++){
+        cin &gt;&gt; point[i].x &gt;&gt; point[i].y;
+    }
+    for(int i = 0; i &lt; n/2; i++)
+    swap(point[i],point[n-i-1]);
+    point[n] = point[0];
+    int left = 1;
+    int right = n;
+    int mid;
+    while(left &lt; right){
+        mid = (left + right)/2;
+        if(solve(mid)){
+            left = mid + 1;
+        }
+        else right = mid;
+    }
+    cout &lt;&lt; left &lt;&lt; endl;
+
+} </code></pre>
       
 
       
@@ -1097,7 +1569,7 @@ int main()
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-向量"><span class="toc-number"></span> <span class="toc-text">1.向量</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-点和向量的表示"><span class="toc-number">1.</span> <span class="toc-text">1.1 点和向量的表示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-基本向量运算"><span class="toc-number">2.</span> <span class="toc-text">1.2 基本向量运算</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-1-向量加法"><span class="toc-number">2.1.</span> <span class="toc-text">1.2.1 向量加法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-2-向量减法"><span class="toc-number">2.2.</span> <span class="toc-text">1.2.2 向量减法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-3-向量模长"><span class="toc-number">2.3.</span> <span class="toc-text">1.2.3 向量模长</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-4-向量数乘"><span class="toc-number">2.4.</span> <span class="toc-text">1.2.4 向量数乘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-5-向量内积（点积）"><span class="toc-number">2.5.</span> <span class="toc-text">1.2.5 向量内积（点积）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-6向量外积（叉积）"><span class="toc-number">2.6.</span> <span class="toc-text">1.2.6向量外积（叉积）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-7-向量旋转"><span class="toc-number">2.7.</span> <span class="toc-text">1.2.7 向量旋转</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-直线与线段"><span class="toc-number"></span> <span class="toc-text">2.直线与线段</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-线段相交问题"><span class="toc-number">0.1.</span> <span class="toc-text">2.1 线段相交问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-点到直线的距离"><span class="toc-number">0.2.</span> <span class="toc-text">2.2 点到直线的距离</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-两直线交点"><span class="toc-number">0.3.</span> <span class="toc-text">2.3 两直线交点</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-多边形"><span class="toc-number"></span> <span class="toc-text">3. 多边形</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-点和多边形的位置关系"><span class="toc-number">1.</span> <span class="toc-text">3.1 点和多边形的位置关系</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-例题"><span class="toc-number"></span> <span class="toc-text">4. 例题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Morley’s-Theorem"><span class="toc-number">1.</span> <span class="toc-text">Morley’s Theorem</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#That-Nice-Euler-Circuit"><span class="toc-number">2.</span> <span class="toc-text">That Nice Euler Circuit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Boarding-Wrapping"><span class="toc-number">3.</span> <span class="toc-text">Boarding Wrapping</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-向量"><span class="toc-number"></span> <span class="toc-text">1.向量</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-点和向量的表示"><span class="toc-number">1.</span> <span class="toc-text">1.1 点和向量的表示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-基本向量运算"><span class="toc-number">2.</span> <span class="toc-text">1.2 基本向量运算</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-1-向量加法"><span class="toc-number">2.1.</span> <span class="toc-text">1.2.1 向量加法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-2-向量减法"><span class="toc-number">2.2.</span> <span class="toc-text">1.2.2 向量减法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-3-向量模长"><span class="toc-number">2.3.</span> <span class="toc-text">1.2.3 向量模长</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-4-向量数乘"><span class="toc-number">2.4.</span> <span class="toc-text">1.2.4 向量数乘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-5-向量内积（点积）"><span class="toc-number">2.5.</span> <span class="toc-text">1.2.5 向量内积（点积）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-6向量外积（叉积）"><span class="toc-number">2.6.</span> <span class="toc-text">1.2.6向量外积（叉积）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-7-向量旋转"><span class="toc-number">2.7.</span> <span class="toc-text">1.2.7 向量旋转</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-直线与线段"><span class="toc-number"></span> <span class="toc-text">2.直线与线段</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-线段相交问题"><span class="toc-number">0.1.</span> <span class="toc-text">2.1 线段相交问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-点到直线的距离"><span class="toc-number">0.2.</span> <span class="toc-text">2.2 点到直线的距离</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-两直线交点"><span class="toc-number">0.3.</span> <span class="toc-text">2.3 两直线交点</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-多边形"><span class="toc-number"></span> <span class="toc-text">3. 多边形</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-点和多边形的位置关系"><span class="toc-number">1.</span> <span class="toc-text">3.1 点和多边形的位置关系</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-例题"><span class="toc-number"></span> <span class="toc-text">4. 例题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Morley’s-Theorem"><span class="toc-number">1.</span> <span class="toc-text">Morley’s Theorem</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#That-Nice-Euler-Circuit"><span class="toc-number">2.</span> <span class="toc-text">That Nice Euler Circuit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Boarding-Wrapping"><span class="toc-number">3.</span> <span class="toc-text">Boarding Wrapping</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Most-Distant-Point-from-the-Sea"><span class="toc-number">4.</span> <span class="toc-text">Most Distant Point from the Sea</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Jungle-Outpost"><span class="toc-number">5.</span> <span class="toc-text">Jungle Outpost</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -1230,6 +1702,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CF</a>
               </li>
              
@@ -1242,11 +1718,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">C++</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1258,6 +1730,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
@@ -1266,15 +1742,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">算法笔记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">水</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1287,6 +1755,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">神经网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">水</a>
               </li>
              
               <li class="article-tag-list-item">
