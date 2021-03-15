@@ -17,7 +17,7 @@
 <meta property="og:image" content="http://fiamingo.github.io/2020/03/04/Java-%E4%B8%8D%E5%A4%AA%E8%AF%A6%E7%BB%86%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%AF%BB%E6%89%BE%E5%AD%97%E7%AC%A6.png">
 <meta property="og:image" content="http://fiamingo.github.io/2020/03/04/Java-%E4%B8%8D%E5%A4%AA%E8%AF%A6%E7%BB%86%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%85%B6%E4%BB%96string%E6%93%8D%E4%BD%9C.png">
 <meta property="article:published_time" content="2020-03-03T16:26:14.000Z">
-<meta property="article:modified_time" content="2020-04-17T00:02:55.572Z">
+<meta property="article:modified_time" content="2021-02-20T08:37:09.275Z">
 <meta property="article:author" content="fIamingo">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
@@ -199,13 +199,63 @@
       
         <p><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1583263121344&di=5a7e5d6ad535493031959e9ccdfcba4e&imgtype=0&src=http%3A%2F%2Fp1.ssl.cdn.btime.com%2Ft014df2b452e706b092.jpg%3Fsize%3D439x248" alt=""></p>
 <a id="more"></a>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>java和c相似的地方还是很多的，这个博客中很多java和c++相似的地方会省略，我参考的浙大翁恺的java进阶教程，建议去看看。</p>
-<h2 id="数组的使用"><a href="#数组的使用" class="headerlink" title="数组的使用"></a>数组的使用</h2><p><strong>创建数组</strong></p>
-<pre><code>int[] numbers = new int[100]; //创建一个有100个元素的int型的数组。</code></pre><p>new创建的数组会得到默认的0值。</p>
+
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>2021.2.6更新这篇日志，在原来的基础上会补充很多东西。</p>
+<h4 id="1-4-JVM与垃圾收集机制"><a href="#1-4-JVM与垃圾收集机制" class="headerlink" title="1.4 JVM与垃圾收集机制"></a>1.4 JVM与垃圾收集机制</h4><p>java语言的特点：跨平台性</p>
+<h5 id="核心机制-—-Java虚拟机"><a href="#核心机制-—-Java虚拟机" class="headerlink" title="核心机制 —- Java虚拟机"></a>核心机制 —- Java虚拟机</h5><p>有了JVM，同一个Java程序在三个不同的操作系统中都可以执行。这样就实现了Java程序的跨平台性。</p>
+<ul>
+<li>java的两种核心机制<ul>
+<li>java虚拟机</li>
+<li>垃圾收集机制</li>
+</ul>
+</li>
+</ul>
+<p>JVM是一个虚拟的计算机，具有指令集并使用不同的存储区域。负责执行指令，管理数据、内存、寄存器。</p>
+<ul>
+<li>对于不同的平台，有不同的虚拟机。</li>
+<li>只有某平台提供了对应的java虚拟机，java程序才可在此平台运行。</li>
+<li>java虚拟机机制屏蔽了底层运行平台的差别，实现了“一次编译，到处执行”。</li>
+</ul>
+<h5 id="核心机制-—-垃圾回收"><a href="#核心机制-—-垃圾回收" class="headerlink" title="核心机制 —- 垃圾回收"></a>核心机制 —- 垃圾回收</h5><ul>
+<li>不再使用的内存空间应回收 —- 垃圾回收。<ul>
+<li>在C/C++等语言中，由程序员负责回收无用内存。</li>
+<li>Java语言消除了程序员回收无用内存空间的责任：它提供一种系统级线程跟踪存储空间的分配情况，并在JVM空闲时，检查并释放那些可被释放的存储空间。</li>
+</ul>
+</li>
+<li>垃圾回收在Java程序运行过程中自动进行，程序员无法精确控制和干预。</li>
+<li>Java程序还会出现内存泄漏和内存溢出问题吗？</li>
+</ul>
+<h4 id="1-5-java语言的环境搭建"><a href="#1-5-java语言的环境搭建" class="headerlink" title="1.5 java语言的环境搭建"></a>1.5 java语言的环境搭建</h4><p>JDK：java开发工具</p>
+<p>JRE：java运行环境，包括java虚拟机和java所需要的核心类库。 </p>
+<h4 id="2-3-变量"><a href="#2-3-变量" class="headerlink" title="2.3 变量"></a>2.3 变量</h4><p>声明long类型变量，必须以”l”或”L”结尾</p>
+<p>声明float类型变量，必须以”f”或”F”结尾</p>
+<p>java中char一个字符两个字节</p>
+<p>基本数据类型之间的运算规则（不包含boolean类型）：</p>
+<p>1.自动类型提升：当容量小的数据类型的变量与容量（表示数的范围的大小，比如float容量要大于long的容量）大的数据类型的变量做运算时，结果自动提升为容量大的数据。</p>
+<p>​    byte 、short 、char–&gt; int –&gt; long –&gt; float –&gt; double</p>
+<p>​    特别的，当byte，char，short三种类型的变量做运算时，结果为int类型</p>
+<p>2.强制类型转换：自动类型提升的逆运算。</p>
+<p>需要使用强转符号：()</p>
+<p>3.String可以和8种基本变量做运算，且运算只能是连接运算“+”，运算的结果仍然是String类型</p>
+<h4 id="3-1-数组的使用"><a href="#3-1-数组的使用" class="headerlink" title="3.1 数组的使用"></a>3.1 数组的使用</h4><p><strong>数组的声明与初始化</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//一维数组</span></span><br><span class="line"><span class="keyword">int</span>[] numbers; <span class="comment">//声明</span></span><br><span class="line"><span class="comment">//静态初始化:数组的初始化和数组元素的赋值操作同时进行</span></span><br><span class="line">numbers = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">1001</span>,<span class="number">1002</span>,<span class="number">1003</span>,<span class="number">1004</span>&#125;;</span><br><span class="line"><span class="comment">//动态初始化：数组的初始化和数组元素的赋值操作分开进行</span></span><br><span class="line">String[] names = <span class="keyword">new</span> String[<span class="number">5</span>];</span><br><span class="line"><span class="comment">//直接初始化数组</span></span><br><span class="line"><span class="keyword">int</span>[] scores = &#123;<span class="number">87</span>,<span class="number">98</span>,<span class="number">69</span>,<span class="number">54</span>,<span class="number">65</span>,<span class="number">76</span>,<span class="number">87</span>,<span class="number">99</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//二维数组</span></span><br><span class="line"><span class="comment">//静态初始化</span></span><br><span class="line"><span class="keyword">int</span>[][] arr1 = <span class="keyword">new</span> <span class="keyword">int</span>[][]&#123;&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;,&#123;<span class="number">4</span>,<span class="number">5</span>&#125;,&#123;<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>&#125;&#125;;</span><br><span class="line"><span class="comment">//动态初始化</span></span><br><span class="line">String[][] arr2 = <span class="keyword">new</span> String[<span class="number">3</span>][<span class="number">2</span>];<span class="comment">//方式一</span></span><br><span class="line">String[][] arr3 = <span class="keyword">new</span> String[<span class="number">3</span>][];<span class="comment">//方式二</span></span><br></pre></td></tr></table></figure>
+
+
+<p><strong>数组元素的默认初始值</strong></p>
+<ul>
+<li>数组元素是整型：0</li>
+<li>数组元素是浮点型：0.0</li>
+<li>数组元素是char型：0或’\u0000’</li>
+<li>数组元素是boolean型：false</li>
+<li>数组元素是引用数据类型：null</li>
+<li>二维数组外层元素的初始化值为地址值（方式一），null（方式二）</li>
+</ul>
 <p><strong>对数组中的元素赋值</strong></p>
-<pre><code>numbers[cnt] = x; //括号中可以是变量或常量整数。</code></pre><p>通过下标访问数组元素。和C一样，下表从0开始。<br>数组有个固有成员length。numbers.length返回numbers的元素数量。</p>
-<p><strong>直接初始化数组</strong></p>
-<pre><code>int[] scores = {87,98,69,54,65,76,87,99};</code></pre><p>直接用大括号给出数组的所有元素的初始值，不需要给出数组的大小,编译器替你数数。</p>
+<pre><code>numbers[cnt] = x; //括号中可以是变量或常量整数。</code></pre><p><strong>获取数组长度</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//属性：length</span></span><br><span class="line">System.out.println(namse.length);</span><br></pre></td></tr></table></figure>
+
+
+
 <p><strong>数组的复制</strong></p>
 <pre><code>int[] a=new int[10];a[0]=5;
 int[] b=a; b[0]=16;
@@ -229,7 +279,17 @@ System.out.println(a[0]);</code></pre><p>输出都是16。</p>
         found =true;
         break;
     }
-}</code></pre><h2 id="包裹类型"><a href="#包裹类型" class="headerlink" title="包裹类型"></a>包裹类型</h2><p>每种基础类型都有对应的包裹类型</p>
+}</code></pre><p><strong>Arrays工具类的使用</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(<span class="keyword">int</span>[] a,<span class="keyword">int</span>[]b)</span></span>; <span class="comment">//判断两个数组是否相等</span></span><br><span class="line"><span class="function">String <span class="title">toString</span><span class="params">(<span class="keyword">int</span>[] a)</span></span>; <span class="comment">//输出数组信息</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fill</span><span class="params">(<span class="keyword">int</span>[] a,<span class="keyword">int</span> val)</span></span>; <span class="comment">//将指定值填充到数组之中。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sort</span><span class="params">(<span class="keyword">int</span>[] a)</span></span>;<span class="comment">//对数组进行排序。</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(<span class="keyword">int</span>[] a,<span class="keyword">int</span> key)</span></span>;<span class="comment">//对排序后的数组进行二分法检索指定的值。</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>数组中的常见异常</strong></p>
+<ul>
+<li>数组角标越界的异常：ArrayIndexOutOfBoundException</li>
+<li>空指针异常：NullPointerException</li>
+</ul>
+<h2 id="包裹类型"><a href="#包裹类型" class="headerlink" title="包裹类型"></a>包裹类型</h2><p>每种基础类型都有对应的包裹类型</p>
 <table>
 <thead>
 <tr>
@@ -284,7 +344,8 @@ if(input.equals(&quot;bye&quot;)){    //这才是比较内容是否相同
 s.toUpperCase();
 System.outprintln(s);</code></pre><p>输出依然是abcd。正确的操作是String s2=s.toUpperCase();然后输出s2。</p>
 <p><strong>在switch-Case中使用字符串</strong><br>switch(s){<br>    case”this”:…break;<br>    Case”that”:…break;<br>}</p>
-<h2 id="对象与类"><a href="#对象与类" class="headerlink" title="对象与类"></a>对象与类</h2><p>-对象是实体，需要被创建，可以为我们做事情。<br>-类是规范，根据类的定义来创建对象。</p>
+<h2 id="对象与类"><a href="#对象与类" class="headerlink" title="对象与类"></a>对象与类</h2><p>面向对象的三大特征：封装性、继承性、多态性、（抽象性）</p>
+<p>-对象是实体，需要被创建，可以为我们做事情。<br>-类是规范，根据类的定义来创建对象。</p>
 <p>对象=属性+操作<br>数据：属性或状态<br>操作：函数<br>把数据和对数据的操作放在一起–&gt;封装</p>
 <p><strong>创建对象</strong><br>-new VendingMachine();<br>-VendingMachine V =new VendingMachine()<br>-对象变量是对象的管理者。</p>
 <p><strong>让对象做事</strong><br>-.运算符<br>-v.insertMoney(10);<br>-v.getFood();</p>
@@ -331,103 +392,6 @@ VendingMachine(price)    //重载
 {
     this();        //调用没有参数的那个构造函数，这个函数只能在构造函数中出现，且只能使用过一次。
     this.price=price;
-}</code></pre><h2 id="类与对象编程作业（浙大慕课）"><a href="#类与对象编程作业（浙大慕课）" class="headerlink" title="类与对象编程作业（浙大慕课）"></a>类与对象编程作业（浙大慕课）</h2><p><strong>题目内容</strong><br>设计一个表示分数的类Fraction。这个类用两个int类型的变量分别表示分子和分母。<br>这个类的构造函数是：</p>
-<p>Fraction(int a, int b)<br>    构造一个a/b的分数。</p>
-<p>这个类要提供以下的功能：</p>
-<p>double toDouble();<br>    将分数转换为double<br>Fraction plus(Fraction r);<br>    将自己的分数和r的分数相加，产生一个新的Fraction的对象。注意小学四年级学过两个分数如何相加的哈。<br>Fraction multiply(Fraction r);<br>    将自己的分数和r的分数相乘，产生一个新的Fraction的对象。<br>void print();<br>    将自己以“分子/分母”的形式输出到标准输出，并带有回车换行。如果分数是1/1，应该输出1。当分子大于分母时，不需要提出整数部分，即31/30是一个正确的输出。</p>
-<p>注意，在创建和做完运算后应该化简分数为最简形式。如2/4应该被化简为1/2。</p>
-<p>你写的类要和以下的代码放在一起，并请勿修改这个代码：</p>
-<pre><code>import java.util.Scanner;
-
-public class Main {
-
-public static void main(String[] args) {
-    Scanner in = new Scanner(System.in);
-    Fraction a = new Fraction(in.nextInt(), in.nextInt());
-    Fraction b = new Fraction(in.nextInt(),in.nextInt());
-    a.print();
-    b.print();
-    a.plus(b).print();
-    a.multiply(b).plus(new Fraction(5,6)).print();
-    a.print();
-    b.print();
-    in.close();
-}
-
-}</code></pre><p>注意，你的类的定义应该这样开始：</p>
-<pre><code>class Fraction {</code></pre><p>也就是说，在你的类的class前面不要有public。</p>
-<p><strong>输入格式：</strong><br>程序运行时会得到四个数字，分别构成两个分数，依次是分子和分母。</p>
-<p><strong>输出格式</strong><br>输出一些算式。这些输入和输出都是由Main类的代码完成的，你的代码不要做输入和输出。</p>
-<p><strong>输入样例</strong><br>2 4 1 3</p>
-<p><strong>输出样例</strong><br>1/2<br>1/3<br>5/6<br>1<br>1/2<br>1/3</p>
-<p><strong>我的代码</strong></p>
-<pre><code>package com.company;
-import java.util.Scanner;
-class Fraction {
-    private int a;
-    private int b ;
-
-    public Fraction(int x,int y) {
-        a = x;
-        b = y;
-    }
-
-    double toDouble()
-    {
-        return (double)a/b;
-    }
-
-    Fraction plus(Fraction r)
-    {
-        Fraction res = new Fraction(0,0);
-        res.a = r.a * this.b + this.a * r.b;
-        res.b = r.b * this.b;
-        return res;
-    }
-
-    Fraction multiply(Fraction r)
-    {
-        Fraction res = new Fraction(0,0);
-        res.a = r.a * this.a;
-        res.b = r.b * this.b;
-        return res;
-    }
-
-    void print()
-    {
-        int x=a,y=b;
-        if(a&gt;=b &amp;&amp; a%b==0)
-            System.out.println(a/b+&quot;\n&quot;);
-        else
-        {
-            while( x % y !=0 )
-            {
-                int c;
-                c=y;
-                y=x%y;
-                x=c;
-            }
-            a=a/y;
-            b=b/y;
-            System.out.println(a+&quot;/&quot;+b+&apos;\n&apos;);
-        }
-    }
-}
-
-public class Main {
-
-    public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        Fraction a = new Fraction(in.nextInt(),in.nextInt());
-        Fraction b = new Fraction(in.nextInt(),in.nextInt());
-        a.print();
-        b.print();
-        a.plus(b).print();
-        a.multiply(b).plus(new Fraction(5,6)).print();
-        a.print();
-        b.print();
-        in.close();
-    }
 }</code></pre><h2 id="对象交互"><a href="#对象交互" class="headerlink" title="对象交互"></a>对象交互</h2><p><strong>访问属性</strong><br><em>private：</em></p>
 <p>+只有这个类内部可以访问。<br>+类内部指类的成员函数和定义初始化。<br>+这个限制是对类的而不是对对象的。</p>
 <p><em>public</em>:<br>+任何人都可以访问<br>+任何人指的是在任何类的函数或定义初始化中可以使用。<br>+使用指的是调用、访问或定义变量。<br>+一个单元最多只有一个public</p>
@@ -590,7 +554,7 @@ public String[] list(){
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数组的使用"><span class="toc-number">2.</span> <span class="toc-text">数组的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#包裹类型"><span class="toc-number">3.</span> <span class="toc-text">包裹类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字符串变量"><span class="toc-number">4.</span> <span class="toc-text">字符串变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对象与类"><span class="toc-number">5.</span> <span class="toc-text">对象与类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类与对象编程作业（浙大慕课）"><span class="toc-number">6.</span> <span class="toc-text">类与对象编程作业（浙大慕课）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对象交互"><span class="toc-number">7.</span> <span class="toc-text">对象交互</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#顺序容器"><span class="toc-number">8.</span> <span class="toc-text">顺序容器</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-JVM与垃圾收集机制"><span class="toc-number">1.0.1.</span> <span class="toc-text">1.4 JVM与垃圾收集机制</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#核心机制-—-Java虚拟机"><span class="toc-number">1.0.1.1.</span> <span class="toc-text">核心机制 —- Java虚拟机</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#核心机制-—-垃圾回收"><span class="toc-number">1.0.1.2.</span> <span class="toc-text">核心机制 —- 垃圾回收</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-5-java语言的环境搭建"><span class="toc-number">1.0.2.</span> <span class="toc-text">1.5 java语言的环境搭建</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-变量"><span class="toc-number">1.0.3.</span> <span class="toc-text">2.3 变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-数组的使用"><span class="toc-number">1.0.4.</span> <span class="toc-text">3.1 数组的使用</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#包裹类型"><span class="toc-number">2.</span> <span class="toc-text">包裹类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字符串变量"><span class="toc-number">3.</span> <span class="toc-text">字符串变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对象与类"><span class="toc-number">4.</span> <span class="toc-text">对象与类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对象交互"><span class="toc-number">5.</span> <span class="toc-text">对象交互</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#顺序容器"><span class="toc-number">6.</span> <span class="toc-text">顺序容器</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -739,22 +703,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">javaweb</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">后端</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Cookies</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Session</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
@@ -767,15 +715,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jsp</a>
+                <a href="javascript:void(0)" class="js-tag color3">javaweb</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JavaBean</a>
+                <a href="javascript:void(0)" class="js-tag color3">后端</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">MVC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">jsp</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -787,7 +739,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">计图</a>
+                <a href="javascript:void(0)" class="js-tag color3">Cookies</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Session</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JavaBean</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -795,11 +755,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">C++</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">动漫</a>
+                <a href="javascript:void(0)" class="js-tag color3">计图</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -807,7 +763,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">算法笔记</a>
+                <a href="javascript:void(0)" class="js-tag color3">动漫</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">mybatis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -835,7 +799,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">算法笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Atcoder</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
               </li>
             
             <div class="clearfix"></div>
