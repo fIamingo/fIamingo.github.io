@@ -16,7 +16,7 @@
 <meta property="og:description" content="众所周知，AC自动机是帮助你自动AC题目的机器一个经典字符串算法，可以帮助解决多模式匹配问题。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-09-15T12:40:27.000Z">
-<meta property="article:modified_time" content="2020-09-19T14:51:33.394Z">
+<meta property="article:modified_time" content="2021-04-12T04:55:34.992Z">
 <meta property="article:author" content="fIamingo">
 <meta property="article:tag" content="ACM">
 <meta property="article:tag" content="算法">
@@ -216,54 +216,14 @@
 <p>这张图增加了fail指针，fail指针指向起点这条路上的最大后缀的地方。<br>比如sh，h这个地方指向了另一个h，那个h是sh的后缀。<br>当搜索一个字母序列，比如shi，从root出发找到了s，然后找到了s后面的h，这个h后面并没有连接i，所以fail指针指向了root后面的h，这个h能找到后面的i了，虽然从这里开始断了，查找最终会失败。<br>所以匹配失败一种是当前结点的子节点没有字母的下一个字母，此时去向fail指针指向的位置。<br>另一种就是主串搜索完毕了，在不是单词末尾的地方停下来了。<br>此外，she的e处不仅代表she这个单词被搜索到了，也代表he这个单词被搜索到了。所以在e处应存放两个单词。</p>
 </font>
 
-<h2 id="3-代码实现"><a href="#3-代码实现" class="headerlink" title="3.代码实现"></a>3.代码实现</h2><h3 id="3-1-建立字典树"><a href="#3-1-建立字典树" class="headerlink" title="3.1 建立字典树"></a>3.1 建立字典树</h3><pre><code>//将单词加入字典树中
-void insertWords(string s){
-    int root = 0;
-    for(int i = 0; i &lt; s.size(); i++){
-        int next = s[i] - &apos;a&apos;;//将当前字母加入字典树
-        if(!trie[root][next])
-            trie[root][next] = ++cnt;
-        root = trie[root][next];
-    }
-    cntword[root]++;    
-}</code></pre><h3 id="3-2-bfs创建失败指针"><a href="#3-2-bfs创建失败指针" class="headerlink" title="3.2 bfs创建失败指针"></a>3.2 bfs创建失败指针</h3><pre><code>void getFail(){
-    queue &lt;int&gt;q;
-    for(int i=0;i&lt;26;i++){      //将第二层所有出现了的字母扔进队列
-        if(trie[0][i]){
-            fail[trie[0][i]] = 0;
-            q.push(trie[0][i]);
-        }
-    }
-//fail[now]    -&gt;当前节点now的失败指针指向的地方
-tire[now][i] -&gt; 下一个字母为i+&apos;a&apos;的节点的下标为tire[now][i]
-    while(!q.empty()){
-        int now = q.front();
-        q.pop();
-        for(int i=0;i&lt;26;i++){      //查询26个字母
-        if(trie[now][i]){
-            //如果有这个子节点为字母i+&apos;a&apos;,则
-            //让这个节点的失败指针指向(((他父亲节点)的失败指针所指向的那个节点)的下一个节点)
-            //有点绕,为了方便理解特意加了括号
-            fail[trie[now][i]] = trie[fail[now]][i];
-            q.push(trie[now][i]);
-        }
-        else//否则就让当前节点的这个子节点
-            //指向当前节点fail指针的这个子节点
-            trie[now][i] = trie[fail[now]][i];
-        }
-    }
-}</code></pre><h3 id="3-3-搜索"><a href="#3-3-搜索" class="headerlink" title="3.3 搜索"></a>3.3 搜索</h3><pre><code>    int query(string s){
-    int now = 0,ans = 0;
-    for(int i=0;i&lt;s.size();i++){    //遍历文本串
-        now = trie[now][s[i]-&apos;a&apos;];  //从s[i]点开始寻找
-        for(int j=now;j &amp;&amp; cntword[j]!=-1;j=fail[j]){
-            //一直向下寻找,直到匹配失败(失败指针指向根或者当前节点已找过).
-            ans += cntword[j];
-            cntword[j] = -1;    //将遍历过后的节点标记,防止重复计算
-        }
-    }
-    return ans;
-}</code></pre>
+<h2 id="3-代码实现"><a href="#3-代码实现" class="headerlink" title="3.代码实现"></a>3.代码实现</h2><h3 id="3-1-建立字典树"><a href="#3-1-建立字典树" class="headerlink" title="3.1 建立字典树"></a>3.1 建立字典树</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//将单词加入字典树中</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insertWords</span><span class="params">(<span class="built_in">string</span> s)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> root = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.<span class="built_in">size</span>(); i++)&#123;</span><br><span class="line">		<span class="keyword">int</span> next = s[i] - <span class="string">'a'</span>;<span class="comment">//将当前字母加入字典树</span></span><br><span class="line">		<span class="keyword">if</span>(!trie[root][next])</span><br><span class="line">			trie[root][next] = ++cnt;</span><br><span class="line">		root = trie[root][next];</span><br><span class="line">	&#125;</span><br><span class="line">	cntword[root]++;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="3-2-bfs创建失败指针"><a href="#3-2-bfs创建失败指针" class="headerlink" title="3.2 bfs创建失败指针"></a>3.2 bfs创建失败指针</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getFail</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">queue</span> &lt;<span class="keyword">int</span>&gt;q;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">26</span>;i++)&#123;      <span class="comment">//将第二层所有出现了的字母扔进队列</span></span><br><span class="line">        <span class="keyword">if</span>(trie[<span class="number">0</span>][i])&#123;</span><br><span class="line">            fail[trie[<span class="number">0</span>][i]] = <span class="number">0</span>;</span><br><span class="line">            q.push(trie[<span class="number">0</span>][i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//fail[now]    -&gt;当前节点now的失败指针指向的地方</span></span><br><span class="line">tire[now][i] -&gt; 下一个字母为i+<span class="string">'a'</span>的节点的下标为tire[now][i]</span><br><span class="line">    <span class="keyword">while</span>(!q.empty())&#123;</span><br><span class="line">        <span class="keyword">int</span> now = q.front();</span><br><span class="line">        q.pop();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">26</span>;i++)&#123;      <span class="comment">//查询26个字母</span></span><br><span class="line">        <span class="keyword">if</span>(trie[now][i])&#123;</span><br><span class="line">            <span class="comment">//如果有这个子节点为字母i+'a',则</span></span><br><span class="line">			<span class="comment">//让这个节点的失败指针指向(((他父亲节点)的失败指针所指向的那个节点)的下一个节点)</span></span><br><span class="line">            <span class="comment">//有点绕,为了方便理解特意加了括号</span></span><br><span class="line">            fail[trie[now][i]] = trie[fail[now]][i];</span><br><span class="line">            q.push(trie[now][i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span><span class="comment">//否则就让当前节点的这个子节点</span></span><br><span class="line">            <span class="comment">//指向当前节点fail指针的这个子节点</span></span><br><span class="line">            trie[now][i] = trie[fail[now]][i];</span><br><span class="line">    	&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-3-搜索"><a href="#3-3-搜索" class="headerlink" title="3.3 搜索"></a>3.3 搜索</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="built_in">string</span> s)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> now = <span class="number">0</span>,ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;s.<span class="built_in">size</span>();i++)&#123;    <span class="comment">//遍历文本串</span></span><br><span class="line">        now = trie[now][s[i]-<span class="string">'a'</span>];  <span class="comment">//从s[i]点开始寻找</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=now;j &amp;&amp; cntword[j]!=<span class="number">-1</span>;j=fail[j])&#123;</span><br><span class="line">            <span class="comment">//一直向下寻找,直到匹配失败(失败指针指向根或者当前节点已找过).</span></span><br><span class="line">            ans += cntword[j];</span><br><span class="line">            cntword[j] = <span class="number">-1</span>;    <span class="comment">//将遍历过后的节点标记,防止重复计算</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
       
 
       
@@ -561,19 +521,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MVC</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">jsp</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -585,7 +533,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">MVC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">JavaBean</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">C++</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -597,23 +561,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">kuangbin带你飞</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">动漫</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">C++</a>
+                <a href="javascript:void(0)" class="js-tag color2">kuangbin带你飞</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">算法笔记</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">mybatis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">面经</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -634,10 +594,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">游戏</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">算法笔记</a>
               </li>
              
               <li class="article-tag-list-item">
